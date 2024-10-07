@@ -14,18 +14,18 @@ class ProfileEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'avatar' => ['nullable', 'image', 'max:2000'],
+            'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
             'banner' => ['nullable', 'image', 'max:2000'],
-            'fullname' => ['required', 'max:255'],
+            'name' => ['required', 'max:255'],
             'phonenumber' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'address' => ['required', 'max:255'],
             'website' => ['nullable', 'url'],
             'about' => ['nullable', 'max:255'],
-            'fb-url' => ['nullable', 'url'],
-            'x-url' => ['nullable', 'url'],
-            'linked-url' => ['nullable', 'url'],
-            'insta-url' => ['nullable', 'url'],
+            'fb_url' => ['nullable', 'url'],
+            'x_url' => ['nullable', 'url'],
+            'linked_url' => ['nullable', 'url'],
+            'insta_url' => ['nullable', 'url'],
         ];
     }
 }

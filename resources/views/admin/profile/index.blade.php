@@ -22,7 +22,7 @@
                             <h4>Update Profile</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.profile.update') }}" method="POST">
+                            <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -46,43 +46,44 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Full Name <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="fullname"
-                                                placeholder="Enter your name" required>
+                                            <label for="">Name<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ $user->name }}" placeholder="Enter your name" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Phone Number <span class="text-danger">*</span></label>
+                                            <label for="">Phone Number<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="phonenumber"
-                                                placeholder="Enter your phone number" required>
+                                                value="{{ $user->phonenumber }}" placeholder="Enter your phone number"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Email <span class="text-danger">*</span></label>
+                                            <label for="">Email<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="email"
-                                                placeholder="Enter your email" required>
+                                                value="{{ $user->email }}" placeholder="Enter your email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Address <span class="text-danger">*</span></label>
+                                            <label for="">Address<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="address"
-                                                placeholder="Enter your address" required>
+                                                value="{{ $user->address }}" placeholder="Enter your address" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Website</label>
                                             <input type="text" class="form-control" name="website"
-                                                placeholder="Enter your url website">
+                                                value="{{ $user->website }}" placeholder="Enter your url website">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">About <span class="text-danger">*</span></label>
-                                            <textarea name="about" id="about" class="form-control" cols="30" rows="10" required></textarea>
+                                            <label for="">About<span class="text-danger">*</span></label>
+                                            <textarea name="about" id="about" class="form-control" cols="30" rows="10" required>{!! $user->about !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 pb-3">
@@ -91,29 +92,29 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Facebook</label>
-                                            <input type="text" class="form-control" name="fb-url"
-                                                placeholder="Enter your url facebook ">
+                                            <input type="text" class="form-control" name="fb_url"
+                                                value="{{ $user->fb_url }}" placeholder="Enter your url facebook ">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">X</label>
-                                            <input type="text" class="form-control" name="x-url"
-                                                placeholder="Enter your url X ">
+                                            <input type="text" class="form-control" name="x_url"
+                                                value="{{ $user->x_url }}" placeholder="Enter your url X ">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">LinkedIn</label>
-                                            <input type="text" class="form-control" name="linked-url"
-                                                placeholder="Enter your url linkedin">
+                                            <input type="text" class="form-control" name="linked_url"
+                                                value="{{ $user->linked_url }}" placeholder="Enter your url linkedin">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Instagram</label>
-                                            <input type="text" class="form-control" name="insta-url"
-                                                placeholder="Enter your url instagram">
+                                            <input type="text" class="form-control" name="insta_url"
+                                                value="{{ $user->insta_url }}" placeholder="Enter your url instagram">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
