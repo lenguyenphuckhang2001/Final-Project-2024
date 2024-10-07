@@ -24,12 +24,12 @@ class AdminProfileController extends Controller
 
     function update(ProfileEditRequest $request): RedirectResponse
     {
-        $avatarPath = $this->uploadImage($request, 'avatar');
-        $bannerPath = $this->uploadImage($request, 'banner');
+        $avatarPath = $this->uploadImage($request, 'avatar', $request->old_avatar);
+        $bannerPath = $this->uploadImage($request, 'banner', $request->old_banner);
 
         $user = Auth::user();
-        $user->avatar = !empty($avatarPath) ? $avatarPath : '';
-        $user->banner = !empty($bannerPath) ? $bannerPath : '';
+        $user->avatar = !empty($avatarPath) ? $avatarPath : $request->old_avatar;
+        $user->banner = !empty($bannerPath) ? $bannerPath : $request->old_banner;
         $user->name = $request->name;
         $user->phonenumber = $request->phonenumber;
         $user->email = $request->email;
@@ -41,6 +41,8 @@ class AdminProfileController extends Controller
         $user->linked_url = $request->linked_url;
         $user->insta_url = $request->insta_url;
         $user->save();
+
+        toastr()->success('Updated');
 
         return redirect()->back();
     }

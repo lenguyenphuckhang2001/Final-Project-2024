@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->enum('user_type', ['user', 'admin'])->default('user');
-            $table->string('avatar')->default('/public/images/default/avatar.jpg');
-            $table->string('banner')->default('/public/images/default/banner.jpg');
+            $table->string('avatar')->default('/images/default/avatar.jpg');
+            $table->string('banner')->default('/images/default/banner.jpg');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

@@ -29,18 +29,20 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Avatar</label>
-                                            <div id="avatar-preview" class="image-preview">
+                                            <div id="avatar-preview" class="image-preview avatar-image-preview">
                                                 <label for="avatar-upload" id="avatar-label">Choose File</label>
-                                                <input type="file" name="avatar" id="avatar-upload" />
+                                                <input type="file" name="avatar" id="avatar-upload" value />
+                                                <input type="hidden" name="old_avatar" value="{{ $user->avatar }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Banner</label>
-                                            <div id="banner-preview" class="image-preview">
+                                            <div id="banner-preview" class="image-preview banner-image-preview">
                                                 <label for="banner-upload" id="banner-label">Choose File</label>
                                                 <input type="file" name="banner" id="banner-upload" />
+                                                <input type="hidden" name="old_banner" value="{{ $user->banner }}">
                                             </div>
                                         </div>
                                     </div>
@@ -134,6 +136,20 @@
 
 @push('scripts')
     <script>
+        $(document).ready(function() {
+            $('.avatar-image-preview').css({
+                'background-image': 'url({{ asset($user->avatar) }})',
+                'background-position': 'center center',
+                'background-size': 'cover'
+            })
+
+            $('.banner-image-preview').css({
+                'background-image': 'url({{ asset($user->banner) }})',
+                'background-position': 'center center',
+                'background-size': 'cover'
+            });
+        })
+
         $.uploadPreview({
             input_field: "#avatar-upload", // Default: .avatar-upload
             preview_box: "#avatar-preview", // Default: .avatar-preview
