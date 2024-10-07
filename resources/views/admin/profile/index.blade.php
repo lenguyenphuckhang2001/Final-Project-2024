@@ -19,17 +19,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit Profile</h4>
+                            <h4>Update Profile</h4>
                         </div>
                         <div class="card-body">
-                            <form action="">
+                            <form action="{{ route('admin.profile.update') }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Avatar</label>
                                             <div id="avatar-preview" class="image-preview">
                                                 <label for="avatar-upload" id="avatar-label">Choose File</label>
-                                                <input type="file" name="avatar-image" id="avatar-upload" />
+                                                <input type="file" name="avatar" id="avatar-upload" />
                                             </div>
                                         </div>
                                     </div>
@@ -38,7 +40,7 @@
                                             <label for="">Banner</label>
                                             <div id="banner-preview" class="image-preview">
                                                 <label for="banner-upload" id="banner-label">Choose File</label>
-                                                <input type="file" name="banner-image" id="banner-upload" />
+                                                <input type="file" name="banner" id="banner-upload" />
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +118,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                            <button type="submit" class="btn btn-primary">Update</button>
                                         </div>
                                     </div>
                                 </div>
