@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProfileEditRequest;
-use App\Models\User;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [FrontendProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile', [FrontendProfileController::class, 'updateInfo'])->name('profile.update');
+    Route::put('/profile-change-password', [FrontendProfileController::class, 'changePassword'])->name('profile-change-password.update');
 });
 
 require __DIR__ . '/auth.php';

@@ -78,6 +78,8 @@
     <script src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
     <!--toast js-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!--preview js-->
+    <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <!-- Script Code -->
@@ -88,6 +90,7 @@
             @endforeach
         @endif
     </script>
+    @stack('scripts')
 </body>
 
 </html>

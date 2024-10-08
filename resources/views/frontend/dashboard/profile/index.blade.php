@@ -136,35 +136,39 @@
                             </form>
                         </div>
                         <div class="my_listing list_mar">
-                            <h4>change password</h4>
-                            <form>
+                            <h4>Change Password</h4>
+                            <form action="{{ route('user.profile-change-password.update') }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-xl-4 col-md-6">
                                         <div class="my_listing_single">
-                                            <label>current password</label>
+                                            <label>Current Password</label>
                                             <div class="input_area">
-                                                <input type="password" placeholder="Current Password">
+                                                <input type="password" name="current_password"
+                                                    placeholder="Current Password">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-md-6">
                                         <div class="my_listing_single">
-                                            <label>new password</label>
+                                            <label>New Password</label>
                                             <div class="input_area">
-                                                <input type="password" placeholder="New Password">
+                                                <input type="password" name="password" placeholder="New Password">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-xl-4">
                                         <div class="my_listing_single">
-                                            <label>confirm password</label>
+                                            <label>Confirm Password</label>
                                             <div class="input_area">
-                                                <input type="password" placeholder="Confirm Password">
+                                                <input type="password" name="password_confirmation"
+                                                    placeholder="Confirm Password">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="read_btn">upload</button>
+                                        <button type="submit" class="read_btn">Change Password</button>
                                     </div>
                                 </div>
                             </form>

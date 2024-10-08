@@ -1,6 +1,7 @@
 <div class="dashboard_sidebar">
     <span class="close_icon"><i class="far fa-times"></i></span>
-    <a href="dsahboard.html" class="dash_logo"><img src="images/user_large_img.jpg" alt="logo" class="img-fluid"></a>
+    <a href="dsahboard.html" class="dash_logo"><img src="{{ asset(auth()->user()->avatar) }}" alt="logo"
+            class="img-fluid"></a>
     <ul class="dashboard_link">
         <li><a class="active" href="dsahboard.html"><i class="fas fa-tachometer"></i>Dashboard</a></li>
         <li><a href="{{ route('user.profile.index') }}"><i class="far fa-user"></i> My Profile</a></li>
@@ -12,6 +13,13 @@
         <li><a href="dsahboard_order.html"><i class="fal fa-notes-medical"></i> Orders</a></li>
         <li><a href="dsahboard_package.html"><i class="fal fa-gift-card"></i> Package</a></li>
         <li><a href="dsahboard_message.html"><i class="far fa-comments-alt"></i> Message</a></li>
-        <li><a href="#"><i class="far fa-sign-out-alt"></i> Logout</a></li>
+        <li>
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><i
+                        class="far fa-sign-out-alt"></i> Logout</a>
+            </form>
+        </li>
     </ul>
 </div>
