@@ -33,7 +33,6 @@
                             </div>
 
                             <div class="card-body">
-                                <x-auth-session-status class="mb-4" :status="session('status')" />
                                 @if (session('status'))
                                     <div class="alert alert-success">
                                         {{ session('status') }}
