@@ -11,5 +11,6 @@ Route::get('/admin/password-request', [AdminAuthController::class, 'passwordRequ
 Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile');
-    Route::put('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile', [AdminProfileController::class, 'update'])->name('profile.update'); //Update information admin
+    Route::put('/profile-change-password', [AdminProfileController::class, 'changePassword'])->name('profile-change-password.update'); //Update password admin
 });

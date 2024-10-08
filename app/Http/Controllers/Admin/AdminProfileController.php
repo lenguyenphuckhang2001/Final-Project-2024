@@ -42,7 +42,28 @@ class AdminProfileController extends Controller
         $user->insta_url = $request->insta_url;
         $user->save();
 
-        toastr()->success('Updated');
+        toastr()->success('Updated information successfully');
+
+        return redirect()->back();
+    }
+
+    function changePassword(Request $request): RedirectResponse
+    {
+
+        $request->validate([
+            'password' => [
+                'required',
+                'min:6',
+                // 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/',//Required at least 1 character uppercase and 1 number
+                'confirmed'
+            ]
+        ]);
+
+        $user = Auth::user();
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        toastr()->success('Updated password successfully');
 
         return redirect()->back();
     }

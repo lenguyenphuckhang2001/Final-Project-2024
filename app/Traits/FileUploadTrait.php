@@ -21,10 +21,15 @@ trait FileUploadTrait
             //File sẽ được di chuyển tới thư mục uploads cụ thể hơn /public/uploads/media_64fd0d674ec2f.jpg
             $image->move(public_path($path), $imageName);
 
-            $emptyFolder = "/default";
+            //Mặc định defaultFolder sẽ có đường dẫn là /default
+            $defaultFolder = "/default";
 
             //Xóa ảnh gốc từ storage
-            if ($oldPath && File::exists(public_path($oldPath)) && strpos($oldPath, $emptyFolder) !== 0) {
+            /**strpos($haystack, $needle): Hàm này được sử dụng để tìm vị trí của chuỗi con $needle trong chuỗi cha $haystack. 
+             * Kết quả trả về: Nếu tìm thấy chuỗi con, hàm trả về vị trí đầu tiên của chuỗi con đó trong chuỗi cha, bắt đầu từ 0.
+             * Nếu không tìm thấy, hàm sẽ trả về false.
+             */
+            if ($oldPath && File::exists(public_path($oldPath)) && strpos($oldPath, $defaultFolder) !== 0) {
                 File::delete(public_path($oldPath));
             }
             //Trả về đường dẫn sau khi thành công /uploads/media_64fd0d674ec2f.jpg
