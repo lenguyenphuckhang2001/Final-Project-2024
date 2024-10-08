@@ -31,7 +31,7 @@
                                             <label for="">Avatar</label>
                                             <div id="avatar-preview" class="image-preview avatar-image-preview">
                                                 <label for="avatar-upload" id="avatar-label">Choose File</label>
-                                                <input type="file" name="avatar" id="avatar-upload" value />
+                                                <input type="file" name="avatar" id="avatar-upload" />
                                                 <input type="hidden" name="old_avatar" value="{{ $user->avatar }}">
                                             </div>
                                         </div>
@@ -143,13 +143,13 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Password<span class="text-danger">*</span></label>
                                             <input type="password" name="password" class="form-control" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Confirm Password<span
                                                     class="text-danger">*</span></label>

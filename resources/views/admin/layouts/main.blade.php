@@ -55,6 +55,7 @@
 
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
+    <!-- Script Code -->
     <script>
         @if ($errors->any())
             @foreach ($errors->all() as $error)

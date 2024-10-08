@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/summernote.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/nice-select.css') }}">
-
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
 </head>
 
@@ -75,10 +76,18 @@
     <script src="{{ asset('frontend/js/summernote.min.js') }}"></script>
     <!--select js-->
     <script src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
-
+    <!--toast js-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
-
+    <!-- Script Code -->
+    <script>
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error('{{ $error }}')
+            @endforeach
+        @endif
+    </script>
 </body>
 
 </html>
