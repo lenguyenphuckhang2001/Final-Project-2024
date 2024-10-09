@@ -73,6 +73,16 @@
             success_callback: null // Default: null
         });
 
+        $.uploadPreview({
+            input_field: "#image-upload-2", // Default: .image-upload-2
+            preview_box: "#image-preview-2", // Default: .image-preview-2
+            label_field: "#image-label-2", // Default: .image-label-2
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null // Default: null
+        });
+
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 toastr.error('{{ $error }}')
