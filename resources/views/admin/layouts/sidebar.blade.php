@@ -169,23 +169,27 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="index.html">Admin</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="index.html">Ad</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Starter</li>
-            <li><a class="nav-link" href="{{ route('admin.dashboard.index') }}"><i class="far fa-square"></i>
+            <li class="{{ setActiveRoute(['admin.dashboard.index']) }}"><a class="nav-link"
+                    href="{{ route('admin.dashboard.index') }}"><i class="far fa-square"></i>
                     <span>Dashboard</span></a></li>
-            <li class="dropdown">
+
+            <li class="dropdown {{ setActiveRoute(['admin.hero.index']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i> <span>Sections</span></a>
 
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('admin.hero.index') }}">Hero</a></li>
+                    <li class="{{ setActiveRoute(['admin.hero.index']) }}"><a class="nav-link"
+                            href="{{ route('admin.hero.index') }}">Hero Section</a></li>
                 </ul>
             </li>
+
             <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank
                         Page</span></a></li>
         </ul>
