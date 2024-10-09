@@ -190,13 +190,13 @@
         })
 
         $.uploadPreview({
-            input_field: "#avatar-upload", // Default: .avatar-upload
-            preview_box: "#avatar-preview", // Default: .avatar-preview
-            label_field: "#avatar-label", // Default: .avatar-label
-            label_default: "Choose File", // Default: Choose File
-            label_selected: "Change File", // Default: Change File
-            no_label: false, // Default: false
-            success_callback: null // Default: null
+            input_field: "#avatar-upload",
+            preview_box: "#avatar-preview",
+            label_field: "#avatar-label",
+            label_default: "Choose File",
+            label_selected: "Change File",
+            no_label: false,
+            success_callback: null
         });
 
         $.uploadPreview({

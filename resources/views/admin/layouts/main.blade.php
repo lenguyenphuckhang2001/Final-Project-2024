@@ -56,7 +56,19 @@
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <!-- Script Code -->
+
     <script>
+        //Preview image
+        $.uploadPreview({
+            input_field: "#image-upload", // Default: .image-upload
+            preview_box: "#image-preview", // Default: .image-preview
+            label_field: "#image-label", // Default: .image-label
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null // Default: null
+        });
+
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 toastr.error('{{ $error }}')
