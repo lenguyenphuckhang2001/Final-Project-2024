@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminHeroSectionController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\ListingCategoryController;
+use App\Http\Controllers\Admin\ListingLocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login')->middleware('guest');
@@ -21,4 +22,5 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::put('/hero', [AdminHeroSectionController::class, 'update'])->name('hero.update');
 
     Route::resource('/category', ListingCategoryController::class);
+    Route::resource('/location', ListingLocationController::class);
 });

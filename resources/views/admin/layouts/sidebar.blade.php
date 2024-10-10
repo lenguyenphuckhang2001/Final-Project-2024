@@ -194,6 +194,7 @@
                     <span>Listing</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.category.index') }}">Category</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.location.index') }}">Location</a></li>
                 </ul>
             </li>
 
