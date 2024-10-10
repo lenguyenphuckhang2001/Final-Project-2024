@@ -52,7 +52,7 @@ class ListingCategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        toastr()->success("Created successfully");
+        toastr()->success("Created category successfully");
 
         return to_route('admin.category.index');
     }
