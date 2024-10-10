@@ -168,10 +168,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Admin</a>
+            <a href="index.html">Admin Dashboard</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">Ad</a>
+            <a href="index.html">AD</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Starter</li>
@@ -195,6 +195,7 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.category.index') }}">Category</a></li>
                     <li><a class="nav-link" href="{{ route('admin.location.index') }}">Location</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.amenity.index') }}">Amenity</a></li>
                 </ul>
             </li>
 
