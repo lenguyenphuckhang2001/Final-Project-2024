@@ -25,7 +25,7 @@ trait FileUploadTrait
             $defaultFolder = "/default";
 
             //Xóa ảnh gốc từ storage
-            /**strpos($haystack, $needle): Hàm này được sử dụng để tìm vị trí của chuỗi con $needle trong chuỗi cha $haystack. 
+            /**strpos($haystack, $needle): Hàm này được sử dụng để tìm vị trí của chuỗi con $needle trong chuỗi cha $haystack.
              * Kết quả trả về: Nếu tìm thấy chuỗi con, hàm trả về vị trí đầu tiên của chuỗi con đó trong chuỗi cha, bắt đầu từ 0.
              * Nếu không tìm thấy, hàm sẽ trả về false.
              */
@@ -36,5 +36,14 @@ trait FileUploadTrait
             return $path . '/' . $imageName;
         }
         return null;
+    }
+
+    function deleteCategory($path): void
+    {
+        $defaultFolder = "/default";
+
+        if ($path && File::exists(public_path($path)) && strpos($path, $defaultFolder) !== 0) {
+            File::delete(public_path($path));
+        }
     }
 }

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('background_image');
             $table->string('icon');
-            $table->string('display_at_home')->default(0);
-            $table->string('status')->default(1);
+            $table->boolean('display_at_home')->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

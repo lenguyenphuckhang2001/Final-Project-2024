@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryStoreRequest;
+use App\Http\Requests\Admin\CategoryUpdateRequest;
 use App\Models\Category;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Str;
+
+use function Pest\Laravel\delete;
 
 class ListingCategoryController extends Controller
 {
@@ -18,7 +22,7 @@ class ListingCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(CategoryDataTable $dataTable) : View | JsonResponse
+    public function index(CategoryDataTable $dataTable): View | JsonResponse
     {
         return $dataTable->render('admin.category.index');
     }
@@ -26,7 +30,7 @@ class ListingCategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() : View
+    public function create(): View
     {
         return view('admin.category.create');
     }
@@ -34,7 +38,7 @@ class ListingCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryStoreRequest $request)
+    public function store(CategoryStoreRequest $request): RedirectResponse
     {
         $iconPath = $this->uploadImage($request, 'icon');
         $backgroundPath = $this->uploadImage($request, 'background_image');
@@ -51,31 +55,37 @@ class ListingCategoryController extends Controller
         toastr()->success("Created successfully");
 
         return to_route('admin.category.index');
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryUpdateRequest $request, string $id): RedirectResponse
     {
-        //
+        $iconPath = $this->uploadImage($request, 'icon', $request->old_icon);
+        $backgroundPath = $this->uploadImage($request, 'background_image', $request->old_backgroud_image);
+
+        $category = Category::findOrFail($id);
+        $category->icon = !empty($iconPath) ? $iconPath : $request->old_icon;
+        $category->background_image = !empty($backgroundPath) ? $backgroundPath : $request->old_background_image;
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+        $category->display_at_home = $request->display_at_home;
+        $category->status = $request->status;
+        $category->save();
+
+        toastr()->success('Updated successfully');
+
+        return to_route('admin.category.index');
     }
 
     /**
@@ -83,6 +93,12 @@ class ListingCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $this->deleteCategory($category->icon);
+        $this->deleteCategory($category->background_image);
+
+        $category->delete();
+
+        return response(['status' => 'success', 'message' => "Delete category successfully"]);
     }
 }
