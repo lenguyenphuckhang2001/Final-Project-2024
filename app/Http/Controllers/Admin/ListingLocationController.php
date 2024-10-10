@@ -8,10 +8,10 @@ use App\Http\Requests\Admin\LocationStoreRequest;
 use App\Models\Location;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-use Response;
 use Str;
 
 class ListingLocationController extends Controller
@@ -60,24 +60,40 @@ class ListingLocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $location = Location::findOrFail($id);
+        return view('admin.location.edit', compact('location'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
-        //
+        $location = Location::findOrFail($id);
+        $location->name = $request->name;
+        $location->slug = Str::slug('name');
+        $location->display_at_home = $request->display_at_home;
+        $location->status = $request->status;
+        $location->save();
+
+        toastr()->success('Created location successfully');
+
+        return to_route('admin.location.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): Response
     {
-        //
+        try {
+            Location::findOrFail($id)->delete();
+            return response(['status' => 'success', 'message' => "Delete location successfully"]);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

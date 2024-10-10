@@ -96,13 +96,13 @@
             let url = $(this).attr('href');
             console.log(url);
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "Delete this item",
+                text: "Are you sure to delete it?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
+                confirmButtonText: "Yes"
             }).then((result) => {
                 if (result.isConfirmed) {
 
@@ -115,11 +115,17 @@
                         success: function(response) {
                             if (response.status === 'success') {
                                 Swal.fire({
-                                    title: "Deleted!",
+                                    title: "Deleted",
                                     text: response.message,
                                     icon: "success"
                                 });
                                 window.location.reload();
+                            } else if (response.status === 'error') {
+                                Swal.fire({
+                                    title: "Error",
+                                    text: response.message,
+                                    icon: "error"
+                                });
                             }
                         },
                         error: function(xhr, status, error) {

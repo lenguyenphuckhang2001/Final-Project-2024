@@ -10,7 +10,7 @@ use App\Models\Category;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Str;
 
@@ -63,6 +63,7 @@ class ListingCategoryController extends Controller
     public function edit(string $id): View
     {
         $category = Category::findOrFail($id);
+
         return view('admin.category.edit', compact('category'));
     }
 
@@ -91,14 +92,20 @@ class ListingCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): Response
     {
-        $category = Category::findOrFail($id);
-        $this->deleteCategory($category->icon);
-        $this->deleteCategory($category->background_image);
+        try {
+            $category = Category::findOrFail($id);
 
-        $category->delete();
+            $this->deleteCategory($category->icon);
+            $this->deleteCategory($category->background_image);
 
-        return response(['status' => 'success', 'message' => "Delete category successfully"]);
+            $category->delete();
+
+            return response(['status' => 'success', 'message' => "Delete category successfully"]);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }
