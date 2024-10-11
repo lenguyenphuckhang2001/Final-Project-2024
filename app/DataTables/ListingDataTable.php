@@ -30,11 +30,7 @@ class ListingDataTable extends DataTable
                 $dropdown = '<div class="btn-group dropleft">
                       <button type="button" class="btn btn-dark btn-sm ml-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i></button>
                       <div class="dropdown-menu dropleft">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <a class="dropdown-item" href="' . route('admin.image-gallery.index') . '">Image Gallery</a>
                       </div>
                     </div>';
 

@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\MainListingController;
 use App\Http\Controllers\Admin\ListingAmenityController;
 use App\Http\Controllers\Admin\ListingCategoryController;
+use App\Http\Controllers\Admin\ListingImageGalleryController;
 use App\Http\Controllers\Admin\ListingLocationController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login')->middleware('guest');
@@ -27,4 +29,5 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::resource('/category', ListingCategoryController::class);
     Route::resource('/location', ListingLocationController::class);
     Route::resource('/amenity', ListingAmenityController::class);
+    Route::resource('/image-gallery', ListingImageGalleryController::class);
 });
