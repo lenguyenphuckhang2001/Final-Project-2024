@@ -107,9 +107,18 @@ class MainListingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $listing = Listing::findOrFail($id);
+        $categories = Category::all();
+        $locations = Location::all();
+        $amenities = Amenity::all();
+
+        // Lấy tất cả các amenity_id từ bảng AmenityListing liên quan đến listing hiện tại
+        $listingAmenities = AmenityListing::where('listing_id', $listing->id) // Lọc các bản ghi theo listing_id với Model::where('column', 'operator', 'value') sẽ mặc định là = nếu operator không có giá trị so sánh nào
+            ->pluck('amenity_id') // Chỉ lấy giá trị của cột amenity_id
+            ->toArray(); // Chuyển đổi kết quả thành mảng PHP
+        return view('admin.listing.edit', compact('listing', 'categories', 'locations', 'amenities', 'listingAmenities'));
     }
 
     /**
