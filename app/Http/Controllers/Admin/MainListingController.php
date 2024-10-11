@@ -6,14 +6,21 @@ use App\DataTables\ListingDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ListingStoreRequest;
 use App\Models\Amenity;
+use App\Models\AmenityListing;
 use App\Models\Category;
+use App\Models\Listing;
 use App\Models\Location;
+use App\Traits\FileUploadTrait;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Str;
+use Auth;
 
 class MainListingController extends Controller
 {
+    use FileUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -36,9 +43,57 @@ class MainListingController extends Controller
     /**
      * Store a newly created resourc e in storage.
      */
-    public function store(ListingStoreRequest $request)
+    public function store(ListingStoreRequest $request): RedirectResponse
     {
-        dd($request->all());
+        $imagePath = $this->uploadImage($request, 'image');
+        $thumbnailPath = $this->uploadImage($request, 'thumbnail');
+        $attachmentPath = $this->uploadImage($request, 'attachment');
+
+        $listing = new Listing();
+        $listing->user_id = Auth::user()->id;
+        $listing->image = $imagePath;
+        $listing->thumbnail = $thumbnailPath;
+        $listing->title = $request->title;
+        $listing->slug = Str::slug($request->title);
+        $listing->category_id = $request->category;
+        $listing->location_id = $request->location;
+        $listing->package_id = 0;
+        $listing->phonenumber = $request->phonenumber;
+        $listing->email = $request->email;
+        $listing->address = $request->address;
+        $listing->description = $request->description;
+        $listing->website = $request->website;
+        $listing->fb_url = $request->fb_url;
+        $listing->x_url = $request->x_url;
+        $listing->linked_url = $request->linked_url;
+        $listing->insta_url = $request->insta_url;
+        $listing->file = $attachmentPath;
+        $listing->map_embed_code = $request->map_embed_code;
+        $listing->seo_title = $request->seo_title;
+        $listing->seo_description = $request->seo_description;
+        $listing->status = $request->status;
+        $listing->is_featured = $request->is_featured;
+        $listing->is_verified = $request->is_verified;
+        $listing->expire_date = date('Y-m-d');
+        $listing->save();
+
+        // Giả sử người dùng chọn các tiện ích với IDs là [1, 2] (Wifi, Điều hòa)
+        // foreach ([1, 2] as $amenityId) {
+        //     $amenity = new AmenityListing();
+        //     $amenity->listing_id = $listing->id;  // Gán listing_id là ID của Căn hộ A
+        //     $amenity->amenity_id = $amenityId;    // Gán amenity_id là ID của tiện ích (Wifi, Điều hòa)
+        //     $amenity->save(); // Lưu mỗi dòng vào bảng pivot
+        // }
+        foreach ($request->amenities as $amenityId) {
+            $amenity = new AmenityListing();
+            $amenity->listing_id = $listing->id;
+            $amenity->amenity_id = $amenityId;
+            $amenity->save();
+        }
+
+        toastr()->success('Updated Listing Successfully');
+
+        return to_route('admin.listing.index');
     }
 
     /**

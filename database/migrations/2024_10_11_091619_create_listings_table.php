@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('phonenumber');
             $table->string('email');
             $table->string('address');
-            $table->string('seo_title');
-            $table->string('seo_description');
+            $table->string('seo_title')->nullable();
+            $table->string('seo_description')->nullable();
             $table->string('file')->nullable();
 
             $table->integer('views')->default(0);
@@ -44,6 +44,7 @@ return new class extends Migration
             $table->boolean('status')->default(1);
 
             $table->date('expire_date');
+
             $table->softDeletes();
             $table->timestamps();
         });
