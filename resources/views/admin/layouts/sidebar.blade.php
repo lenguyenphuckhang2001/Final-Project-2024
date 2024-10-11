@@ -189,10 +189,13 @@
                 </ul>
             </li>
 
-            <li class="dropdown {{ setActiveRoute(['admin.category.*', 'admin.location.*', 'admin.amenity.*']) }}">
+            <li
+                class="dropdown {{ setActiveRoute(['admin.listing.*', 'admin.category.*', 'admin.location.*', 'admin.amenity.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                     <span>Listing</span></a>
                 <ul class="dropdown-menu">
+                    <li class="{{ setActiveRoute(['admin.listing.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.listing.index') }}">Listing</a></li>
                     <li class="{{ setActiveRoute(['admin.category.*']) }}"><a class="nav-link"
                             href="{{ route('admin.category.index') }}">Category</a></li>
                     <li class="{{ setActiveRoute(['admin.location.*']) }}"> <a class="nav-link"

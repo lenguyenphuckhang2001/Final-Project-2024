@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminHeroSectionController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\MainListingController;
 use App\Http\Controllers\Admin\ListingAmenityController;
 use App\Http\Controllers\Admin\ListingCategoryController;
 use App\Http\Controllers\Admin\ListingLocationController;
@@ -22,6 +23,7 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/hero', [AdminHeroSectionController::class, 'index'])->name('hero.index');
     Route::put('/hero', [AdminHeroSectionController::class, 'update'])->name('hero.update');
 
+    Route::resource('/listing', MainListingController::class);
     Route::resource('/category', ListingCategoryController::class);
     Route::resource('/location', ListingLocationController::class);
     Route::resource('/amenity', ListingAmenityController::class);
