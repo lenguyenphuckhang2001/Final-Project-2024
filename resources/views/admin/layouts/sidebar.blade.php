@@ -179,23 +179,26 @@
                     href="{{ route('admin.dashboard.index') }}"><i class="far fa-square"></i>
                     <span>Dashboard</span></a></li>
 
-            <li class="dropdown {{ setActiveRoute(['admin.hero.index']) }}">
+            <li class="dropdown {{ setActiveRoute(['admin.hero.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i> <span>Sections</span></a>
 
                 <ul class="dropdown-menu">
-                    <li class="{{ setActiveRoute(['admin.hero.index']) }}"><a class="nav-link"
+                    <li class="{{ setActiveRoute(['admin.hero.*']) }}"><a class="nav-link"
                             href="{{ route('admin.hero.index') }}">Hero Section</a></li>
                 </ul>
             </li>
 
-            <li class="dropdown">
+            <li class="dropdown {{ setActiveRoute(['admin.category.*', 'admin.location.*', 'admin.amenity.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                     <span>Listing</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('admin.category.index') }}">Category</a></li>
-                    <li><a class="nav-link" href="{{ route('admin.location.index') }}">Location</a></li>
-                    <li><a class="nav-link" href="{{ route('admin.amenity.index') }}">Amenity</a></li>
+                    <li class="{{ setActiveRoute(['admin.category.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.category.index') }}">Category</a></li>
+                    <li class="{{ setActiveRoute(['admin.location.*']) }}"> <a class="nav-link"
+                            href="{{ route('admin.location.index') }}">Location</a></li>
+                    <li class="{{ setActiveRoute(['admin.amenity.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.amenity.index') }}">Amenity</a></li>
                 </ul>
             </li>
 
