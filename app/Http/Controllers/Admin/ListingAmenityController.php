@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\AmenityDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AmenityStoreRequest;
+use App\Http\Requests\Admin\AmenityUpdateRequest;
 use App\Models\Amenity;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -58,17 +59,27 @@ class ListingAmenityController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $amenity = Amenity::findOrFail($id);
+        return view('admin.amenity.edit', compact('amenity'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AmenityUpdateRequest $request, string $id): RedirectResponse
     {
-        //
+        $amenity = Amenity::findOrFail($id);
+        $amenity->icon = $request->filled('icon') ? $request->icon : $amenity->icon;
+        $amenity->name = $request->name;
+        $amenity->slug = Str::slug($request->name);
+        $amenity->status = $request->status;
+        $amenity->save();
+
+        toastr()->success('Updated amenity successfully');
+
+        return to_route('admin.amenity.index');
     }
 
     /**
@@ -76,6 +87,12 @@ class ListingAmenityController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Amenity::findOrFail($id)->delete();
+            return response(['status' => 'success', 'message' => "Delete amenity successfully"]);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }
