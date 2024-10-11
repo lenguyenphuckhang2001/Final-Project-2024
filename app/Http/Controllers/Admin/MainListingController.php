@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ListingDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ListingStoreRequest;
+use App\Models\Amenity;
+use App\Models\Category;
+use App\Models\Location;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -21,17 +25,20 @@ class MainListingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $categories = Category::all();
+        $locations = Location::all();
+        $amenities = Amenity::all();
+        return view('admin.listing.create', compact('categories', 'locations', 'amenities'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resourc e in storage.
      */
-    public function store(Request $request)
+    public function store(ListingStoreRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
