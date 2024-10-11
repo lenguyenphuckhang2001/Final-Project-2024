@@ -4,7 +4,7 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('admin.category.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.listing.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Edit Listing</h1>
             <div class="section-header-breadcrumb">
@@ -33,7 +33,7 @@
                                             <label for="">Icon <span class="text-danger">*</span></label>
                                             <div id="image-preview" class="image-preview image-listing-preview">
                                                 <label for="image-upload" id="image-label">Choose File</label>
-                                                <input type="file" name="image" id="image-upload" required />
+                                                <input type="file" name="image" id="image-upload" />
                                                 <input type="hidden" name="old_image" id="image-upload"
                                                     value="{{ $listing->image }}" />
                                             </div>
@@ -44,7 +44,7 @@
                                             <label for="">Thumbnail <span class="text-danger">*</span></label>
                                             <div id="image-preview-2" class="image-preview thumbnail-preview">
                                                 <label for="image-upload-2" id="image-label-2">Choose File</label>
-                                                <input type="file" id="image-upload-2" name="thumbnail" required />
+                                                <input type="file" id="image-upload-2" name="thumbnail" />
                                                 <input type="hidden" name="old_thumbnail" id="image-upload"
                                                     value="{{ $listing->thumbnail }}" />
                                             </div>
@@ -85,65 +85,67 @@
                                         <div class="form-group">
                                             <label for="">Email <span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" name="email"
-                                                value="{{ $category->email }}" required>
+                                                value="{{ $listing->email }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Phone Number <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="phonenumber"
-                                                value="{{ $category->phonenumber }}" required>
+                                                value="{{ $listing->phonenumber }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Address <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="address"
-                                                value="{{ $category->address }}" required>
+                                                value="{{ $listing->address }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Website</label>
                                             <input type="text" class="form-control" name="website"
-                                                value="{{ $category->website }}">
+                                                value="{{ $listing->website }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Facebook URL</label>
                                             <input type="text" class="form-control" name="fb_url"
-                                                value="{{ $category->fb_url }}">
+                                                value="{{ $listing->fb_url }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">X URL</label>
                                             <input type="text" class="form-control" name="x_url"
-                                                value="{{ $category->x_url }}">
+                                                value="{{ $listing->x_url }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">LinkedIn URL</label>
                                             <input type="text" class="form-control" name="linked_url"
-                                                value="{{ $category->linked_url }}">
+                                                value="{{ $listing->linked_url }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Instagram URL</label>
                                             <input type="text" class="form-control" name="insta_url"
-                                                value="{{ $category->insta_url }}">
+                                                value="{{ $listing->insta_url }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Attachment</label>
                                             <div class="custom-file">
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
                                                 <input type="file" class="custom-file-input" id="customFile"
                                                     name="attachment">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                <input type="hidden" name="old_attachment" id="image-upload"
+                                                    value="{{ $listing->attachment }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -186,8 +188,8 @@
                                         <div class="form-group">
                                             <label for="">Status <span class="text-danger">*</span></label>
                                             <select name="status" id="status" class="form-control">
-                                                <option @selected($listing->status === 1)value="1">Active</option>
-                                                <option @selected($listing->status === 0)value="0">Hide</option>
+                                                <option @selected($listing->status === 1) value="1">Active</option>
+                                                <option @selected($listing->status === 0) value="0">Hide</option>
                                             </select>
                                         </div>
                                     </div>

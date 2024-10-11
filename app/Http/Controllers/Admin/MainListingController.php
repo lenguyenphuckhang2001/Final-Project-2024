@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\ListingDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ListingStoreRequest;
+use App\Http\Requests\Admin\ListingUpdateRequest;
 use App\Models\Amenity;
 use App\Models\AmenityListing;
 use App\Models\Category;
@@ -91,7 +92,7 @@ class MainListingController extends Controller
             $amenity->save();
         }
 
-        toastr()->success('Updated Listing Successfully');
+        toastr()->success('Created Listing Successfully');
 
         return to_route('admin.listing.index');
     }
@@ -124,9 +125,51 @@ class MainListingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ListingUpdateRequest $request, string $id): RedirectResponse
     {
-        //
+        $imagePath = $this->uploadImage($request, 'image', $request->old_image);
+        $thumbnailPath = $this->uploadImage($request, 'thumbnail', $request->old_thumbnail);
+        $attachmentPath = $this->uploadImage($request, 'attachment', $request->old_attachment);
+
+        $listing = Listing::findOrFail($id);
+        $listing->user_id = Auth::user()->id;
+        $listing->image = !empty($imagePath) ? $imagePath : $request->old_image;
+        $listing->thumbnail = !empty($thumbnailPath) ? $thumbnailPath : $request->old_thumbnail;
+        $listing->title = $request->title;
+        $listing->slug = Str::slug($request->title);
+        $listing->category_id = $request->category;
+        $listing->location_id = $request->location;
+        $listing->package_id = 0;
+        $listing->phonenumber = $request->phonenumber;
+        $listing->email = $request->email;
+        $listing->address = $request->address;
+        $listing->description = $request->description;
+        $listing->website = $request->website;
+        $listing->fb_url = $request->fb_url;
+        $listing->x_url = $request->x_url;
+        $listing->linked_url = $request->linked_url;
+        $listing->insta_url = $request->insta_url;
+        $listing->file = !empty($attachmentPath) ? $attachmentPath : $request->old_attachment;
+        $listing->map_embed_code = $request->map_embed_code;
+        $listing->seo_title = $request->seo_title;
+        $listing->seo_description = $request->seo_description;
+        $listing->status = $request->status;
+        $listing->is_featured = $request->is_featured;
+        $listing->is_verified = $request->is_verified;
+        $listing->expire_date = date('Y-m-d');
+        $listing->save();
+
+        AmenityListing::where('listing_id', $listing->id)->delete();
+        foreach ($request->amenities as $amenityId) {
+            $amenity = new AmenityListing();
+            $amenity->listing_id = $listing->id;
+            $amenity->amenity_id = $amenityId;
+            $amenity->save();
+        }
+
+        toastr()->success('Updated Listing Successfully');
+
+        return to_route('admin.listing.index');
     }
 
     /**
