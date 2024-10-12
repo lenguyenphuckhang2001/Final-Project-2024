@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ListingAmenityController;
 use App\Http\Controllers\Admin\ListingCategoryController;
 use App\Http\Controllers\Admin\ListingImageGalleryController;
 use App\Http\Controllers\Admin\ListingLocationController;
+use App\Http\Controllers\Admin\ListingScheduleController;
 use App\Http\Controllers\Admin\ListingVideoGalleryController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,6 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::resource('/amenity', ListingAmenityController::class);
     Route::resource('/image-gallery', ListingImageGalleryController::class);
     Route::resource('/video-gallery', ListingVideoGalleryController::class);
+
+    Route::get('/schedule', [ListingScheduleController::class, 'index'])->name('schedule.index');
 });

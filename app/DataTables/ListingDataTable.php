@@ -27,15 +27,15 @@ class ListingDataTable extends DataTable
                 $delete = '<a href="' . route('admin.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
 
 
-                $dropdown = '<div class="btn-group dropleft">
-                      <button type="button" class="btn btn-dark btn-sm ml-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i></button>
-                      <div class="dropdown-menu dropleft">
-                        <a class="dropdown-item" href="' . route('admin.image-gallery.index', ['id' => $query->id]) . '">Image Gallery</a>
-                        <a class="dropdown-item" href="' . route('admin.video-gallery.index', ['id' => $query->id]) . '">Video Gallery</a>
-                      </div>
-
+                $dropdown =
+                    '<div class="btn-group dropleft">
+                        <button type="button" class="btn btn-dark btn-sm ml-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i></button>
+                        <div class="dropdown-menu dropleft">
+                            <a class="dropdown-item" href="' . route('admin.image-gallery.index', ['id' => $query->id]) . '"><i class="far fa-images" style="margin-right: 8px;"></i> Image Gallery</a>
+                            <a class="dropdown-item" href="' . route('admin.video-gallery.index', ['id' => $query->id]) . '"><i class="fab fa-youtube" style="margin-right: 8px;"></i> Video Gallery</a>
+                            <a class="dropdown-item" href="' . route('admin.schedule.index', ['id' => $query->id]) . '"><i class="far fa-calendar" style="margin-right: 8px;"></i> Schedule</a>
+                        </div>
                     </div>';
-
                 return $edit . $delete . $dropdown;
             })
 
