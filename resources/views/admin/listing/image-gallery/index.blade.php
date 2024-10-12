@@ -26,8 +26,10 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="">Image</label>
-                                    <input type="file" class="form-control" name="image[]" multiple />
+                                    <label for="">Image <span class="text-primary">(Multiple photos can be
+                                            uploaded)</span></label>
+                                    <input type="file" class="form-control" name="images[]" multiple />
+                                    <input type="hidden" value="{{ request()->id }}" name="listing_id">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Upload Image</button>
@@ -52,56 +54,25 @@
                                     <table class="table table-striped table-md">
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Created At</th>
-                                            <th>Status</th>
+                                            <th>Image</th>
                                             <th>Action</th>
                                         </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Irwansyah Saputra</td>
-                                            <td>2017-01-09</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Hasan Basri</td>
-                                            <td>2017-01-09</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Kusnadi</td>
-                                            <td>2017-01-11</td>
-                                            <td>
-                                                <div class="badge badge-danger">Not Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Rizal Fakhri</td>
-                                            <td>2017-01-11</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Isnap Kiswandi</td>
-                                            <td>2017-01-17</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
+
+                                        @foreach ($images as $image)
+                                            <tr>
+                                                <th scope='row'>{{ ++$loop->index }}</th>
+                                                <td>
+                                                    <img width="150px" src="{{ asset($image->image) }}" alt="">
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('admin.image-gallery.destroy', $image->id) }}"
+                                                        class="delete-item btn btn-lg btn-danger"><i
+                                                            class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
                                     </table>
                                 </div>
                             </div>

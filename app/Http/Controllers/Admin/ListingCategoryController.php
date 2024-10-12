@@ -97,8 +97,8 @@ class ListingCategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
 
-            $this->deleteCategory($category->icon);
-            $this->deleteCategory($category->background_image);
+            $this->deleteFile($category->icon);
+            $this->deleteFile($category->background_image);
 
             $category->delete();
 

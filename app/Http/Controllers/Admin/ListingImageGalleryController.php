@@ -3,17 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ImageGalerry;
+use App\Traits\FileUploadTrait;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ListingImageGalleryController extends Controller
 {
+    use FileUploadTrait;
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('admin.listing.image-gallery.index');
+        $images = ImageGalerry::where('listing_id', $request->id)->get();
+        return view('admin.listing.image-gallery.index', compact('images'));
     }
 
     /**
@@ -22,9 +28,23 @@ class ListingImageGalleryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => ['required'],
-            'image.*' => ['image', 'max:2048', 'mimes:png,jpg,gif']
+            'images' => ['required'],
+            'images.*' => ['image', 'max:2048', 'mimes:png,jpg,gif'],
+            'listing_id' => ['required']
         ]);
+
+        $imageMultiPath = $this->uploadMultiImage($request, 'images');
+
+        foreach ($imageMultiPath as $imagePath) {
+            $image = new ImageGalerry();
+            $image->listing_id = $request->listing_id;
+            $image->image = $imagePath;
+            $image->save();
+        }
+
+        toastr()->success('Uploaded images successfully');
+
+        return redirect()->back();
     }
 
     /**
@@ -54,8 +74,17 @@ class ListingImageGalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): Response
     {
-        //
+        try {
+            $image = ImageGalerry::findOrFail($id);
+            $this->deleteFile($image->image);
+            $image->delete();
+
+            return response(['status' => 'success', 'message' => "Delete image successfully"]);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

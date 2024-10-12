@@ -242,7 +242,7 @@
                 'background-size': 'cover'
             })
 
-            $('.thumbnail').css({
+            $('.thumbnail-preview').css({
                 'background-image': 'url({{ asset($listing->thumbnail) }})',
                 'background-position': 'center center',
                 'background-size': 'cover'
