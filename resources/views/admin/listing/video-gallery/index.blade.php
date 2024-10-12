@@ -6,11 +6,11 @@
             <div class="section-header-back">
                 <a href="{{ route('admin.listing.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Listing | Image Gallery</h1>
+            <h1>Listing | Video Gallery</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
                 <div class="breadcrumb-item active"><a href="{{ route('admin.listing.index') }}">Listing</a></div>
-                <div class="breadcrumb-item">Image Gallery</div>
+                <div class="breadcrumb-item">Video Gallery</div>
             </div>
         </div>
 
@@ -19,21 +19,22 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Image Gallery</h4>
+                            <h4>Video Gallery</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.image-gallery.store') }}" method="POST"
+                            <form action="{{ route('admin.video-gallery.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="">Image <span class="text-primary">(Multiple photos can be
-                                            uploaded)</span></label>
-                                    <input type="file" class="form-control" name="images[]" multiple />
+                                    <label for="">Video URL <span class="text-primary">(Just Support Youtube
+                                            URL)</span></label>
+                                    <input type="text" class="form-control" name="video_url">
                                     <!--Sử dụng request() helper để lấy giá trị listing_id từ yêu cầu -->
-                                    <input type="hidden" value="{{ request()->id }}" name="listing_id">
+                                    <input type="hidden" name="listing_id" value="{{ request()->id }}">
+
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Upload Image</button>
+                                    <button type="submit" class="btn btn-primary">Upload Video</button>
                                 </div>
                             </form>
                         </div>
@@ -47,7 +48,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Images</h4>
+                            <h4>All Videos</h4>
                         </div>
                         <div class="card-body">
                             <div class="card-body p-0">
@@ -55,18 +56,24 @@
                                     <table class="table table-striped table-md">
                                         <tr>
                                             <th>#</th>
-                                            <th>Image</th>
+                                            <th>Video</th>
+                                            <th>URL</th>
                                             <th>Action</th>
                                         </tr>
 
-                                        @foreach ($images as $image)
+                                        @foreach ($videos as $video)
                                             <tr>
                                                 <th scope='row'>{{ ++$loop->index }}</th>
                                                 <td>
-                                                    <img width="150px" src="{{ asset($image->image) }}" alt="">
+                                                    <img width="150px" src="{{ getURL($video->video_url) }}"
+                                                        alt="video">
+                                                </td>
+                                                <td>
+                                                    <a href="{{ $video->video_url }}"
+                                                        target="_blank">{{ $video->video_url }}</a>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('admin.image-gallery.destroy', $image->id) }}"
+                                                    <a href="{{ route('admin.video-gallery.destroy', $video->id) }}"
                                                         class="delete-item btn btn-lg btn-danger"><i
                                                             class="fas fa-trash"></i>
                                                     </a>

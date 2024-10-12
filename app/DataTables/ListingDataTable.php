@@ -31,7 +31,9 @@ class ListingDataTable extends DataTable
                       <button type="button" class="btn btn-dark btn-sm ml-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i></button>
                       <div class="dropdown-menu dropleft">
                         <a class="dropdown-item" href="' . route('admin.image-gallery.index', ['id' => $query->id]) . '">Image Gallery</a>
+                        <a class="dropdown-item" href="' . route('admin.video-gallery.index', ['id' => $query->id]) . '">Video Gallery</a>
                       </div>
+
                     </div>';
 
                 return $edit . $delete . $dropdown;
