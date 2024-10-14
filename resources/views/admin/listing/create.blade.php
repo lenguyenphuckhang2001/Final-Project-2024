@@ -122,12 +122,8 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Attachment</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile"
-                                                    name="attachment">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                            </div>
+                                            <label for="">File</label>
+                                            <input type="file" class="form-control" name="attachment">
                                         </div>
                                     </div>
                                     <div class="col-md-12">

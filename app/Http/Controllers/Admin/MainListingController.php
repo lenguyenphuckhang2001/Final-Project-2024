@@ -127,6 +127,7 @@ class MainListingController extends Controller
      */
     public function update(ListingUpdateRequest $request, string $id): RedirectResponse
     {
+        
         $imagePath = $this->uploadImage($request, 'image', $request->old_image);
         $thumbnailPath = $this->uploadImage($request, 'thumbnail', $request->old_thumbnail);
         $attachmentPath = $this->uploadImage($request, 'attachment', $request->old_attachment);

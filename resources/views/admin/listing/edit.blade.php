@@ -139,14 +139,17 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Attachment</label>
-                                            <div class="custom-file">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                                <input type="file" class="custom-file-input" id="customFile"
-                                                    name="attachment">
-                                                <input type="hidden" name="old_attachment" id="image-upload"
-                                                    value="{{ $listing->attachment }}" />
-                                            </div>
+
+                                            <label for="">File
+                                                @if (!empty($listing->file))
+                                                    <span class="text-danger">
+                                                        (File already exists)
+                                                    </span>
+                                                @endif
+                                            </label>
+                                            <input type="file" class="form-control" name="attachment">
+                                            <input type="hidden" name="old_attachment" id="image-upload"
+                                                value="{{ $listing->file }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-12">
