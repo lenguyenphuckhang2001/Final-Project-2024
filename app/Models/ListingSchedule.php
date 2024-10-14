@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ListingSchedule extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['listing_id', 'day', 'start_time', 'end_time', 'status'];
 }

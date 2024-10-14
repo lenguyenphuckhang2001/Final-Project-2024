@@ -34,4 +34,6 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::resource('/video-gallery', ListingVideoGalleryController::class);
 
     Route::get('/schedule', [ListingScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/schedule/{listing_id}', [ListingScheduleController::class, 'create'])->name('schedule.create');
+    Route::post('/schedule/{listing_id}', [ListingScheduleController::class, 'store'])->name('schedule.store');
 });

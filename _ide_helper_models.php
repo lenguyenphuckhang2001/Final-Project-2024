@@ -114,6 +114,27 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $listing_id
+ * @property string $image
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGalerry newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGalerry newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGalerry query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGalerry whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGalerry whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGalerry whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGalerry whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGalerry whereUpdatedAt($value)
+ */
+	class ImageGalerry extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $user_id
  * @property int $category_id
  * @property int $location_id
@@ -180,6 +201,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereXUrl($value)
  */
 	class Listing extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $listing_id
+ * @property string $day
+ * @property string $start_time
+ * @property string $end_time
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule whereDay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule whereEndTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule whereUpdatedAt($value)
+ */
+	class ListingSchedule extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -259,5 +307,26 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereXUrl($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $listing_id
+ * @property string $video_url
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|VideoGallery newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|VideoGallery newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|VideoGallery query()
+ * @method static \Illuminate\Database\Eloquent\Builder|VideoGallery whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VideoGallery whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VideoGallery whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VideoGallery whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VideoGallery whereVideoUrl($value)
+ */
+	class VideoGallery extends \Eloquent {}
 }
 
