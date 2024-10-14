@@ -23,8 +23,8 @@ class ListingScheduleDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('admin.location.update', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('admin.location.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                $edit = '<a href="' . route('admin.schedule.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                $delete = '<a href="' . route('admin.schedule.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
                 return $edit . $delete;
             })
             ->addColumn('status', function ($query) {
@@ -43,7 +43,7 @@ class ListingScheduleDataTable extends DataTable
      */
     public function query(ListingSchedule $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('listing_id', $this->listingId)->newQuery();
     }
 
     /**

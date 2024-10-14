@@ -21,7 +21,7 @@
                         <div class="card-header">
                             <h4>All Schedules</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.schedule.create', request()->id) }}"
+                                <a href="{{ route('admin.schedule.create', $listingId) }}"
                                     class="btn btn-primary">Create</a>
                             </div>
                         </div>

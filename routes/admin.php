@@ -33,7 +33,10 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::resource('/image-gallery', ListingImageGalleryController::class);
     Route::resource('/video-gallery', ListingVideoGalleryController::class);
 
-    Route::get('/schedule', [ListingScheduleController::class, 'index'])->name('schedule.index');
-    Route::get('/schedule/{listing_id}', [ListingScheduleController::class, 'create'])->name('schedule.create');
+    Route::get('/schedule/{listing_id}', [ListingScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/schedule/{listing_id}/create', [ListingScheduleController::class, 'create'])->name('schedule.create');
     Route::post('/schedule/{listing_id}', [ListingScheduleController::class, 'store'])->name('schedule.store');
+    Route::get('/schedule/{id}/edit', [ListingScheduleController::class, 'edit'])->name('schedule.edit');
+    Route::put('/schedule/{id}', [ListingScheduleController::class, 'update'])->name('schedule.update');
+    Route::delete('/schedule/{id}', [ListingScheduleController::class, 'destroy'])->name('schedule.destroy');
 });

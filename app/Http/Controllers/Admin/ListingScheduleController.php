@@ -5,17 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\ListingScheduleDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ListingScheduleStoreRequest;
+use App\Http\Requests\Admin\ListingScheduleUpdateRequest;
 use App\Models\ListingSchedule;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ListingScheduleController extends Controller
 {
-    public function index(ListingScheduleDataTable $dataTable): View | JsonResponse
+    public function index(ListingScheduleDataTable $dataTable, string $listingId): View | JsonResponse
     {
-        return $dataTable->render('admin.listing.schedule.index');
+        $dataTable->with('listingId', $listingId);
+        return $dataTable->render('admin.listing.schedule.index', compact('listingId'));
     }
 
     function create(Request $request, string $listingId): View
@@ -34,8 +37,41 @@ class ListingScheduleController extends Controller
         $schedule->status = $request->status;
         $schedule->save();
 
-        toastr()->success('Create schedule successfully');
+        toastr()->success('Created schedule successfully');
 
-        return to_route('admin.schedule.index', ['id' => $listingId]);
+        return to_route('admin.schedule.index', $listingId);
+    }
+
+    function edit(string $id): View
+    {
+        $schedule = ListingSchedule::findOrFail($id);
+        return view('admin.listing.schedule.edit', compact('schedule'));
+    }
+
+    function update(ListingScheduleUpdateRequest $request, string $id): RedirectResponse
+    {
+        $schedule = ListingSchedule::findOrFail($id);
+        $schedule->day = $request->day;
+        $schedule->start_time = $request->start_time;
+        $schedule->end_time = $request->end_time;
+        $schedule->status = $request->status;
+        $schedule->save();
+
+        toastr()->success('Updated schedule successfully');
+
+        return to_route('admin.schedule.index', $schedule->listing_id);
+    }
+
+    function destroy(string $id): Response
+    {
+        try {
+            $schedule = ListingSchedule::findOrFail($id);
+            $schedule->delete();
+
+            return response(['status' => 'success', 'message' => "Delete schedule successfully"]);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

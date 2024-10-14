@@ -177,6 +177,12 @@ class MainListingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Listing::findOrFail($id)->delete();
+            return response(['status' => 'success', 'message' => "Delete listing successfully"]);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

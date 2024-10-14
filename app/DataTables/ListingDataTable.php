@@ -33,7 +33,7 @@ class ListingDataTable extends DataTable
                         <div class="dropdown-menu dropleft">
                             <a class="dropdown-item" href="' . route('admin.image-gallery.index', ['id' => $query->id]) . '"><i class="far fa-images" style="margin-right: 8px;"></i> Image Gallery</a>
                             <a class="dropdown-item" href="' . route('admin.video-gallery.index', ['id' => $query->id]) . '"><i class="fab fa-youtube" style="margin-right: 8px;"></i> Video Gallery</a>
-                            <a class="dropdown-item" href="' . route('admin.schedule.index', ['id' => $query->id]) . '"><i class="far fa-calendar" style="margin-right: 8px;"></i> Schedule</a>
+                            <a class="dropdown-item" href="' . route('admin.schedule.index', $query->id) . '"><i class="far fa-calendar" style="margin-right: 8px;"></i> Schedule</a>
                         </div>
                     </div>';
                 return $edit . $delete . $dropdown;

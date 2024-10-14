@@ -161,13 +161,14 @@ namespace App\Models{
  * @property int $is_featured
  * @property int $status
  * @property string $expire_date
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Category $category
  * @property-read \App\Models\Location $location
  * @method static \Illuminate\Database\Eloquent\Builder|Listing newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing query()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereCategoryId($value)
@@ -199,6 +200,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereViews($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereWebsite($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereXUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing withoutTrashed()
  */
 	class Listing extends \Eloquent {}
 }
