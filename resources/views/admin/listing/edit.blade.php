@@ -189,7 +189,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Status <span class="text-danger">*</span></label>
+                                            <label for="">Status</label>
                                             <select name="status" id="status" class="form-control">
                                                 <option @selected($listing->status === 1) value="1">Active</option>
                                                 <option @selected($listing->status === 0) value="0">Hide</option>
@@ -198,7 +198,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Is Featured <span class="text-danger">*</span></label>
+                                            <label for="">Is Featured</label>
                                             <select name="is_featured" id="is_featured" class="form-control">
                                                 <option @selected($listing->is_featured === 0) value="0">No</option>
                                                 <option @selected($listing->is_featured === 1) value="1">Yes</option>
@@ -207,7 +207,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Is Verified <span class="text-danger">*</span></label>
+                                            <label for="">Is Verified</label>
                                             <select name="is_verified" id="is_verified" class="form-control">
                                                 <option @selected($listing->is_verified === 0) value="0">No</option>
                                                 <option @selected($listing->is_verified === 1) value="1">Yes</option>

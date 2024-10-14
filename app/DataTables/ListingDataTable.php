@@ -26,7 +26,6 @@ class ListingDataTable extends DataTable
                 $edit = '<a href="' . route('admin.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
                 $delete = '<a href="' . route('admin.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
 
-
                 $dropdown =
                     '<div class="btn-group dropleft">
                         <button type="button" class="btn btn-dark btn-sm ml-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i></button>
@@ -38,7 +37,12 @@ class ListingDataTable extends DataTable
                     </div>';
                 return $edit . $delete . $dropdown;
             })
-
+            ->addColumn('image', function ($query) {
+                return '<img width="130" height="80" src="' . asset($query->image) . '">';
+            })
+            ->addColumn('author', function ($query) {
+                return $query->user?->name;
+            })
             ->addColumn('category', function ($query) {
                 return $query->category->name;
             })
@@ -52,7 +56,21 @@ class ListingDataTable extends DataTable
                     return "<span class='badge badge badge-success'>Active</span>";
                 }
             })
-            ->rawColumns(['status', 'action',])
+            ->addColumn('is_featured', function ($query) {
+                if ($query->status !== 1) {
+                    return "<span class='badge badge-secondary'>Yes</span>";
+                } else {
+                    return "<span class='badge badge badge-success'>No</span>";
+                }
+            })
+            ->addColumn('is_verified', function ($query) {
+                if ($query->status !== 1) {
+                    return "<span class='badge badge-secondary'>Yes</span>";
+                } else {
+                    return "<span class='badge badge badge-success'>No</span>";
+                }
+            })
+            ->rawColumns(['image', 'status', 'action', 'is_featured', 'is_verified'])
             ->setRowId('id');
     }
 
@@ -84,11 +102,15 @@ class ListingDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')->width(100),
-            Column::make('title')->width(500),
+            Column::make('id')->width(80),
+            Column::make('image')->width(220),
+            Column::make('title')->width(250),
+            Column::make('author')->width(250),
             Column::make('category'),
             Column::make('location'),
-            Column::make('status'),
+            Column::make('status')->width(120),
+            Column::make('is_featured')->width(120),
+            Column::make('is_verified')->width(120),
 
             Column::computed('action')
                 ->exportable(false)

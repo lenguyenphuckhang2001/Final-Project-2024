@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="">Status <span class='text-danger'>*</span></label>
+                                            <label for="">Status</label>
                                             <select name="status" id="" class="form-control">
                                                 <option @selected($schedule->status === 1) value="1">Active</option>
                                                 <option @selected($schedule->status === 0) value="0">Hide</option>

@@ -6,6 +6,7 @@ use App\DataTables\ListingScheduleDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ListingScheduleStoreRequest;
 use App\Http\Requests\Admin\ListingScheduleUpdateRequest;
+use App\Models\Listing;
 use App\Models\ListingSchedule;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -17,8 +18,11 @@ class ListingScheduleController extends Controller
 {
     public function index(ListingScheduleDataTable $dataTable, string $listingId): View | JsonResponse
     {
+        $titleListing = Listing::select('title')
+            ->where('id', $listingId) //Phương thức where('id', $request->id) thêm điều kiện vào truy vấn, lọc các bản ghi để chỉ bao gồm bản ghi có cột id khớp với giá trị của $request->id. Đối tượng $request có thể chứa dữ liệu từ một yêu cầu HTTP, và id là một tham số được truyền trong yêu cầu đó.
+            ->first(); // Select giá trị title trong query và where tới keys id và giá trị tìm kiếm là $request->id
         $dataTable->with('listingId', $listingId);
-        return $dataTable->render('admin.listing.schedule.index', compact('listingId'));
+        return $dataTable->render('admin.listing.schedule.index', compact('titleListing', 'listingId'));
     }
 
     function create(Request $request, string $listingId): View

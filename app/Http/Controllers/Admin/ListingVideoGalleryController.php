@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Listing;
 use App\Models\VideoGallery;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,8 +15,11 @@ class ListingVideoGalleryController extends Controller
      */
     public function index(Request $request): View
     {
+        $titleListing = Listing::select('title')
+            ->where('id', $request->id) //Phương thức where('id', $request->id) thêm điều kiện vào truy vấn, lọc các bản ghi để chỉ bao gồm bản ghi có cột id khớp với giá trị của $request->id. Đối tượng $request có thể chứa dữ liệu từ một yêu cầu HTTP, và id là một tham số được truyền trong yêu cầu đó.
+            ->first(); // Select giá trị title trong query và where tới keys id và giá trị tìm kiếm là $request->id
         $videos = VideoGallery::where('listing_id', $request->id)->get();
-        return view('admin.listing.video-gallery.index', compact('videos'));
+        return view('admin.listing.video-gallery.index', compact('titleListing', 'videos'));
     }
 
     /**

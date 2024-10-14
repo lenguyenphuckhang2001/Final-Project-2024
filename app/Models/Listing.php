@@ -20,4 +20,9 @@ class Listing extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

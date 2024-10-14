@@ -19,7 +19,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Image Gallery</h4>
+                            <h4>Image Gallery | Title Listing: <span class="text-danger">{{ $titleListing->title }}</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.image-gallery.store') }}" method="POST"
@@ -28,6 +28,7 @@
                                 <div class="form-group">
                                     <label for="">Image <span class="text-primary">(Multiple photos can be
                                             uploaded)</span></label>
+
                                     <input type="file" class="form-control" name="images[]" multiple />
                                     <!--Sử dụng request() helper để lấy giá trị listing_id từ yêu cầu -->
                                     <input type="hidden" value="{{ request()->id }}" name="listing_id">

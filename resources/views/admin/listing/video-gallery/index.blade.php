@@ -19,7 +19,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Video Gallery</h4>
+                            <h4>Video Gallery | Title Listing: <span class="text-danger">{{ $titleListing->title }}</span>
+                            </h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.video-gallery.store') }}" method="POST"
