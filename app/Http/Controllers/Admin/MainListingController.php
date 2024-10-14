@@ -75,6 +75,7 @@ class MainListingController extends Controller
         $listing->status = $request->status;
         $listing->is_featured = $request->is_featured;
         $listing->is_verified = $request->is_verified;
+        $listing->is_approved = 1;
         $listing->expire_date = date('Y-m-d');
         $listing->save();
 
@@ -127,7 +128,7 @@ class MainListingController extends Controller
      */
     public function update(ListingUpdateRequest $request, string $id): RedirectResponse
     {
-        
+
         $imagePath = $this->uploadImage($request, 'image', $request->old_image);
         $thumbnailPath = $this->uploadImage($request, 'thumbnail', $request->old_thumbnail);
         $attachmentPath = $this->uploadImage($request, 'attachment', $request->old_attachment);

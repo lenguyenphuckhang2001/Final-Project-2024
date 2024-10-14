@@ -10,12 +10,18 @@
                 <div class="col-lg-9">
                     <div class="dashboard_content">
                         <div class="my_listing">
-                            <h4>All My Listings</h4>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="mb-0">All My Listings</h4>
+                                <div class="card-header-action">
+                                    <a href="{{ route('user.listing.create') }}" class="btn btn-outline-primary">Create</a>
+                                </div>
+                            </div>
                             {{ $dataTable->table() }}
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 @endsection

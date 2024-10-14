@@ -112,11 +112,12 @@
                                     <div class="col-xl-4 col-md-5">
                                         <div class="my_listing_single">
                                             <label for="" class="d-flex justify-content-center">Avatar</label>
-                                            <div class="profile_pic_upload">
-                                                <img src="{{ asset($user->avatar) }}" alt="img"
+                                            <div id="image-preview" class="profile_pic_upload image-preview">
+                                                <img id="image-label" src="{{ asset($user->avatar) }}" alt="img"
                                                     class="imf-fluid w-100">
-                                                <input type="file" name="avatar">
-                                                <input type="hidden" name="old_avatar" value="{{ $user->avatar }}">
+                                                <input type="file" name="avatar" id="image-upload">
+                                                <input type="hidden" name="old_avatar" id="image-upload"
+                                                    value="{{ $user->avatar }}">
                                             </div>
                                         </div>
                                         <div class="my_listing_single">
@@ -128,6 +129,7 @@
                                                 <input type="hidden" name="old_banner" value="{{ $user->banner }}">
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="col-12">

@@ -18,11 +18,16 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+    <!--------------CSS Custom--------------->
+
 
     <!--------------CSS Link--------------->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
 
+    @stack('styles')
 </head>
 
 <body>
@@ -57,12 +62,34 @@
     <!-----------JavaScript Custom------->
     <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
 
+
     <!-----------JavaScript Link----------->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
 
     <script>
+        $.uploadPreview({
+            input_field: "#image-upload", // Default: .image-upload
+            preview_box: "#image-preview", // Default: .image-preview
+            label_field: "#image-label", // Default: .image-label
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null // Default: null
+        });
+
+        $.uploadPreview({
+            input_field: "#image-upload-2", // Default: .image-upload-2
+            preview_box: "#image-preview-2", // Default: .image-preview-2
+            label_field: "#image-label-2", // Default: .image-label-2
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null // Default: null
+        });
+
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 toastr.error('{{ $error }}')

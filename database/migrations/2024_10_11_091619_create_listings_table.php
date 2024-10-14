@@ -41,6 +41,7 @@ return new class extends Migration
 
             $table->boolean('is_verified')->default(0);
             $table->boolean('is_featured')->default(0);
+            $table->boolean('is_approved')->default(0);
             $table->boolean('status')->default(1);
 
             $table->date('expire_date');

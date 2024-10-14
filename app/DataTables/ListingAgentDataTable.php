@@ -24,8 +24,8 @@ class ListingAgentDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('admin.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('admin.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                $edit = '<a href="' . route('user.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                $delete = '<a href="' . route('user.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
 
                 $dropdown =
                     '<div class="dropdown">
@@ -56,7 +56,12 @@ class ListingAgentDataTable extends DataTable
                 } else {
                     $verified = "";
                 }
-                return $status . $featured . $verified;
+                if ($query->is_approved === 0) {
+                    $approved = "<span class='badge bg-secondary'>Pending</span>";
+                } else {
+                    $approved = "<span class='badge bg-info'>Approved</span>";
+                }
+                return $status . $featured . $verified . $approved;
             })
             ->addColumn('author', function ($query) {
                 return $query->user?->name;

@@ -1,38 +1,181 @@
-@extends('admin.layouts.main')
+@extends('frontend.layouts.main')
+
+@push('styles')
+    <style>
+        /* Dashboard Section */
+        #dashboard {
+            padding: 40px 0;
+            background-color: #f8f9fa;
+            /* Light background for the entire dashboard */
+        }
+
+        /* Individual Listing Items */
+        .my_listing_single {
+            margin-bottom: 30px;
+            /* Space between each listing item */
+            text-align: center;
+            /* Center align labels and images */
+        }
+
+        /* Image Preview Styles */
+        .image-preview {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            /* Set a fixed height for the image preview */
+            overflow: hidden;
+            /* Hide overflow */
+            background-color: #e9ecef;
+            /* Light gray background for image preview */
+            border-radius: 8px;
+            /* Rounded corners */
+            border: 2px dashed #007bff;
+            /* Dashed border for better visibility */
+            margin-bottom: 15px;
+            /* Space below the preview */
+            transition: border-color 0.3s;
+            /* Smooth transition for hover effect */
+        }
+
+        .image-preview:hover {
+            border-color: #0056b3;
+            /* Change border color on hover */
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            /* Maintain aspect ratio */
+        }
+
+        /* Form Group Styles */
+        .form-group {
+            margin-bottom: 25px;
+            /* Space between form groups */
+        }
+
+        /* Label Styles */
+        label {
+            font-weight: 600;
+            /* Bold font for labels */
+            color: #343a40;
+            /* Darker color for better contrast */
+        }
+
+        /* Text Input Styles */
+        .form-control {
+            border-radius: 8px;
+            /* Rounded corners */
+            border: 1px solid #ced4da;
+            /* Border color */
+            transition: border-color 0.2s, box-shadow 0.2s;
+            /* Smooth transition for focus */
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            /* Change border color on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+            /* Add shadow on focus */
+        }
+
+        /* Textarea Styles */
+        textarea.form-control {
+            border-radius: 8px;
+            /* Rounded corners */
+        }
+
+        /* Select Styles */
+        select.form-control {
+            border-radius: 8px;
+            /* Rounded corners */
+            appearance: none;
+            /* Remove default styling */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>') no-repeat;
+            /* Add custom arrow */
+            background-position: right 10px center;
+            /* Position the arrow */
+            background-size: 12px;
+            /* Size of the arrow */
+            padding-right: 30px;
+            /* Space for the arrow */
+        }
+
+        /* Button Styles */
+        .read_btn {
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            /* Gradient background */
+            color: #ffffff;
+            /* White text color */
+            padding: 12px 20px;
+            /* Padding for the button */
+            border: none;
+            /* Remove border */
+            border-radius: 8px;
+            /* Rounded corners */
+            font-size: 18px;
+            /* Increased font size */
+            font-weight: bold;
+            /* Bold font weight */
+            cursor: pointer;
+            /* Change cursor on hover */
+            transition: background 0.3s, transform 0.2s;
+            /* Smooth transitions */
+            display: block;
+            /* Block display for centering */
+            width: 100%;
+            /* Full width for the button */
+        }
+
+        .read_btn:hover {
+            background: linear-gradient(90deg, #0056b3, #003f7f);
+            /* Darker gradient on hover */
+            transform: translateY(-2px);
+            /* Lift effect on hover */
+        }
+
+        /* Text Danger Styles */
+        .text-danger {
+            font-weight: bold;
+            /* Make required field indicator bold */
+            color: #dc3545;
+            /* Bootstrap danger color */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .col-md-6 {
+                margin-bottom: 20px;
+                /* Reduce space for smaller screens */
+            }
+        }
+    </style>
+@endpush
 
 @section('contents')
-    <section class="section">
-        <div class="section-header">
-            <div class="section-header-back">
-                <a href="{{ route('admin.listing.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
-            </div>
-            <h1>Edit Listing</h1>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                <div class="breadcrumb-item active"><a href="{{ route('admin.listing.index') }}">Listing</a></div>
-                <div class="breadcrumb-item">Edit</div>
-            </div>
-        </div>
-
-        <div class="section-body">
+    <section id="dashboard">
+        <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Edit</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <form action="{{ route('admin.listing.update', $listing->id) }}" method="POST"
+                <div class="col-lg-3">
+                    @include('frontend.dashboard.sidebar')
+                </div>
+                <div class="col-lg-9">
+                    <div class="dashboard_content">
+                        <div class="my_listing">
+                            <h4>Edit Listing</h4>
+                            <form action="{{ route('user.listing.update', $listing->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Image <span class="text-danger">*</span></label>
-                                            <div id="image-preview" class="image-preview image-listing-preview">
-                                                <label for="image-upload" id="image-label">Choose File</label>
+                                        <div class="my_listing_single">
+                                            <label for="" class="d-flex justify-content-center">Image</label>
+                                            <div id="image-preview"
+                                                class="profile_pic_upload image-preview image-listing-preview">
+                                                <img id="image-label" class="img-fluid w-100" alt="Image Preview"
+                                                    src="{{ $listing->image }}" />
                                                 <input type="file" name="image" id="image-upload" />
                                                 <input type="hidden" name="old_image" id="image-upload"
                                                     value="{{ $listing->image }}" />
@@ -40,16 +183,19 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Thumbnail <span class="text-danger">*</span></label>
-                                            <div id="image-preview-2" class="image-preview thumbnail-preview">
-                                                <label for="image-upload-2" id="image-label-2">Choose File</label>
+                                        <div class="my_listing_single">
+                                            <label for="" class="d-flex justify-content-center">Thumbnail</label>
+                                            <div id="image-preview-2"
+                                                class="profile_pic_upload image-preview thumbnail-preview">
+                                                <img id="image-label-2" class="img-fluid w-100" alt="Image Preview"
+                                                    src="{{ $listing->thumbnail }}" />
                                                 <input type="file" id="image-upload-2" name="thumbnail" />
                                                 <input type="hidden" name="old_thumbnail" id="image-upload"
                                                     value="{{ $listing->thumbnail }}" />
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
@@ -139,7 +285,6 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-
                                             <label for="">File
                                                 @if (!empty($listing->file))
                                                     <span class="text-danger">
@@ -224,12 +369,15 @@
                 </div>
             </div>
         </div>
-        </div>
     </section>
 @endsection
 
 @push('scripts')
     <script>
+        $(document).ready(function() {
+            $('.summernote').summernote();
+        });
+
         // Chuyển đổi mảng PHP $listingAmenities thành chuỗi JSON và lưu vào biến JavaScript
         var listingAmenities = {!! json_encode($listingAmenities) !!};
 
