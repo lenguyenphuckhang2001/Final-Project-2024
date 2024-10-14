@@ -5,7 +5,7 @@
     <ul class="dashboard_link">
         <li><a class="active" href="dsahboard.html"><i class="fas fa-tachometer"></i>Dashboard</a></li>
         <li><a href="{{ route('user.profile.index') }}"><i class="far fa-user"></i> My Profile</a></li>
-        <li><a href="dsahboard_listing.html"><i class="fas fa-list-ul"></i> My Listing</a></li>
+        <li><a href="{{ route('user.listing.index') }}"><i class="fas fa-list-ul"></i> All My Listing</a></li>
         <li><a href="dsahboard_create_listing.html"><i class="fal fa-plus-circle"></i> Create
                 Listing</a></li>
         <li><a href="dsahboard_review.html"><i class="far fa-star"></i> Reviews</a></li>

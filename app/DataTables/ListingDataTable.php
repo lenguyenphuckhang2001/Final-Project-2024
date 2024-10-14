@@ -57,14 +57,14 @@ class ListingDataTable extends DataTable
                 }
             })
             ->addColumn('is_featured', function ($query) {
-                if ($query->status !== 1) {
+                if ($query->is_featured !== 1) {
                     return "<span class='badge badge-secondary'>Yes</span>";
                 } else {
                     return "<span class='badge badge badge-success'>No</span>";
                 }
             })
             ->addColumn('is_verified', function ($query) {
-                if ($query->status !== 1) {
+                if ($query->is_verified !== 1) {
                     return "<span class='badge badge-secondary'>Yes</span>";
                 } else {
                     return "<span class='badge badge badge-success'>No</span>";
@@ -117,7 +117,6 @@ class ListingDataTable extends DataTable
                 ->printable(false)
                 ->width(170)
                 ->addClass('text-center'),
-
         ];
     }
 
