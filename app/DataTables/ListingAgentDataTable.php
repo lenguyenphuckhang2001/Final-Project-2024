@@ -24,20 +24,21 @@ class ListingAgentDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('user.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('user.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                $edit = '<a href="' . route('user.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2 mb-2"><i class="fas fa-edit"></i></a>';
+                $delete = '<a href="' . route('user.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger mb-2"><i class="fas fa-trash"></i></a>';
 
                 $dropdown =
-                    '<div class="dropdown">
-                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-info-circle"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    '<div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li><a class="dropdown-item text-capitalize" href="' .  route('user.image-gallery.index', ['id' => $query->id]) . '"><i class="far fa-image"></i> Image Gallery</a></li>
+                            <li><a class="dropdown-item text-capitalize" href="#"><i class="far fa-video"></i> Video Gallery</a></li>
+                            <li><a class="dropdown-item text-capitalize" href="#"><i class="far fa-calendar-alt"></i> Schedule</a></li>
+                        </ul>
                     </div>';
+
                 return $edit . $delete . $dropdown;
             })
             ->addColumn('status', function ($query) {

@@ -361,7 +361,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                    <button type="submit" class="read_btn">Edit</button>
                                 </div>
                             </form>
                         </div>

@@ -28,7 +28,6 @@
                                 <div class="form-group">
                                     <label for="">Image <span class="text-primary">(Multiple photos can be
                                             uploaded)</span></label>
-
                                     <input type="file" class="form-control" name="images[]" multiple />
                                     <!--Sử dụng request() helper để lấy giá trị listing_id từ yêu cầu -->
                                     <input type="hidden" value="{{ request()->id }}" name="listing_id">

@@ -89,7 +89,7 @@
             @endforeach
         @endif
 
-        //Delete alert handling
+        //Sweet alert custom JS
         $('body').on('click', '.delete-item', function(e) {
             e.preventDefault();
             let url = $(this).attr('href');

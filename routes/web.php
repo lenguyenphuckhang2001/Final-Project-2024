@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\FrontendProfileController;
 use App\Http\Controllers\Frontend\ListingAgentController;
+use App\Http\Controllers\Frontend\ListingAgentImageGalleryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::put('/profile-change-password', [FrontendProfileController::class, 'changePassword'])->name('profile-change-password.update');
 
     Route::resource('/listing', ListingAgentController::class);
+    Route::resource('/image-gallery', ListingAgentImageGalleryController::class);
 });
 
 require __DIR__ . '/auth.php';

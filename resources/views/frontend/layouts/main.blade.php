@@ -68,6 +68,7 @@
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $.uploadPreview({
@@ -89,6 +90,53 @@
             no_label: false, // Default: false
             success_callback: null // Default: null
         });
+
+        //Sweet alert custom JS
+        $('body').on('click', '.delete-item', function(e) {
+            e.preventDefault();
+            let url = $(this).attr('href');
+            console.log(url);
+            Swal.fire({
+                title: "Delete this item",
+                text: "Are you sure to delete it?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        method: 'DELETE',
+                        url: url,
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire({
+                                    title: "Deleted",
+                                    text: response.message,
+                                    icon: "success"
+                                });
+                                window.location.reload();
+                            } else if (response.status === 'error') {
+                                Swal.fire({
+                                    title: "Error",
+                                    text: response.message,
+                                    icon: "error"
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        })
+
 
         @if ($errors->any())
             @foreach ($errors->all() as $error)
