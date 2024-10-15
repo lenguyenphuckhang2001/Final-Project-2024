@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Listing;
 use App\Models\VideoGallery;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class ListingVideoGalleryController extends Controller
+class ListingAgentVideoGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,13 +20,13 @@ class ListingVideoGalleryController extends Controller
             ->where('id', $request->id) //Phương thức where('id', $request->id) thêm điều kiện vào truy vấn, lọc các bản ghi để chỉ bao gồm bản ghi có cột id khớp với giá trị của $request->id. Đối tượng $request có thể chứa dữ liệu từ một yêu cầu HTTP, và id là một tham số được truyền trong yêu cầu đó.
             ->first(); // Select giá trị title trong query và where tới keys id và giá trị tìm kiếm là $request->id
         $videos = VideoGallery::where('listing_id', $request->id)->get();
-        return view('admin.listing.video-gallery.index', compact('titleListing', 'videos'));
+        return view('frontend.dashboard.listing.video-gallery.index', compact('titleListing', 'videos'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'video_url' => ['required', 'url'],

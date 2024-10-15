@@ -16,7 +16,7 @@ class ListingAgentImageGalleryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request,): View
+    public function index(Request $request): View
     {
         $titleListing = Listing::select('title')
             ->where('id', $request->id) //Phương thức where('id', $request->id) thêm điều kiện vào truy vấn, lọc các bản ghi để chỉ bao gồm bản ghi có cột id khớp với giá trị của $request->id. Đối tượng $request có thể chứa dữ liệu từ một yêu cầu HTTP, và id là một tham số được truyền trong yêu cầu đó.

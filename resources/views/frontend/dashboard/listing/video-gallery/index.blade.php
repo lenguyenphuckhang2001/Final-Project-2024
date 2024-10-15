@@ -121,52 +121,60 @@
                                     Back
                                 </button>
                             </a>
-                            <h4>Image Gallery | ({{ $titleListing->title }})</h4>
+                            <h4>Video Gallery | ({{ $titleListing->title }})</h4>
                             <div class="card-body">
-                                <form action="{{ route('user.image-gallery.store') }}" method="POST"
+                                <form action="{{ route('user.video-gallery.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="" class="mb-2">Image <span class="text-primary">(Multiple
-                                                photos can be
-                                                uploaded)</span></label>
-                                        <input type="file" class="form-control" name="images[]" multiple />
+                                        <label for="">Video URL <span class="text-primary">(Just Support Youtube
+                                                URL)</span></label>
+                                        <input type="text" class="form-control" name="video_url">
                                         <!--Sử dụng request() helper để lấy giá trị listing_id từ yêu cầu -->
-                                        <input type="hidden" value="{{ request()->id }}" name="listing_id">
+                                        <input type="hidden" name="listing_id" value="{{ request()->id }}">
+
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="read_btn">Upload Image</button>
+                                        <button type="submit" class="read_btn">Upload Video</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
                         <div class="my_listing">
-                            <h4>All Image Gallery</h4>
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-md">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        @foreach ($images as $image)
+                            <h4>All Video Gallery</h4>
+                            <div class="card-body">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-md">
                                             <tr>
-                                                <th scope='row'>{{ ++$loop->index }}</th>
-                                                <td>
-                                                    <img style='width: 150px !important' src="{{ asset($image->image) }}"
-                                                        alt="">
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('user.image-gallery.destroy', $image->id) }}"
-                                                        class="delete-item btn btn-lg btn-danger"><i
-                                                            class="fas fa-trash"></i>
-                                                    </a>
-                                                </td>
+                                                <th>#</th>
+                                                <th>Video</th>
+                                                <th>URL</th>
+                                                <th>Action</th>
                                             </tr>
-                                        @endforeach
-                                    </table>
+
+                                            @foreach ($videos as $video)
+                                                <tr>
+                                                    <th scope='row'>{{ ++$loop->index }}</th>
+                                                    <td>
+                                                        <img width="150px" src="{{ getURL($video->video_url) }}"
+                                                            alt="video">
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ $video->video_url }}"
+                                                            target="_blank">{{ $video->video_url }}</a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('user.video-gallery.destroy', $video->id) }}"
+                                                            class="delete-item btn btn-lg btn-danger"><i
+                                                                class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
