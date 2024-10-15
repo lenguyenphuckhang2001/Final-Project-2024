@@ -20,11 +20,12 @@
                                     Back
                                 </button>
                             </a>
-                            <h4 class="mb-0">Create Schedule</h4>
+                            <h4 class="mb-0">Edit Schedule</h4>
                             <div class="card-body">
-                                <form action="{{ route('user.schedule.store', $listingId) }}" method="POST"
+                                <form action="{{ route('user.schedule.update', $schedule->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -32,7 +33,8 @@
                                                 <select name="day" id="" class="form-control select2" required>
                                                     <option value="0">Select</option>
                                                     @foreach (config('schedule.days') as $day)
-                                                        <option value="{{ $day }}">{{ $day }}</option>
+                                                        <option @selected($day === $schedule->day) value="{{ $day }}">
+                                                            {{ $day }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -40,27 +42,30 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="">Start Time <span class='text-danger'>*</span></label>
-                                                <input type="text" class="form-control timepicker" name="start_time">
+                                                <input type="text" class="form-control timepicker-start"
+                                                    name="start_time" value="{{ $schedule->start_time }}">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="">End Time <span class='text-danger'>*</span></label>
-                                                <input type="text" class="form-control timepicker" name="end_time">
+                                                <input type="text" class="form-control timepicker-end" name="end_time"
+                                                    value="{{ $schedule->end_time }}">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="">Status <span class='text-danger'>*</span></label>
+                                                <label for="">Status</label>
                                                 <select name="status" id="" class="form-control">
-                                                    <option value="1">Active</option>
-                                                    <option value="0">Hide</option>
+                                                    <option @selected($schedule->status === 1) value="1">Active</option>
+                                                    <option @selected($schedule->status === 0) value="0">Hide</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <button type="submit" class="read_btn mt-4">Create</button>
+                                        <button type="submit" class="read_btn mt-4">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -76,12 +81,24 @@
 @push('scripts')
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script>
-        $('.timepicker').timepicker({
+        $('.timepicker-start').timepicker({
             timeFormat: 'h:mm p',
             interval: 60,
             minTime: '10',
             maxTime: '6:00pm',
-            defaultTime: '11',
+            defaultTime: '{{ $schedule->start_time }}',
+            startTime: '10:00',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+
+        $('.timepicker-end').timepicker({
+            timeFormat: 'h:mm p',
+            interval: 60,
+            minTime: '10',
+            maxTime: '6:00pm',
+            defaultTime: '{{ $schedule->end_time }}',
             startTime: '10:00',
             dynamic: false,
             dropdown: true,

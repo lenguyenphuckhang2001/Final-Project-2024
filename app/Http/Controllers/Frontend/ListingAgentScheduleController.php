@@ -49,7 +49,7 @@ class ListingAgentScheduleController extends Controller
     function edit(string $id): View
     {
         $schedule = ListingSchedule::findOrFail($id);
-        return view('user.dashboard.listing.schedule.edit', compact('schedule'));
+        return view('frontend.dashboard.listing.schedule.edit', compact('schedule'));
     }
 
     function update(ListingAgentScheduleUpdateRequest $request, string $id): RedirectResponse

@@ -31,7 +31,7 @@ class ListingScheduleDataTable extends DataTable
                 if ($query->status !== 1) {
                     return "<span class='badge badge-secondary'>Hide</span>";
                 } else {
-                    return "<span class='badge badge badge-success'>Active</span>";
+                    return "<span class='badge badge-success'>Active</span>";
                 }
             })
             ->rawColumns(['status', 'action'])
@@ -66,7 +66,6 @@ class ListingScheduleDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-
             Column::make('id')->width(100),
             Column::make('day'),
             Column::make('start_time'),
