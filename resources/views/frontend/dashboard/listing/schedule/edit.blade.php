@@ -14,7 +14,7 @@
                 <div class="col-lg-9">
                     <div class="dashboard_content">
                         <div class="my_listing">
-                            <a href="{{ route('user.schedule.index', $listingId) }}" class="mb-4">
+                            <a href="{{ route('user.schedule.index', $schedule->listing_id) }}" class="mb-4">
                                 <button type="button" class="btn btn-outline-dark">
                                     <i class="fas fa-chevron-left"></i>
                                     Back

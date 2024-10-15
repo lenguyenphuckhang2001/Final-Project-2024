@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Listing;
 use App\Models\ListingAgent;
+use Auth;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -82,7 +83,7 @@ class ListingAgentDataTable extends DataTable
      */
     public function query(Listing $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('user_id', Auth::user()->id)->newQuery();
     }
 
     /**

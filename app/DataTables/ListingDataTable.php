@@ -53,21 +53,21 @@ class ListingDataTable extends DataTable
                 if ($query->status !== 1) {
                     return "<span class='badge badge-secondary'>Hide</span>";
                 } else {
-                    return "<span class='badge badge badge-success'>Active</span>";
+                    return "<span class='badge badge-success'>Active</span>";
                 }
             })
             ->addColumn('is_featured', function ($query) {
                 if ($query->is_featured !== 1) {
-                    return "<span class='badge badge-secondary'>Yes</span>";
+                    return "<span class='badge badge-secondary'>No</span>";
                 } else {
-                    return "<span class='badge badge badge-success'>No</span>";
+                    return "<span class='badge badge-success'>Yes</span>";
                 }
             })
             ->addColumn('is_verified', function ($query) {
                 if ($query->is_verified !== 1) {
-                    return "<span class='badge badge-secondary'>Yes</span>";
+                    return "<span class='badge badge-secondary'>No</span>";
                 } else {
-                    return "<span class='badge badge badge-success'>No</span>";
+                    return "<span class='badge badge-success'>Yes</span>";
                 }
             })
             ->rawColumns(['image', 'status', 'action', 'is_featured', 'is_verified'])

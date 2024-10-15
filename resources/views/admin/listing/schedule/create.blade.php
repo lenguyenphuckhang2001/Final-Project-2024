@@ -20,11 +20,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-
                         <div class="card-header">
                             <h4>Create</h4>
                         </div>
-
                         <div class="card-body">
                             <form action="{{ route('admin.schedule.store', $listingId) }}" method="POST"
                                 enctype="multipart/form-data">
@@ -63,7 +61,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Create</button>
                                 </div>
