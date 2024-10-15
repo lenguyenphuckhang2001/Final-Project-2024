@@ -33,9 +33,9 @@ class ListingAgentDataTable extends DataTable
                             <i class="fas fa-info-circle"></i>
                         </button>
                         <ul class="dropdown-menu ">
-                            <li><a class="dropdown-item text-capitalize" href="' .  route('user.image-gallery.index', ['id' => $query->id]) . '"><i class="far fa-image"></i> Image Gallery</a></li>
-                            <li><a class="dropdown-item text-capitalize" href="#"><i class="far fa-video"></i> Video Gallery</a></li>
-                            <li><a class="dropdown-item text-capitalize" href="#"><i class="far fa-calendar-alt"></i> Schedule</a></li>
+                            <li><a class="dropdown-item text-capitalize" href="' . route('user.image-gallery.index', ['id' => $query->id]) . '"><i class="far fa-image"></i> Image Gallery</a></li>
+                            <li><a class="dropdown-item text-capitalize" href="' . route('user.video-gallery.index', ['id' => $query->id]) . '"><i class="far fa-video"></i> Video Gallery</a></li>
+                            <li><a class="dropdown-item text-capitalize" href="' . route('user.schedule.index', $query->id) . '"><i class="far fa-calendar-alt"></i> Schedule</a></li>
                         </ul>
                     </div>';
 

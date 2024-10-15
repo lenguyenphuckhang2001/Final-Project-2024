@@ -5,6 +5,8 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\FrontendProfileController;
 use App\Http\Controllers\Frontend\ListingAgentController;
 use App\Http\Controllers\Frontend\ListingAgentImageGalleryController;
+use App\Http\Controllers\FrontEnd\ListingAgentScheduleController;
+use App\Http\Controllers\Frontend\ListingAgentVideoGalleryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +40,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
 
     Route::resource('/listing', ListingAgentController::class);
     Route::resource('/image-gallery', ListingAgentImageGalleryController::class);
+    Route::resource('/video-gallery', ListingAgentVideoGalleryController::class);
+
+    Route::get('/schedule/{listing_id}', [ListingAgentScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/schedule/{listing_id}/create', [ListingAgentScheduleController::class, 'create'])->name('schedule.create');
+    Route::post('/schedule/{listing_id}', [ListingAgentScheduleController::class, 'store'])->name('schedule.store');
+    Route::get('/schedule/{id}/edit', [ListingAgentScheduleController::class, 'edit'])->name('schedule.edit');
+    Route::put('/schedule/{id}', [ListingAgentScheduleController::class, 'update'])->name('schedule.update');
+    Route::delete('/schedule/{id}', [ListingAgentScheduleController::class, 'destroy'])->name('schedule.destroy');
 });
 
 require __DIR__ . '/auth.php';
