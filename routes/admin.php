@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ListingAmenityController;
 use App\Http\Controllers\Admin\ListingCategoryController;
 use App\Http\Controllers\Admin\ListingImageGalleryController;
 use App\Http\Controllers\Admin\ListingLocationController;
+use App\Http\Controllers\Admin\ListingPendingController;
 use App\Http\Controllers\Admin\ListingScheduleController;
 use App\Http\Controllers\Admin\ListingVideoGalleryController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,9 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
 
     Route::get('/hero', [AdminHeroSectionController::class, 'index'])->name('hero.index');
     Route::put('/hero', [AdminHeroSectionController::class, 'update'])->name('hero.update');
+
+    Route::get('/pending', [ListingPendingController::class, 'index'])->name('pending.index');
+    Route::post('/pending', [ListingPendingController::class, 'update'])->name('pending.update');
 
     Route::resource('/listing', MainListingController::class);
     Route::resource('/category', ListingCategoryController::class);

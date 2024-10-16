@@ -190,18 +190,26 @@
             </li>
 
             <li
-                class="dropdown {{ setActiveRoute(['admin.listing.*', 'admin.category.*', 'admin.location.*', 'admin.amenity.*']) }}">
+                class="dropdown {{ setActiveRoute([
+                    'admin.listing.*',
+                    'admin.category.*',
+                    'admin.location.*',
+                    'admin.amenity.*',
+                    'admin.pending.*',
+                ]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                     <span>Listing</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ setActiveRoute(['admin.listing.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.listing.index') }}">Listing</a></li>
                     <li class="{{ setActiveRoute(['admin.category.*']) }}"><a class="nav-link"
                             href="{{ route('admin.category.index') }}">Category</a></li>
                     <li class="{{ setActiveRoute(['admin.location.*']) }}"> <a class="nav-link"
                             href="{{ route('admin.location.index') }}">Location</a></li>
                     <li class="{{ setActiveRoute(['admin.amenity.*']) }}"><a class="nav-link"
                             href="{{ route('admin.amenity.index') }}">Amenity</a></li>
+                    <li class="{{ setActiveRoute(['admin.listing.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.listing.index') }}">All Listing</a></li>
+                    <li class="{{ setActiveRoute(['admin.pending.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.pending.index') }}">Peding Listing</a></li>
                 </ul>
             </li>
 
