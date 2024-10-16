@@ -28,10 +28,10 @@ class CategoryDataTable extends DataTable
                 return $edit . $delete;
             })
             ->addColumn('background', function ($query) {
-                return '<img width="130" height="80" src="' . asset($query->background_image) . '">';
+                return '<img width="180" height="120" src="' . asset($query->background_image) . '">';
             })
             ->addColumn('icon_image', function ($query) {
-                return '<img width="100" height="80" src="' . asset($query->icon) . '">';
+                return '<img width="80" height="80" src="' . asset($query->icon) . '">';
             })
             ->addColumn('display_at_home', function ($query) {
                 if ($query->display_at_home !== 1) {

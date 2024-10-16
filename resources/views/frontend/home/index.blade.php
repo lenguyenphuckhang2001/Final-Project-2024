@@ -1,92 +1,33 @@
 @extends('frontend.layouts.main')
 
 @section('contents')
-    <!--==========================
-        BANNER PART START
-    ===========================-->
+    <!----------------Banner---------------->
     @include('frontend.home.sections.banner')
-    <!--==========================
-        BANNER PART END
-    ===========================-->
 
-
-    <!--==========================
-        CATEGORY SLIDER START
-    ===========================-->
+    <!---------------Category--------------->
     @include('frontend.home.sections.category-slider')
-    <!--==========================
-        CATEGORY SLIDER END
-    ===========================-->
 
+    <!---------------Features--------------->
+    {{-- @include('frontend.home.sections.features') --}}
 
-    <!--==========================
-        FEATURES PART START
-    ===========================-->
-    @include('frontend.home.sections.features')
-    <!--==========================
-        FEATURES PART END
-    ===========================-->
+    <!---------------Counter---------------->
+    {{-- @include('frontend.home.sections.counter') --}}
 
-
-    <!--==========================
-        COUNTER PART START
-    ===========================-->
-    @include('frontend.home.sections.counter')
-    <!--==========================
-        COUNTER PART END
-    ===========================-->
-
-
-    <!--==========================
-        OUR CATEGORY START
-    ===========================-->
+    <!-------------Out Category------------->
     @include('frontend.home.sections.our-category')
-    <!--==========================
-        OUR CATEGORY END
-    ===========================-->
 
+    <!-------------Out Location------------->
+    {{-- @include('frontend.home.sections.our-location') --}}
 
-    <!--==========================
-        OUR LOCATION START
-    ===========================-->
-    @include('frontend.home.sections.our-location')
-    <!--==========================
-        OUR LOCATION END
-    ===========================-->
+    <!-----------Featured Listing----------->
+    {{-- @include('frontend.home.sections.featured-listing') --}}
 
-
-    <!--==========================
-        FEATURED LISTING START
-    ===========================-->
-    @include('frontend.home.sections.featured-listing')
-    <!--==========================
-        FEATURED LISTING END
-    ===========================-->
-
-
-    <!--==========================
-        OUR PACKAGE START
-    ===========================-->
+    <!-------------Our Package-------------->
     @include('frontend.home.sections.our-package')
-    <!--==========================
-        OUR PACKAGE END
-    ===========================-->
 
+    <!-------------Testimonial-------------->
+    {{-- @include('frontend.home.sections.testimonial') --}}
 
-    <!--============================
-        TESTIMONIAL PART START
-    ==============================-->
-    @include('frontend.home.sections.testimonial')
-    <!--============================
-        TESTIMONIAL PART END
-    ==============================-->
-
-
-    <!--==========================
-        BLOG PART START
-    ===========================-->
-    @include('frontend.home.sections.blog')
-    <!--==========================
-        BLOG PART END
-    ===========================-->
+    <!----------------Blog------------------>
+    {{-- @include('frontend.home.sections.blog') --}}
 @endsection
