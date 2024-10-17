@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 //HOME PAGES ROUTE
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/listings', [FrontendController::class, 'listings'])->name('listings');
+Route::get('/listing-modal/{id}', [FrontendController::class, 'listingModal'])->name('listing-modal');
 
 //PROFILE PAGES ROUTE
 Route::middleware('auth')->group(function () {

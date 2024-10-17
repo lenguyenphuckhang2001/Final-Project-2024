@@ -46,4 +46,12 @@ class FrontendController extends Controller
         $listings = $listings->paginate(15); //Hiển thị bao nhiêu data ra màn hình
         return view('frontend.pages.listings', compact('listings'));
     }
+
+
+    function listingModal(string $id)
+    {
+        $listing = Listing::findOrFail($id);
+
+        return view('frontend.layouts.ajax-model-listing', compact('listing'))->render();
+    }
 }

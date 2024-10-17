@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 
-
     @stack('styles')
 </head>
 
@@ -38,6 +37,22 @@
 
     <!--------------Footer------------------>
     @include('frontend.layouts.footer')
+
+    <!------Popup Show listing Detail------->
+    <section id="wsus__map_popup">
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="btn-close popup_close" data-bs-dismiss="modal" aria-label="Close"><i
+                            class="far fa-times"></i></button>
+                    <div class="modal-body modal-listing-content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--------------Scroll Btn-------------->
     <div class="scroll_btn">
@@ -140,6 +155,22 @@
                 toastr.error('{{ $error }}')
             @endforeach
         @endif
+    </script>
+
+    <script>
+        function showListingPopup(id) {
+            $.ajax({
+                method: 'GET',
+                url: '{{ route('listing-modal', ':id') }}'.replace(':id', id),
+                data: {},
+                success: function(response) {
+                    $('.modal-listing-content').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            })
+        }
     </script>
     @stack('scripts')
 </body>

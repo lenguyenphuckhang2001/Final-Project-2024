@@ -1,5 +1,18 @@
 <?php
 
+/** Truncate string in name listings */
+
+if (!function_exists('cutString')) {
+    function cutString(string $text, int $limit = 20): ?string
+    {
+        // Đây là class Str trong Laravel, giúp xử lý các thao tác với chuỗi.
+        // Dấu \ trước Str là để chỉ rõ chúng ta đang gọi class Str thuộc global namespace của Laravel,
+        // không phải một class Str nào khác trong namespace hiện tại (nếu có).
+        return \Str::of($text)    // Tạo một đối tượng chuỗi từ biến $text.
+            ->limit($limit);  // Giới hạn độ dài chuỗi bằng giá trị $limit, ví dụ: "Hello World" sẽ thành "Hello" nếu $limit = 5.
+    }
+}
+
 /** Active Routes */
 
 if (!function_exists('setActiveRoute')) {
@@ -19,7 +32,6 @@ if (!function_exists('setActiveRoute')) {
 if (!function_exists('getURL')) {
     function getURL(string $url): ?string
     {
-
         //https://www.youtube.com/watch?v=bIqCVkJS7VQ
         $regex = '/[?&]v=([a-zA-Z0-9_-]{11})/'; //regex function
 
@@ -32,6 +44,6 @@ if (!function_exists('getURL')) {
 
             return "https://img.youtube.com/vi/$id/mqdefault.jpg";
         }
+        return null;
     }
-    return null;
 }
