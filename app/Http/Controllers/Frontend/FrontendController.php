@@ -20,7 +20,7 @@ class FrontendController extends Controller
 
     function listings(Request $request): View
     {
-        $listings = Listing::where(['status' => 1, 'is_approved' => 1]);
+        $listings = Listing::with(['category', 'location'])->where(['status' => 1, 'is_approved' => 1]); //Hàm with sẽ load động dữ liệu cùng với bảng khi được gọi
 
         /**Logic hàm listings
          *Đầu tiền hàm sẽ sử dụng hàm when($request->has('category')) để biết rằng trong $request cuả người dùng có trường category hay không,
@@ -43,7 +43,7 @@ class FrontendController extends Controller
         });
 
 
-        $listings->paginate(15); //Hiển thị bao nhiêu data ra màn hình
+        $listings = $listings->paginate(15); //Hiển thị bao nhiêu data ra màn hình
         return view('frontend.pages.listings', compact('listings'));
     }
 }

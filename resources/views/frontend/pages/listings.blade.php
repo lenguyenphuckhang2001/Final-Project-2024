@@ -117,30 +117,33 @@
 
                 <div class="col-lg-9">
                     <div class="row">
-                        <div class="col-xl-4 col-sm-6">
-                            <div class="wsus__featured_single">
-                                <div class="wsus__featured_single_img">
-                                    <img src="images/location_1.jpg" alt="images" class="img-fluid w-100">
-                                    <a href="#" class="love"><i class="fas fa-heart"></i></a>
-                                    <a href="#" class="small_text">market</a>
-                                </div>
-                                <a class="map" data-bs-toggle="modal" data-bs-target="#exampleModal2"
-                                    href="#"><i class="fas fa-info"></i></a>
-                                <div class="wsus__featured_single_text">
-                                    <p class="list_rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(5 review)</span>
-                                    </p>
-                                    <a href="#">school and child care</a>
-                                    <p class="address"> Washington, Illinois</p>
+                        @foreach ($listings as $listing)
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="wsus__featured_single">
+                                    <div class="wsus__featured_single_img">
+                                        <img src="{{ asset($listing->image) }}" alt="{{ $listing->title }}"
+                                            class="img-fluid w-100">
+                                        <a href="#" class="love"><i class="fas fa-heart"></i></a>
+                                        <a href="{{ route('listings', ['category' => $listing->category->name]) }}"
+                                            class="small_text">{{ $listing->category->name }}</a>
+                                    </div>
+                                    <a class="map" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                                        href="#"><i class="fas fa-info"></i></a>
+                                    <div class="wsus__featured_single_text">
+                                        <p class="list_rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(5 review)</span>
+                                        </p>
+                                        <a href="#">{{ $listing->title }}</a>
+                                        <p class="address">{{ $listing->location->name }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
+                        @endforeach
 
                         <div class="col-12">
                             <div id="pagination">
