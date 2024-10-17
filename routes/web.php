@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::get('/profile', [FrontendProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile', [FrontendProfileController::class, 'updateInfo'])->name('profile.update');
     Route::put('/profile-change-password', [FrontendProfileController::class, 'changePassword'])->name('profile-change-password.update');
+    Route::put('/profile-change-banner', [FrontendProfileController::class, 'changeBanner'])->name('profile-change-banner.update');
 
     Route::resource('/listing', ListingAgentController::class);
     Route::resource('/image-gallery', ListingAgentImageGalleryController::class);

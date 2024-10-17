@@ -137,8 +137,9 @@
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{ asset(auth()->user()->avatar) }}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                <img alt="image" style="width:30px; height: 30px" src="{{ asset(auth()->user()->avatar) }}"
+                    class="rounded-circle mr-2">
+                <div class="d-sm-none d-lg-inline-block">{!! auth()->user()->name !!}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a href="{{ route('admin.profile') }}" class="dropdown-item has-icon">
@@ -168,10 +169,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Admin Dashboard</a>
+            <a href="{{ route('admin.dashboard.index') }}">Admin Dashboard</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">AD</a>
+            <a href="{{ route('admin.dashboard.index') }}">AD</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Starter</li>

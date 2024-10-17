@@ -179,8 +179,8 @@
                                         <div class="my_listing_single">
                                             <label for="image-upload" class="d-flex justify-content-center">Image</label>
                                             <div id="image-preview" class="profile_pic_upload image-preview">
-                                                <img id="image-label" class="img-fluid w-100" src="#"
-                                                    alt="Image Preview" style="display: none;" />
+                                                <img id="image-label" class="img-fluid w-100" src="" alt="image"
+                                                    style="display: none;" />
                                                 <input type="file" name="image" id="image-upload" required />
                                             </div>
                                         </div>
@@ -189,7 +189,7 @@
                                         <div class="my_listing_single">
                                             <label for="" class="d-flex justify-content-center">Thumbnail</label>
                                             <div id="image-preview-2" class="profile_pic_upload image-preview">
-                                                <img id="image-label-2" class="img-fluid w-100" alt="Image Preview"
+                                                <img id="image-label-2" class="img-fluid w-100" alt="thumbnail image"
                                                     src="" style="display: none;" />
                                                 <input type="file" id="image-upload-2" name="thumbnail" required />
                                             </div>

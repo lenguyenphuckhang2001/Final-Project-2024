@@ -9,6 +9,7 @@ use Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Redirect;
 
 class FrontendProfileController extends Controller
 {
@@ -23,11 +24,9 @@ class FrontendProfileController extends Controller
     function updateInfo(ProfileUpdateUserRequest $request): RedirectResponse
     {
         $avatarPath = $this->uploadImage($request, 'avatar', $request->old_avatar);
-        $bannerPath = $this->uploadImage($request, 'banner', $request->old_banner);
 
         $user = Auth::user();
         $user->avatar = !empty($avatarPath) ? $avatarPath : $request->old_avatar;
-        $user->banner = !empty($bannerPath) ? $bannerPath : $request->old_banner;
         $user->name = $request->name;
         $user->phonenumber = $request->phonenumber;
         $user->email = $request->email;
@@ -57,6 +56,22 @@ class FrontendProfileController extends Controller
         $user->save();
         toastr()->success('Updated password successfully');
 
+        return redirect()->back();
+    }
+
+    function changeBanner(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'banner' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        ]);
+
+        $bannerPath = $this->uploadImage($request, 'banner', $request->old_banner);
+
+        $user = Auth::user();
+        $user->banner = !empty($bannerPath) ? $bannerPath : $request->old_banner;
+        $user->save();
+
+        toastr()->success('Updated banner image successfully');
         return redirect()->back();
     }
 }
