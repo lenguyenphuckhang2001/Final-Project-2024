@@ -163,6 +163,11 @@
                 method: 'GET',
                 url: '{{ route('listing-modal', ':id') }}'.replace(':id', id),
                 data: {},
+                beforeSend: function() {
+                    $('.modal-listing-content').html(`<div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>`)
+                },
                 success: function(response) {
                     $('.modal-listing-content').html(response);
                 },
