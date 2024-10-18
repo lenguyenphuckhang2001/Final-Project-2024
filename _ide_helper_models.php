@@ -275,6 +275,48 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $type
+ * @property string $name
+ * @property float $price
+ * @property int $limit_days
+ * @property int $limit_listing
+ * @property int $limit_photos
+ * @property int $limit_video
+ * @property int $limit_amenities
+ * @property int $limit_featured_listing
+ * @property int $display_at_home
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Package newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Package newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Package onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Package query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereDisplayAtHome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitAmenities($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitDays($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitFeaturedListing($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitListing($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitPhotos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitVideo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Package withoutTrashed()
+ */
+	class Package extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $user_type
  * @property string $avatar
  * @property string $banner

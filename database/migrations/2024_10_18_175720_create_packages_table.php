@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('limit_featured_listing');
             $table->boolean('display_at_home');
             $table->boolean('status');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }
