@@ -210,7 +210,7 @@
                     <li class="{{ setActiveRoute(['admin.listing.*']) }}"><a class="nav-link"
                             href="{{ route('admin.listing.index') }}">All Listings</a></li>
                     <li class="{{ setActiveRoute(['admin.pending.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.pending.index') }}">Peding Listing</a></li>
+                            href="{{ route('admin.pending.index') }}">Pending Listing</a></li>
                 </ul>
             </li>
 
@@ -226,6 +226,8 @@
 
             <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank
                         Page</span></a></li>
+            <li><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="far fa-square"></i>
+                    <span>Settings</span></a></li>
         </ul>
     </aside>
 </div>
