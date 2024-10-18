@@ -18,18 +18,15 @@
                     {{ $listing->email }}</a></a>
                 {{-- Hàm strip_tags sử dụng để loại bỏ các thẻ HTML và chỉ hiển thị text --}}
                 <p>{{ cutString(strip_tags($listing->description), 200) }}</p>
-                <a class="read_btn" href="#">Read More</a>
+                <a class="read_btn" href="{{ route('listing.detail', $listing->slug) }}">Read More</a>
             </div>
         </div>
         @if ($listing->map_embed_code)
             <div class="col-12 col-xl-12 col-md-12">
                 <div class="map_popup_content_map">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9858724809806!2d90.37746441534016!3d23.747883194788518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b17fc6ff45%3A0xf04f00d1bfe07561!2sDhanmondi%20Lake%20Park%2C%20Rd%2010%2C%20Dhaka%201205!5e0!3m2!1sen!2sbd!4v1634532335570!5m2!1sen!2sbd"
-                        width="1000" height="800" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    {!! $listing->map_embed_code !!}
                 </div>
             </div>
         @endif
     </div>
-
 </div>

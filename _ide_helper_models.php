@@ -45,6 +45,7 @@ namespace App\Models{
  * @property int $amenity_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Amenity|null $amenity
  * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing query()
@@ -159,14 +160,23 @@ namespace App\Models{
  * @property string|null $insta_url
  * @property int $is_verified
  * @property int $is_featured
+ * @property int $is_approved
  * @property int $status
  * @property string $expire_date
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\AmenityListing> $amenities
+ * @property-read int|null $amenities_count
  * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ImageGalerry> $gallery
+ * @property-read int|null $gallery_count
  * @property-read \App\Models\Location $location
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ListingSchedule> $schedules
+ * @property-read int|null $schedules_count
  * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\VideoGallery> $videos
+ * @property-read int|null $videos_count
  * @method static \Illuminate\Database\Eloquent\Builder|Listing newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing onlyTrashed()
@@ -183,6 +193,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereInstaUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing whereIsApproved($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereIsFeatured($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereIsVerified($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereLinkedUrl($value)
@@ -216,7 +227,7 @@ namespace App\Models{
  * @property string $day
  * @property string $start_time
  * @property string $end_time
- * @property string $status
+ * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|ListingSchedule newModelQuery()
