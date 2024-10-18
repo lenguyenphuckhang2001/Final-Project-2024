@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['free', 'premium']);
+            $table->string('name');
+            $table->double('price');
+            $table->integer('limit_days');
+            $table->integer('limit_listing');
+            $table->integer('limit_photos');
+            $table->integer('limit_video');
+            $table->integer('limit_amenities');
+            $table->integer('limit_featured_listing');
+            $table->boolean('display_at_home');
+            $table->boolean('status');
+
             $table->timestamps();
         });
     }
