@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ListingLocationController;
 use App\Http\Controllers\Admin\ListingPendingController;
 use App\Http\Controllers\Admin\ListingScheduleController;
 use App\Http\Controllers\Admin\ListingVideoGalleryController;
+use App\Http\Controllers\Admin\PackageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login')->middleware('guest');
@@ -43,4 +44,6 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/schedule/{id}/edit', [ListingScheduleController::class, 'edit'])->name('schedule.edit');
     Route::put('/schedule/{id}', [ListingScheduleController::class, 'update'])->name('schedule.update');
     Route::delete('/schedule/{id}', [ListingScheduleController::class, 'destroy'])->name('schedule.destroy');
+
+    Route::resource('/packages', PackageController::class);
 });

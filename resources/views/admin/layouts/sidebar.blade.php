@@ -186,7 +186,7 @@
 
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.hero.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.hero.index') }}">Hero Section</a></li>
+                            href="{{ route('admin.hero.index') }}">Hero</a></li>
                 </ul>
             </li>
 
@@ -208,9 +208,19 @@
                     <li class="{{ setActiveRoute(['admin.amenity.*']) }}"><a class="nav-link"
                             href="{{ route('admin.amenity.index') }}">Amenity</a></li>
                     <li class="{{ setActiveRoute(['admin.listing.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.listing.index') }}">All Listing</a></li>
+                            href="{{ route('admin.listing.index') }}">All Listings</a></li>
                     <li class="{{ setActiveRoute(['admin.pending.*']) }}"><a class="nav-link"
                             href="{{ route('admin.pending.index') }}">Peding Listing</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown {{ setActiveRoute(['admin.packages.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i> <span>Package</span></a>
+
+                <ul class="dropdown-menu">
+                    <li class="{{ setActiveRoute(['admin.packages.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.packages.index') }}">All Packages</a></li>
                 </ul>
             </li>
 
