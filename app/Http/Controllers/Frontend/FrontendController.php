@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Hero;
 use App\Models\Listing;
+use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -15,7 +16,8 @@ class FrontendController extends Controller
     {
         $hero = Hero::first();
         $categories = Category::where('status', 1)->get();
-        return view('frontend.home.index', compact('hero', 'categories'));
+        $packages = Package::where('status', 1)->where('display_at_home', 1)->take(3)->get();
+        return view('frontend.home.index', compact('hero', 'categories', 'packages'));
     }
 
     function listings(Request $request): View
@@ -90,5 +92,11 @@ class FrontendController extends Controller
         // - Những danh sách này sẽ được dùng để gợi ý các sản phẩm hoặc danh sách tương tự trên trang chi tiết của danh sách hiện tại.
 
         return view('frontend.pages.listing-detail', compact('listing', 'similarListing'));
+    }
+
+    function showPackages(): View
+    {
+        $packages = Package::where('status', 1)->where('display_at_home', 1)->get();
+        return view('frontend.pages.packages', compact('packages'));
     }
 }
