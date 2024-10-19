@@ -49,4 +49,5 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::resource('/packages', PackageController::class);
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
+    Route::post('/general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
 });

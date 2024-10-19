@@ -45,7 +45,9 @@
                                             aria-labelledby="home-tab4">
                                             <div class="card border">
                                                 <div class="card-body">
-                                                    <form action="">
+                                                    <form action="{{ route('admin.general-settings.update') }}"
+                                                        method="POST">
+                                                        @csrf
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
@@ -57,8 +59,8 @@
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="">Site Email</label>
-                                                                    <input type="text" class="form-control"
-                                                                        name="site_name">
+                                                                    <input type="email" class="form-control"
+                                                                        name="site_email">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
@@ -91,7 +93,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="">Site Currency Position</label>
-                                                                    <select name="site_currenct_postion"
+                                                                    <select name="site_currenct_position"
                                                                         class="form-control">
                                                                         <option value="right">Right</option>
                                                                         <option value="left">Left</option>
