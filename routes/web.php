@@ -26,6 +26,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/listings', [FrontendController::class, 'listings'])->name('listings');
 Route::get('/listing-modal/{id}', [FrontendController::class, 'listingModal'])->name('listing-modal');
 Route::get('/listing/{slug}', [FrontendController::class, 'detailListing'])->name('listing.detail');
+Route::get('checkout/{id}', [FrontendController::class, 'checkout'])->name('checkout.index');
 
 //PROFILE PAGES ROUTE
 Route::middleware('auth')->group(function () {

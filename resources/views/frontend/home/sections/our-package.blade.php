@@ -16,22 +16,13 @@
                         <div class="col-xl-4 col-md-6 col-lg-4">
                             <div class="member_price">
                                 <h4>{{ $package->name }}</h4>
-                                <h5>
-                                    @if ($package->price == 0 && $package->limit_days == 0)
-                                        Free
-                                    @elseif ($package->price == 0)
-                                        Free
-                                    @else
-                                        ${{ $package->price }}
-                                    @endif
-
+                                <h5>{{ currencyPostion($package->price) }}
                                     @if ($package->limit_days == -1)
                                         <span>/<i class="fas fa-infinity"></i></span>
-                                    @elseif ($package->limit_days > 0)
+                                    @else
                                         <span>/{{ $package->limit_days }} Days</span>
                                     @endif
                                 </h5>
-
 
                                 @if ($package->limit_listing === -1)
                                     <p>Unlimited Listings Post</p>
@@ -63,7 +54,7 @@
                                     <p>{{ $package->limit_featured_listing }} Featured of listing</p>
                                 @endif
 
-                                <a href="#">Order now</a>
+                                <a href="{{ route('checkout.index', $package->id) }}">Purchase</a>
                             </div>
                         </div>
                     @endforeach

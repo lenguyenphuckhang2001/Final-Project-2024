@@ -98,11 +98,11 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="">Site Currency Position</label>
-                                                                    <select name="site_currenct_position"
+                                                                    <select name="site_currency_position"
                                                                         class="form-control">
-                                                                        <option @selected(config('settings.site_currenct_position') === 'right') value="right">
+                                                                        <option @selected(config('settings.site_currency_position') === 'right') value="right">
                                                                             Right</option>
-                                                                        <option @selected(config('settings.site_currenct_position') === 'left') value="left">
+                                                                        <option @selected(config('settings.site_currency_position') === 'left') value="left">
                                                                             Left</option>
                                                                     </select>
                                                                 </div>

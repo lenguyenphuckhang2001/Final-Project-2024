@@ -24,7 +24,7 @@ class SettingController extends Controller
             'site_phonenumber' => ['required', 'max:255'],
             'site_default-currency' => ['required', 'max:3'],
             'site_currency_icon' => ['required'],
-            'site_currenct_position' => ['required', 'in:right,left']
+            'site_currency_position' => ['required', 'in:right,left']
         ]);
 
         foreach ($handledValidate as $key => $value) {

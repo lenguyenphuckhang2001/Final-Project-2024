@@ -99,4 +99,10 @@ class FrontendController extends Controller
         $packages = Package::where('status', 1)->where('display_at_home', 1)->get();
         return view('frontend.pages.packages', compact('packages'));
     }
+
+    function checkout(string $id): View
+    {
+        $package = Package::findOrFail($id);
+        return view('frontend.pages.checkout', compact('package'));
+    }
 }
