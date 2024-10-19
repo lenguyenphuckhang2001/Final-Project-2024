@@ -27,12 +27,15 @@
                 <div class="col-lg-8">
                     <div class="wsus__payment_area">
                         <div class="row">
-                            <div class="col-lg-3 col-6 col-sm-4">
-                                <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    href="#">
-                                    <img src="images/pay_1.jpg" alt="payment method" class="img-fluid w-100">
-                                </a>
-                            </div>
+                            @if (config('payment.paypal_status') === 'active')
+                                <div class="col-lg-3 col-6 col-sm-4">
+                                    <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        href="#">
+                                        <img src="{{ asset('default/paypal.png') }}" alt="payment method"
+                                            class="img-fluid w-100">
+                                    </a>
+                                </div>
+                            @endif
                             <div class="col-lg-3 col-6 col-sm-4">
                                 <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     href="#">

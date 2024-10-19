@@ -46,7 +46,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Paypal Currency Rate (Per
                                 {{ config('settings.site_default_currency') }})</label>
@@ -54,21 +54,21 @@
                                 value="{{ config('payment.paypal_currency_rate') }}">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Paypal Client ID</label>
                             <input type="text" class="form-control" name="paypal_client_id"
                                 value="{{ config('payment.paypal_client_id') }}">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Paypal Secret Key</label>
                             <input type="text" class="form-control" name="paypal_secret_key"
                                 value="{{ config('payment.paypal_secret_key') }}">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Paypal App Key</label>
                             <input type="text" class="form-control" name="paypal_app_key"

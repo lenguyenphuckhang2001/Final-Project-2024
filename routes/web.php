@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\ListingAgentController;
 use App\Http\Controllers\Frontend\ListingAgentImageGalleryController;
 use App\Http\Controllers\FrontEnd\ListingAgentScheduleController;
 use App\Http\Controllers\Frontend\ListingAgentVideoGalleryController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,5 +55,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::put('/schedule/{id}', [ListingAgentScheduleController::class, 'update'])->name('schedule.update');
     Route::delete('/schedule/{id}', [ListingAgentScheduleController::class, 'destroy'])->name('schedule.destroy');
 });
+
+//PAYMENT PAGES ROUTE
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('paypal/payment', [PaymentController::class, 'paypalPay'])->name('paypal.payment');
+    Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
+    Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
+});
+
+
 
 require __DIR__ . '/auth.php';

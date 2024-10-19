@@ -24,7 +24,7 @@ class PaymentSettingController extends Controller
             'paypal_country' => ['required'],
             'paypal_currency' => ['required'],
             'paypal_currency_rate' => ['required'],
-            'paypal_client_id' => ['required', 'numeric'],
+            'paypal_client_id' => ['required'],
             'paypal_secret_key' => ['required'],
             'paypal_app_key' => ['required']
         ]);
