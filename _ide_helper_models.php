@@ -323,6 +323,27 @@ namespace App\Models{
  * @property string|null $value
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting whereValue($value)
+ */
+	class PaymentSetting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $key
+ * @property string|null $value
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
