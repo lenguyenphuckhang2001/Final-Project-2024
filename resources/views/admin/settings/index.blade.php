@@ -53,21 +53,24 @@
                                                                 <div class="form-group">
                                                                     <label for="">Site Name</label>
                                                                     <input type="text" class="form-control"
-                                                                        name="site_name">
+                                                                        name="site_name"
+                                                                        value={{ config('settings.site_name') }}>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="">Site Email</label>
                                                                     <input type="email" class="form-control"
-                                                                        name="site_email">
+                                                                        name="site_email"
+                                                                        value={{ config('settings.site_email') }}>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="">Site Phone Number</label>
                                                                     <input type="text" class="form-control"
-                                                                        name="site_phonenumber">
+                                                                        name="site_phonenumber"
+                                                                        value={{ config('settings.site_phonenumber') }}>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
@@ -76,7 +79,8 @@
                                                                     <select name="site_default-currency"
                                                                         class="form-control select2">
                                                                         @foreach (config('currencies.currencies_list') as $key => $currency)
-                                                                            <option value="{{ $currency }}">
+                                                                            <option @selected($currency === config('settings.site_default-currency'))
+                                                                                value="{{ $currency }}">
                                                                                 {{ $key }} ({{ $currency }})
                                                                             </option>
                                                                         @endforeach
@@ -87,7 +91,8 @@
                                                                 <div class="form-group">
                                                                     <label for="">Site Currency Icon</label>
                                                                     <input type="text" class="form-control"
-                                                                        name="site_currency_icon">
+                                                                        name="site_currency_icon"
+                                                                        value={{ config('settings.site_currency_icon') }}>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -95,8 +100,10 @@
                                                                     <label for="">Site Currency Position</label>
                                                                     <select name="site_currenct_position"
                                                                         class="form-control">
-                                                                        <option value="right">Right</option>
-                                                                        <option value="left">Left</option>
+                                                                        <option @selected(config('settings.site_currenct_position') === 'right') value="right">
+                                                                            Right</option>
+                                                                        <option @selected(config('settings.site_currenct_position') === 'left') value="left">
+                                                                            Left</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
