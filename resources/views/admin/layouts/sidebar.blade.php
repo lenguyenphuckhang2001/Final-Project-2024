@@ -214,13 +214,15 @@
                 </ul>
             </li>
 
-            <li class="dropdown {{ setActiveRoute(['admin.packages.*']) }}">
+            <li class="dropdown {{ setActiveRoute(['admin.packages.*', 'admin.payment-settings.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i> <span>Package</span></a>
 
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.packages.*']) }}"><a class="nav-link"
                             href="{{ route('admin.packages.index') }}">All Packages</a></li>
+                    <li class="{{ setActiveRoute(['admin.payment-settings.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.payment-settings.index') }}">Payment</a></li>
                 </ul>
             </li>
 

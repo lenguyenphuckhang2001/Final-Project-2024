@@ -76,10 +76,10 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label for="">Site Default Currency</label>
-                                                                    <select name="site_default-currency"
+                                                                    <select name="site_default_currency"
                                                                         class="form-control select2">
                                                                         @foreach (config('currencies.currencies_list') as $key => $currency)
-                                                                            <option @selected($currency === config('settings.site_default-currency'))
+                                                                            <option @selected($currency === config('settings.site_default_currency'))
                                                                                 value="{{ $currency }}">
                                                                                 {{ $key }} ({{ $currency }})
                                                                             </option>
