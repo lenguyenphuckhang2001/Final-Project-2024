@@ -26,7 +26,8 @@
                                     <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" id="home-tab4" data-toggle="tab" href="#home4"
-                                                role="tab" aria-controls="home" aria-selected="true">Home</a>
+                                                role="tab" aria-controls="home" aria-selected="true">General
+                                                Settings</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#profile4"
@@ -42,12 +43,68 @@
                                     <div class="tab-content no-padding" id="myTab2Content">
                                         <div class="tab-pane fade show active" id="home4" role="tabpanel"
                                             aria-labelledby="home-tab4">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            <div class="card border">
+                                                <div class="card-body">
+                                                    <form action="">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="">Site Name</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="site_name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="">Site Email</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="site_name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="">Site Phone Number</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="site_phonenumber">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="">Site Default Currency</label>
+                                                                    <select name="site_default-currency"
+                                                                        class="form-control select2">
+                                                                        @foreach (config('currencies.currencies_list') as $key => $currency)
+                                                                            <option value="{{ $currency }}">
+                                                                                {{ $key }} ({{ $currency }})
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Site Currency Icon</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="site_currency_icon">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Site Currency Position</label>
+                                                                    <select name="site_currenct_postion"
+                                                                        class="form-control">
+                                                                        <option value="right">Right</option>
+                                                                        <option value="left">Left</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="tab-pane fade" id="profile4" role="tabpanel"
                                             aria-labelledby="profile-tab4">
