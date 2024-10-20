@@ -29,9 +29,9 @@ class PackageDataTable extends DataTable
             })
             ->addColumn('display_at_home', function ($query) {
                 if ($query->display_at_home !== 1) {
-                    return "<span class='badge badge badge-success'>Yes</span>";
-                } else {
                     return "<span class='badge badge-secondary'>No</span>";
+                } else {
+                    return "<span class='badge badge badge-success'>Yes</span>";
                 }
             })
             ->addColumn('status', function ($query) {
