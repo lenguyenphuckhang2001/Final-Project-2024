@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CreateOrder;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use Session;
@@ -89,7 +90,18 @@ class PaymentController extends Controller
 
         $response = $provider->capturePaymentOrder($request->token);
 
-        dd($response);
+        if (isset($response['status']) && $response['status'] === 'COMPLETED') {
+            $capture = $response['purchase_units'][0]['payments']['captures'][0];
+            $paymentInfo = [
+                'transaction_id' => $capture['id'],
+                'payment_status' => $capture['status'],
+                'payment_method' => 'paypal',
+                'paid_amount' => $capture['amount']['value'],
+                'paid_currency' => $capture['amount']['currency_code'],
+            ];
+
+            CreateOrder::dispatch($paymentInfo);
+        };
     }
 
     function paypalCancel()
