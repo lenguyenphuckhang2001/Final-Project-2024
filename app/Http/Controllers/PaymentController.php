@@ -72,26 +72,43 @@ class PaymentController extends Controller
             ]
         ]);
 
+
+        // Kiểm tra xem 'id' trong biến $response có tồn tại và không phải là null
         if (isset($response['id']) && $response['id'] !== null) {
+            // Nếu 'id' hợp lệ, lặp qua từng liên kết trong $response['links']
             foreach ($response['links'] as $link) {
+                // Kiểm tra xem loại liên kết (rel) có phải là 'approve' không
                 if ($link['rel'] === 'approve') {
+                    // Nếu có, chuyển hướng người dùng đến URL để phê duyệt thanh toán
                     return redirect()->away($link['href']);
                 }
             }
         } else {
+            //
         }
     }
 
     function paypalSuccess(Request $request)
     {
+        //Lấy cấu hình PayPal
         $config = $this->paypalConfig();
+
+        // Tạo một instance của PayPalClient với cấu hình đã lấy
         $provider = new PayPalClient($config);
+
+        /* Gọi phương thức getAccessToken để lấy Access Token từ PayPal
+        Access Token sẽ được sử dụng để xác thực các yêu cầu API */
         $provider->getAccessToken();
 
+        /* Gọi phương thức capturePaymentOrder để bắt thanh toán cho đơn hàng
+        Tham số $request->token là token của đơn hàng đã được tạo trước đó
+        Phương thức này sẽ thực hiện việc bắt thanh toán và trả về kết quả */
         $response = $provider->capturePaymentOrder($request->token);
 
         if (isset($response['status']) && $response['status'] === 'COMPLETED') {
+            //Hàm capture nhằm chỉ dẫn đến các giá trị cần thiết của paymentInfo cần lấy mà không cần phải viết dài dòng
             $capture = $response['purchase_units'][0]['payments']['captures'][0];
+            //Lấy các giá trị từ hàm listener để gán vào đây để có thể dễ dàng quản lý chúng
             $paymentInfo = [
                 'transaction_id' => $capture['id'],
                 'payment_status' => $capture['status'],
@@ -100,6 +117,7 @@ class PaymentController extends Controller
                 'paid_currency' => $capture['amount']['currency_code'],
             ];
 
+            //Sau khi đã xác định các phương thức hợp lệ khởi tạo dispatch dùng để xử lý các hoạt động riêng biệt nhằm tránh gây ra sự quá tải đối với web
             CreateOrder::dispatch($paymentInfo);
         };
     }
