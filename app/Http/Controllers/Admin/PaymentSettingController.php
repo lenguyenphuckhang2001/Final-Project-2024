@@ -23,7 +23,7 @@ class PaymentSettingController extends Controller
             'paypal_mode' => ['required', 'in:sandbox,live'],
             'paypal_country' => ['required'],
             'paypal_currency' => ['required'],
-            'paypal_currency_rate' => ['required'],
+            'paypal_currency_rate' => ['required', 'numeric'],
             'paypal_client_id' => ['required'],
             'paypal_secret_key' => ['required'],
             'paypal_app_key' => ['required']
@@ -39,7 +39,33 @@ class PaymentSettingController extends Controller
         $paymentSettingsService = app(PaymentSettingsService::class);
         $paymentSettingsService->clearCachedSettings();
 
-        toastr()->success('Updated payment paypal successfully');
+        toastr()->success('Updated PAYPAL settings successfully');
+
+        return redirect()->back();
+    }
+
+    function updateStripe(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'stripe_status' => ['required', 'in:active,hide'],
+            'stripe_country' => ['required'],
+            'stripe_currency' => ['required'],
+            'stripe_currency_rate' => ['required', 'numeric'],
+            'stripe_publishable_key' => ['required'],
+            'stripe_secret_key' => ['required'],
+        ]);
+
+        foreach ($validatedData as $key => $value) {
+            PaymentSetting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value]
+            );
+        }
+
+        $paymentSettingsService = app(PaymentSettingsService::class);
+        $paymentSettingsService->clearCachedSettings();
+
+        toastr()->success('Updated STRIPE settings successfully');
 
         return redirect()->back();
     }

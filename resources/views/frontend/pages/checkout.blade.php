@@ -92,8 +92,6 @@
                         @else
                             <p>{{ $package->limit_featured_listing }} Featured of listing</p>
                         @endif
-
-                        <a href="{{ route('checkout.index', $package->id) }}">Purchase</a>
                     </div>
                 </div>
             </div>
