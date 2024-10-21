@@ -64,8 +64,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
 
     //Payment
-    Route::get('payment/success', [PaymentController::class, 'PaymentSuccess'])->name('payment.success');
-    Route::get('payment/cancel', [PaymentController::class, 'PaymentCancel'])->name('payment.cancel');
+    Route::get('payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
 });
 
 

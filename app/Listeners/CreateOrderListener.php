@@ -68,5 +68,8 @@ class CreateOrderListener
                 'status' => 1,
             ]
         );
+
+        //Sau khi đã khởi tạo hoàn thành thực hiện việc xóa đi session của người dùng 
+        Session::forget('selected_package_id');
     }
 }

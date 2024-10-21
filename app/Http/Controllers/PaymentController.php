@@ -5,12 +5,23 @@ namespace App\Http\Controllers;
 use App\Events\CreateOrder;
 use App\Models\Package;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Session;
 // Import the class namespaces first, before using it directly
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
+    function paymentSuccess(): View
+    {
+        return view('frontend.pages.payment.payment-success');
+    }
+
+    function paymentCancel(): View
+    {
+        return view('frontend.pages.payment.payment-cancel');
+    }
+
     //Khởi tại phương thức id của package
     function payableAmount(): int
     {
@@ -84,7 +95,8 @@ class PaymentController extends Controller
                 }
             }
         } else {
-            //
+            logger($response); // Ghi lại thông tin lỗi
+            return redirect()->route('payment.cancel')->withErrors(['error' => $response['error']['message']]);
         }
     }
 
@@ -119,11 +131,13 @@ class PaymentController extends Controller
 
             //Sau khi đã xác định các phương thức hợp lệ khởi tạo dispatch dùng để xử lý các hoạt động riêng biệt nhằm tránh gây ra sự quá tải đối với web
             CreateOrder::dispatch($paymentInfo);
+            return redirect()->route('payment.success');
         };
     }
 
     function paypalCancel()
     {
-        //
+        dd(session()->get('errors'));
+        return redirect()->route('payment.cancel');
     }
 }
