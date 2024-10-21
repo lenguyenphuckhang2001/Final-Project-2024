@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ListingLocationController;
 use App\Http\Controllers\Admin\ListingPendingController;
 use App\Http\Controllers\Admin\ListingScheduleController;
 use App\Http\Controllers\Admin\ListingVideoGalleryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\SettingController;
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::delete('/schedule/{id}', [ListingScheduleController::class, 'destroy'])->name('schedule.destroy');
 
     Route::resource('/packages', PackageController::class);
+    Route::resource('/orders', OrderController::class);
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
     Route::post('/general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
