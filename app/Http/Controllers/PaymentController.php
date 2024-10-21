@@ -9,6 +9,9 @@ use Illuminate\View\View;
 use Session;
 // Import the class namespaces first, before using it directly
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+//Use session stripe lib
+use Stripe\Stripe;
+use Stripe\Checkout\Session as StripeSession;
 
 class PaymentController extends Controller
 {
@@ -137,7 +140,66 @@ class PaymentController extends Controller
 
     function paypalCancel()
     {
-        dd(session()->get('errors'));
+        return redirect()->route('payment.cancel');
+    }
+
+    /* Stripe Payment */
+    function stripePay()
+    {
+        //Set API cho key
+        Stripe::setApiKey(config('payment.stripe_secret_key'));
+
+        //Bởi vì stripe tính từ cent nên 100cent sẽ quy đổi thành 1$ vậy nên phải *100
+        $totalPayableAmount = round($this->payableAmount() * config('payment.stripe_currency_rate')) * 100;
+
+        $response = StripeSession::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => config('payment.stripe_currency'),
+                        'product_data' => [
+                            'name' => 'Package'
+                        ],
+                        'unit_amount' => $totalPayableAmount
+                    ],
+                    'quantity' => 1
+                ]
+            ],
+            'mode' => 'payment',
+            'success_url' => route('stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('stripe.cancel'),
+        ]);
+
+        return redirect()->away($response->url);
+    }
+
+    function stripeSuccess(Request $request)
+    {
+        $sessionId = $request->session_id;
+
+        Stripe::setApiKey(config('payment.stripe_secret_key'));
+
+        $response = StripeSession::retrieve($sessionId);
+
+        if ($response->payment_status === 'paid') {
+            $paymentInfo = [
+                'transaction_id' => $response->payment_intent,
+                'payment_status' => 'completed',
+                'payment_method' => 'stripe',
+                'paid_amount' => $response->amount_total,
+                'paid_currency' => $response->currency,
+            ];
+
+            CreateOrder::dispatch($paymentInfo);
+
+            return redirect()->route('payment.success');
+        } else {
+            return redirect()->route('payment.cancel');
+        }
+    }
+
+    function stripeCancel()
+    {
         return redirect()->route('payment.cancel');
     }
 }

@@ -58,14 +58,19 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
 
 //PAYMENT PAGES ROUTE
 Route::group(['middleware' => 'auth'], function () {
+    //Payment
+    Route::get('payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
+
     //Paypal
     Route::get('paypal/payment', [PaymentController::class, 'paypalPay'])->name('paypal.payment');
     Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
     Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
 
-    //Payment
-    Route::get('payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
-    Route::get('payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
+    //Stripe
+    Route::get('stripe/payment', [PaymentController::class, 'stripePay'])->name('stripe.payment');
+    Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
+    Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
 });
 
 

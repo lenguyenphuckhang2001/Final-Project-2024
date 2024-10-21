@@ -30,15 +30,15 @@
                             @if (config('payment.paypal_status') === 'active')
                                 <div class="col-lg-3 col-6 col-sm-4">
                                     <a class="wsus__single_payment" href="{{ route('paypal.payment') }}">
-                                        <img src="{{ asset('default/paypal.png') }}" alt="payment method"
+                                        <img src="{{ asset('images/3rd-payment/paypal.png') }}" alt="payment method"
                                             class="img-fluid w-100">
                                     </a>
                                 </div>
                             @endif
                             <div class="col-lg-3 col-6 col-sm-4">
-                                <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    href="#">
-                                    <img src="images/pay_2.jpg" alt="payment method" class="img-fluid w-100">
+                                <a class="wsus__single_payment" href="{{ route('stripe.payment') }}">
+                                    <img src="{{ asset('images/3rd-payment/stripe.png') }}" alt="payment method"
+                                        class="img-fluid w-100">
                                 </a>
                             </div>
                             <div class="col-lg-3 col-6 col-sm-4">
@@ -47,7 +47,6 @@
                                     <img src="images/pay_3.jpg" alt="payment method" class="img-fluid w-100">
                                 </a>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -61,7 +60,6 @@
                                 <span>/{{ $package->limit_days }} Days</span>
                             @endif
                         </h5>
-
 
                         @if ($package->limit_listing === -1)
                             <p>Unlimited Listings Post</p>
