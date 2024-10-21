@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Hero;
 use App\Models\Listing;
 use App\Models\Package;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
@@ -109,7 +111,7 @@ class FrontendController extends Controller
         return view('frontend.pages.packages', compact('packages'));
     }
 
-    function checkout(string $id): View
+    function checkout(string $id): View | RedirectResponse
     {
         $package = Package::findOrFail($id);
 
@@ -119,7 +121,21 @@ class FrontendController extends Controller
          * $package->id là ID của gói dịch vụ hoặc sản phẩm mà người dùng đã chọn
          */
         Session::put('selected_package_id', $package->id);
-        
+
+        if ($package->type === 'free' || $package->price == 0) {
+            $paymentInfo = [
+                'transaction_id' => uniqid(),
+                'payment_status' => 'completed',
+                'payment_method' => 'free',
+                'paid_amount' => 0,
+                'paid_currency' => config('settings.site_default_currency'),
+            ];
+
+            CreateOrder::dispatch($paymentInfo);
+            toastr()->success('Register free package successfully');
+            return redirect()->route('admin.dashboard.index');
+        }
+
         return view('frontend.pages.checkout', compact('package'));
     }
 }

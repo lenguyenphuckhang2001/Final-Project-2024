@@ -28,25 +28,28 @@
                     <div class="wsus__payment_area">
                         <div class="row">
                             @if (config('payment.paypal_status') === 'active')
-                                <div class="col-lg-3 col-6 col-sm-4">
+                                <div class="col-lg-4 col-7 col-sm-5">
                                     <a class="wsus__single_payment" href="{{ route('paypal.payment') }}">
                                         <img src="{{ asset('images/3rd-payment/paypal.png') }}" alt="payment method"
                                             class="img-fluid w-100">
                                     </a>
                                 </div>
                             @endif
-                            <div class="col-lg-3 col-6 col-sm-4">
-                                <a class="wsus__single_payment" href="{{ route('stripe.payment') }}">
-                                    <img src="{{ asset('images/3rd-payment/stripe.png') }}" alt="payment method"
-                                        class="img-fluid w-100">
-                                </a>
-                            </div>
+                            @if (config('payment.stripe_status') === 'active')
+                                <div class="col-lg-4 col-7 col-sm-5">
+                                    <a class="wsus__single_payment" href="{{ route('stripe.payment') }}">
+                                        <img src="{{ asset('images/3rd-payment/stripe.png') }}" alt="payment method"
+                                            class="img-fluid w-100">
+                                    </a>
+                                </div>
+                            @endif
+                            {{--
                             <div class="col-lg-3 col-6 col-sm-4">
                                 <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     href="#">
                                     <img src="images/pay_3.jpg" alt="payment method" class="img-fluid w-100">
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -95,34 +98,4 @@
             </div>
         </div>
     </section>
-
-    <div class="wsus__payment_modal">
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="wsus__pay_modal_info">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero, tempora cum optio
-                                cumque rerum dolor impedit exercitationem? Eveniet suscipit repellat, quae natus hic
-                                assumenda.</p>
-                            <ul>
-                                <li>Natus hic assumenda consequatur excepturi ducimu.</li>
-                                <li>Cumque rerum dolor impedit exercitationem Eveniet.</li>
-                                <li>Dolor sit amet consectetur adipisicing elit tempora cum </li>
-                            </ul>
-                            <form>
-                                <input type="text" placeholder="Enteer Something">
-                                <input type="text" placeholder="Enteer Something">
-                                <textarea rows="4" placeholder="Enter Something"></textarea>
-                                <div class="wsus__payment_btn_area">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
