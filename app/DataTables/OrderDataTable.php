@@ -40,9 +40,9 @@ class OrderDataTable extends DataTable
                 if ($query->payment_status === 'completed') {
                     return "<span class='badge badge-success'>Completed</span>";
                 } elseif ($query->payment_status === 'pending') {
-                    return "<span class='badge badge badge-secondary'>Pending</span>";
+                    return "<span class='badge badge-secondary'>Pending</span>";
                 } else {
-                    return "<span class='badge badge badge-danger'>Failed</span>";
+                    return "<span class='badge badge-danger'>Failed</span>";
                 }
             })
             ->rawColumns(['payment_status', 'action'])

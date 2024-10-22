@@ -12,4 +12,6 @@ class DashboardController extends Controller
     {
         return view('frontend.dashboard.index');
     }
+
+    
 }

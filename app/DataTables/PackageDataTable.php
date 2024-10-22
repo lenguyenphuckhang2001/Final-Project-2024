@@ -31,14 +31,14 @@ class PackageDataTable extends DataTable
                 if ($query->display_at_home !== 1) {
                     return "<span class='badge badge-secondary'>No</span>";
                 } else {
-                    return "<span class='badge badge badge-success'>Yes</span>";
+                    return "<span class='badge badge-success'>Yes</span>";
                 }
             })
             ->addColumn('status', function ($query) {
                 if ($query->status !== 1) {
                     return "<span class='badge badge-secondary'>Hide</span>";
                 } else {
-                    return "<span class='badge badge badge-success'>Active</span>";
+                    return "<span class='badge badge-success'>Active</span>";
                 }
             })
             ->rawColumns(['display_at_home', 'status', 'action'])

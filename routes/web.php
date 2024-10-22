@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\ListingAgentController;
 use App\Http\Controllers\Frontend\ListingAgentImageGalleryController;
 use App\Http\Controllers\FrontEnd\ListingAgentScheduleController;
 use App\Http\Controllers\Frontend\ListingAgentVideoGalleryController;
+use App\Http\Controllers\Frontend\OrderListController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::get('/schedule/{id}/edit', [ListingAgentScheduleController::class, 'edit'])->name('schedule.edit');
     Route::put('/schedule/{id}', [ListingAgentScheduleController::class, 'update'])->name('schedule.update');
     Route::delete('/schedule/{id}', [ListingAgentScheduleController::class, 'destroy'])->name('schedule.destroy');
+
+    Route::get('/order', [OrderListController::class, 'index'])->name('order.index');
+    Route::get('/order/{id}', [OrderListController::class, 'show'])->name('order.show');
 });
 
 //PAYMENT PAGES ROUTE
@@ -72,7 +76,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
     Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
 });
-
-
 
 require __DIR__ . '/auth.php';

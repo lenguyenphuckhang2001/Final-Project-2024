@@ -35,7 +35,7 @@ class CategoryDataTable extends DataTable
             })
             ->addColumn('display_at_home', function ($query) {
                 if ($query->display_at_home !== 1) {
-                    return "<span class='badge badge badge-success'>Yes</span>";
+                    return "<span class='badge badge-success'>Yes</span>";
                 } else {
                     return "<span class='badge badge-secondary'>No</span>";
                 }
@@ -44,7 +44,7 @@ class CategoryDataTable extends DataTable
                 if ($query->status !== 1) {
                     return "<span class='badge badge-secondary'>Hide</span>";
                 } else {
-                    return "<span class='badge badge badge-success'>Active</span>";
+                    return "<span class='badge badge-success'>Active</span>";
                 }
             })
             ->rawColumns(['background', 'icon_image', 'action', 'display_at_home', 'status'])
