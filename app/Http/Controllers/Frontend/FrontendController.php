@@ -126,7 +126,7 @@ class FrontendController extends Controller
             $paymentInfo = [
                 'transaction_id' => uniqid(),
                 'payment_status' => 'completed',
-                'payment_method' => 'free',
+                'payment_method' => 'Free',
                 'paid_amount' => 0,
                 'paid_currency' => config('settings.site_default_currency'),
             ];

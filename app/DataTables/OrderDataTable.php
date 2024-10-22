@@ -22,7 +22,11 @@ class OrderDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'order.action')
+            ->addColumn('action', function ($query) {
+                $info = '<a href="' . route('admin.orders.show', $query->id) . '" class="btn btn-sm btn-info mr-2"><i class="fas fa-info-circle"></i></a>';
+                $delete = '<a href="' . route('admin.orders.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                return $info . $delete;
+            })
             ->addColumn('email', function ($query) {
                 return $query->user->email;
             })
@@ -32,6 +36,16 @@ class OrderDataTable extends DataTable
             ->addColumn('payment', function ($query) {
                 return $query->base_amount . ' ' . $query->base_currency;
             })
+            ->addColumn('payment_status', function ($query) {
+                if ($query->payment_status === 'completed') {
+                    return "<span class='badge badge-success'>Completed</span>";
+                } elseif ($query->payment_status === 'pending') {
+                    return "<span class='badge badge badge-secondary'>Pending</span>";
+                } else {
+                    return "<span class='badge badge badge-danger'>Failed</span>";
+                }
+            })
+            ->rawColumns(['payment_status', 'action'])
             ->setRowId('id');
     }
 
@@ -69,7 +83,6 @@ class OrderDataTable extends DataTable
             Column::make('payment_method'),
             Column::make('payment'),
             Column::make('payment_status'),
-
 
             Column::computed('action')
                 ->exportable(false)

@@ -127,7 +127,7 @@ class PaymentController extends Controller
             $paymentInfo = [
                 'transaction_id' => $capture['id'],
                 'payment_status' => $capture['status'],
-                'payment_method' => 'paypal',
+                'payment_method' => 'PayPal',
                 'paid_amount' => $capture['amount']['value'],
                 'paid_currency' => $capture['amount']['currency_code'],
             ];
@@ -185,7 +185,7 @@ class PaymentController extends Controller
             $paymentInfo = [
                 'transaction_id' => $response->payment_intent,
                 'payment_status' => 'completed',
-                'payment_method' => 'stripe',
+                'payment_method' => 'Stripe',
                 'paid_amount' => $response->amount_total,
                 'paid_currency' => $response->currency,
             ];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\OrderDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -37,9 +38,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): View
     {
-        //
+        $order = Order::findOrFail($id);
+        return view('admin.order.show', compact('order'));
     }
 
     /**
@@ -55,7 +57,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        $order->payment_status = $request->payment_status;
+        $order->save();
+
+        toastr()->success('Updated payment status successfully');
+
+        return redirect()->back();
     }
 
     /**
