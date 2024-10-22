@@ -25,7 +25,7 @@ class UserOrderDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 $info = '<a href="' . route('user.order.show', $query->id) . '" class="btn btn-sm btn-info"><i class="fas fa-info-circle"></i></a>';
-                return $info;  
+                return $info;
             })
             ->addColumn('package', function ($query) {
                 return $query->package->name;
@@ -51,7 +51,7 @@ class UserOrderDataTable extends DataTable
      */
     public function query(Order $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('user_id', auth()->user()->id)->newQuery();
     }
 
     /**

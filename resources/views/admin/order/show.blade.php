@@ -34,14 +34,7 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <address>
-                                            <strong>Payment Method:</strong><br>
-                                            {{ $order->payment_method }}<br>
-                                            {{ $order->payment_status }}
-                                        </address>
-                                    </div>
-                                    <div class="col-md-6 text-md-right">
+                                    <div class="col-md-6 ">
                                         <address>
                                             <strong>Billed To:</strong><br>
                                             {{ $order->user->name }}<br>
@@ -50,9 +43,22 @@
                                             {{ $order->user->address }}
                                         </address>
                                     </div>
+                                    <div class="col-md-6 text-md-right">
+                                        <address>
+                                            <strong>Payment Method:</strong><br>
+                                            {{ $order->payment_method }}<br>
+                                            {{ $order->payment_status }}
+                                        </address>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 text-md-right">
+                                    <div class="col-md-6">
+                                        <address>
+                                            <strong>Transaction ID</strong><br>
+                                            {{ $order->transaction_id }}
+                                        </address>
+                                    </div>
+                                    <div class="col-md-6 text-md-right">
                                         <address>
                                             <strong>Order Date:</strong><br>
                                             {{ date('F d, Y', strtotime($order->purchase_date)) }}<br><br>
@@ -61,7 +67,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row mt-4">
                             <div class="col-md-12">
                                 <div class="section-title">Order Summary</div>
@@ -69,7 +74,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover table-md">
                                         <tr>
-                                            <th data-width="40">#</th>
+                                            <th data-width="40">ID</th>
                                             <th>Packages</th>
                                             <th class="text-center">Price ({{ $order->base_currency }})</th>
                                             <th class="text-right">Totals</th>

@@ -72,6 +72,11 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Order::findOrFail($id)->delete();
+            return response(['status' => 'success', 'message' => 'Deleted order successfully']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

@@ -19,6 +19,6 @@ class OrderListController extends Controller
     function show(string $id): View
     {
         $order = Order::findOrFail($id);
-        return view('frontend.dashboard.order.show', compact('id'));
+        return view('frontend.dashboard.order.show', compact('order'));
     }
 }
