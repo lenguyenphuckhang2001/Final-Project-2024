@@ -58,7 +58,7 @@ class ListingAgentUpdateRequest extends FormRequest
             'seo_description' => ['nullable', 'string'],
             'status' => ['required', 'boolean'],
             'is_featured' => ['required', 'boolean'],
-            'is_verified' => ['required', 'boolean']
+            'is_verified' => ['nullable', 'boolean']
         ];
     }
 }

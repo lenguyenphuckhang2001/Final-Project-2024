@@ -19,38 +19,6 @@
             /* Center align labels and images */
         }
 
-        /* Image Preview Styles */
-        .image-preview {
-            position: relative;
-            width: 100%;
-            height: 220px;
-            /* Set a fixed height for the image preview */
-            overflow: hidden;
-            /* Hide overflow */
-            background-color: #e9ecef;
-            /* Light gray background for image preview */
-            border-radius: 8px;
-            /* Rounded corners */
-            border: 2px dashed #007bff;
-            /* Dashed border for better visibility */
-            margin-bottom: 15px;
-            /* Space below the preview */
-            transition: border-color 0.3s;
-            /* Smooth transition for hover effect */
-        }
-
-        .image-preview:hover {
-            border-color: #0056b3;
-            /* Change border color on hover */
-        }
-
-        .image-preview img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            /* Maintain aspect ratio */
-        }
-
         /* Form Group Styles */
         .form-group {
             margin-bottom: 25px;
@@ -199,6 +167,9 @@
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="title" required>
+                                            
+                                            {{-- Thêm vào trường hidden và nhập giá trị đã khởi tạo rules ở đây với value phải bằng 0 --}}
+                                            <input type="hidden" name="listing" value=0>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -279,7 +250,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Amenities</label>
+                                            <label>Amenities
+                                                @if (count($amenities) > $subscription->package->limit_amenities)
+                                                    <span class="text-danger">(Your maximum amenities is
+                                                        {{ $subscription->package->limit_amenities }})
+                                                    </span>
+                                                @endif
+                                            </label>
                                             <select class="form-control select2" multiple="" name="amenities[]">
                                                 $@foreach ($amenities as $amenity)
                                                     <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
@@ -311,7 +288,7 @@
                                             <textarea name="seo_description" class="form-control" cols="30" rows="10"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Status <span class="text-danger">*</span></label>
                                             <select name="status" id="status" class="form-control">
@@ -320,19 +297,10 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Is Featured <span class="text-danger">*</span></label>
                                             <select name="is_featured" id="is_featured" class="form-control">
-                                                <option value="0">No</option>
-                                                <option value="1">Yes</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Is Verified <span class="text-danger">*</span></label>
-                                            <select name="is_verified" id="is_verified" class="form-control">
                                                 <option value="0">No</option>
                                                 <option value="1">Yes</option>
                                             </select>

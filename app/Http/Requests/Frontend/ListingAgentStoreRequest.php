@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Frontend;
 
+use App\Rules\LimitListings;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ListingAgentStoreRequest extends FormRequest
@@ -43,7 +44,10 @@ class ListingAgentStoreRequest extends FormRequest
             'seo_description' => ['nullable', 'string'],
             'status' => ['required', 'boolean'],
             'is_featured' => ['required', 'boolean'],
-            'is_verified' => ['required', 'boolean']
+            'is_verified' => ['nullable', 'boolean'],
+            /* Đặt tên cho field và điền vào 2 giá trị required và new (rules muốn áp dụng)
+                Sau khi có giá trị thêm vào ở store view nơi khởi tạo các dữ liệu*/
+            'listing' => ['required', new LimitListings]
         ];
     }
 }

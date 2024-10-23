@@ -11,6 +11,7 @@ use App\Models\AmenityListing;
 use App\Models\Category;
 use App\Models\Listing;
 use App\Models\Location;
+use App\Models\Subscription;
 use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\JsonResponse;
@@ -35,10 +36,11 @@ class ListingAgentController extends Controller
      */
     public function create(): View
     {
+        $subscription = Subscription::with('package')->where('user_id', auth()->user()->id)->first();
         $categories = Category::all();
         $locations = Location::all();
         $amenities = Amenity::all();
-        return view('frontend.dashboard.listing.create', compact('categories', 'locations', 'amenities'));
+        return view('frontend.dashboard.listing.create', compact('subscription', 'categories', 'locations', 'amenities'));
     }
 
     /**
@@ -74,7 +76,7 @@ class ListingAgentController extends Controller
         $listing->seo_description = $request->seo_description;
         $listing->status = $request->status;
         $listing->is_featured = $request->is_featured;
-        $listing->is_verified = $request->is_verified;
+        $listing->is_verified = 0;
         $listing->expire_date = date('Y-m-d');
         $listing->save();
 
@@ -124,8 +126,9 @@ class ListingAgentController extends Controller
         $listingAmenities = AmenityListing::where('listing_id', $listing->id) // Lọc các bản ghi theo listing_id với Model::where('column', 'operator', 'value') sẽ mặc định là = nếu operator không có giá trị so sánh nào
             ->pluck('amenity_id') // Chỉ lấy giá trị của cột amenity_id
             ->toArray(); // Chuyển đổi kết quả thành mảng PHP
+        $subscription = Subscription::with('package')->where('user_id', auth()->user()->id)->first();
 
-        return view('frontend.dashboard.listing.edit', compact('listing', 'categories', 'locations', 'amenities', 'listingAmenities'));
+        return view('frontend.dashboard.listing.edit', compact('listing', 'categories', 'locations', 'amenities', 'listingAmenities', 'subscription'));
     }
 
     /**
@@ -160,7 +163,7 @@ class ListingAgentController extends Controller
         $listing->seo_description = $request->seo_description;
         $listing->status = $request->status;
         $listing->is_featured = $request->is_featured;
-        $listing->is_verified = $request->is_verified;
+        $listing->is_verified = 0;
         $listing->expire_date = date('Y-m-d');
         $listing->save();
 

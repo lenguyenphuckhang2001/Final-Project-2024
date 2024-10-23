@@ -410,6 +410,7 @@ namespace App\Models{
  * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Package|null $package
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription query()
@@ -451,6 +452,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \App\Models\Subscription|null $subscription
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
