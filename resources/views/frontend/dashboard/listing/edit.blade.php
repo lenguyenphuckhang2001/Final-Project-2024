@@ -133,6 +133,12 @@
                 <div class="col-lg-9">
                     <div class="dashboard_content">
                         <div class="my_listing">
+                            <a href="{{ route('user.listing.index') }}" class="mb-4">
+                                <button type="button" class="btn btn-outline-dark">
+                                    <i class="fas fa-chevron-left"></i>
+                                    Back
+                                </button>
+                            </a>
                             <h4>Edit Listing</h4>
                             <form action="{{ route('user.listing.update', $listing->id) }}" method="POST"
                                 enctype="multipart/form-data">

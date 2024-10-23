@@ -68,28 +68,53 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Listing </td>
-                                                        <td class="package_right">
-                                                            {{ $subscription->package->limit_listing }}</td>
+                                                        @if ($subscription->package->limit_listing === -1)
+                                                            <td class="package_right">Unlimited</td>
+                                                        @else
+                                                            <td class="package_right">
+                                                                {{ $subscription->package->limit_listing }}
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Aminities</td>
-                                                        <td class="package_right">
-                                                            {{ $subscription->package->limit_amenities }}</td>
+                                                        @if ($subscription->package->limit_amenities === -1)
+                                                            <td class="package_right">Unlimited</td>
+                                                        @else
+                                                            <td class="package_right">
+                                                                {{ $subscription->package->limit_amenities }}
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Photo</td>
-                                                        <td class="package_right">{{ $subscription->package->limit_photos }}
-                                                        </td>
+                                                        @if ($subscription->package->limit_photos === -1)
+                                                            <td class="package_right">Unlimited</td>
+                                                        @else
+                                                            <td class="package_right">
+                                                                {{ $subscription->package->limit_photos }}
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Video</td>
-                                                        <td class="package_right">{{ $subscription->package->limit_video }}
-                                                        </td>
+                                                        @if ($subscription->package->limit_video === -1)
+                                                            <td class="package_right">Unlimited</td>
+                                                        @else
+                                                            <td class="package_right">
+                                                                {{ $subscription->package->limit_video }}
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Featured Listing Available</td>
-                                                        <td class="package_right">
-                                                            {{ $subscription->package->limit_featured_listing }}</td>
+                                                        @if ($subscription->package->limit_featured_listing === -1)
+                                                            <td class="package_right">Unlimited</td>
+                                                        @else
+                                                            <td class="package_right">
+                                                                {{ $subscription->package->limit_featured_listing }}
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                 </tbody>
                                             </table>

@@ -25,8 +25,7 @@ class ListingAgentImageGalleryController extends Controller
             ->where('id', $request->id) //Phương thức where('id', $request->id) thêm điều kiện vào truy vấn, lọc các bản ghi để chỉ bao gồm bản ghi có cột id khớp với giá trị của $request->id. Đối tượng $request có thể chứa dữ liệu từ một yêu cầu HTTP, và id là một tham số được truyền trong yêu cầu đó.
             ->first(); // Select giá trị title trong query và where tới keys id và giá trị tìm kiếm là $request->id
         $images = ImageGalerry::where('listing_id', $request->id)->get();
-        $subscription = Subscription::with('package')->where('user_id', auth()->user()->id)->first();
-        return view('frontend.dashboard.listing.image-gallery.index', compact('images', 'titleListing', 'subscription'));
+        return view('frontend.dashboard.listing.image-gallery.index', compact('images', 'titleListing'));
     }
 
     /**

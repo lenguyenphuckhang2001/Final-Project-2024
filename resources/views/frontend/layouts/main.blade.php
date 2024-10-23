@@ -47,7 +47,6 @@
                     <button type="button" class="btn-close popup_close" data-bs-dismiss="modal" aria-label="Close"><i
                             class="far fa-times"></i></button>
                     <div class="modal-body modal-listing-content">
-
                     </div>
                 </div>
             </div>

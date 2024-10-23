@@ -18,7 +18,12 @@ class LimitAmenities implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $limitOfPackageAmenities = Auth::user()->subscription->package->limit_amenities;
-        if (count($value) >= $limitOfPackageAmenities) {
+
+        if ($limitOfPackageAmenities === -1) {
+            return;
+        }
+
+        if (count($value) > $limitOfPackageAmenities) {
             $fail("You reached maximum of $limitOfPackageAmenities amenities");
         }
     }

@@ -21,6 +21,10 @@ class LimitImages implements ValidationRule
         //Prevent user upload multiple images gallery max
         $userMultiUpload = count(request('images'));
 
+        if ($limitOfImages === -1) {
+            return;
+        }
+
         if ($imageGalleryCount + $userMultiUpload > $limitOfImages) {
             $fail("You reached maximum images can upload");
         }

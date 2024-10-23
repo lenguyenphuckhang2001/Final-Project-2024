@@ -127,12 +127,12 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="">Video URL <span class="text-primary">(Just Support Youtube
-                                                URL)</span></label>
+                                        <label for="">Video URL
+                                            <span class="text-primary">(Just Support Youtube URL)</span>
+                                        </label>
                                         <input type="text" class="form-control" name="video_url">
                                         <!--Sử dụng request() helper để lấy giá trị listing_id từ yêu cầu -->
                                         <input type="hidden" name="listing_id" value="{{ request()->id }}">
-
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="read_btn">Upload Video</button>

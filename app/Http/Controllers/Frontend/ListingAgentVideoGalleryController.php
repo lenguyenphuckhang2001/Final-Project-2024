@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Listing;
+use App\Models\Subscription;
 use App\Models\VideoGallery;
+use App\Rules\LimitVideos;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -30,7 +32,7 @@ class ListingAgentVideoGalleryController extends Controller
     {
         $request->validate([
             'video_url' => ['required', 'url'],
-            'listing_id' => ['required']
+            'listing_id' => ['required', new LimitVideos]
         ]);
 
         $video = new VideoGallery();

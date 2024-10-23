@@ -167,7 +167,6 @@
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="title" required>
-
                                             {{-- Thêm vào trường hidden và nhập giá trị đã khởi tạo rules ở đây với value phải bằng 0 --}}
                                             <input type="hidden" name="listing" value=0>
                                         </div>
@@ -250,13 +249,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Amenities
-                                                @if (count($amenities) > $subscription->package->limit_amenities)
-                                                    <span class="text-danger">(Your maximum amenities is
-                                                        {{ $subscription->package->limit_amenities }})
-                                                    </span>
-                                                @endif
-                                            </label>
+                                            <label>Amenities</label>
                                             <select class="form-control select2" multiple="" name="amenities[]">
                                                 $@foreach ($amenities as $amenity)
                                                     <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
