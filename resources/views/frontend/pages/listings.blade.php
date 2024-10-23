@@ -1,5 +1,17 @@
 @extends('frontend.layouts.main')
 
+@push('styles')
+    <style>
+        .wsus__featured_single {
+            cursor: pointer;
+        }
+
+        .wsus__featured_single:hover {
+            background-color: #f5f4f4;
+        }
+    </style>
+@endpush
+
 @section('contents')
     <!-------------Breadcrumb-------------->
     <div id="breadcrumb_part">
@@ -119,17 +131,25 @@
                     <div class="row">
                         @foreach ($listings as $listing)
                             <div class="col-xl-4 col-sm-6">
-                                <div class="wsus__featured_single">
+                                {{-- Thêm phần onclick để click vào toàn bộ thẻ mà không làm lỗi CSS.
+                                window.location.href = 'URL' dùng để hướng người dùng tới URL mới và sử dụng
+                                event.stopProppagation sẽ ngăn sự kiện click của chúng lan truyền lên div cha.
+                                Điều này giúp tránh việc toàn bộ div bị click và dẫn đến trang chi tiết  --}}
+                                <div class="wsus__featured_single"
+                                    onclick="window.location.href='{{ route('listing.detail', $listing->slug) }}'">
                                     <div class="wsus__featured_single_img">
                                         <img src="{{ asset($listing->image) }}" alt="{{ $listing->title }}"
                                             class="img-fluid w-100">
-                                        <a href="#" class="love"><i class="fas fa-heart"></i></a>
+                                        <a href="#" class="love" onclick="event.stopPropagation();"><i
+                                                class="fas fa-heart"></i></a>
                                         <a href="{{ route('listings', ['category' => $listing->category->name]) }}"
                                             class="small_text">{{ $listing->category->name }}</a>
                                     </div>
-                                    <a class="map" onclick="showListingPopup('{{ $listing->id }}')"
+                                    <a class="map"
+                                        onclick="event.stopPropagation(); showListingPopup('{{ $listing->id }}')"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal2" href="#"><i
-                                            class="fas fa-info"></i></a>
+                                            class="fas fa-info"></i>
+                                    </a>
                                     <div class="wsus__featured_single_text">
                                         <p class="list_rating">
                                             <i class="fas fa-star"></i>
@@ -139,14 +159,13 @@
                                             <i class="fas fa-star-half-alt"></i>
                                             <span>(5 review)</span>
                                         </p>
-                                        <a href="{{ route('listing.detail', $listing->slug) }}">{{ cutString($listing->title) }}
-                                        </a>
+                                        <a
+                                            href="{{ route('listing.detail', $listing->slug) }}">{{ cutString($listing->title) }}</a>
                                         <p class="address">{{ $listing->location->name }}</p>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-
                         <div class="col-12">
                             <div id="pagination">
                                 <nav aria-label="">

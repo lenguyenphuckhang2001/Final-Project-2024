@@ -20,7 +20,10 @@ class FrontendController extends Controller
         $hero = Hero::first();
         $categories = Category::where('status', 1)->get();
         $packages = Package::where('status', 1)->where('display_at_home', 1)->take(3)->get();
-        return view('frontend.home.index', compact('hero', 'categories', 'packages'));
+        $ourCategory = Category::withCount(['listings' => function ($query) {
+            $query->where('is_approved', 1);
+        }])->where(['display_at_home' => 1, 'status' => 1])->take(6)->get();
+        return view('frontend.home.index', compact('hero', 'categories', 'packages', 'ourCategory'));
     }
 
     function listings(Request $request): View
