@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Frontend;
 
 use App\Models\Listing;
+use App\Rules\LimitAmenities;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -52,13 +53,12 @@ class ListingAgentUpdateRequest extends FormRequest
             'linked_url' => ['nullable', 'url'],
             'insta_url' => ['nullable', 'url'],
             'attachment' => ['nullable', 'mimes:jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,txt,zip,rar,mp3,mp4,csv', 'max:50000'],
-            'amenities.*' => ['integer'],
+            'amenities.*' => ['nullable', 'integer'],
             'map_embed_code' => ['nullable'],
             'seo_title' => ['nullable', 'string', 'max:255'],
             'seo_description' => ['nullable', 'string'],
             'status' => ['required', 'boolean'],
             'is_featured' => ['required', 'boolean'],
-            'is_verified' => ['nullable', 'boolean']
         ];
     }
 }

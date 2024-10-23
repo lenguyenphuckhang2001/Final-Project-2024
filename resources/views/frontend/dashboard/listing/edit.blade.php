@@ -292,7 +292,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Map Embed Code <span class="text-danger">*</span></label>
-                                            <textarea name="map_embed_code" class="form-control" cols="30" rows="10" required>{!! $listing->map_embed_code !!}</textarea>
+                                            <textarea name="map_embed_code" class="form-control" cols="30" rows="10">{!! $listing->map_embed_code !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

@@ -167,7 +167,7 @@
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="title" required>
-                                            
+
                                             {{-- Thêm vào trường hidden và nhập giá trị đã khởi tạo rules ở đây với value phải bằng 0 --}}
                                             <input type="hidden" name="listing" value=0>
                                         </div>
@@ -273,7 +273,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Map Embed Code <span class="text-danger">*</span></label>
-                                            <textarea name="map_embed_code" class="form-control" cols="30" rows="10" required></textarea>
+                                            <textarea name="map_embed_code" class="form-control" cols="30" rows="10"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
