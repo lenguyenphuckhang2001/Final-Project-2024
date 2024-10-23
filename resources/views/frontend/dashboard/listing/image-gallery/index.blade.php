@@ -127,9 +127,8 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="" class="mb-2">Image <span class="text-primary">(Multiple
-                                                photos can be
-                                                uploaded)</span></label>
+                                        <label for="" class="mb-2">Image <span class="text-primary">(Your maximum
+                                                images upload is {{ $subscription->package->limit_photos }})</span></label>
                                         <input type="file" class="form-control" name="images[]" multiple />
                                         <!--Sử dụng request() helper để lấy giá trị listing_id từ yêu cầu -->
                                         <input type="hidden" value="{{ request()->id }}" name="listing_id">
