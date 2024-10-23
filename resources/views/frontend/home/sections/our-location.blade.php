@@ -14,104 +14,52 @@
                 <div class="col-12 text-center">
                     <div class="wsus__location_filter">
                         <button class="active" data-filter="*">All City</button>
-                        <button data-filter=".newyork">New York</button>
-                        <button data-filter=".london">London</button>
-                        <button data-filter=".parish">Paris</button>
-                        <button data-filter=".hongkong">HongKong</button>
-                        <button data-filter=".moscow">Moscow</button>
-                        <button data-filter=".tokyo">Tokyo</button>
+                        @foreach ($ourLocation as $location)
+                            <button data-filter=".{{ $location->slug }}">{{ $location->name }}</button>
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="row grid">
-                <div class="col-xl-3 col-sm-6 col-lg-4 newyork hongkong tokyo">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="images/location_1.jpg" alt="location" class="img-fluid w-100">
+                @foreach ($ourLocation as $location)
+                    @foreach ($location->listings as $listing)
+                        <div class="col-xl-3 col-sm-6 col-lg-4 {{ $location->slug }}">
+                            {{-- Thêm phần onclick để click vào toàn bộ thẻ mà không làm lỗi CSS.
+                                window.location.href = 'URL' dùng để hướng người dùng tới URL mới và sử dụng
+                                event.stopProppagation sẽ ngăn sự kiện click của chúng lan truyền lên div cha.
+                                Điều này giúp tránh việc toàn bộ div bị click và dẫn đến trang chi tiết  --}}
+                            <div class="wsus__featured_single"
+                                onclick="window.location.href='{{ route('listing.detail', $listing->slug) }}'">
+                                <div class="wsus__featured_single_img">
+                                    <img src="{{ asset($listing->image) }}" alt="{{ $listing->title }}"
+                                        class="img-fluid w-100">
+                                    <a href="#" class="love" onclick="event.stopPropagation();"><i
+                                            class="fas fa-heart"></i></a>
+                                    <a href="{{ route('listings', ['category' => $listing->category->name]) }}"
+                                        class="small_text">{{ $listing->category->name }}</a>
+                                </div>
+                                <a class="map"
+                                    onclick="event.stopPropagation(); showListingPopup('{{ $listing->id }}')"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal2" href="#">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <div class="wsus__featured_single_text">
+                                    <p class="list_rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <span>(5 review)</span>
+                                    </p>
+                                    <a
+                                        href="{{ route('listing.detail', $listing->slug) }}">{{ cutString($listing->title, 20) }}</a>
+                                    <p class="address">{{ $listing->location->name }}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="wsus__location_text">
-                            <p>new york</p>
-                            <span>2 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london parish moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="images/location_2.jpg" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>thailand</p>
-                            <span>10 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 newyork hongkong tokyo">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="images/location_3.jpg" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>parish</p>
-                            <span>31 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london parish moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="images/location_7.jpg" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>singapore</p>
-                            <span>28 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london hongkong moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="images/location_4.jpg" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>japan</p>
-                            <span>25 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 newyork parish tokyo">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="images/location_5.jpg" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>korea</p>
-                            <span>15 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london parish moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="images/location_6.jpg" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>singapore</p>
-                            <span>28 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london parish moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="images/location_8.jpg" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>singapore</p>
-                            <span>28 listing</span>
-                        </div>
-                    </a>
-                </div>
+                    @endforeach
+                @endforeach
             </div>
         </div>
     </div>

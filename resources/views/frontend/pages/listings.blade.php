@@ -140,10 +140,12 @@
                                     <div class="wsus__featured_single_img">
                                         <img src="{{ asset($listing->image) }}" alt="{{ $listing->title }}"
                                             class="img-fluid w-100">
-                                        <a href="#" class="love" onclick="event.stopPropagation();"><i
-                                                class="fas fa-heart"></i></a>
+                                        <a href="#" class="love" onclick="event.stopPropagation();">
+                                            <i class="fas fa-heart"></i>
+                                        </a>
                                         <a href="{{ route('listings', ['category' => $listing->category->name]) }}"
-                                            class="small_text">{{ $listing->category->name }}</a>
+                                            class="small_text">{{ $listing->category->name }}
+                                        </a>
                                     </div>
                                     <a class="map"
                                         onclick="event.stopPropagation(); showListingPopup('{{ $listing->id }}')"
@@ -159,8 +161,9 @@
                                             <i class="fas fa-star-half-alt"></i>
                                             <span>(5 review)</span>
                                         </p>
-                                        <a
-                                            href="{{ route('listing.detail', $listing->slug) }}">{{ cutString($listing->title) }}</a>
+                                        <a href="{{ route('listing.detail', $listing->slug) }}">
+                                            {{ cutString($listing->title) }}
+                                        </a>
                                         <p class="address">{{ $listing->location->name }}</p>
                                     </div>
                                 </div>

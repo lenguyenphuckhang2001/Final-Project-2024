@@ -41,8 +41,9 @@
                             </div>
                             <div class="listing_det_header_text">
                                 <h6>{{ $listing->title }}</h6>
-                                <p class="host_name">Hosted by <a
-                                        href="agent_public_profile.html">{{ $listing->user->name }}</a></p>
+                                <p class="host_name">Hosted by
+                                    <a href="agent_public_profile.html">{{ $listing->user->name }}</a>
+                                </p>
                                 <p class="rating">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>

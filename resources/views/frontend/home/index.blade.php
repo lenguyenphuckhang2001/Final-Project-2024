@@ -1,5 +1,17 @@
 @extends('frontend.layouts.main')
 
+@push('styles')
+    <style>
+        .wsus__featured_single {
+            cursor: pointer;
+        }
+
+        .wsus__featured_single:hover {
+            background-color: #f5f4f4;
+        }
+    </style>
+@endpush
+
 @section('contents')
     <!----------------Banner---------------->
     @include('frontend.home.sections.banner')
@@ -17,10 +29,10 @@
     @include('frontend.home.sections.our-category')
 
     <!-------------Out Location------------->
-    {{-- @include('frontend.home.sections.our-location') --}}
+    @include('frontend.home.sections.our-location')
 
     <!-----------Featured Listing----------->
-    {{-- @include('frontend.home.sections.featured-listing') --}}
+    @include('frontend.home.sections.featured-listing')
 
     <!-------------Our Package-------------->
     @include('frontend.home.sections.our-package')

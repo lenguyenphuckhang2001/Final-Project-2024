@@ -39,7 +39,7 @@ class ListingLocationController extends Controller
     {
         $location = new Location();
         $location->name = $request->name;
-        $location->slug = Str::slug('name');
+        $location->slug = Str::slug($request->name);
         $location->display_at_home = $request->display_at_home;
         $location->status = $request->status;
         $location->save();
