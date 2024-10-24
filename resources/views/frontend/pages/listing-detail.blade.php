@@ -61,8 +61,14 @@
                                         <li><a href="#"><i class="far fa-check"></i> Featured</a></li>
                                     @endif
                                     <li><a href="#"><i class="fal fa-heart"></i> Add to Favorite</a></li>
-                                    <li><a href="#"><i class="fal fa-eye"></i> 194</a></li>
-                                    <li><a href="#">Open</a></li>
+                                    <li><a href="#"><i class="fal fa-eye"></i> {{ $listing->views }}</a></li>
+                                    {{-- javascript:; là một cú pháp trong HTML, thường được sử dụng trong thuộc tính href của
+                                    thẻ <a>, để ngăn không cho đường dẫn điều hướng đến bất cứ đâu. --}}
+                                    @if ($statusTime == 'open')
+                                        <li><a href="javascript:;">Open</a></li>
+                                    @elseif ($statusTime == 'close')
+                                        <li><a href="javascript:;">Close</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -258,15 +264,17 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="listing_det_side_open_hour">
-                                    <h5>Opening Hours</h5>
-                                    @foreach ($listing->schedules as $schedule)
-                                        <p>{{ $schedule->day }} <span>{{ $schedule->start_time }} -
-                                                {{ $schedule->end_time }}</span></p>
-                                    @endforeach
+                            @if (count($listing->schedules) >= 1)
+                                <div class="col-12">
+                                    <div class="listing_det_side_open_hour">
+                                        <h5>Opening Hours</h5>
+                                        @foreach ($listing->schedules as $schedule)
+                                            <p>{{ $schedule->day }} <span>{{ $schedule->start_time }} -
+                                                    {{ $schedule->end_time }}</span></p>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             <div class="col-12">
                                 <div class="listing_det_side_contact">
                                     <h5>Quick contact</h5>

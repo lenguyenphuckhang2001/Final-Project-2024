@@ -116,18 +116,24 @@ class FrontendController extends Controller
          */
 
         /***************************Xử lý thời gian thực tế***************************/
+        //Mặc địch giá trị sẽ là empty
+        $statusTime = '';
 
         $formatDay = ListingSchedule::where('listing_id', $listing->id)->where('day', \Str::lower(date('l')))->first();
-        $startTime = strtotime($formatDay->start_time);
-        $endTime = strtotime($formatDay->end_time);
-
-        if (time() >= $startTime && time() <= $endTime) {
-            $statusTime = true;
-        } else {
-            $statusTime = false;
+        if ($formatDay) {
+            $startTime = strtotime($formatDay->start_time);
+            $endTime = strtotime($formatDay->end_time);
+            if (time() >= $startTime && time() <= $endTime) {
+                $statusTime = 'true';
+            } else {
+                $statusTime = 'false';
+            }
         }
 
-        return view('frontend.pages.listing-detail', compact('listing', 'similarListing'));
+        /* Sử dụng hàm incrementđể mỗi lần refresh page sẽ tăng lên 1 view */
+        $listing->increment('views');
+
+        return view('frontend.pages.listing-detail', compact('listing', 'similarListing', 'statusTime'));
     }
 
     function showPackages(): View
