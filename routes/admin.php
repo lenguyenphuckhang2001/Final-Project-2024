@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminHeroSectionController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\EvaluateController;
 use App\Http\Controllers\Admin\MainListingController;
 use App\Http\Controllers\Admin\ListingAmenityController;
 use App\Http\Controllers\Admin\ListingCategoryController;
@@ -33,6 +34,9 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
 
     Route::get('/pending', [ListingPendingController::class, 'index'])->name('pending.index');
     Route::post('/pending', [ListingPendingController::class, 'update'])->name('pending.update');
+    Route::get('/evaluate', [EvaluateController::class, 'index'])->name('evaluate.index');
+    Route::get('/evaluate/{id}', [EvaluateController::class, 'update'])->name('evaluate.update');
+    Route::delete('/evaluate/{id}', [EvaluateController::class, 'destroy'])->name('evaluate.destroy');
 
     Route::resource('/listing', MainListingController::class);
     Route::resource('/category', ListingCategoryController::class);

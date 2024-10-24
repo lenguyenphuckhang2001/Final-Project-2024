@@ -94,6 +94,35 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $listing_id
+ * @property int $user_id
+ * @property int $rating
+ * @property string $review
+ * @property int $is_approved
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Listing $listing
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereIsApproved($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereReview($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereUserId($value)
+ */
+	class Evaluate extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string|null $background
  * @property string $title
  * @property string $sub_title

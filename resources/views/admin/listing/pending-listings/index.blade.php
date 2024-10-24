@@ -9,7 +9,7 @@
             <h1>Pending Listing</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Pending Listing</div>
+                <div class="breadcrumb-item">Pending Listings</div>
             </div>
         </div>
 

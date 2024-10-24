@@ -12,7 +12,7 @@ class ListingPendingController extends Controller
 {
     function index(ListingPendingDataTable $dataTable)
     {
-        return $dataTable->render('admin.pending.index');
+        return $dataTable->render('admin.listing.pending-listings.index');
     }
 
     function update(Request $request): Response

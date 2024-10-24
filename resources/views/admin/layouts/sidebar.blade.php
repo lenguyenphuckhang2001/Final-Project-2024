@@ -153,7 +153,6 @@
                 </a>
                 <div class="dropdown-divider"></div>
 
-
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
@@ -197,6 +196,7 @@
                     'admin.location.*',
                     'admin.amenity.*',
                     'admin.pending.*',
+                    'admin.evaluate.*',
                 ]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                     <span>Listing</span></a>
@@ -211,6 +211,8 @@
                             href="{{ route('admin.listing.index') }}">All Listings</a></li>
                     <li class="{{ setActiveRoute(['admin.pending.*']) }}"><a class="nav-link"
                             href="{{ route('admin.pending.index') }}">Pending Listing</a></li>
+                    <li class="{{ setActiveRoute(['admin.evaluate.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.evaluate.index') }}">Evaluate</a></li>
                 </ul>
             </li>
 
