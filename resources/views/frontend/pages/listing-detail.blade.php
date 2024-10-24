@@ -123,7 +123,7 @@
                             @endif
                         </div>
                         <div class="wsus__listing_review">
-                            <h4>reviews 04</h4>
+                            <h3>Reviews Of {{ $listing->title }}</h3>
                             <div class="wsus__single_comment">
                                 <div class="wsus__single_comment_img">
                                     <img src="images/user_large_img.jpg" alt="comment" class="img-fluid w-100">
@@ -141,81 +141,39 @@
                                         ducimus.</p>
                                 </div>
                             </div>
-                            <div class="wsus__single_comment">
-                                <div class="wsus__single_comment_img">
-                                    <img src="images/card_img.jpg" alt="comment" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__single_comment_text">
-                                    <h5>shimul sign <span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </span></h5>
-                                    <span>21-Nov-2021</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                        ducimus magni facilis delectus.</p>
-                                </div>
-                            </div>
-                            <div class="wsus__single_comment">
-                                <div class="wsus__single_comment_img">
-                                    <img src="images/user_large_img.jpg" alt="comment" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__single_comment_text">
-                                    <h5>sumon ali<span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </span></h5>
-                                    <span>01-Dec-2021</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                        ducimus.</p>
-                                </div>
-                            </div>
-                            <div class="wsus__single_comment">
-                                <div class="wsus__single_comment_img">
-                                    <img src="images/card_img.jpg" alt="comment" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__single_comment_text">
-                                    <h5>shimul sign <span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </span></h5>
-                                    <span>21-Nov-2021</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                        ducimus magni facilis delectus.</p>
-                                </div>
-                            </div>
-                            <form class="input_comment">
-                                <h5>add a review</h5>
-                                <div class="row">
-                                    <div class="col-xl-12">
-                                        <div class="wsus__select_rating">
-                                            <i class="fas fa-star"></i>
-                                            <select class="select_2" name="state">
-                                                <option value="">select rating</option>
-                                                <option value=""> 1 </option>
-                                                <option value=""> 2 </option>
-                                                <option value=""> 3 </option>
-                                                <option value=""> 4 </option>
-                                                <option value=""> 5 </option>
-                                            </select>
+                            @auth
+                                <form class="input_comment" action="{{ route('listing-evaluate.store') }}" method="POST">
+                                    @csrf
+                                    <h5>Evaluate Listing</h5>
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="wsus__select_rating">
+                                                <select class="select_2" name="rating">
+                                                    <option value="">Select Rating</option>
+                                                    <option value="1"> &#11088; </option>
+                                                    <option value="2"> &#11088; &#11088; </option>
+                                                    <option value="3"> &#11088; &#11088; &#11088; </option>
+                                                    <option value="4"> &#11088; &#11088; &#11088; &#11088;</option>
+                                                    <option value="5"> &#11088; &#11088; &#11088; &#11088; &#11088;
+                                                    </option>
+                                                </select>
+                                                <input type="hidden" name="listing_id" value="{{ $listing->id }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="blog_single_input">
+                                                <textarea cols="3" rows="5" placeholder="Comment" name="review"></textarea>
+                                                <button type="submit" class="read_btn">Submit</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-12">
-                                        <div class="blog_single_input">
-                                            <textarea cols="3" rows="5" placeholder="Comment"></textarea>
-                                            <button type="submit" class="read_btn">submit review</button>
-                                        </div>
-                                    </div>
+                                </form>
+                            @endauth
+                            @guest
+                                <div class="alert alert-warning">
+                                    Please <a href="{{ route('login') }}">login</a> to comment this post
                                 </div>
-                            </form>
+                            @endguest
                         </div>
                     </div>
                 </div>

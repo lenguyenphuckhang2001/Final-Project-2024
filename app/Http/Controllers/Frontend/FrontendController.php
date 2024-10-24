@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Evaluate;
 use App\Models\Hero;
 use App\Models\Listing;
 use App\Models\ListingSchedule;
@@ -13,6 +14,7 @@ use App\Models\Package;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class FrontendController extends Controller
@@ -168,5 +170,30 @@ class FrontendController extends Controller
         }
 
         return view('frontend.pages.checkout', compact('package'));
+    }
+
+    function evaluateListing(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'rating' => ['required', 'in:1,2,3,4,5'],
+            'review' => ['required'],
+            'listing_id' => ['required', 'integer'],
+        ]);
+
+        $identifyEvaluate = Evaluate::where(['listing_id' => $request->listing_id, 'user_id' => auth()->user()->id])->exists();
+        if ($identifyEvaluate) {
+            throw ValidationException::withMessages(['You have commented on this post']);
+        }
+
+        $evaluate = new Evaluate();
+        $evaluate->listing_id = $request->listing_id;
+        $evaluate->user_id = auth()->user()->id;
+        $evaluate->rating = $request->rating;
+        $evaluate->review = $request->review;
+        $evaluate->save();
+
+        toastr()->success('Your review has been added');
+
+        return redirect()->back();
     }
 }
