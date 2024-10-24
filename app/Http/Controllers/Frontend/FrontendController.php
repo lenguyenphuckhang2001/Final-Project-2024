@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Hero;
 use App\Models\Listing;
+use App\Models\ListingSchedule;
 use App\Models\Location;
 use App\Models\Package;
 use Illuminate\Http\RedirectResponse;
@@ -113,6 +114,18 @@ class FrontendController extends Controller
          * Truy vấn sẽ trả về tối đa 5 danh sách khác cùng danh mục với danh sách hiện tại, sắp xếp từ danh sách mới nhất đến cũ hơn.
          * Những danh sách này sẽ được dùng để gợi ý các sản phẩm hoặc danh sách tương tự trên trang chi tiết của danh sách hiện tại.
          */
+
+        /***************************Xử lý thời gian thực tế***************************/
+
+        $formatDay = ListingSchedule::where('listing_id', $listing->id)->where('day', \Str::lower(date('l')))->first();
+        $startTime = strtotime($formatDay->start_time);
+        $endTime = strtotime($formatDay->end_time);
+
+        if (time() >= $startTime && time() <= $endTime) {
+            $statusTime = true;
+        } else {
+            $statusTime = false;
+        }
 
         return view('frontend.pages.listing-detail', compact('listing', 'similarListing'));
     }

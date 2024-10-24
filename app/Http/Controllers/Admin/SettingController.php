@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Services\SettingsService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\View\View;
 
 class SettingController extends Controller
@@ -22,6 +23,7 @@ class SettingController extends Controller
             'site_name' => ['required', 'max:255'],
             'site_email' => ['required', 'email', 'max:255'],
             'site_phonenumber' => ['required', 'max:255'],
+            'site_timezone' => ['required', 'max:255'],
             'site_default_currency' => ['required', 'max:3'],
             'site_currency_icon' => ['required'],
             'site_currency_position' => ['required', 'in:right,left']
@@ -38,6 +40,8 @@ class SettingController extends Controller
         $settingsService->clearCachedSettings();
 
         toastr()->success('Updated General Settings Successfully');
+        //Sử dụng phương thức để gọi tới artisan để run command
+        Artisan::call('config:cache');
 
         return redirect()->back();
     }

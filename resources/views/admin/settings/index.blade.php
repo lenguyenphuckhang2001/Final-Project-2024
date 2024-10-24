@@ -75,6 +75,21 @@
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
+                                                                    <label for="">Site Time Zone</label>
+                                                                    <select name="site_timezone"
+                                                                        class="form-control select2">
+                                                                        <option value="UTC">UTC Time</option>
+                                                                        @foreach (config('time-zone') as $key => $timezone)
+                                                                            <option @selected($key === config('settings.site_timezone'))
+                                                                                value="{{ $key }}">
+                                                                                {{ $timezone }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
                                                                     <label for="">Site Default Currency</label>
                                                                     <select name="site_default_currency"
                                                                         class="form-control select2">
@@ -102,14 +117,16 @@
                                                                         class="form-control">
                                                                         <option @selected(config('settings.site_currency_position') === 'right') value="right">
                                                                             Right</option>
-                                                                        <option @selected(config('settings.site_currency_position') === 'left') value="left">
+                                                                        <option @selected(config('settings.site_currency_position') === 'left')
+                                                                            value="left">
                                                                             Left</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Confirm</button>
                                                         </div>
                                                     </form>
                                                 </div>

@@ -169,7 +169,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SettingsProvider::class,
-        App\Providers\PaymentSettingsProvider::class
+        App\Providers\PaymentSettingsProvider::class,
+        App\Providers\TimeZoneProvider::class,
     ])->toArray(),
 
     /*
