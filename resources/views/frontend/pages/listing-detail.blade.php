@@ -124,23 +124,33 @@
                         </div>
                         <div class="wsus__listing_review">
                             <h3>Reviews Of {{ $listing->title }}</h3>
-                            <div class="wsus__single_comment">
-                                <div class="wsus__single_comment_img">
-                                    <img src="images/user_large_img.jpg" alt="comment" class="img-fluid w-100">
+                            @if (count($evaluates) > 0)
+                                @foreach ($evaluates as $evaluate)
+                                    <div class="wsus__single_comment">
+                                        <div class="wsus__single_comment_img">
+                                            <img src="{{ asset($evaluate->user->avatar) }}" alt="comment"
+                                                class="img-fluid w-100">
+                                        </div>
+                                        <div class="wsus__single_comment_text">
+                                            <h5>{{ $evaluate->user->name }}<span>
+                                                    @for ($i = 1; $i < 6; $i++)
+                                                        @if ($i <= $evaluate->rating)
+                                                            <i class="fas fa-star"></i>
+                                                        @else
+                                                            <i class="far fa-star"></i>
+                                                        @endif
+                                                    @endfor
+                                                </span></h5>
+                                            <span>Comment at: {{ date('d/m/Y'), strtotime($evaluate->created_at) }}</span>
+                                            <p>{{ $evaluate->review }}.</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="alert alert-info mt-4">
+                                    <p>There are currently no comments on this article.</p>
                                 </div>
-                                <div class="wsus__single_comment_text">
-                                    <h5>sumon ali<span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </span></h5>
-                                    <span>01-Dec-2021</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                        ducimus.</p>
-                                </div>
-                            </div>
+                            @endif
                             @auth
                                 <form class="input_comment" action="{{ route('listing-evaluate.store') }}" method="POST">
                                     @csrf

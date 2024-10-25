@@ -135,7 +135,10 @@ class FrontendController extends Controller
         /* Sử dụng hàm incrementđể mỗi lần refresh page sẽ tăng lên 1 view */
         $listing->increment('views');
 
-        return view('frontend.pages.listing-detail', compact('listing', 'similarListing', 'statusTime'));
+        /*Khởi tạo intance của evaluates với việc thêm các trường để query chúng */
+        $evaluates = Evaluate::with('user')->where(['listing_id' =>  $listing->id, 'is_approved' => 1])->paginate(8);
+
+        return view('frontend.pages.listing-detail', compact('listing', 'similarListing', 'statusTime', 'evaluates'));
     }
 
     function showPackages(): View
@@ -192,7 +195,7 @@ class FrontendController extends Controller
         $evaluate->review = $request->review;
         $evaluate->save();
 
-        toastr()->success('Your review has been added');
+        toastr()->success('Your review has been added. Waiting admin approve your comment');
 
         return redirect()->back();
     }
