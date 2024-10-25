@@ -170,25 +170,10 @@
                             </div>
                         @endforeach
                         <div class="col-12">
-                            <div id="pagination">
-                                <nav aria-label="">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">01</a></li>
-                                        <li class="page-item" aria-current="page">
-                                            <a class="page-link" href="#">02</a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">03</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">04</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">05</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                            <div id="pagination" class="d-flex justify-content-center"> 
+                                @if ($listings->hasPages())
+                                    {{ $listings->links() }}
+                                @endif
                             </div>
                         </div>
                     </div>

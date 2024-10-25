@@ -65,7 +65,7 @@ class FrontendController extends Controller
         });
 
 
-        $listings = $listings->paginate(15); //Hiển thị bao nhiêu data ra màn hình
+        $listings = $listings->paginate(9); //Hiển thị bao nhiêu data ra màn hình
         return view('frontend.pages.listings', compact('listings'));
     }
 

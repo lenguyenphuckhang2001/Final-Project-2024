@@ -146,6 +146,11 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                <div id="pagination" class="d-flex justify-content-center">
+                                    @if ($evaluates->hasPages())
+                                        {{ $evaluates->links() }}
+                                    @endif
+                                </div>
                             @else
                                 <div class="alert alert-info mt-4">
                                     <p>There are currently no comments on this article.</p>
