@@ -200,6 +200,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\AmenityListing> $amenities
  * @property-read int|null $amenities_count
  * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Evaluate> $evaluates
+ * @property-read int|null $evaluates_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ImageGalerry> $gallery
  * @property-read int|null $gallery_count
  * @property-read \App\Models\Location $location

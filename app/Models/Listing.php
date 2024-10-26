@@ -46,4 +46,9 @@ class Listing extends Model
     {
         return $this->hasMany(ListingSchedule::class, 'listing_id', 'id');
     }
+
+    function evaluates(): HasMany
+    {
+        return $this->hasMany(Evaluate::class);
+    }
 }

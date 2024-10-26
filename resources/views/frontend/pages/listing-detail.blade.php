@@ -45,13 +45,15 @@
                                     <a href="agent_public_profile.html">{{ $listing->user->name }}</a>
                                 </p>
                                 <p class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <b>4.5</b>
-                                    <span>(12 review)</span>
+                                    @for ($i = 1; $i < 6; $i++)
+                                        @if ($i <= $listing->evaluates_avg_rating)
+                                            <i class="fas fa-star"></i>
+                                        @else
+                                            <i class="far fa-star"></i>
+                                        @endif
+                                    @endfor
+                                    <b>{{ intval($listing->evaluates_avg_rating) }}</b>
+                                    <span>({{ count($listing->evaluates) }} reviews)</span>
                                 </p>
                                 <ul>
                                     @if ($listing->is_verified)
@@ -132,7 +134,8 @@
                                                 class="img-fluid w-100">
                                         </div>
                                         <div class="wsus__single_comment_text">
-                                            <h5>{{ $evaluate->user->name }}<span>
+                                            <h5>{{ $evaluate->user->name }}
+                                                <span>
                                                     @for ($i = 1; $i < 6; $i++)
                                                         @if ($i <= $evaluate->rating)
                                                             <i class="fas fa-star"></i>
@@ -140,7 +143,8 @@
                                                             <i class="far fa-star"></i>
                                                         @endif
                                                     @endfor
-                                                </span></h5>
+                                                </span>
+                                            </h5>
                                             <span>Comment at: {{ date('d/m/Y'), strtotime($evaluate->created_at) }}</span>
                                             <p>{{ $evaluate->review }}.</p>
                                         </div>

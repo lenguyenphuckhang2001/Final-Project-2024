@@ -45,12 +45,14 @@
                                 </a>
                                 <div class="wsus__featured_single_text">
                                     <p class="list_rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(5 review)</span>
+                                        @for ($i = 1; $i < 6; $i++)
+                                            @if ($i <= intval($listing->evaluates_avg_rating))
+                                                <i class="fas fa-star"></i>
+                                            @else
+                                                <i class="far fa-star"></i>
+                                            @endif
+                                        @endfor
+                                        <span>({{ $listing->evaluates_count }} review)</span>
                                     </p>
                                     <a
                                         href="{{ route('listing.detail', $listing->slug) }}">{{ cutString($listing->title, 20) }}</a>
