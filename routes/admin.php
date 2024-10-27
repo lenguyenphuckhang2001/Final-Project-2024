@@ -64,4 +64,5 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::post('/stripe-settings', [PaymentSettingController::class, 'updateStripe'])->name('stripe-settings.update');
 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::delete('/reports/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
 });

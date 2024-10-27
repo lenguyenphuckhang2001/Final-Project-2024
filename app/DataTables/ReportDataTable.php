@@ -23,13 +23,34 @@ class ReportDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $delete = '<a href="' . route('admin.packages.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                $delete = '<a href="' . route('admin.reports.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
                 return $delete;
             })
             ->addColumn('listing', function ($query) {
                 $html = '<a target="_blank" href="' . route('listing.detail', $query->listing->slug) . '">' . $query->listing->title . '</a>';
                 return $html;
             })
+            ->filterColumn('listing', function ($query, $keyword) {
+                $query->orWhereHas('listing', function ($subQuery) use ($keyword) {
+                    $subQuery->where('title', 'like', '%' . $keyword . '%');
+                });
+            })
+            /** Hàm sửa lỗi search query datatables
+             * Hàm filterColumn() là câu lệnh cho phép áp dụng bộ lọc trong datatable
+             * $keyword là tham số truy vấn chính của người dùng khi tìm kiếm
+             * orWhereHas để tìm các bản ghi có mối quan hệ với listing mà trường title chứa từ khóa là $keyword
+             *
+             * Hàm where('column', 'operator', 'value') nhận 3 đối số với điều kiện đầu tiên là
+             * column => 'title' Đây là cột của bảng mà chúng ta muốn lọc dữ liệu
+             * operator => 'like' Là một toán tử SQL dùng để tìm kiếm chuỗi tương tự, cho phép tìm kiếm các từ khóa
+             * value => ''%' . $keyword . '%''
+             *  >> % là ký tự đặc biệt trong SQL, dùng để biểu thị bất kỳ chuỗi nào (bao gồm chuỗi rỗng).
+             *  >> '% . $keyword . %' có nghĩa là tìm kiếm mọi bản ghi có chứa $keyword ở bất kỳ vị trí nào trong title:
+             *      -> %keyword%: Tìm từ khóa $keyword ở bất kỳ vị trí nào trong title
+             *      -> keyword%: Tìm từ khóa bắt đầu bằng $keyword
+             *      -> %keyword: Tìm từ khóa kết thúc bằng $keyword
+             */
+
             ->rawColumns(['action', 'listing'])
             ->setRowId('id');
     }
