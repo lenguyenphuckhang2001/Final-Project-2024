@@ -11,8 +11,10 @@ use App\Models\Listing;
 use App\Models\ListingSchedule;
 use App\Models\Location;
 use App\Models\Package;
+use App\Models\Report;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -237,6 +239,27 @@ class FrontendController extends Controller
         $evaluate->save();
 
         toastr()->success('Your review has been added. Waiting admin approve your comment');
+
+        return redirect()->back();
+    }
+
+    function reportListing(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'message' => ['required', 'max:500'],
+            'listing_id' => ['required', 'integer']
+        ]);
+
+        $report = new Report();
+        $report->listing_id = $request->listing_id;
+        $report->name = $request->name;
+        $report->email = $request->email;
+        $report->message = $request->message;
+        $report->save();
+
+        toastr()->success('Your report has been submited');
 
         return redirect()->back();
     }

@@ -201,9 +201,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="listing_det_side_address">
-                                    <a href="callto:+96544444222221100"><i class="fal fa-phone-alt"></i>
+                                    <a href="callto:{{ $listing->phonenumber }}"><i class="fal fa-phone-alt"></i>
                                         {{ $listing->phonenumber }}</a>
-                                    <a href="mailto:example@gmail.com"><i class="fal fa-envelope"></i>
+                                    <a href="mailto:{{ $listing->email }}"><i class="fal fa-envelope"></i>
                                         {{ $listing->email }}</a>
                                     <p><i class="fal fa-map-marker-alt"></i>{{ $listing->address }},
                                         {{ $listing->location->name }}</p>
@@ -252,23 +252,32 @@
                                     </div>
                                 </div>
                             @endif
+
                             <div class="col-12">
                                 <div class="listing_det_side_contact">
                                     <h5>Quick contact</h5>
-                                    <form>
-                                        <form type="text" placeholder="Name*">
-                                            <input type="email" placeholder="Email*">
-                                            <input type="text" placeholder="Phone*">
-                                            <input type="text" placeholder="Subject*">
-                                            <textarea cols="3" rows="5" placeholder="Message*"></textarea>
-                                            <button type="submit" class="read_btn">send</button>
-                                        </form>
+                                    <form type="text" placeholder="Name*">
+                                        <input type="email" placeholder="Email*">
+                                        <input type="text" placeholder="Phone*">
+                                        <input type="text" placeholder="Subject*">
+                                        <textarea cols="3" rows="5" placeholder="Message*"></textarea>
+                                        <button type="submit" class="read_btn">send</button>
+                                    </form>
                                 </div>
                             </div>
+
+                            <div class="col-12">
+                                <div class="listing_det_side_contact">
+                                    <h5>Quick contact</h5>
+                                    <button type="submit" class="read_btn" data-bs-toggle="modal"
+                                        data-bs-target="#modalPopup">Report</button>
+                                </div>
+                            </div>
+
                             @if (count($similarListing) > 0)
                                 <div class="col-12">
                                     <div class="listing_det_side_list">
-                                        <h5>Similar Listing</h5>
+                                        <h5>Popuplar</h5>
                                         @foreach ($similarListing as $similar)
                                             <a href="{{ route('listing.detail', $similar->slug) }}"
                                                 class="sidebar_blog_single">
@@ -277,10 +286,13 @@
                                                         class="imgofluid w-100">
                                                 </div>
                                                 <div class="sidebar_blog_text">
-                                                    <h5>{{ cutString($similar->title) }}</h5>
-                                                    <p> <span>
+                                                    <h4>{{ cutString($similar->title) }}</h4>
+                                                    <p>
+                                                        <span>
                                                             {{ date('d/m/Y', strtotime($similar->created_at)) }}
-                                                        </span> 2 Comment </p>
+                                                        </span>
+                                                        {{ $similar->evaluates_count }} Comment
+                                                    </p>
                                                 </div>
                                             </a>
                                         @endforeach
@@ -288,6 +300,31 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!------Popup Show listing Detail------->
+    <section id="wsus__map_popup">
+        <div class="modal fade" id="modalPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="btn-close popup_close" data-bs-dismiss="modal" aria-label="Close"><i
+                            class="far fa-times"></i></button>
+                    <div class="modal-body modal-listing-content listing_det_side_contact"
+                        style="box-shadow: none; margin-bottom: 0">
+                        <form action="{{ route('listing-report') }}" method="POST">
+                            @csrf
+                            <input type="text" name="name" placeholder="Name"
+                                value="{{ auth()->user()?->name }}">
+                            <input type="email" name="email" placeholder="Email"
+                                value="{{ auth()->user()?->email }}">
+                            <textarea cols="3" rows="5" name="message" placeholder="Message"></textarea>
+                            <input type="hidden" name="listing_id" value={{ $listing->id }}>
+                            <button type="submit" class="">Report</button>
+                        </form>
                     </div>
                 </div>
             </div>

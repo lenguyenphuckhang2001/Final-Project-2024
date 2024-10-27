@@ -30,6 +30,7 @@ Route::get('/listing-modal/{id}', [FrontendController::class, 'listingModal'])->
 Route::get('/listing/{slug}', [FrontendController::class, 'detailListing'])->name('listing.detail');
 Route::get('checkout/{id}', [FrontendController::class, 'checkout'])->name('checkout.index');
 
+Route::post('/listing-report', [FrontendController::class, 'reportListing'])->name('listing-report');
 Route::post('/listing-evaluate', [FrontendController::class, 'evaluateListing'])->name('listing-evaluate.store')->middleware('auth');
 
 //PROFILE PAGES ROUTE
