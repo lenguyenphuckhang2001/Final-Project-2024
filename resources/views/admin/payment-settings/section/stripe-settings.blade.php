@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="profile4" role="tabpanel" aria-labelledby="home-tab4">
+<div class="tab-pane fade show" id="profile4" role="tabpanel" aria-labelledby="home-tab4">
     <div class="card border">
         <div class="card-body">
             <form action="{{ route('admin.stripe-settings.update') }}" method="POST">
@@ -16,7 +16,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Stripe Country</label>
-                            <select name="stripe_country" class="form-control select2">
+                            <select name="stripe_country" class="form-control select2" style="width: 100%;">
                                 @foreach (config('countries') as $key => $country)
                                     <option @selected($key === config('payment.stripe_country')) value="{{ $key }}">
                                         {{ $country }}
@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Stripe Currency</label>
-                            <select name="stripe_currency" class="form-control select2">
+                            <select name="stripe_currency" class="form-control select2" style="width: 100%;">
                                 <option value="">Select</option>
                                 @foreach (config('currencies.currencies_list') as $key => $currency)
                                     <option @selected($currency === config('payment.stripe_currency')) value="{{ $currency }}">
