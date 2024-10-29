@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
     Route::post('/general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
+    Route::post('/pusher-settings', [SettingController::class, 'updatePusherSettings'])->name('pusher-settings.update');
 
     Route::get('/payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
     Route::post('/paypal-settings', [PaymentSettingController::class, 'updatePaypal'])->name('paypal-settings.update');

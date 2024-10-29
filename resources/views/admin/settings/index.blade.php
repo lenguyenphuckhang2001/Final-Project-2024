@@ -31,7 +31,8 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#profile4"
-                                                role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                                                role="tab" aria-controls="profile" aria-selected="false">Pusher
+                                                Settings</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#contact4"
@@ -41,106 +42,8 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-10">
                                     <div class="tab-content no-padding" id="myTab2Content">
-                                        <div class="tab-pane fade show active" id="home4" role="tabpanel"
-                                            aria-labelledby="home-tab4">
-                                            <div class="card border">
-                                                <div class="card-body">
-                                                    <form action="{{ route('admin.general-settings.update') }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="">Site Name</label>
-                                                                    <input type="text" class="form-control"
-                                                                        name="site_name"
-                                                                        value={{ config('settings.site_name') }}>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="">Site Email</label>
-                                                                    <input type="email" class="form-control"
-                                                                        name="site_email"
-                                                                        value={{ config('settings.site_email') }}>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="">Site Phone Number</label>
-                                                                    <input type="text" class="form-control"
-                                                                        name="site_phonenumber"
-                                                                        value={{ config('settings.site_phonenumber') }}>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="">Site Time Zone</label>
-                                                                    <select name="site_timezone"
-                                                                        class="form-control select2">
-                                                                        <option value="UTC">UTC Time</option>
-                                                                        @foreach (config('time-zone') as $key => $timezone)
-                                                                            <option @selected($key === config('settings.site_timezone'))
-                                                                                value="{{ $key }}">
-                                                                                {{ $timezone }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="">Site Default Currency</label>
-                                                                    <select name="site_default_currency"
-                                                                        class="form-control select2">
-                                                                        @foreach (config('currencies.currencies_list') as $key => $currency)
-                                                                            <option @selected($currency === config('settings.site_default_currency'))
-                                                                                value="{{ $currency }}">
-                                                                                {{ $key }} ({{ $currency }})
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="">Site Currency Icon</label>
-                                                                    <input type="text" class="form-control"
-                                                                        name="site_currency_icon"
-                                                                        value={{ config('settings.site_currency_icon') }}>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="">Site Currency Position</label>
-                                                                    <select name="site_currency_position"
-                                                                        class="form-control">
-                                                                        <option @selected(config('settings.site_currency_position') === 'right') value="right">
-                                                                            Right</option>
-                                                                        <option @selected(config('settings.site_currency_position') === 'left')
-                                                                            value="left">
-                                                                            Left</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit"
-                                                                class="btn btn-primary">Confirm</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="profile4" role="tabpanel"
-                                            aria-labelledby="profile-tab4">
-                                            Sed sed metus vel lacus hendrerit tempus. Sed efficitur velit tortor, ac
-                                            efficitur est lobortis quis. Nullam lacinia metus erat, sed fermentum justo
-                                            rutrum ultrices. Proin quis iaculis tellus. Etiam ac vehicula eros, pharetra
-                                            consectetur dui. Aliquam convallis neque eget tellus efficitur, eget maximus
-                                            massa imperdiet. Morbi a mattis velit. Donec hendrerit venenatis justo, eget
-                                            scelerisque tellus pharetra a.
-                                        </div>
+                                        @include('admin.settings.sections.general-settings')
+                                        @include('admin.settings.sections.pusher-settings')
                                         <div class="tab-pane fade" id="contact4" role="tabpanel"
                                             aria-labelledby="contact-tab4">
                                             Vestibulum imperdiet odio sed neque ultricies, ut dapibus mi maximus. Proin

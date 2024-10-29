@@ -45,4 +45,29 @@ class SettingController extends Controller
 
         return redirect()->back();
     }
+
+    function updatePusherSettings(Request $request): RedirectResponse
+    {
+        $handledValidate = $request->validate([
+            'pusher_app_id' => ['required'],
+            'pusher_app_key' => ['required'],
+            'pusher_app_secret' => ['required'],
+            'pusher_app_cluster' => ['required'],
+        ]);
+
+        foreach ($handledValidate as $key => $value) {
+            Setting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value]
+            );
+        }
+
+        $settingsService = app(SettingsService::class);
+        $settingsService->clearCachedSettings();
+
+        toastr()->success('Updated Pusher Settings Successfully');
+        //Sử dụng phương thức để gọi tới artisan để run command
+        Artisan::call('config:cache');
+        return redirect()->back();
+    }
 }
