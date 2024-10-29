@@ -94,6 +94,35 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int|null $listing_id
+ * @property int $sender_id
+ * @property int $receiver_id
+ * @property string $message
+ * @property int $seen
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Listing|null $listingInfo
+ * @property-read \App\Models\User|null $receiverProfile
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereReceiverId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereSeen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereSenderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chat whereUpdatedAt($value)
+ */
+	class Chat extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $listing_id
  * @property int $user_id
  * @property int $rating
@@ -409,6 +438,32 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|PaymentSetting whereValue($value)
  */
 	class PaymentSetting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $listing_id
+ * @property string $name
+ * @property string $email
+ * @property string $message
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Listing $listing
+ * @method static \Illuminate\Database\Eloquent\Builder|Report newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Report newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Report query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereUpdatedAt($value)
+ */
+	class Report extends \Eloquent {}
 }
 
 namespace App\Models{
