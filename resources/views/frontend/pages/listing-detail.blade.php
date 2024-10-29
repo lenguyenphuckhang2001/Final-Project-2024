@@ -255,22 +255,25 @@
 
                             <div class="col-12">
                                 <div class="listing_det_side_contact">
-                                    <h5>Quick contact</h5>
-                                    <form type="text" placeholder="Name*">
-                                        <input type="email" placeholder="Email*">
-                                        <input type="text" placeholder="Phone*">
-                                        <input type="text" placeholder="Subject*">
-                                        <textarea cols="3" rows="5" placeholder="Message*"></textarea>
-                                        <button type="submit" class="read_btn">send</button>
+                                    <h5>Contact With Us</h5>
+                                    <form action="{{ route('listing-report') }}" method="POST">
+                                        @csrf
+                                        <input type="text" name="name" placeholder="Name"
+                                            value="{{ auth()->user()?->name }}">
+                                        <input type="email" name="email" placeholder="Email"
+                                            value="{{ auth()->user()?->email }}">
+                                        <textarea cols="3" rows="5" name="message" placeholder="Message"></textarea>
+                                        <input type="hidden" name="listing_id" value={{ $listing->id }}>
+                                        <button type="submit" class="">Send</button>
                                     </form>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="listing_det_side_contact">
-                                    <h5>Quick contact</h5>
+                                    <h5>Message Us</h5>
                                     <button type="submit" class="read_btn" data-bs-toggle="modal"
-                                        data-bs-target="#modalPopup">Report</button>
+                                        data-bs-target="#modalPopup">Message</button>
                                 </div>
                             </div>
 
@@ -286,7 +289,7 @@
                                                         class="imgofluid w-100">
                                                 </div>
                                                 <div class="sidebar_blog_text">
-                                                    <h4>{{ cutString($similar->title) }}</h4>
+                                                    <h5>{{ cutString($similar->title) }}</h5>
                                                     <p>
                                                         <span>
                                                             {{ date('d/m/Y', strtotime($similar->created_at)) }}
@@ -315,15 +318,14 @@
                             class="far fa-times"></i></button>
                     <div class="modal-body modal-listing-content listing_det_side_contact"
                         style="box-shadow: none; margin-bottom: 0">
+                        <div class="mb-4">
+                            <h5 class="mb-2">Message</h5>
+                            <p>Tell with us about your problem or question here</p>
+                        </div>
                         <form action="{{ route('listing-report') }}" method="POST">
                             @csrf
-                            <input type="text" name="name" placeholder="Name"
-                                value="{{ auth()->user()?->name }}">
-                            <input type="email" name="email" placeholder="Email"
-                                value="{{ auth()->user()?->email }}">
-                            <textarea cols="3" rows="5" name="message" placeholder="Message"></textarea>
-                            <input type="hidden" name="listing_id" value={{ $listing->id }}>
-                            <button type="submit" class="">Report</button>
+                            <textarea cols="100" rows="5" name="message" placeholder="Message"></textarea>
+                            <button type="submit" class="">Send</button>
                         </form>
                     </div>
                 </div>
