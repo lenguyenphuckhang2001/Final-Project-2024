@@ -32,7 +32,5 @@ class AppServiceProvider extends ServiceProvider
         config(['broadcasting.connections.pusher.secret' => $pusherConfig['pusher_secret']]);
         config(['broadcasting.connections.pusher.app_id' => $pusherConfig['pusher_app_id']]);
         config(['broadcasting.connections.pusher.options.cluster' => $pusherConfig['pusher_cluster']]);
-
-        dd(config('broadcasting.connections'));
     }
 }

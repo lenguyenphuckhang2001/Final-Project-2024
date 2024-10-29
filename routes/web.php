@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\ChatController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\FrontendProfileController;
@@ -61,6 +62,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
 
     Route::get('/order', [OrderListController::class, 'index'])->name('order.index');
     Route::get('/order/{id}', [OrderListController::class, 'show'])->name('order.show');
+
+    Route::get('/messages', [ChatController::class, 'index'])->name('messages.index');
 });
 
 //PAYMENT PAGES ROUTE

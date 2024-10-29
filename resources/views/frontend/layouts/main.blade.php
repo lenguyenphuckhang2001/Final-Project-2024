@@ -26,6 +26,13 @@
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 
     @stack('styles')
+
+    <script>
+        var PUSHER_APP_KEY = "{{ config('settings.pusher_key') }}"
+        var PUSHER_CLUSTER = "{{ config('settings.pusher_cluster') }}"
+    </script>
+
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
