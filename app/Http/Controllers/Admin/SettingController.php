@@ -50,9 +50,9 @@ class SettingController extends Controller
     {
         $handledValidate = $request->validate([
             'pusher_app_id' => ['required'],
-            'pusher_app_key' => ['required'],
-            'pusher_app_secret' => ['required'],
-            'pusher_app_cluster' => ['required'],
+            'pusher_key' => ['required'],
+            'pusher_secret' => ['required'],
+            'pusher_cluster' => ['required'],
         ]);
 
         foreach ($handledValidate as $key => $value) {
