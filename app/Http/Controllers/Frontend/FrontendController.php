@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
+use App\Models\Amenity;
 use App\Models\Category;
 use App\Models\Evaluate;
 use App\Models\Hero;
@@ -25,6 +26,7 @@ class FrontendController extends Controller
     {
         $hero = Hero::first();
         $categories = Category::where('status', 1)->get();
+        $locations = Location::where('status', 1)->get();
         $packages = Package::where('status', 1)->where('display_at_home', 1)->take(3)->get();
 
         $ourCategory = Category::withCount(['listings' => function ($query) {
@@ -62,6 +64,7 @@ class FrontendController extends Controller
                 'hero',
                 'categories',
                 'packages',
+                'locations',
                 'ourCategory',
                 'ourLocation',
                 'ourFeaturedListing'
@@ -79,6 +82,7 @@ class FrontendController extends Controller
             ->with(['category', 'location'])
             ->where(['status' => 1, 'is_approved' => 1]); //Hàm with sẽ load động dữ liệu cùng với bảng khi được gọi
 
+        /*--------------------------------------- SEARCH FEATURES ---------------------------------------*/
         /**
          * Logic hàm listings
 
@@ -95,16 +99,68 @@ class FrontendController extends Controller
          * Nó sẽ kiểm tra xem slug của category có trùng khớp với giá trị category được gửi từ request hay không. Nếu có nó sẽ trả về dữ liệu của
          * bảng categories trùng với giá trị người dùng tìm kiếm
          */
-        $listings->when($request->has('category'), function ($query) use ($request) {
+
+        $listings->when($request->has('category') && $request->filled('category'), function ($query) use ($request) {
             $query->whereHas('category', function ($query) use ($request) {
                 $query->where('slug', $request->category);
             });
         });
 
+        $listings->when($request->has('search') && $request->filled('search'), function ($query) use ($request) {
+            $query->where(function ($subQuery) use ($request) {
+                $subQuery
+                    ->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhere('description', 'like', '%' . $request->search . '%');
+            });
+        });
 
-        $listings = $listings->paginate(9); //Hiển thị bao nhiêu data ra màn hình
+        $listings->when($request->has('location') && $request->filled('location'), function ($query) use ($request) {
+            $query->whereHas('location', function ($subQuery) use ($request) {
+                $subQuery->where('slug', $request->location);
+            });
+        });
 
-        return view('frontend.pages.listings', compact('listings'));
+        /** Giải thích hàm search query của amenities
+         * Đầu tiên sử dụng when để biết khi nào thêm điều kiện query dựa trên 1 logic cụ thể
+         * $request->has('amenity') sẽ kiểm tra xem request có chứa key 'amenity' không.
+         * is_array($request->amenity) sẽ kiểm tra xem amenity trong request có phải là một mảng không.
+         *
+         * $amenityId = Amenity::whereIn('slug', $request->amenity)->pluck('id')
+         * Sử dụng whereIn để lọc các amenities có cột slug nằm trong danh sách slug mà người dùng gửi qua $request->amenity
+         * Sau khi đã có các danh sách dựa trên slug, pluck('id') sẽ trả về một danh sách mà chỉ có id mà không có giá trị của trường đó
+         *
+         * Ví dụ : $request->amenity là mảng sẽ chứa các tiện ích người dùng muốn tim ví dụ ['pool', 'wifi', 'gym']
+         * pluck('id') nếu các tiện ích có slug là pool, wifi, và gym có id lần lượt là 1, 2, và 3, thì pluck('id') sẽ trả về [1, 2, 3] mà không kèm theo dữ liệu
+         *
+         * whereHas để kiểm tra xem các giá trị amenity có liên kết với bảng amenities hay không.
+         * Giả sử muốn tìm các listings có tiện ích thuộc danh sách [1, 2, 3]. Sử dụng whereHas để kiểm tra xem mỗi listing có liên kết với ít nhất một amenity có id thuộc [1, 2, 3].
+         * Sử dụng thêm whereIn để lọc đảm bảo listing chỉ được trả về nếu nó có ít nhất một amenity có id thuộc [1, 2, 3].
+         */
+
+        $listings->when($request->has('amenity') && is_array($request->amenity), function ($query) use ($request) {
+            $amenityId = Amenity::whereIn('slug', $request->amenity)->pluck('id');
+
+            $query->whereHas('amenities', function ($subQuery) use ($amenityId) {
+                $subQuery->whereIn('amenity_id', $amenityId);
+            });
+        });
+        
+        $categories = Category::where('status', 1)->get();
+        $locations = Location::where('status', 1)->get();
+        $amenities = Amenity::where('status', 1)->get();
+
+
+        $listings = $listings->paginate(9); //Hiển thị bao nhiêu dữ liệu ra màn hình
+
+        return view(
+            'frontend.pages.listings',
+            compact(
+                'listings',
+                'categories',
+                'locations',
+                'amenities'
+            )
+        );
     }
 
 
@@ -127,9 +183,6 @@ class FrontendController extends Controller
 
         /**
          * Ví dụ giải thích thêm:
-         *
-         * status = 1: biểu thị rằng danh sách này đang hoạt động (có thể là đã duyệt hoặc cho phép hiển thị).
-         * is_verified = 1: biểu thị rằng danh sách này đã được xác minh (phê duyệt hoặc hợp lệ).
          * slug: thường là chuỗi đại diện cho tên duy nhất của danh sách, có thể được dùng để xác định bản ghi một cách thân thiện với người dùng.
          *
          * Kết quả của câu lệnh:

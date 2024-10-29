@@ -18,8 +18,6 @@
     </div>
 </section>
 
-
-
 <!-----------Menu---------->
 <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">

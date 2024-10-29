@@ -5,8 +5,8 @@
                 <div class="col-xl-5 m-auto">
                     <div class="wsus__heading_area">
                         <h2>Our location </h2>
-                        <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola
-                            estut clita dolorem ei est mazim fuisset scribentur.</p>
+                        <p>Our popular locations will be here for you to choose the best and most wonderful places for
+                            yourself</p>
                     </div>
                 </div>
             </div>
@@ -54,8 +54,9 @@
                                         @endfor
                                         <span>({{ $listing->evaluates_count }} review)</span>
                                     </p>
-                                    <a
-                                        href="{{ route('listing.detail', $listing->slug) }}">{{ cutString($listing->title, 20) }}</a>
+                                    <a href="{{ route('listing.detail', $listing->slug) }}">
+                                        {{ cutString($listing->title, 20) }}
+                                    </a>
                                     <p class="address">{{ $listing->location->name }}</p>
                                 </div>
                             </div>

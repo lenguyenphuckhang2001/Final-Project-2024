@@ -17,9 +17,7 @@
                                 @endforeach
                             </div>
                         @endif
-
                     </div>
-
                     <a href="{{ url('/') }}" class="btn btn-danger  mt-4">
                         <i class="fas fa-home"></i> Return
                     </a>
