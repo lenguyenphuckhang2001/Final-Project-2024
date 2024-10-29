@@ -16,17 +16,18 @@
                                         <div class="nav flex-column nav-pills tf__massager_option" id="v-pills-tab"
                                             role="tablist" aria-orientation="vertical">
                                             @foreach ($receivers as $receiver)
-                                                <div class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill"
-                                                    data-bs-target="#v-pills-home" role="tab"
+                                                <div class="nav-link profile-card" id="v-pills-home-tab"
+                                                    data-bs-toggle="pill" data-bs-target="#v-pills-home" role="tab"
                                                     aria-controls="v-pills-home" aria-selected="true">
                                                     <div class="tf__single_massage d-flex">
                                                         <div class="tf__single_massage_img">
                                                             <img src="{{ $receiver->listingInfo->image }}" alt="person"
-                                                                class="img-fluid w-100">
+                                                                class="img-fluid w-100 profile-image">
                                                         </div>
                                                         <div class="tf__single_massage_text">
-                                                            <h4>{{ cutString($receiver->listingInfo->title, 16) }}</h4>
-                                                            <p><i class="fas fa-house-user" style="color: #22d5e2;"></i>    
+                                                            <h4 class="profile-title">
+                                                                {{ cutString($receiver->listingInfo->title, 16) }}</h4>
+                                                            <p><i class="fas fa-house-user" style="color: #22d5e2;"></i>
                                                                 {{ $receiver->receiverProfile->name }}
                                                             </p>
                                                             <span class="tf__massage_time">30 min</span>
@@ -44,13 +45,12 @@
                                             <div class="tf___single_chat">
                                                 <div class="tf__single_chat_top">
                                                     <div class="img">
-                                                        <img src="images/massage-4.png" alt="person"
+                                                        <img id="box-image" src="images/massage-4.png" alt="person"
                                                             class="img-fluid w-100">
                                                     </div>
                                                     <div class="text">
-                                                        <h4>Charlene Reed</h4>
-                                                        <p>active</p>
-                                                        <a href="#">Clear Chat</a>
+                                                        <h4 id="box-title">Charlene Reed</h4>
+                                                        {{-- <p>active</p> --}}
                                                     </div>
                                                 </div>
 
@@ -623,3 +623,20 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        function updateProfileChat(data) {
+            let profileImage = data.find('.profile-image').attr('src');
+            let profileTitle = data.find('.profile-title').text();
+            $('#box-image').attr('src', profileImage);
+            $('#box-title').text(profileTitle);
+        }
+
+        $(document).ready(function() {
+            $('.profile-card').on('click', function() {
+                updateProfileChat($(this));
+            })
+        })
+    </script>
+@endpush
