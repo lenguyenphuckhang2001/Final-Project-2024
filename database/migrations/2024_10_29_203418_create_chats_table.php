@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('listing_id')->nullable();
-            $table->foreignId('seender_id');
+            $table->foreignId('sender_id');
             $table->foreignId('receiver_id');
-            $table->text('messsage');
+            $table->text('message');
             $table->boolean('seen')->default(0);
             $table->timestamps();
         });

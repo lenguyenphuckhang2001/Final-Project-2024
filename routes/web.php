@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::get('/order/{id}', [OrderListController::class, 'show'])->name('order.show');
 
     Route::get('/messages', [ChatController::class, 'index'])->name('messages.index');
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
 });
 
 //PAYMENT PAGES ROUTE

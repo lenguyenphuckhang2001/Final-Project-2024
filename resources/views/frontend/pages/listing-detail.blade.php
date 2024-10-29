@@ -273,7 +273,14 @@
                                 <div class="listing_det_side_contact">
                                     <h5>Message Us</h5>
                                     <button type="submit" class="read_btn" data-bs-toggle="modal"
-                                        data-bs-target="#modalPopup">Message</button>
+                                        data-bs-target="#modalPopup">
+                                        Message
+                                    </button>
+                                    <div class="alert alert-info mt-3 text-center d-none continue-send">
+                                        <a href="{{ route('user.messages.index') }}">
+                                            Continue messages is here
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -322,10 +329,12 @@
                             <h5 class="mb-2">Message</h5>
                             <p>Tell with us about your problem or question here</p>
                         </div>
-                        <form action="{{ route('listing-report') }}" method="POST">
+                        <form action="" method="POST" class="message-form">
                             @csrf
+                            <input type="hidden" name="receiver_id" value="{{ $listing->user_id }}">
+                            <input type="hidden" name="listing_id" value="{{ $listing->id }}">
                             <textarea cols="100" rows="5" name="message" placeholder="Message"></textarea>
-                            <button type="submit" class="">Send</button>
+                            <button type="submit" class="send-btn">Send</button>
                         </form>
                     </div>
                 </div>
@@ -333,3 +342,50 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $('.message-form').on('submit', function(e) {
+            e.preventDefault();
+            // serialize(): Chuyển đổi tất cả các trường của form thành một chuỗi URL-encoded. Ví dụ: user_id=1&message=hello
+            let formData = $(this).serialize();
+            $.ajax({
+                method: 'POST',
+                url: '{{ route('user.send-message') }}',
+                data: formData,
+                beforeSend: function() {
+                    //Add loading boostrap when user sent message
+                    $('.send-btn')
+                        .html(
+                            `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>Sending...`
+                        )
+                    //When user is sending prevent click using disabled
+                    $('.send-btn').prop('disabled', true);
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        toastr.success(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr);
+                    if (xhr.responseJSON.message) {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                },
+                complete: function() {
+                    //After completed sent show this
+                    $('.send-btn').html(`Sent`);
+                    //When sending success disabled is remove using false
+                    $('.send-btn').prop('disabled', false);
+                    //Use trigger to reset message in form
+                    $('.message-form').trigger('reset');
+                    //Use model('hide') to hide popup when user sent
+                    $('#modalPopup').modal('hide');
+                    //Show this alert to notify user want to message or not
+                    $('.continue-send').removeClass('d-none');
+                }
+            })
+        })
+    </script>
+@endpush
