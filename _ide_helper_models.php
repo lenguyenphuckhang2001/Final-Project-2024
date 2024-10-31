@@ -102,7 +102,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Listing|null $listingInfo
- * @property-read \App\Models\User|null $receiverProfile
+ * @property-read \App\Models\User|null $receiverInfo
+ * @property-read \App\Models\User|null $senderInfo
  * @method static \Illuminate\Database\Eloquent\Builder|Chat newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chat newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chat query()

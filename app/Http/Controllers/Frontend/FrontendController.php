@@ -15,7 +15,6 @@ use App\Models\Package;
 use App\Models\Report;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -144,7 +143,7 @@ class FrontendController extends Controller
                 $subQuery->whereIn('amenity_id', $amenityId);
             });
         });
-        
+
         $categories = Category::where('status', 1)->get();
         $locations = Location::where('status', 1)->get();
         $amenities = Amenity::where('status', 1)->get();
@@ -177,19 +176,9 @@ class FrontendController extends Controller
         $listing = Listing::withAvg(['evaluates' => function ($query) { //Hàm tính tổng trung bình của các cột được chỉ định ở đây là evaluates với mối quan hệ với listings
             $query->where('is_approved', 1); //Điều kiện là approved phải bằng 1 nghĩa là cho phép
         }], 'rating') //Cột cần tính trung bình. Ở đây là cột 'rating' trong bảng đánh giá (evaluations).
-            ->where(['status' => 1, 'is_verified' => 1]) // Điều kiện tìm kiếm: chỉ lấy các danh sách có status = 1 và is_verified = 1
+            ->where(['status' => 1, 'is_approved' => 1]) // Điều kiện tìm kiếm: chỉ lấy các danh sách có status = 1 và is_approved = 1
             ->where('slug', $slug) // Điều kiện bổ sung: lấy danh sách có slug khớp với giá trị $slug (thường là tham số từ URL)
             ->first(); // Lấy bản ghi đầu tiên thỏa mãn các điều kiện. Nếu không có bản ghi nào, sẽ trả về null
-
-        /**
-         * Ví dụ giải thích thêm:
-         * slug: thường là chuỗi đại diện cho tên duy nhất của danh sách, có thể được dùng để xác định bản ghi một cách thân thiện với người dùng.
-         *
-         * Kết quả của câu lệnh:
-         * Nếu tìm thấy bản ghi thỏa mãn cả hai điều kiện status = 1, is_verified = 1 và slug khớp với $slug, biến $listing sẽ chứa đối tượng Listing đó.
-         * Nếu không tìm thấy, $listing sẽ là null.
-         */
-
 
         // Tìm các danh sách tương tự dựa trên danh mục của danh sách hiện tại
         $similarListing = Listing::withCount(['evaluates' => function ($query) {

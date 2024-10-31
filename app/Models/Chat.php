@@ -10,7 +10,12 @@ class Chat extends Model
 {
     use HasFactory;
 
-    function receiverProfile(): BelongsTo
+    function senderInfo(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'sender_id', 'id')->select(['id', 'name', 'avatar']);
+    }
+
+    function receiverInfo(): BelongsTo
     {
         return $this->belongsTo(User::class, 'receiver_id', 'id')->select(['id', 'name', 'avatar']);
     }
