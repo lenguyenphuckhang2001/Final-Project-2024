@@ -52,7 +52,7 @@
                                                     <tr>
                                                         <td class="active_left">Price</td>
                                                         <td class="package_right">
-                                                            {{ currencyPostion($membership->package->price) }}</td>
+                                                            {{ positionCurrency($membership->package->price) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Purchase Date</td>

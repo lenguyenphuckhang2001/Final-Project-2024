@@ -12,7 +12,7 @@ use App\Models\Listing;
 use App\Models\ListingSchedule;
 use App\Models\Location;
 use App\Models\Package;
-use App\Models\Report;
+use App\Models\Support;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -285,7 +285,7 @@ class FrontendController extends Controller
         return redirect()->back();
     }
 
-    function reportListing(Request $request): RedirectResponse
+    function supportListing(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'max:255'],
@@ -294,14 +294,14 @@ class FrontendController extends Controller
             'listing_id' => ['required', 'integer']
         ]);
 
-        $report = new Report();
-        $report->listing_id = $request->listing_id;
-        $report->name = $request->name;
-        $report->email = $request->email;
-        $report->message = $request->message;
-        $report->save();
+        $support = new Support();
+        $support->listing_id = $request->listing_id;
+        $support->name = $request->name;
+        $support->email = $request->email;
+        $support->message = $request->message;
+        $support->save();
 
-        toastr()->success('Your report has been submited');
+        toastr()->success('Your support has been submited');
 
         return redirect()->back();
     }

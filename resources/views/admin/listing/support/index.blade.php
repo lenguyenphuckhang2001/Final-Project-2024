@@ -6,10 +6,10 @@
             <div class="section-header-back">
                 <a href="{{ route('admin.dashboard.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Report</h1>
+            <h1>Support</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Report</div>
+                <div class="breadcrumb-item">Support</div>
             </div>
         </div>
 
@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Reports</h4>
+                            <h4>All Supports</h4>
                         </div>
                         <div class="card-body">
                             {{ $dataTable->table() }}

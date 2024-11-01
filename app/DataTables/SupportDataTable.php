@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Report;
+use App\Models\Support;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ReportDataTable extends DataTable
+class SupportDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,7 +23,7 @@ class ReportDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $delete = '<a href="' . route('admin.reports.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                $delete = '<a href="' . route('admin.supports.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
                 return $delete;
             })
             ->addColumn('listing', function ($query) {
@@ -58,7 +58,7 @@ class ReportDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Report $model): QueryBuilder
+    public function query(Support $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -69,7 +69,7 @@ class ReportDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('report-table')
+            ->setTableId('support-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -103,6 +103,6 @@ class ReportDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Report_' . date('YmdHis');
+        return 'Support_' . date('YmdHis');
     }
 }

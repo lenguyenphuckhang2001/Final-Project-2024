@@ -197,7 +197,7 @@
                     'admin.amenity.*',
                     'admin.pending.*',
                     'admin.evaluate.*',
-                    'admin.reports.*',
+                    'admin.supports.*',
                 ]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                     <span>Listing</span></a>
@@ -214,8 +214,8 @@
                             href="{{ route('admin.pending.index') }}">Pending Listing</a></li>
                     <li class="{{ setActiveRoute(['admin.evaluate.*']) }}"><a class="nav-link"
                             href="{{ route('admin.evaluate.index') }}">Evaluate</a></li>
-                    <li class="{{ setActiveRoute(['admin.reports.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.reports.index') }}">Reports</a></li>
+                    <li class="{{ setActiveRoute(['admin.supports.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.supports.index') }}">Supports</a></li>
                 </ul>
             </li>
 

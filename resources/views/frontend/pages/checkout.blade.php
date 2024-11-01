@@ -56,7 +56,7 @@
                 <div class="col-xl-4 col-md-6 col-lg-4">
                     <div class="member_price">
                         <h4>{{ $package->name }}</h4>
-                        <h5>{{ currencyPostion($package->price) }}
+                        <h5>{{ positionCurrency($package->price) }}
                             @if ($package->limit_days == -1)
                                 <span>/<i class="fas fa-infinity"></i></span>
                             @else

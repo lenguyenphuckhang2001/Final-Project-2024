@@ -256,7 +256,7 @@
                             <div class="col-12">
                                 <div class="listing_det_side_contact">
                                     <h5>Contact With Us</h5>
-                                    <form action="{{ route('listing-report') }}" method="POST">
+                                    <form action="{{ route('listing-support') }}" method="POST">
                                         @csrf
                                         <input type="text" name="name" placeholder="Name"
                                             value="{{ auth()->user()?->name }}">

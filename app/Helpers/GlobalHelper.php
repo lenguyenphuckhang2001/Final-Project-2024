@@ -29,8 +29,8 @@ if (!function_exists('setActiveRoute')) {
 
 /** Active Routes */
 
-if (!function_exists('currencyPostion')) {
-    function currencyPostion(int $amount): ?string
+if (!function_exists('positionCurrency')) {
+    function positionCurrency(int $amount): ?string
     {
         if (config('settings.site_currency_position') === 'right') {
             return $amount . config('settings.site_currency_icon');

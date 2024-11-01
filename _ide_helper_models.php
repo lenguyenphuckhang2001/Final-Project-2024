@@ -13,7 +13,7 @@
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $icon
@@ -38,7 +38,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -60,7 +60,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -91,7 +91,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int|null $listing_id
@@ -121,7 +121,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -150,7 +150,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string|null $background
@@ -173,7 +173,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -194,7 +194,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -283,7 +283,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -310,7 +310,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -337,7 +337,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -378,7 +378,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $type
@@ -422,7 +422,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $key
@@ -443,7 +443,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -453,23 +453,23 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Listing $listing
- * @method static \Illuminate\Database\Eloquent\Builder|Report newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Report newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Report query()
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereListingId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereMessage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Support newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Support newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Support query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Support whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Support whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Support whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Support whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Support whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Support whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Support whereUpdatedAt($value)
  */
-	class Report extends \Eloquent {}
+	class Support extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $key
@@ -490,7 +490,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $user_type
@@ -544,7 +544,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
