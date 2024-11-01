@@ -3,7 +3,7 @@
 namespace App\Rules;
 
 use App\Models\Listing;
-use App\Models\Subscription;
+use App\Models\Membership;
 use Auth;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -17,7 +17,7 @@ class LimitAmenities implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $limitOfPackageAmenities = Auth::user()->subscription->package->limit_amenities;
+        $limitOfPackageAmenities = Auth::user()->membership->package->limit_amenities;
 
         if ($limitOfPackageAmenities === -1) {
             return;

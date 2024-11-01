@@ -27,7 +27,7 @@ class LimitListings implements ValidationRule
          *
          * Xử lý ở require của store listings
          */
-        $limitOfPackageListing = Auth::user()->subscription->package->limit_listing;
+        $limitOfPackageListing = Auth::user()->membership->package->limit_listing;
         $userListingCount = Listing::where(['user_id' => Auth::user()->id, 'status' => 1])->count();
 
         if ($limitOfPackageListing === -1) {

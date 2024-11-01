@@ -47,72 +47,72 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="active_left">Package name</td>
-                                                        <td class="package_right">{{ $subscription->package->name }}</td>
+                                                        <td class="package_right">{{ $membership->package->name }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Price</td>
                                                         <td class="package_right">
-                                                            {{ currencyPostion($subscription->package->price) }}</td>
+                                                            {{ currencyPostion($membership->package->price) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Purchase Date</td>
                                                         <td class="package_right">
-                                                            {{ date('d F, Y'), strtotime($subscription->purchase_date) }}
+                                                            {{ date('d F, Y'), strtotime($membership->purchase_date) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Expired Date</td>
                                                         <td class="package_right">
-                                                            {{ date('d F, Y'), strtotime($subscription->expire_date) }}
+                                                            {{ date('d F, Y'), strtotime($membership->expire_date) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Listing </td>
-                                                        @if ($subscription->package->limit_listing === -1)
+                                                        @if ($membership->package->limit_listing === -1)
                                                             <td class="package_right">Unlimited</td>
                                                         @else
                                                             <td class="package_right">
-                                                                {{ $subscription->package->limit_listing }}
+                                                                {{ $membership->package->limit_listing }}
                                                             </td>
                                                         @endif
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Aminities</td>
-                                                        @if ($subscription->package->limit_amenities === -1)
+                                                        @if ($membership->package->limit_amenities === -1)
                                                             <td class="package_right">Unlimited</td>
                                                         @else
                                                             <td class="package_right">
-                                                                {{ $subscription->package->limit_amenities }}
+                                                                {{ $membership->package->limit_amenities }}
                                                             </td>
                                                         @endif
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Photo</td>
-                                                        @if ($subscription->package->limit_photos === -1)
+                                                        @if ($membership->package->limit_photos === -1)
                                                             <td class="package_right">Unlimited</td>
                                                         @else
                                                             <td class="package_right">
-                                                                {{ $subscription->package->limit_photos }}
+                                                                {{ $membership->package->limit_photos }}
                                                             </td>
                                                         @endif
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Video</td>
-                                                        @if ($subscription->package->limit_video === -1)
+                                                        @if ($membership->package->limit_video === -1)
                                                             <td class="package_right">Unlimited</td>
                                                         @else
                                                             <td class="package_right">
-                                                                {{ $subscription->package->limit_video }}
+                                                                {{ $membership->package->limit_video }}
                                                             </td>
                                                         @endif
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Featured Listing Available</td>
-                                                        @if ($subscription->package->limit_featured_listing === -1)
+                                                        @if ($membership->package->limit_featured_listing === -1)
                                                             <td class="package_right">Unlimited</td>
                                                         @else
                                                             <td class="package_right">
-                                                                {{ $subscription->package->limit_featured_listing }}
+                                                                {{ $membership->package->limit_featured_listing }}
                                                             </td>
                                                         @endif
                                                     </tr>

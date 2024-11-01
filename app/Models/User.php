@@ -45,8 +45,8 @@ class User extends Authenticatable
     ];
 
 
-    function subscription(): HasOne
+    function membership(): HasOne
     {
-        return $this->hasOne(Subscription::class, 'user_id', 'id');
+        return $this->hasOne(Membership::class, 'user_id', 'id');
     }
 }

@@ -16,7 +16,7 @@ class LimitImages implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $limitOfImages = Auth::user()->subscription->package->limit_photos;
+        $limitOfImages = Auth::user()->membership->package->limit_photos;
         $imageGalleryCount = ImageGalerry::where('listing_id', $value)->count();
         //Prevent user upload multiple images gallery max
         $userMultiUpload = count(request('images'));

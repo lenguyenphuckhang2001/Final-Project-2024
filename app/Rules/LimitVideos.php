@@ -16,7 +16,7 @@ class LimitVideos implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $limitOfVideos = Auth::user()->subscription->package->limit_video;
+        $limitOfVideos = Auth::user()->membership->package->limit_video;
         $userVideoCount = VideoGallery::where('listing_id', $value)->count();
 
         if ($limitOfVideos === -1) {

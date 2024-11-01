@@ -16,7 +16,7 @@ class LimitFeaturedListing implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $limitOfFeaturedListings = Auth::user()->subscription->package->limit_featured_listing;
+        $limitOfFeaturedListings = Auth::user()->membership->package->limit_featured_listing;
         $userListingCount = Listing::where(['user_id' => Auth::user()->id, 'status' => 1, 'is_featured' => 1])->count();
 
         if ($limitOfFeaturedListings === -1) {

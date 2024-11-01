@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\ImageGalerry;
 use App\Models\Listing;
-use App\Models\Subscription;
+use App\Models\Membership;
 use App\Rules\LimitImages;
 use App\Traits\FileUploadTrait;
 use Auth;

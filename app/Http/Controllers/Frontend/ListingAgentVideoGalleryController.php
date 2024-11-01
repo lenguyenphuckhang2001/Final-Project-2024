@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Listing;
-use App\Models\Subscription;
+use App\Models\Membership;
 use App\Models\VideoGallery;
 use App\Rules\LimitVideos;
 use Illuminate\Http\Request;

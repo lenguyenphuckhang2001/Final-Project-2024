@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\CreateOrder;
 use App\Models\Order;
 use App\Models\Package;
-use App\Models\Subscription;
+use App\Models\Membership;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -44,12 +44,12 @@ class CreateOrderListener
 
 
         /**
-         * Xử lý hàm event với subscription với mục đích là nếu chưa có thì sẽ khởi tạo hoặc update
+         * Xử lý hàm event với membership với mục đích là nếu chưa có thì sẽ khởi tạo hoặc update
          *
          * Đầu tiên sẽ tìm tới liệu có ID hay không nếu có thì sẽ khởi tạo tiếp theo
          * Sau đó dựa theo các biến nối vào cái giá trị và điền chúng thích hợp với các giá trị thích hợp
          */
-        Subscription::updateOrCreate(
+        Membership::updateOrCreate(
             [
                 'user_id' => auth()->user()->id
             ],
@@ -69,7 +69,7 @@ class CreateOrderListener
             ]
         );
 
-        //Sau khi đã khởi tạo hoàn thành thực hiện việc xóa đi session của người dùng 
+        //Sau khi đã khởi tạo hoàn thành thực hiện việc xóa đi session của người dùng
         Session::forget('selected_package_id');
     }
 }

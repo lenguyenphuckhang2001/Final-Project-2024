@@ -276,9 +276,9 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Amenities
-                                                @if (count($amenities) > $subscription->package->limit_amenities)
+                                                @if (count($amenities) > $membership->package->limit_amenities)
                                                     <span class="text-danger">(Your maximum amenities is
-                                                        {{ $subscription->package->limit_amenities }})
+                                                        {{ $membership->package->limit_amenities }})
                                                     </span>
                                                 @endif
                                             </label>
