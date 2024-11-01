@@ -32,9 +32,9 @@ class Listing extends Model
         return $this->hasMany(ImageGalerry::class, 'listing_id', 'id');
     }
 
-    function amenities(): HasMany
+    function facilities(): HasMany
     {
-        return $this->hasMany(AmenityListing::class, 'listing_id', 'id');
+        return $this->hasMany(FacilityListing::class, 'listing_id', 'id');
     }
 
     function videos(): HasMany

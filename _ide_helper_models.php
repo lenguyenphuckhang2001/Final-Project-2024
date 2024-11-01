@@ -16,53 +16,6 @@ namespace App\Models{
  *
  *
  * @property int $id
- * @property string $icon
- * @property string $name
- * @property string $slug
- * @property int $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity query()
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity whereIcon($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Amenity whereUpdatedAt($value)
- */
-	class Amenity extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- *
- *
- * @property int $id
- * @property int $listing_id
- * @property int $amenity_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Amenity|null $amenity
- * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing query()
- * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing whereAmenityId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing whereListingId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|AmenityListing whereUpdatedAt($value)
- */
-	class AmenityListing extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- *
- *
- * @property int $id
  * @property string $name
  * @property string $slug
  * @property string $background_image
@@ -227,8 +180,6 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\AmenityListing> $amenities
- * @property-read int|null $amenities_count
  * @property-read \App\Models\Category $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Evaluate> $evaluates
  * @property-read int|null $evaluates_count
@@ -342,6 +293,36 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property int $package_id
+ * @property int $order_id
+ * @property string $purchase_date
+ * @property string|null $expire_date
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Package|null $package
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereExpireDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership wherePackageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership wherePurchaseDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUserId($value)
+ */
+	class Membership extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ *
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $package_id
  * @property string $order_id
  * @property string $transaction_id
  * @property string $payment_method
@@ -388,7 +369,7 @@ namespace App\Models{
  * @property int $limit_listing
  * @property int $limit_photos
  * @property int $limit_video
- * @property int $limit_amenities
+ * @property int $limit_facilities
  * @property int $limit_featured_listing
  * @property int $display_at_home
  * @property int $status
@@ -403,7 +384,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereDisplayAtHome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitAmenities($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitFacilities($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitDays($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitFeaturedListing($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitListing($value)
@@ -446,6 +427,27 @@ namespace App\Models{
  *
  *
  * @property int $id
+ * @property string $key
+ * @property string|null $value
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
+ */
+	class Setting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ *
+ *
+ * @property int $id
  * @property int $listing_id
  * @property string $name
  * @property string $email
@@ -472,27 +474,6 @@ namespace App\Models{
  *
  *
  * @property int $id
- * @property string $key
- * @property string|null $value
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
- */
-	class Setting extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- *
- *
- * @property int $id
  * @property string $user_type
  * @property string $avatar
  * @property string $banner
@@ -511,6 +492,7 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Membership|null $membership
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens

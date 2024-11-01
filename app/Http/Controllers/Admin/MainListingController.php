@@ -6,8 +6,8 @@ use App\DataTables\ListingDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ListingStoreRequest;
 use App\Http\Requests\Admin\ListingUpdateRequest;
-use App\Models\Amenity;
-use App\Models\AmenityListing;
+use App\Models\Facility;
+use App\Models\FacilityListing;
 use App\Models\Category;
 use App\Models\Listing;
 use App\Models\Location;
@@ -37,8 +37,8 @@ class MainListingController extends Controller
     {
         $categories = Category::all();
         $locations = Location::all();
-        $amenities = Amenity::all();
-        return view('admin.listing.create', compact('categories', 'locations', 'amenities'));
+        $facilities = Facility::all();
+        return view('admin.listing.create', compact('categories', 'locations', 'facilities'));
     }
 
     /**
@@ -80,17 +80,17 @@ class MainListingController extends Controller
         $listing->save();
 
         // Giả sử người dùng chọn các tiện ích với IDs là [1, 2] (Wifi, Điều hòa)
-        // foreach ([1, 2] as $amenityId) {
-        //     $amenity = new AmenityListing();
-        //     $amenity->listing_id = $listing->id;  // Gán listing_id là ID của Căn hộ A
-        //     $amenity->amenity_id = $amenityId;    // Gán amenity_id là ID của tiện ích (Wifi, Điều hòa)
-        //     $amenity->save(); // Lưu mỗi dòng vào bảng pivot
+        // foreach ([1, 2] as $facilityId) {
+        //     $facility = new FacilityListing();
+        //     $facility->listing_id = $listing->id;  // Gán listing_id là ID của Căn hộ A
+        //     $facility->facility_id = $facilityId;    // Gán facility_id là ID của tiện ích (Wifi, Điều hòa)
+        //     $facility->save(); // Lưu mỗi dòng vào bảng pivot
         // }
-        foreach ($request->amenities as $amenityId) {
-            $amenity = new AmenityListing();
-            $amenity->listing_id = $listing->id;
-            $amenity->amenity_id = $amenityId;
-            $amenity->save();
+        foreach ($request->facilities as $facilityId) {
+            $facility = new FacilityListing();
+            $facility->listing_id = $listing->id;
+            $facility->facility_id = $facilityId;
+            $facility->save();
         }
 
         toastr()->success('Created Listing Successfully');
@@ -114,13 +114,13 @@ class MainListingController extends Controller
         $listing = Listing::findOrFail($id);
         $categories = Category::all();
         $locations = Location::all();
-        $amenities = Amenity::all();
+        $facilities = Facility::all();
 
-        // Lấy tất cả các amenity_id từ bảng AmenityListing liên quan đến listing hiện tại
-        $listingAmenities = AmenityListing::where('listing_id', $listing->id) // Lọc các bản ghi theo listing_id với Model::where('column', 'operator', 'value') sẽ mặc định là = nếu operator không có giá trị so sánh nào
-            ->pluck('amenity_id') // Chỉ lấy giá trị của cột amenity_id
+        // Lấy tất cả các facility_id từ bảng FacilityListing liên quan đến listing hiện tại
+        $listingFacilities = FacilityListing::where('listing_id', $listing->id) // Lọc các bản ghi theo listing_id với Model::where('column', 'operator', 'value') sẽ mặc định là = nếu operator không có giá trị so sánh nào
+            ->pluck('facility_id') // Chỉ lấy giá trị của cột facility_id
             ->toArray(); // Chuyển đổi kết quả thành mảng PHP
-        return view('admin.listing.edit', compact('listing', 'categories', 'locations', 'amenities', 'listingAmenities'));
+        return view('admin.listing.edit', compact('listing', 'categories', 'locations', 'facilities', 'listingFacilities'));
     }
 
     /**
@@ -161,12 +161,12 @@ class MainListingController extends Controller
         $listing->expire_date = date('Y-m-d');
         $listing->save();
 
-        AmenityListing::where('listing_id', $listing->id)->delete();
-        foreach ($request->amenities as $amenityId) {
-            $amenity = new AmenityListing();
-            $amenity->listing_id = $listing->id;
-            $amenity->amenity_id = $amenityId;
-            $amenity->save();
+        FacilityListing::where('listing_id', $listing->id)->delete();
+        foreach ($request->facilities as $facilityId) {
+            $facility = new FacilityListing();
+            $facility->listing_id = $listing->id;
+            $facility->facility_id = $facilityId;
+            $facility->save();
         }
 
         toastr()->success('Updated Listing Successfully');

@@ -64,13 +64,13 @@
                                 </select>
                             </div>
                             <div class="wsus__pro_check">
-                                @foreach ($amenities as $amenity)
+                                @foreach ($facilities as $facility)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{ $amenity->slug }}"
-                                            name="amenity[]" id="flexCheckIndeterminate-{{ $amenity->id }}"
-                                            @checked(in_array($amenity->slug, request()->has('amenity') && is_array(request()->amenity) ? request()->amenity : []))>
-                                        <label class="form-check-label" for="flexCheckIndeterminate-{{ $amenity->id }}">
-                                            {{ $amenity->name }}
+                                        <input class="form-check-input" type="checkbox" value="{{ $facility->slug }}"
+                                            name="facility[]" id="flexCheckIndeterminate-{{ $facility->id }}"
+                                            @checked(in_array($facility->slug, request()->has('facility') && is_array(request()->facility) ? request()->facility : []))>
+                                        <label class="form-check-label" for="flexCheckIndeterminate-{{ $facility->id }}">
+                                            {{ $facility->name }}
                                         </label>
                                     </div>
                                 @endforeach

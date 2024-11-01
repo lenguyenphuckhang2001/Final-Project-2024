@@ -128,10 +128,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Amenities</label>
-                                            <select class="form-control select2" multiple="" name="amenities[]">
-                                                $@foreach ($amenities as $amenity)
-                                                    <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
+                                            <label>Facilities</label>
+                                            <select class="form-control select2" multiple="" name="facilities[]">
+                                                $@foreach ($facilities as $facility)
+                                                    <option value="{{ $facility->id }}">{{ $facility->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

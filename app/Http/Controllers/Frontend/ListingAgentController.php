@@ -6,8 +6,8 @@ use App\DataTables\ListingAgentDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ListingAgentStoreRequest;
 use App\Http\Requests\Frontend\ListingAgentUpdateRequest;
-use App\Models\Amenity;
-use App\Models\AmenityListing;
+use App\Models\Facility;
+use App\Models\FacilityListing;
 use App\Models\Category;
 use App\Models\Listing;
 use App\Models\Location;
@@ -39,8 +39,8 @@ class ListingAgentController extends Controller
         $membership = Membership::with('package')->where('user_id', auth()->user()->id)->first();
         $categories = Category::all();
         $locations = Location::all();
-        $amenities = Amenity::all();
-        return view('frontend.dashboard.listing.create', compact('membership', 'categories', 'locations', 'amenities'));
+        $facilities = Facility::all();
+        return view('frontend.dashboard.listing.create', compact('membership', 'categories', 'locations', 'facilities'));
     }
 
     /**
@@ -80,11 +80,11 @@ class ListingAgentController extends Controller
         $listing->expire_date = date('Y-m-d');
         $listing->save();
 
-        foreach ($request->amenities as $amenityId) {
-            $amenity = new AmenityListing();
-            $amenity->listing_id = $listing->id;
-            $amenity->amenity_id = $amenityId;
-            $amenity->save();
+        foreach ($request->facilities as $facilityId) {
+            $facility = new FacilityListing();
+            $facility->listing_id = $listing->id;
+            $facility->facility_id = $facilityId;
+            $facility->save();
         }
 
         toastr()->success('Created Listing Successfully');
@@ -120,15 +120,15 @@ class ListingAgentController extends Controller
 
         $categories = Category::all();
         $locations = Location::all();
-        $amenities = Amenity::all();
+        $facilities = Facility::all();
 
-        // Lấy tất cả các amenity_id từ bảng AmenityListing liên quan đến listing hiện tại
-        $listingAmenities = AmenityListing::where('listing_id', $listing->id) // Lọc các bản ghi theo listing_id với Model::where('column', 'operator', 'value') sẽ mặc định là = nếu operator không có giá trị so sánh nào
-            ->pluck('amenity_id') // Chỉ lấy giá trị của cột amenity_id
+        // Lấy tất cả các facility_id từ bảng FacilityListing liên quan đến listing hiện tại
+        $listingFacilities = FacilityListing::where('listing_id', $listing->id) // Lọc các bản ghi theo listing_id với Model::where('column', 'operator', 'value') sẽ mặc định là = nếu operator không có giá trị so sánh nào
+            ->pluck('facility_id') // Chỉ lấy giá trị của cột facility_id
             ->toArray(); // Chuyển đổi kết quả thành mảng PHP
         $membership = Membership::with('package')->where('user_id', auth()->user()->id)->first();
 
-        return view('frontend.dashboard.listing.edit', compact('listing', 'categories', 'locations', 'amenities', 'listingAmenities', 'membership'));
+        return view('frontend.dashboard.listing.edit', compact('listing', 'categories', 'locations', 'facilities', 'listingFacilities', 'membership'));
     }
 
     /**
@@ -167,12 +167,12 @@ class ListingAgentController extends Controller
         $listing->expire_date = date('Y-m-d');
         $listing->save();
 
-        AmenityListing::where('listing_id', $listing->id)->delete();
-        foreach ($request->amenities as $amenityId) {
-            $amenity = new AmenityListing();
-            $amenity->listing_id = $listing->id;
-            $amenity->amenity_id = $amenityId;
-            $amenity->save();
+        FacilityListing::where('listing_id', $listing->id)->delete();
+        foreach ($request->facilities as $facilityId) {
+            $facility = new FacilityListing();
+            $facility->listing_id = $listing->id;
+            $facility->facility_id = $facilityId;
+            $facility->save();
         }
 
         toastr()->success('Updated Listing Successfully');

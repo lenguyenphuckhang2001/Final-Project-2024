@@ -6,10 +6,10 @@
             <div class="section-header-back">
                 <a href="{{ route('admin.dashboard.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Amenity</h1>
+            <h1>Facility</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Amenity</div>
+                <div class="breadcrumb-item">Facility</div>
             </div>
         </div>
 
@@ -18,9 +18,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Amenities</h4>
+                            <h4>All Facilities</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.amenity.create') }}" class="btn btn-primary">Create</a>
+                                <a href="{{ route('admin.facility.create') }}" class="btn btn-primary">Create</a>
                             </div>
                         </div>
                         <div class="card-body">

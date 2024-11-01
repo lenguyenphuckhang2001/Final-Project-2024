@@ -8,7 +8,7 @@ use Auth;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class LimitAmenities implements ValidationRule
+class LimitFacilities implements ValidationRule
 {
     /**
      * Run the validation rule.
@@ -17,14 +17,14 @@ class LimitAmenities implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $limitOfPackageAmenities = Auth::user()->membership->package->limit_amenities;
+        $limitOfPackageFacilities = Auth::user()->membership->package->limit_facilities;
 
-        if ($limitOfPackageAmenities === -1) {
+        if ($limitOfPackageFacilities === -1) {
             return;
         }
 
-        if (count($value) > $limitOfPackageAmenities) {
-            $fail("You reached maximum of $limitOfPackageAmenities amenities");
+        if (count($value) > $limitOfPackageFacilities) {
+            $fail("You reached maximum of $limitOfPackageFacilities facilities");
         }
     }
 }

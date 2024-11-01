@@ -29,7 +29,7 @@ class ListingStoreRequest extends FormRequest
             'linked_url' => ['nullable', 'url'],
             'insta_url' => ['nullable', 'url'],
             'attachment' => ['nullable', 'mimes:jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,txt,zip,rar,mp3,mp4,csv', 'max:50000'],
-            'amenities.*' => ['integer'],
+            'facilities.*' => ['integer'],
             'map_embed_code' => ['nullable'],
             'seo_title' => ['nullable', 'string', 'max:255'],
             'seo_description' => ['nullable', 'string'],

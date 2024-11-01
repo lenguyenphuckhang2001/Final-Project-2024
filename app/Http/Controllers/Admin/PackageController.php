@@ -44,7 +44,7 @@ class PackageController extends Controller
         $package->limit_listing = $request->limit_listing;
         $package->limit_photos = $request->limit_photos;
         $package->limit_video = $request->limit_video;
-        $package->limit_amenities = $request->limit_amenities;
+        $package->limit_facilities = $request->limit_facilities;
         $package->limit_featured_listing = $request->limit_featured_listing;
         $package->display_at_home = $request->display_at_home;
         $package->status = $request->status;
@@ -78,7 +78,7 @@ class PackageController extends Controller
         $package->limit_listing = $request->limit_listing;
         $package->limit_photos = $request->limit_photos;
         $package->limit_video = $request->limit_video;
-        $package->limit_amenities = $request->limit_amenities;
+        $package->limit_facilities = $request->limit_facilities;
         $package->limit_featured_listing = $request->limit_featured_listing;
         $package->display_at_home = $request->display_at_home;
         $package->status = $request->status;

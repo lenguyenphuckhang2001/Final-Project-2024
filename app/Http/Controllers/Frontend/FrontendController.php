@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
-use App\Models\Amenity;
+use App\Models\Facility;
 use App\Models\Category;
 use App\Models\Evaluate;
 use App\Models\Hero;
@@ -119,34 +119,34 @@ class FrontendController extends Controller
             });
         });
 
-        /** Giải thích hàm search query của amenities
+        /** Giải thích hàm search query của facilities
          * Đầu tiên sử dụng when để biết khi nào thêm điều kiện query dựa trên 1 logic cụ thể
-         * $request->has('amenity') sẽ kiểm tra xem request có chứa key 'amenity' không.
-         * is_array($request->amenity) sẽ kiểm tra xem amenity trong request có phải là một mảng không.
+         * $request->has('facility') sẽ kiểm tra xem request có chứa key 'facility' không.
+         * is_array($request->facility) sẽ kiểm tra xem facility trong request có phải là một mảng không.
          *
-         * $amenityId = Amenity::whereIn('slug', $request->amenity)->pluck('id')
-         * Sử dụng whereIn để lọc các amenities có cột slug nằm trong danh sách slug mà người dùng gửi qua $request->amenity
+         * $facilityId = Facility::whereIn('slug', $request->facility)->pluck('id')
+         * Sử dụng whereIn để lọc các facilities có cột slug nằm trong danh sách slug mà người dùng gửi qua $request->facility
          * Sau khi đã có các danh sách dựa trên slug, pluck('id') sẽ trả về một danh sách mà chỉ có id mà không có giá trị của trường đó
          *
-         * Ví dụ : $request->amenity là mảng sẽ chứa các tiện ích người dùng muốn tim ví dụ ['pool', 'wifi', 'gym']
+         * Ví dụ : $request->facility là mảng sẽ chứa các tiện ích người dùng muốn tim ví dụ ['pool', 'wifi', 'gym']
          * pluck('id') nếu các tiện ích có slug là pool, wifi, và gym có id lần lượt là 1, 2, và 3, thì pluck('id') sẽ trả về [1, 2, 3] mà không kèm theo dữ liệu
          *
-         * whereHas để kiểm tra xem các giá trị amenity có liên kết với bảng amenities hay không.
-         * Giả sử muốn tìm các listings có tiện ích thuộc danh sách [1, 2, 3]. Sử dụng whereHas để kiểm tra xem mỗi listing có liên kết với ít nhất một amenity có id thuộc [1, 2, 3].
-         * Sử dụng thêm whereIn để lọc đảm bảo listing chỉ được trả về nếu nó có ít nhất một amenity có id thuộc [1, 2, 3].
+         * whereHas để kiểm tra xem các giá trị facility có liên kết với bảng facilities hay không.
+         * Giả sử muốn tìm các listings có tiện ích thuộc danh sách [1, 2, 3]. Sử dụng whereHas để kiểm tra xem mỗi listing có liên kết với ít nhất một facility có id thuộc [1, 2, 3].
+         * Sử dụng thêm whereIn để lọc đảm bảo listing chỉ được trả về nếu nó có ít nhất một facility có id thuộc [1, 2, 3].
          */
 
-        $listings->when($request->has('amenity') && is_array($request->amenity), function ($query) use ($request) {
-            $amenityId = Amenity::whereIn('slug', $request->amenity)->pluck('id');
+        $listings->when($request->has('facility') && is_array($request->facility), function ($query) use ($request) {
+            $facilityId = Facility::whereIn('slug', $request->facility)->pluck('id');
 
-            $query->whereHas('amenities', function ($subQuery) use ($amenityId) {
-                $subQuery->whereIn('amenity_id', $amenityId);
+            $query->whereHas('facilities', function ($subQuery) use ($facilityId) {
+                $subQuery->whereIn('facility_id', $facilityId);
             });
         });
 
         $categories = Category::where('status', 1)->get();
         $locations = Location::where('status', 1)->get();
-        $amenities = Amenity::where('status', 1)->get();
+        $facilities = Facility::where('status', 1)->get();
 
 
         $listings = $listings->paginate(9); //Hiển thị bao nhiêu dữ liệu ra màn hình
@@ -157,7 +157,7 @@ class FrontendController extends Controller
                 'listings',
                 'categories',
                 'locations',
-                'amenities'
+                'facilities'
             )
         );
     }

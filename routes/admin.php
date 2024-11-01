@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\AdminHeroSectionController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\EvaluateController;
 use App\Http\Controllers\Admin\MainListingController;
-use App\Http\Controllers\Admin\ListingAmenityController;
+use App\Http\Controllers\Admin\ListingFacilityController;
 use App\Http\Controllers\Admin\ListingCategoryController;
 use App\Http\Controllers\Admin\ListingImageGalleryController;
 use App\Http\Controllers\Admin\ListingLocationController;
@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::resource('/listing', MainListingController::class);
     Route::resource('/category', ListingCategoryController::class);
     Route::resource('/location', ListingLocationController::class);
-    Route::resource('/amenity', ListingAmenityController::class);
+    Route::resource('/facility', ListingFacilityController::class);
     Route::resource('/image-gallery', ListingImageGalleryController::class);
     Route::resource('/video-gallery', ListingVideoGalleryController::class);
 

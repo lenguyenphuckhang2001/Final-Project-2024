@@ -84,11 +84,11 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Limit of Amenities<span
+                                            <label for="">Limit of Facilities<span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="limit_amenities"
-                                                value="{{ $package->limit_amenities }}"
-                                                placeholder="For unlimited amenities use value -1"required>
+                                            <input type="text" class="form-control" name="limit_facilities"
+                                                value="{{ $package->limit_facilities }}"
+                                                placeholder="For unlimited facilities use value -1"required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">

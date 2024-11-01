@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Amenity;
+use App\Models\Facility;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class AmenityDataTable extends DataTable
+class FacilityDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,8 +23,8 @@ class AmenityDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('admin.amenity.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('admin.amenity.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                $edit = '<a href="' . route('admin.facility.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                $delete = '<a href="' . route('admin.facility.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
                 return $edit . $delete;
             })
             ->addColumn('icon', function ($query) {
@@ -44,7 +44,7 @@ class AmenityDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Amenity $model): QueryBuilder
+    public function query(Facility $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -55,7 +55,7 @@ class AmenityDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('amenity-table')
+            ->setTableId('facility-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -88,6 +88,6 @@ class AmenityDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Amenity_' . date('YmdHis');
+        return 'Facility_' . date('YmdHis');
     }
 }

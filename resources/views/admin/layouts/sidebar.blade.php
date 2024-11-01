@@ -194,7 +194,7 @@
                     'admin.listing.*',
                     'admin.category.*',
                     'admin.location.*',
-                    'admin.amenity.*',
+                    'admin.facility.*',
                     'admin.pending.*',
                     'admin.evaluate.*',
                     'admin.supports.*',
@@ -206,8 +206,8 @@
                             href="{{ route('admin.category.index') }}">Category</a></li>
                     <li class="{{ setActiveRoute(['admin.location.*']) }}"> <a class="nav-link"
                             href="{{ route('admin.location.index') }}">Location</a></li>
-                    <li class="{{ setActiveRoute(['admin.amenity.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.amenity.index') }}">Amenity</a></li>
+                    <li class="{{ setActiveRoute(['admin.facility.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.facility.index') }}">Facility</a></li>
                     <li class="{{ setActiveRoute(['admin.listing.*']) }}"><a class="nav-link"
                             href="{{ route('admin.listing.index') }}">All Listings</a></li>
                     <li class="{{ setActiveRoute(['admin.pending.*']) }}"><a class="nav-link"

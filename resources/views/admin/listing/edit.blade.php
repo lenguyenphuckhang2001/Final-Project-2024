@@ -153,10 +153,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Amenities</label>
-                                            <select class="form-control select2" multiple="" name="amenities[]">
-                                                $@foreach ($amenities as $amenity)
-                                                    <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
+                                            <label>Facilities</label>
+                                            <select class="form-control select2" multiple="" name="facilities[]">
+                                                $@foreach ($facilities as $facility)
+                                                    <option value="{{ $facility->id }}">{{ $facility->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -231,13 +231,13 @@
 
 @push('scripts')
     <script>
-        // Chuyển đổi mảng PHP $listingAmenities thành chuỗi JSON và lưu vào biến JavaScript
-        var listingAmenities = {!! json_encode($listingAmenities) !!};
+        // Chuyển đổi mảng PHP $listingFacilities thành chuỗi JSON và lưu vào biến JavaScript
+        var listingFacilities = {!! json_encode($listingFacilities) !!};
 
         // Khởi tạo Select2 cho các phần tử có class 'select2'
-        // Thiết lập giá trị của dropdown bằng các amenity_id từ biến listingAmenities
+        // Thiết lập giá trị của dropdown bằng các facility_id từ biến listingFacilities
         // Kích hoạt sự kiện 'change' để cập nhật giao diện hoặc thực hiện hành động khác
-        $('.select2').select2().val(listingAmenities).trigger("change");
+        $('.select2').select2().val(listingFacilities).trigger("change");
 
         $(document).ready(function() {
             $('.image-listing-preview').css({

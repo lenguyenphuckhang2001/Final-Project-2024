@@ -4257,7 +4257,7 @@ PAGINATION PART END
     margin-left: 10px;
 }
 
-.amenities_check_area {
+.facilities_check_area {
     position: relative;
     border: 1px solid #eee;
     padding: 20px;
@@ -4265,11 +4265,11 @@ PAGINATION PART END
     border-radius: 5px;
 }
 
-.amenities_check_area input {
+.facilities_check_area input {
     padding: 0;
 }
 
-.amenities_check_area label {
+.facilities_check_area label {
     display: block;
     text-transform: capitalize;
     font-size: 16px;
@@ -4278,7 +4278,7 @@ PAGINATION PART END
     width: 100%;
 }
 
-.amenities_check_area i {
+.facilities_check_area i {
     position: absolute;
     right: 20px;
     top: 50%;
@@ -4293,7 +4293,7 @@ PAGINATION PART END
     -o-transition: all linear 0.3s ease;
 }
 
-.amenities_check_area:hover i {
+.facilities_check_area:hover i {
     color: var(--colorPrimary);
     opacity: 1;
 }

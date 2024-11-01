@@ -70,10 +70,10 @@
                             <p>{{ $package->limit_listing }} Listing can post</p>
                         @endif
 
-                        @if ($package->limit_amenities === -1)
-                            <p>Unlimited Amenities Available</p>
+                        @if ($package->limit_facilities === -1)
+                            <p>Unlimited Facilities Available</p>
                         @else
-                            <p>{{ $package->limit_amenities }} Amenities can available</p>
+                            <p>{{ $package->limit_facilities }} Facilities can available</p>
                         @endif
 
                         @if ($package->limit_photos === -1)

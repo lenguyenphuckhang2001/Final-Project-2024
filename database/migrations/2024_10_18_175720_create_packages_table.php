@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('limit_listing');
             $table->integer('limit_photos');
             $table->integer('limit_video');
-            $table->integer('limit_amenities');
+            $table->integer('limit_facilities');
             $table->integer('limit_featured_listing');
             $table->boolean('display_at_home');
             $table->boolean('status');

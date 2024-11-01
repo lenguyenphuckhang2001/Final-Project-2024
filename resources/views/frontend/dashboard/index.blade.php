@@ -78,11 +78,11 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Aminities</td>
-                                                        @if ($membership->package->limit_amenities === -1)
+                                                        @if ($membership->package->limit_facilities === -1)
                                                             <td class="package_right">Unlimited</td>
                                                         @else
                                                             <td class="package_right">
-                                                                {{ $membership->package->limit_amenities }}
+                                                                {{ $membership->package->limit_facilities }}
                                                             </td>
                                                         @endif
                                                     </tr>

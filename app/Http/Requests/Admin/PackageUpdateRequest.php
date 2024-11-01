@@ -21,7 +21,7 @@ class PackageUpdateRequest extends FormRequest
             'limit_listing' => ['required', 'integer'],
             'limit_photos' => ['required', 'integer'],
             'limit_video' => ['required', 'integer'],
-            'limit_amenities' => ['required', 'integer'],
+            'limit_facilities' => ['required', 'integer'],
             'limit_featured_listing' => ['required', 'integer'],
             'display_at_home' => ['required', 'boolean'],
             'status' => ['required', 'boolean']
@@ -43,8 +43,8 @@ class PackageUpdateRequest extends FormRequest
             'limit_video.required' => 'Limit video field is required',
             'limit_video.integer' => 'Limit video field must be integer',
 
-            'limit_amenities.required' => 'Limit amenities field is required',
-            'limit_amenities.integer' => 'Limit amenities field must be integer',
+            'limit_facilities.required' => 'Limit facilities field is required',
+            'limit_facilities.integer' => 'Limit facilities field must be integer',
 
             'limit_featured_listing.required' => 'Limit featured listing field is required',
             'limit_featured_listing.integer' => 'Limit featured listing field must be integer',
