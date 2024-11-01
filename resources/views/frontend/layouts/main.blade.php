@@ -37,13 +37,13 @@
 
 <body>
     <!--------------Nav Bar----------------->
-    @include('frontend.layouts.navbar')
+    @include('frontend.partials.navbar')
 
     <!--------------Content----------------->
     @yield('contents')
 
     <!--------------Footer------------------>
-    @include('frontend.layouts.footer')
+    @include('frontend.partials.footer')
 
     <!------Popup Show listing Detail------->
     <section id="wsus__map_popup">

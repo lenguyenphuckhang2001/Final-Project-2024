@@ -167,7 +167,7 @@ class FrontendController extends Controller
     {
         $listing = Listing::findOrFail($id);
 
-        return view('frontend.layouts.ajax-model-listing', compact('listing'))->render();
+        return view('frontend.components.info-popup', compact('listing'))->render();
     }
 
     function detailListing(string $slug): View

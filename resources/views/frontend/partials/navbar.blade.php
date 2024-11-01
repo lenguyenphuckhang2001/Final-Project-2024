@@ -62,7 +62,6 @@
                     <a class="nav-link" href="contact.html">contact us</a>
                 </li>
             </ul>
-            <a class="user_btn" href="dsahboard.html"><i class="far fa-plus"></i> add listing</a>
         </div>
     </div>
 </nav>
