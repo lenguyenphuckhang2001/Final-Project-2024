@@ -23,8 +23,8 @@ class EvaluateDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $delete = '<a href="' . route('admin.evaluate.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
-                return $delete;
+                $btnDelete = '<a href="' . route('admin.evaluate.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                return $btnDelete;
             })
             ->addColumn('listing', function ($query) {
                 return $query->listing->title;

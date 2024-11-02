@@ -4,10 +4,10 @@ use App\Http\Controllers\Frontend\ChatController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\FrontendProfileController;
-use App\Http\Controllers\Frontend\ListingAgentController;
-use App\Http\Controllers\Frontend\ListingAgentImageGalleryController;
-use App\Http\Controllers\FrontEnd\ListingAgentScheduleController;
-use App\Http\Controllers\Frontend\ListingAgentVideoGalleryController;
+use App\Http\Controllers\Frontend\UserListingController;
+use App\Http\Controllers\Frontend\UserListingImageGalleryController;
+use App\Http\Controllers\FrontEnd\UserListingScheduleController;
+use App\Http\Controllers\Frontend\UserListingVideoGalleryController;
 use App\Http\Controllers\Frontend\OrderListController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
@@ -49,16 +49,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::put('/profile-change-password', [FrontendProfileController::class, 'changePassword'])->name('profile-change-password.update');
     Route::put('/profile-change-banner', [FrontendProfileController::class, 'changeBanner'])->name('profile-change-banner.update');
 
-    Route::resource('/listing', ListingAgentController::class);
-    Route::resource('/image-gallery', ListingAgentImageGalleryController::class);
-    Route::resource('/video-gallery', ListingAgentVideoGalleryController::class);
+    Route::resource('/listing', UserListingController::class);
+    Route::resource('/image-gallery', UserListingImageGalleryController::class);
+    Route::resource('/video-gallery', UserListingVideoGalleryController::class);
 
-    Route::get('/schedule/{listing_id}', [ListingAgentScheduleController::class, 'index'])->name('schedule.index');
-    Route::get('/schedule/{listing_id}/create', [ListingAgentScheduleController::class, 'create'])->name('schedule.create');
-    Route::post('/schedule/{listing_id}', [ListingAgentScheduleController::class, 'store'])->name('schedule.store');
-    Route::get('/schedule/{id}/edit', [ListingAgentScheduleController::class, 'edit'])->name('schedule.edit');
-    Route::put('/schedule/{id}', [ListingAgentScheduleController::class, 'update'])->name('schedule.update');
-    Route::delete('/schedule/{id}', [ListingAgentScheduleController::class, 'destroy'])->name('schedule.destroy');
+    Route::get('/schedule/{listing_id}', [UserListingScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/schedule/{listing_id}/create', [UserListingScheduleController::class, 'create'])->name('schedule.create');
+    Route::post('/schedule/{listing_id}', [UserListingScheduleController::class, 'store'])->name('schedule.store');
+    Route::get('/schedule/{id}/edit', [UserListingScheduleController::class, 'edit'])->name('schedule.edit');
+    Route::put('/schedule/{id}', [UserListingScheduleController::class, 'update'])->name('schedule.update');
+    Route::delete('/schedule/{id}', [UserListingScheduleController::class, 'destroy'])->name('schedule.destroy');
 
     Route::get('/order', [OrderListController::class, 'index'])->name('order.index');
     Route::get('/order/{id}', [OrderListController::class, 'show'])->name('order.show');

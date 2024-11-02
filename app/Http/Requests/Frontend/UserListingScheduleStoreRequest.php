@@ -4,7 +4,7 @@ namespace App\Http\Requests\Frontend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ListingAgentScheduleStoreRequest extends FormRequest
+class UserListingScheduleStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

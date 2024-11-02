@@ -38,8 +38,8 @@
                                         <div class="form-group">
                                             <label for="">Display in Home Page?</label>
                                             <select name="display_at_home" id="" class="form-control">
-                                                <option @selected($location->display_at_home === 0) value="0">Yes</option>
-                                                <option @selected($location->display_at_home === 1) value="1">No</option>
+                                                <option @selected($location->display_at_home === 0) value="0">No</option>
+                                                <option @selected($location->display_at_home === 1) value="1">Yes</option>
                                             </select>
                                         </div>
                                     </div>

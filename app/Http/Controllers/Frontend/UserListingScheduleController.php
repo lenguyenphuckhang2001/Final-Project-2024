@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\DataTables\ListingAgentScheduleDataTable;
+use App\DataTables\UserListingScheduleDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\ListingAgentScheduleStoreRequest;
-use App\Http\Requests\Frontend\ListingAgentScheduleUpdateRequest;
+use App\Http\Requests\Frontend\UserListingScheduleStoreRequest;
+use App\Http\Requests\Frontend\UserListingScheduleUpdateRequest;
 use App\Models\Listing;
 use App\Models\ListingSchedule;
 use Auth;
@@ -15,9 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class ListingAgentScheduleController extends Controller
+class UserListingScheduleController extends Controller
 {
-    public function index(ListingAgentScheduleDataTable $dataTable, string $listingId): View | JsonResponse
+    public function index(UserListingScheduleDataTable $dataTable, string $listingId): View | JsonResponse
     {
         $listing = Listing::select('id', 'title', 'user_id')
             ->where('id', $listingId) //Phương thức where('id', $request->id) thêm điều kiện vào truy vấn, lọc các bản ghi để chỉ bao gồm bản ghi có cột id khớp với giá trị của $request->id. Đối tượng $request có thể chứa dữ liệu từ một yêu cầu HTTP, và id là một tham số được truyền trong yêu cầu đó.
@@ -51,7 +51,7 @@ class ListingAgentScheduleController extends Controller
         return view('frontend.dashboard.listing.schedule.create', compact('listingId'));
     }
 
-    function store(ListingAgentScheduleStoreRequest $request, string $listingId): RedirectResponse
+    function store(UserListingScheduleStoreRequest $request, string $listingId): RedirectResponse
     {
         $listing = Listing::select('id', 'user_id')->where('id', $listingId)->first();
         if (!$listing) {
@@ -91,7 +91,7 @@ class ListingAgentScheduleController extends Controller
     }
 
 
-    function update(ListingAgentScheduleUpdateRequest $request, string $id): RedirectResponse
+    function update(UserListingScheduleUpdateRequest $request, string $id): RedirectResponse
     {
         $schedule = ListingSchedule::findOrFail($id);
         $listing = Listing::select('id', 'user_id')->where('id', $schedule->listing_id)->first();

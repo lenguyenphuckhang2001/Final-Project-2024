@@ -2,7 +2,6 @@
 
 namespace App\DataTables;
 
-use App\Models\ListingAgentSchedule;
 use App\Models\ListingSchedule;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ListingAgentScheduleDataTable extends DataTable
+class UserListingScheduleDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,9 +23,9 @@ class ListingAgentScheduleDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('user.schedule.edit', $query->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('user.schedule.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
-                return $edit . $delete;
+                $btnEdit = '<a href="' . route('user.schedule.edit', $query->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>';
+                $btnDelete = '<a href="' . route('user.schedule.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                return $btnEdit . $btnDelete;
             })
             ->addColumn('status', function ($query) {
                 if ($query->status !== 1) {
@@ -53,7 +52,7 @@ class ListingAgentScheduleDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('listingagentschedule-table')
+            ->setTableId('userlistingschedule-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -86,6 +85,6 @@ class ListingAgentScheduleDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ListingAgentSchedule_' . date('YmdHis');
+        return 'UserListingSchedule_' . date('YmdHis');
     }
 }

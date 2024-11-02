@@ -7,7 +7,7 @@ use App\Rules\LimitFeaturedListing;
 use App\Rules\LimitListings;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ListingAgentStoreRequest extends FormRequest
+class UserListingStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

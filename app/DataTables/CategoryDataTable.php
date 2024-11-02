@@ -23,9 +23,9 @@ class CategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('admin.category.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('admin.category.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
-                return $edit . $delete;
+                $btnEdit = '<a href="' . route('admin.category.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                $btnDelete = '<a href="' . route('admin.category.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                return $btnEdit . $btnDelete;
             })
             ->addColumn('background', function ($query) {
                 return '<img width="180" height="120" src="' . asset($query->background_image) . '">';
@@ -35,9 +35,9 @@ class CategoryDataTable extends DataTable
             })
             ->addColumn('display_at_home', function ($query) {
                 if ($query->display_at_home !== 1) {
-                    return "<span class='badge badge-success'>Yes</span>";
-                } else {
                     return "<span class='badge badge-secondary'>No</span>";
+                } else {
+                    return "<span class='badge badge-success'>Yes</span>";
                 }
             })
             ->addColumn('status', function ($query) {

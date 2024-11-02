@@ -3,7 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\Order;
-use App\Models\UserOrder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -24,8 +23,8 @@ class UserOrderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $info = '<a href="' . route('user.order.show', $query->id) . '" class="btn btn-sm btn-info"><i class="fas fa-info-circle"></i></a>';
-                return $info;
+                $btnInfo = '<a href="' . route('user.order.show', $query->id) . '" class="btn btn-sm btn-info"><i class="fas fa-info-circle"></i></a>';
+                return $btnInfo;
             })
             ->addColumn('package', function ($query) {
                 return $query->package->name;

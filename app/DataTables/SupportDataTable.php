@@ -23,8 +23,8 @@ class SupportDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $delete = '<a href="' . route('admin.supports.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
-                return $delete;
+                $btnDelete = '<a href="' . route('admin.supports.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                return $btnDelete;
             })
             ->addColumn('listing', function ($query) {
                 $html = '<a target="_blank" href="' . route('listing.detail', $query->listing->slug) . '">' . $query->listing->title . '</a>';

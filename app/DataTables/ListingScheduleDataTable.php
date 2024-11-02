@@ -23,9 +23,9 @@ class ListingScheduleDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('admin.schedule.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('admin.schedule.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
-                return $edit . $delete;
+                $btnEdit = '<a href="' . route('admin.schedule.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                $btnDelete = '<a href="' . route('admin.schedule.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                return $btnEdit . $btnDelete;
             })
             ->addColumn('status', function ($query) {
                 if ($query->status !== 1) {

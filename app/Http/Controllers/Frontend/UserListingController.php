@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\DataTables\ListingAgentDataTable;
+use App\DataTables\UserListingDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\ListingAgentStoreRequest;
-use App\Http\Requests\Frontend\ListingAgentUpdateRequest;
+use App\Http\Requests\Frontend\UserListingStoreRequest;
+use App\Http\Requests\Frontend\UserListingUpdateRequest;
 use App\Models\Facility;
 use App\Models\FacilityListing;
 use App\Models\Category;
@@ -20,13 +20,13 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Str;
 
-class ListingAgentController extends Controller
+class UserListingController extends Controller
 {
     use FileUploadTrait;
     /**
      * Display a listing of the resource.
      */
-    public function index(ListingAgentDataTable $dataTable): View | JsonResponse
+    public function index(UserListingDataTable $dataTable): View | JsonResponse
     {
         return $dataTable->render('frontend.dashboard.listing.index');
     }
@@ -46,7 +46,7 @@ class ListingAgentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ListingAgentStoreRequest $request): RedirectResponse
+    public function store(UserListingStoreRequest $request): RedirectResponse
     {
         $imagePath = $this->uploadImage($request, 'image');
         $thumbnailPath = $this->uploadImage($request, 'thumbnail');
@@ -134,7 +134,7 @@ class ListingAgentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ListingAgentUpdateRequest $request, string $id): RedirectResponse
+    public function update(UserListingUpdateRequest $request, string $id): RedirectResponse
     {
         $imagePath = $this->uploadImage($request, 'image', $request->old_image);
         $thumbnailPath = $this->uploadImage($request, 'thumbnail', $request->old_thumbnail);

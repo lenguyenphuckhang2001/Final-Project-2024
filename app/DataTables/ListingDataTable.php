@@ -23,10 +23,10 @@ class ListingDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('admin.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('admin.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                $btnEdit = '<a href="' . route('admin.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                $btnDelete = '<a href="' . route('admin.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
 
-                $dropdown =
+                $btnDropdown =
                     '<div class="btn-group dropleft">
                         <button type="button" class="btn btn-dark btn-sm ml-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i></button>
                         <div class="dropdown-menu dropleft">
@@ -35,7 +35,7 @@ class ListingDataTable extends DataTable
                             <a class="dropdown-item" href="' . route('admin.schedule.index', $query->id) . '"><i class="far fa-calendar" style="margin-right: 8px;"></i> Schedule</a>
                         </div>
                     </div>';
-                return $edit . $delete . $dropdown;
+                return $btnEdit . $btnDelete . $btnDropdown;
             })
             ->addColumn('image', function ($query) {
                 return '<img width="130" height="80" src="' . asset($query->image) . '">';

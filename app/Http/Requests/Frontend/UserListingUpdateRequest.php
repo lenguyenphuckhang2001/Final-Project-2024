@@ -8,7 +8,7 @@ use App\Rules\LimitFeaturedListing;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ListingAgentUpdateRequest extends FormRequest
+class UserListingUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

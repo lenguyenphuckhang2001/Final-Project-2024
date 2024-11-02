@@ -3,7 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\Listing;
-use App\Models\ListingAgent;
 use Auth;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ListingAgentDataTable extends DataTable
+class UserListingDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -25,10 +24,10 @@ class ListingAgentDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $edit = '<a href="' . route('user.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2 mb-2"><i class="fas fa-edit"></i></a>';
-                $delete = '<a href="' . route('user.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger mb-2"><i class="fas fa-trash"></i></a>';
+                $btnEdit = '<a href="' . route('user.listing.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2 mb-2"><i class="fas fa-edit"></i></a>';
+                $btnDelete = '<a href="' . route('user.listing.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger mb-2"><i class="fas fa-trash"></i></a>';
 
-                $dropdown =
+                $btnDropdown =
                     '<div class="btn-group">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-info-circle"></i>
@@ -40,7 +39,7 @@ class ListingAgentDataTable extends DataTable
                         </ul>
                     </div>';
 
-                return $edit . $delete . $dropdown;
+                return $btnEdit . $btnDelete . $btnDropdown;
             })
             ->addColumn('status', function ($query) {
                 if ($query->status === 1) {
@@ -92,7 +91,7 @@ class ListingAgentDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('listingagent-table')
+            ->setTableId('userlisting-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -125,6 +124,6 @@ class ListingAgentDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ListingAgent_' . date('YmdHis');
+        return 'UserListing_' . date('YmdHis');
     }
 }

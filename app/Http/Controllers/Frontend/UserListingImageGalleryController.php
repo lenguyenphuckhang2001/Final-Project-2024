@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class ListingAgentImageGalleryController extends Controller
+class UserListingImageGalleryController extends Controller
 {
     use FileUploadTrait;
     /**
@@ -26,14 +26,6 @@ class ListingAgentImageGalleryController extends Controller
             ->first(); // Select giá trị title trong query và where tới keys id và giá trị tìm kiếm là $request->id
         $images = ImageGalerry::where('listing_id', $request->id)->get();
         return view('frontend.dashboard.listing.image-gallery.index', compact('images', 'titleListing'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -59,30 +51,6 @@ class ListingAgentImageGalleryController extends Controller
         toastr()->success('Uploaded images successfully');
 
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**
