@@ -24,7 +24,7 @@ class ChatController extends Controller
         return view('frontend.dashboard.message.index', compact('receivers'));
     }
 
-    function sendMessage(Request $request): Response
+    function newMessage(Request $request): Response
     {
         $request->validate([
             'listing_id' => ['required', 'integer'],

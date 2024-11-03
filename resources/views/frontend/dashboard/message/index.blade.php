@@ -32,7 +32,7 @@
                                                             <p><i class="fas fa-house-user" style="color: #22d5e2;"></i>
                                                                 {{ $receiver->receiverInfo->name }}
                                                             </p>
-                                                            <span class="tf__massage_time">30 min</span>
+                                                            <span class="tf__massage_time">online</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -44,44 +44,26 @@
                                     <div class="tab-content" id="v-pills-tabContent">
                                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                                             aria-labelledby="v-pills-home-tab" tabindex="0">
-                                            <div class="tf___single_chat">
+                                            <div class="chatbox_single_form d-none">
                                                 <div class="tf__single_chat_top">
                                                     <div class="img">
-                                                        <img id="box-image" src="" alt="person"
+                                                        <img id="box-image" src="" alt="image"
                                                             class="img-fluid w-100">
                                                     </div>
                                                     <div class="text">
-                                                        <h4 id="box-title">Charlene Reed</h4>
-                                                        {{-- <p>active</p> --}}
+                                                        <h4 id="box-title">Title</h4>
                                                     </div>
                                                 </div>
-
                                                 <div class="tf__single_chat_body chatbox_field">
-                                                    {{-- <div class="tf__chating">
-                                                        <div class="tf__chating_img">
-                                                            <img src="images/massage-4.png" alt="person"
-                                                                class="img-fluid w-100">
-                                                        </div>
-                                                        <div class="tf__chating_text">
-                                                            <p>Cum id mundi admodum menandri, eum errem is any one
-                                                                aperiri at. Ut quas facilis qui</p>
-                                                            <span>15 Jun, 2023, 05:26 AM</span>
-                                                        </div>
-                                                    </div> --}}
-                                                    {{-- <div class="tf__chating tf_chat_right">
-                                                        <div class="tf__chating_text">
-                                                            <p>I message you in this portion.</p>
-                                                            <span>16 Junly, 2024, 03:22 PM</span>
-                                                        </div>
-                                                        <div class="tf__chating_img">
-                                                            <img src="images/massage-8.png" alt="person"
-                                                                class="img-fluid w-100">
-                                                        </div>
-                                                    </div> --}}
-
+                                                    {{-- All event handle in script code below --}}
                                                 </div>
-                                                <form class="tf__single_chat_bottom">
-                                                    <input type="text" placeholder="Message...">
+                                                <form class="tf__single_chat_bottom form-chatbox">
+                                                    @csrf
+                                                    <input type="hidden" id="receiver_id" name="receiver_id"
+                                                        value="">
+                                                    <input type="hidden" id="listing_id" name="listing_id" value="">
+                                                    <input type="text" id="message" name="message"
+                                                        placeholder="Message...">
                                                     <button class="tf__massage_btn">
                                                         <i class="fas fa-paper-plane"></i>
                                                     </button>
@@ -101,33 +83,96 @@
 
 @push('scripts')
     <script>
+        /* Đặt biến chatboxField toàn cục */
+        const chatboxField = $('.chatbox_field');
+        const loadingData =
+            `<div class="d-flex justify-content-center align-items-center h-100">
+                <div class="spinner-border text-info" style="width: 3.5rem; height: 3.5rem; font-size: 35px" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>`
+
+        /**
+         * Thực hiện việc lấy các biến trong thẻ div để gán giá trị và sử dụng nhằm để gán giá trị vào trường input
+         * Hàm updateProfileChat(data) có tham số là data được truyền vào từ hàm .profile-box là dữ liệu người dùng đã nhập vào và lưu và dữ liệu
+         */
         function updateProfileChat(data) {
+            /**
+             * let profileImage = data.find('.profile-image').attr('src')
+             * Tìm phần tử có class .profile-image trong data.
+             * .attr('src') lấy giá trị thuộc tính src (đường dẫn của ảnh) từ phần tử đó và gán vào biến profileImage.
+
+             * let profileTitle = data.find('.profile-title').text();
+             * Lấy nội dung văn bản từ .profile-title trong data và lấy văn bản bên trong của class đó
+
+             * $('#box-image').attr('src', profileImage);
+             * Dòng này cập nhật ảnh hồ sơ trong phần tử có ID là #box-image bằng cách đặt thuộc tính src của nó thành giá trị của profileImage.
+
+             * $('#box-title').text(profileTitle);
+             * Tương tự như trên lấy cập nhật tên ID #box-title và cập nhật chúng bằng phần tử profileTitle và gán chúng vào phần tử #box-title
+             */
             let profileImage = data.find('.profile-image').attr('src');
             let profileTitle = data.find('.profile-title').text();
             $('#box-image').attr('src', profileImage);
             $('#box-title').text(profileTitle);
+
+            /**
+             * let receiverId = data.data('receiver-id'): Hàm này lấy dữ liệu data xong tìm data có id là data-receiver-id match với receiverId
+             * let listingId = data.data('listing-id'): Hàm này cũng tìm dữ liệu đã được truyền vào xong truyền vào listingId với data từ data-listing-id
+             * $('#receiver_id').val(receiverId): Dòng này gán giá trị cho input có ID là receiver_id từ receiverId
+             * $('#listing_id').val(listingId): Dòng này cũng gán giá trị cho #listing_id từ listingId
+             */
+            let receiverId = data.data('receiver-id');
+            let listingId = data.data('listing-id');
+            $('#receiver_id').val(receiverId);
+            $('#listing_id').val(listingId);
         }
 
         function datetimeFormat(dateTimeString) {
+            /*Sử dụng biến format để định dạng ngày giờ */
             const format = {
-                year: 'numeric',
-                month: 'short',
-                day: '2-digit',
+                year: 'numeric', // Hiển thị 4 số cho năm. VD: 2024
+                month: 'short', // Hiển thị tháng với 3 chữ. VD: Feb
+                day: '2-digit', // Hiển thị ngày với 2 số và tương tự
                 hour: '2-digit',
                 minute: '2-digit',
             }
+            /**
+             * new Date(dateTimeString): Chuyển chuỗi dateTimeString thành một đối tượng Date
+
+             * new Intl.DateTimeFormat('en-US', format)
+             * Tạo 1 đối tượng DateTimeFormat theo ngôn ngữ 'en-US'(tiếng Anh - Mỹ) và định dạng được xác định ở format
+
+             * format(new Date(dateTimeString)
+             * Định dạng đối tượng Date thành chuỗi ngày giờ theo kiểu en-US
+             */
             const datetimeFormatted = new Intl.DateTimeFormat('en-US', format).format(new Date(dateTimeString));
-            return datetimeFormatted;
+            return datetimeFormatted; // Hàm sẽ trả về như vậy Nov 03, 2024, 02:30 PM
+        }
+
+        /* Khởi tạo hàm scrollBottom để mỗi lần xuất hiện tin nhắn sẽ lăn đến tin nhắn mới nhất */
+        function scrollBottomMsg() {
+            chatboxField.scrollTop(chatboxField.prop("scrollHeight"))
         }
 
         $(document).ready(function() {
+            /* Khởi tạo biến baseURI nhằm để hỗ trợ việc gắn asset cho img */
             const baseURI = "{{ asset('/') }}";
+
+            /* Bắt sự kiện click trên phần tử có class profile-box */
             $('.profile-box').on('click', function() {
+                /*Hàm khi người dùng click vào thì sẽ hiện chatbox lên*/
+                $('.chatbox_single_form').removeClass('d-none')
+                /**
+                 * Gọi hàm updateProfileChat và truyền phần tử vừa được nhấp ($(this)) vào và cập nhật hồ sơ người dùng hiện tại vào giao diện
+                 * $(this) sẽ là tham số cho data ở trên để gọi các giá trị nằm trong hồ sơ giao diện người dùng yêu cầu
+                 */
                 updateProfileChat($(this));
 
-                const chatboxFeild = $('.chatbox_field');
-                chatboxFeild.html("");
+                /* Làm sạch form input trước khi thêm tin nhắn mới */
+                chatboxField.html("");
 
+                /* Sử dụng $(this) để gọi data từ biến này của người dùng nhập sau đó gán vào giá trị khởi tạo */
                 let listingId = $(this).data('listing-id');
                 let receiverId = $(this).data('receiver-id')
 
@@ -135,33 +180,99 @@
                     method: 'GET',
                     url: '{{ route('user.store-messages') }}',
                     data: {
-                        'listing_id': listingId,
-                        'receiver_id': receiverId
+                        'listing_id': listingId, // Dữ liệu gửi lên máy chủ với trường listing_id
+                        'receiver_id': receiverId // Dữ liệu gửi lên máy chủ với trường receiver_id
                     },
                     beforeSend: function() {
-
+                        chatboxField.html(loadingData)
                     },
                     success: function(response) {
-                        $.each(response, function(index, value) {
-                            console.log(value)
+                        chatboxField.html("")
+                        /**
+                         * Lặp qua từng tin nhắn trong response với hàm function(index, value)
+                         * index(i) là chỉ số phần tử hiện tại trong mảng hoặc đối tượng đang được lặp. Trong trường hợp này là response sẽ lặp qua các tin nhắn
+                         * value(msg) là giá trị phần tử trong response. Trường hợp này sẽ là đối tượng của 1 tin nhắn(msg)
+                         */
+                        $.each(response, function(i, msg) {
                             let textMessage =
                                 `<div class="tf__chating tf_chat_right">
                                     <div class="tf__chating_text">
-                                        <p>${value.message}</p>
-                                        <span>${datetimeFormat(value.created_at)}</span>
+                                        <p>${msg.message}</p>
+                                        <span>${datetimeFormat(msg.created_at)}</span>
                                     </div>
                                     <div class="tf__chating_img">
-                                        <img src="${baseURI + value.sender_info.avatar}" alt="person" class="img-fluid w-100">
+                                        <img src="${baseURI + msg.sender_info.avatar}" alt="person" class="img-fluid w-100">
                                     </div>
                                 </div>`
-                            chatboxFeild.append(textMessage);
+                            chatboxField.append(textMessage);
                         })
+                        scrollBottomMsg()
                     },
                     error: function(xhr, status, error) {
 
                     },
                     complete: function() {
 
+                    }
+                })
+            })
+
+            $('.form-chatbox').on('submit', function(e) {
+                /*Ngăn chặn hành vi mặc định của sự kiện submit, điều này ngăn chặn biểu mẫu được gửi theo cách truyền thống (reload trang). */
+                e.preventDefault();
+                /* serialize(): Chuyển đổi tất cả các trường của form thành một chuỗi URL-encoded. Ví dụ: user_id=1&message=hello */
+                let formMessageData = $(this).serialize();
+                /* Lấy trường có Id message gán vào giá trị */
+                let messageBoxData = $('#message').val();
+                /* Giá trị này sử dụng khi người dùng gửi thì không cho gửi cho đến khi gửi hoàn tất*/
+                var preventSendingMulti = false;
+
+                /*Nếu người dùng đang gửi hoặc form trống thì sẽ trả về là undefined */
+                if (preventSendingMulti || messageBoxData === "") {
+                    return;
+                }
+
+                /**
+                 * let textMessage: Gán các giá trị vào biến textMessage và đặt bên ngoài nhằm tối ưu khi gửi tin nhắn cho người dùng,
+                 * trong trường hợp này người dùng không phải đợi khi hoàn thành mới có thể đọc được tin nhắn đã gửi
+
+                 * USER_PROFILE lấy data từ biến global variables được khởi tạo ở main.blade
+                 */
+                let textMessage =
+                    `<div class="tf__chating tf_chat_right">
+                        <div class="tf__chating_text">
+                            <p>${messageBoxData}</p>
+                            <span class="sending-msg">Sending...</span>
+                        </div>
+                        <div class="tf__chating_img">
+                            <img src="${USER_PROFILE.avatar}" alt="person" class="img-fluid w-100">
+                        </div>
+                    </div>`
+                chatboxField.append(textMessage);
+                scrollBottomMsg()
+
+                $('.form-chatbox').trigger('reset');
+
+                $.ajax({
+                    method: 'POST',
+                    url: '{{ route('user.new-message') }}',
+                    data: formMessageData,
+                    beforeSend: function() {
+                        preventSendingMulti = true;
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $('.sending-msg').remove()
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr);
+                        if (xhr.responseJSON.message) {
+                            toastr.error(xhr.responseJSON.message);
+                        }
+                    },
+                    complete: function() {
+                        preventSendingMulti = false;
                     }
                 })
             })

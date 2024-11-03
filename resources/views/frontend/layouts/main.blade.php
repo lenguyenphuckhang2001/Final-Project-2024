@@ -30,6 +30,11 @@
     <script>
         var PUSHER_APP_KEY = "{{ config('settings.pusher_key') }}"
         var PUSHER_CLUSTER = "{{ config('settings.pusher_cluster') }}"
+        var USER_PROFILE = {
+            id: "{{ auth()->user()?->id }}",
+            name: "{{ auth()->user()?->name }}",
+            avatar: "{{ auth()->user()?->avatar }}"
+        }
     </script>
 
     @vite(['resources/js/app.js'])

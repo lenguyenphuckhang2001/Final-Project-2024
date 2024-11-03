@@ -3,6 +3,7 @@
 @push('styles')
     <script src="https://kit.fontawesome.com/ba25ab417c.js" crossorigin="anonymous"></script>
 @endpush
+
 @section('contents')
     <!------------------------Breadcrumb---------------------->
     <div id="breadcrumb_part"
@@ -329,12 +330,12 @@
                             <h5 class="mb-2">Message</h5>
                             <p>Tell with us about your problem or question here</p>
                         </div>
-                        <form action="" method="POST" class="message-form">
+                        <form action="" method="POST" class="form-message">
                             @csrf
                             <input type="hidden" name="receiver_id" value="{{ $listing->user_id }}">
                             <input type="hidden" name="listing_id" value="{{ $listing->id }}">
                             <textarea cols="100" rows="5" name="message" placeholder="Message"></textarea>
-                            <button type="submit" class="send-btn">Send</button>
+                            <button type="submit" class="send-message-form">Send</button>
                         </form>
                     </div>
                 </div>
@@ -345,22 +346,22 @@
 
 @push('scripts')
     <script>
-        $('.message-form').on('submit', function(e) {
+        $('.form-message').on('submit', function(e) {
             e.preventDefault();
             // serialize(): Chuyển đổi tất cả các trường của form thành một chuỗi URL-encoded. Ví dụ: user_id=1&message=hello
-            let formData = $(this).serialize();
+            let formMessageData = $(this).serialize();
             $.ajax({
                 method: 'POST',
-                url: '{{ route('user.send-message') }}',
-                data: formData,
+                url: '{{ route('user.new-message') }}',
+                data: formMessageData,
                 beforeSend: function() {
                     //Add loading boostrap when user sent message
-                    $('.send-btn')
+                    $('.send-message-form')
                         .html(
                             `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>Sending...`
                         )
                     //When user is sending prevent click using disabled
-                    $('.send-btn').prop('disabled', true);
+                    $('.send-message-form').prop('disabled', true);
                 },
                 success: function(response) {
                     if (response.status === 'success') {
@@ -375,11 +376,11 @@
                 },
                 complete: function() {
                     //After completed sent show this
-                    $('.send-btn').html(`Sent`);
+                    $('.send-message-form').html(`Sent`);
                     //When sending success disabled is remove using false
-                    $('.send-btn').prop('disabled', false);
+                    $('.send-message-form').prop('disabled', false);
                     //Use trigger to reset message in form
-                    $('.message-form').trigger('reset');
+                    $('.form-message').trigger('reset');
                     //Use model('hide') to hide popup when user sent
                     $('#modalPopup').modal('hide');
                     //Show this alert to notify user want to message or not

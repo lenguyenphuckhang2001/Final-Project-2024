@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::put('/profile-change-banner', [UserProfileController::class, 'changeBanner'])->name('profile-change-banner.update');
 
     Route::resource('/listing', UserListingController::class);
-    
+
     Route::resource('/image-gallery', UserListingImageGalleryController::class);
     Route::resource('/video-gallery', UserListingVideoGalleryController::class);
 
@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::get('/order/{id}', [OrderListController::class, 'show'])->name('order.show');
 
     Route::get('/messages', [ChatController::class, 'index'])->name('messages.index');
-    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
+    Route::post('/new-message', [ChatController::class, 'newMessage'])->name('new-message');
     Route::get('/store-messages', [ChatController::class, 'storeMessages'])->name('store-messages');
 });
 
