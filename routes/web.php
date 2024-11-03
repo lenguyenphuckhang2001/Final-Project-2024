@@ -3,7 +3,7 @@
 use App\Http\Controllers\Frontend\ChatController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\Frontend\FrontendProfileController;
+use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserListingController;
 use App\Http\Controllers\Frontend\UserListingImageGalleryController;
 use App\Http\Controllers\FrontEnd\UserListingScheduleController;
@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//HOME PAGES ROUTE
+/*------------------------------------------ FRONTEND CONTROLLER ------------------------------------------*/
+
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/listings', [FrontendController::class, 'listings'])->name('listings');
 Route::get('/listing-modal/{id}', [FrontendController::class, 'listingModal'])->name('listing-modal');
@@ -34,22 +35,22 @@ Route::get('checkout/{id}', [FrontendController::class, 'checkout'])->name('chec
 Route::post('/listing-support', [FrontendController::class, 'supportListing'])->name('listing-support');
 Route::post('/listing-evaluate', [FrontendController::class, 'evaluateListing'])->name('listing-evaluate.store')->middleware('auth');
 
-//PROFILE PAGES ROUTE
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//DASHBOARD PAGES ROUTE
+/*------------------------------------------ DASHBOARD ------------------------------------------*/
 Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile', [FrontendProfileController::class, 'index'])->name('profile.index');
-    Route::put('/profile', [FrontendProfileController::class, 'updateInfo'])->name('profile.update');
-    Route::put('/profile-change-password', [FrontendProfileController::class, 'changePassword'])->name('profile-change-password.update');
-    Route::put('/profile-change-banner', [FrontendProfileController::class, 'changeBanner'])->name('profile-change-banner.update');
+    Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile', [UserProfileController::class, 'updateInfo'])->name('profile.update');
+    Route::put('/profile-change-password', [UserProfileController::class, 'changePassword'])->name('profile-change-password.update');
+    Route::put('/profile-change-banner', [UserProfileController::class, 'changeBanner'])->name('profile-change-banner.update');
 
     Route::resource('/listing', UserListingController::class);
+    
     Route::resource('/image-gallery', UserListingImageGalleryController::class);
     Route::resource('/video-gallery', UserListingVideoGalleryController::class);
 
@@ -68,18 +69,18 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::get('/store-messages', [ChatController::class, 'storeMessages'])->name('store-messages');
 });
 
-//PAYMENT PAGES ROUTE
+/*----------------------------------------- PAYMENT ROUTE -----------------------------------------*/
 Route::group(['middleware' => 'auth'], function () {
-    //Payment
+    /* PAYMENT STATUS */
     Route::get('payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
     Route::get('payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
 
-    //Paypal
+    /* PAYPAL METHOD */
     Route::get('paypal/payment', [PaymentController::class, 'paypalPay'])->name('paypal.payment');
     Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
     Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
 
-    //Stripe
+    /* STRIPE METHOD */
     Route::get('stripe/payment', [PaymentController::class, 'stripePay'])->name('stripe.payment');
     Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
     Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');

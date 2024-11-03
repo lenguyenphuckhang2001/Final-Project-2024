@@ -4,7 +4,7 @@ namespace App\Http\Requests\Frontend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileUpdateUserRequest extends FormRequest
+class UserUpdateProfileRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

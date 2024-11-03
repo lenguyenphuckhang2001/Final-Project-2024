@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\ProfileUpdateUserRequest;
+use App\Http\Requests\Frontend\UserUpdateProfileRequest;
 use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\RedirectResponse;
@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Redirect;
 
-class FrontendProfileController extends Controller
+class UserProfileController extends Controller
 {
     use FileUploadTrait;
 
@@ -21,7 +21,7 @@ class FrontendProfileController extends Controller
         return view('frontend.dashboard.profile.index', compact('user'));
     }
 
-    function updateInfo(ProfileUpdateUserRequest $request): RedirectResponse
+    function updateInfo(UserUpdateProfileRequest $request): RedirectResponse
     {
         $avatarPath = $this->uploadImage($request, 'avatar', $request->old_avatar);
 
