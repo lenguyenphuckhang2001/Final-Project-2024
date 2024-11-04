@@ -5419,7 +5419,7 @@ AGENT PROFILE END
 }
 
 .tf__message_list {
-    border: 1px solid #5e5b5b17;
+    border: 1px solid #5a575717;
     position: relative;
     height: 770px;
     overflow: hidden;
@@ -5536,7 +5536,7 @@ AGENT PROFILE END
     font-size: 14px;
 }
 
-.tf___single_chat {
+.chatbox_single_form {
     border: 1px solid #5e5b5b17;
     border-radius: 10px;
     -webkit-border-radius: 10px;

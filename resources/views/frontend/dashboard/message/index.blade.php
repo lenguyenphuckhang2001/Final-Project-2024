@@ -162,7 +162,7 @@
             /* Bắt sự kiện click trên phần tử có class profile-box */
             $('.profile-box').on('click', function() {
                 /*Hàm khi người dùng click vào thì sẽ hiện chatbox lên*/
-                $('.chatbox_single_form').removeClass('d-none')
+                $('.chatbox_single_form').removeClass('d-none');
                 /**
                  * Gọi hàm updateProfileChat và truyền phần tử vừa được nhấp ($(this)) vào và cập nhật hồ sơ người dùng hiện tại vào giao diện
                  * $(this) sẽ là tham số cho data ở trên để gọi các giá trị nằm trong hồ sơ giao diện người dùng yêu cầu

@@ -13,7 +13,7 @@
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $name
@@ -44,7 +44,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int|null $listing_id
@@ -74,7 +74,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -103,7 +103,54 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * 
  *
+ * @property int $id
+ * @property string $icon
+ * @property string $name
+ * @property string $slug
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility whereUpdatedAt($value)
+ */
+	class Facility extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $listing_id
+ * @property int $facility_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Facility|null $facility
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereFacilityId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereUpdatedAt($value)
+ */
+	class FacilityListing extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
  *
  * @property int $id
  * @property string|null $background
@@ -126,7 +173,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -147,7 +194,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $user_id
@@ -183,6 +230,8 @@ namespace App\Models{
  * @property-read \App\Models\Category $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Evaluate> $evaluates
  * @property-read int|null $evaluates_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FacilityListing> $facilities
+ * @property-read int|null $facilities_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ImageGalerry> $gallery
  * @property-read int|null $gallery_count
  * @property-read \App\Models\Location $location
@@ -234,7 +283,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -261,7 +310,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $name
@@ -288,7 +337,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $user_id
@@ -318,7 +367,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $user_id
@@ -359,7 +408,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $type
@@ -384,8 +433,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereDisplayAtHome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitFacilities($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitDays($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitFacilities($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitFeaturedListing($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitListing($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereLimitPhotos($value)
@@ -403,7 +452,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $key
@@ -424,7 +473,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $key
@@ -445,7 +494,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -471,7 +520,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $user_type
@@ -526,7 +575,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id

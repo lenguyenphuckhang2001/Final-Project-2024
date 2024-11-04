@@ -30,11 +30,7 @@ class SupportDataTable extends DataTable
                 $html = '<a target="_blank" href="' . route('listing.detail', $query->listing->slug) . '">' . $query->listing->title . '</a>';
                 return $html;
             })
-            ->filterColumn('listing', function ($query, $keyword) {
-                $query->orWhereHas('listing', function ($subQuery) use ($keyword) {
-                    $subQuery->where('title', 'like', '%' . $keyword . '%');
-                });
-            })
+
             /** Hàm sửa lỗi search query datatables
              * Hàm filterColumn() là câu lệnh cho phép áp dụng bộ lọc trong datatable
              * $keyword là tham số truy vấn chính của người dùng khi tìm kiếm
@@ -50,6 +46,12 @@ class SupportDataTable extends DataTable
              *      -> keyword%: Tìm từ khóa bắt đầu bằng $keyword
              *      -> %keyword: Tìm từ khóa kết thúc bằng $keyword
              */
+            ->filterColumn('listing', function ($query, $keyword) {
+                $query->orWhereHas('listing', function ($subQuery) use ($keyword) {
+                    $subQuery->where('title', 'like', '%' . $keyword . '%');
+                });
+            })
+
 
             ->rawColumns(['action', 'listing'])
             ->setRowId('id');

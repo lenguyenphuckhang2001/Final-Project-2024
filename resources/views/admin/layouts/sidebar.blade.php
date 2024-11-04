@@ -175,20 +175,32 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Starter</li>
-            <li class="{{ setActiveRoute(['admin.dashboard.index']) }}"><a class="nav-link"
-                    href="{{ route('admin.dashboard.index') }}"><i class="far fa-square"></i>
-                    <span>Dashboard</span></a></li>
 
+            <!-- Dashboard -->
+            <li class="{{ setActiveRoute(['admin.dashboard.index']) }}">
+                <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Sections -->
             <li class="dropdown {{ setActiveRoute(['admin.hero.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                        class="fas fa-columns"></i> <span>Sections</span></a>
-
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-th-large"></i>
+                    <span>Sections</span>
+                </a>
                 <ul class="dropdown-menu">
-                    <li class="{{ setActiveRoute(['admin.hero.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.hero.index') }}">Hero</a></li>
+                    <li class="{{ setActiveRoute(['admin.hero.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.hero.index') }}">
+                            <i class="fas fa-image"></i>
+                            Hero
+                        </a>
+                    </li>
                 </ul>
             </li>
 
+            <!-- Listing -->
             <li
                 class="dropdown {{ setActiveRoute([
                     'admin.listing.*',
@@ -199,43 +211,102 @@
                     'admin.evaluate.*',
                     'admin.supports.*',
                 ]) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
-                    <span>Listing</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-list"></i>
+                    <span>Listing</span>
+                </a>
                 <ul class="dropdown-menu">
-                    <li class="{{ setActiveRoute(['admin.category.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.category.index') }}">Category</a></li>
-                    <li class="{{ setActiveRoute(['admin.location.*']) }}"> <a class="nav-link"
-                            href="{{ route('admin.location.index') }}">Location</a></li>
-                    <li class="{{ setActiveRoute(['admin.facility.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.facility.index') }}">Facility</a></li>
-                    <li class="{{ setActiveRoute(['admin.listing.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.listing.index') }}">All Listings</a></li>
-                    <li class="{{ setActiveRoute(['admin.pending.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.pending.index') }}">Pending Listing</a></li>
-                    <li class="{{ setActiveRoute(['admin.evaluate.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.evaluate.index') }}">Evaluate</a></li>
-                    <li class="{{ setActiveRoute(['admin.supports.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.supports.index') }}">Supports</a></li>
+                    <li class="{{ setActiveRoute(['admin.category.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.category.index') }}">
+                            <i class="fas fa-tags"></i>
+                            Category
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.location.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.location.index') }}">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Location
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.facility.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.facility.index') }}">
+                            <i class="fas fa-building"></i>
+                            Facility
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.listing.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.listing.index') }}">
+                            <i class="fas fa-list-alt"></i>
+                            All Listings
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.pending.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.pending.index') }}">
+                            <i class="fas fa-clock"></i>
+                            Pending Listing
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.evaluate.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.evaluate.index') }}">
+                            <i class="fas fa-star-half-alt"></i>
+                            Evaluate
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.supports.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.supports.index') }}">
+                            <i class="fas fa-headset"></i>
+                            Supports
+                        </a>
+                    </li>
                 </ul>
             </li>
 
+            <!-- Package -->
             <li class="dropdown {{ setActiveRoute(['admin.packages.*', 'admin.payment-settings.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                        class="fas fa-columns"></i> <span>Package</span></a>
-
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-box"></i>
+                    <span>Package</span>
+                </a>
                 <ul class="dropdown-menu">
-                    <li class="{{ setActiveRoute(['admin.packages.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.packages.index') }}">All Packages</a></li>
-                    <li class="{{ setActiveRoute(['admin.payment-settings.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.payment-settings.index') }}">Payment</a></li>
+                    <li class="{{ setActiveRoute(['admin.packages.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.packages.index') }}">
+                            <i class="fas fa-box-open"></i>
+                            All Packages
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.payment-settings.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
+                            <i class="fas fa-credit-card"></i>
+                            Payment
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li><a class="nav-link" href="{{ route('admin.orders.index') }}"><i class="far fa-square"></i>
-                    <span>Order</span></a></li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank
-                        Page</span></a></li>
-            <li><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="far fa-square"></i>
-                    <span>Settings</span></a></li>
+
+            <!-- Order -->
+            <li>
+                <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Order</span>
+                </a>
+            </li>
+
+            <!-- Message -->
+            <li>
+                <a class="nav-link" href="{{ route('admin.message.index') }}">
+                    <i class="fas fa-envelope"></i>
+                    <span>Message</span>
+                </a>
+            </li>
+
+            <!-- Settings -->
+            <li>
+                <a class="nav-link" href="{{ route('admin.setting.index') }}">
+                    <i class="fas fa-cogs"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
         </ul>
+
     </aside>
 </div>

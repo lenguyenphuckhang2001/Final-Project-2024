@@ -22,6 +22,6 @@ class Chat extends Model
 
     function listingInfo(): BelongsTo
     {
-        return $this->belongsTo(Listing::class, 'listing_id', 'id')->select(['id', 'image', 'title']);
+        return $this->belongsTo(Listing::class, 'listing_id', 'id')->select(['id', 'image', 'title', 'slug']);
     }
 }
