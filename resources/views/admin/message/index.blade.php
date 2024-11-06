@@ -48,7 +48,7 @@
                             <h4 id="box-title">Title</h4>
                         </div>
                         <div class="card-body chat-content">
-
+                            
                         </div>
                         <div class="card-footer chat-form">
                             <form id="chat-form" class="form-chatbox">
@@ -204,7 +204,7 @@
 
             /* Giá trị này sử dụng khi người dùng gửi thì không cho gửi cho đến khi gửi hoàn tất*/
             var preventSendingMulti = false;
-            
+
             /*Nếu người dùng đang gửi hoặc form trống thì sẽ trả về là undefined */
             if (preventSendingMulti || messageBoxData === "") {
                 return;

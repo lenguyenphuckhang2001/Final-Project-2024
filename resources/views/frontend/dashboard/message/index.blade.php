@@ -32,7 +32,8 @@
                                                             <p><i class="fas fa-house-user" style="color: #22d5e2;"></i>
                                                                 {{ $receiver->receiverInfo->name }}
                                                             </p>
-                                                            <span class="tf__massage_time">online</span>
+                                                            <span
+                                                                class="tf__massage_time text-success fw-bold">online</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -194,16 +195,29 @@
                          * value(msg) là giá trị phần tử trong response. Trường hợp này sẽ là đối tượng của 1 tin nhắn(msg)
                          */
                         $.each(response, function(i, msg) {
-                            let textMessage =
-                                `<div class="tf__chating tf_chat_right">
-                                    <div class="tf__chating_text">
-                                        <p>${msg.message}</p>
-                                        <span>${datetimeFormat(msg.created_at)}</span>
-                                    </div>
-                                    <div class="tf__chating_img">
-                                        <img src="${baseURI + msg.sender_info.avatar}" alt="person" class="img-fluid w-100">
-                                    </div>
-                                </div>`
+                            if (USER_PROFILE.id == msg.sender_info.id)
+                                var textMessage =
+                                    `<div class="tf__chating tf_chat_right">
+                                        <div class="tf__chating_text">
+                                            <p>${msg.message}</p>
+                                            <span>${datetimeFormat(msg.created_at)}</span>
+                                        </div>
+                                        <div class="tf__chating_img">
+                                            <img src="${baseURI + msg.sender_info.avatar}" alt="person" class="img-fluid w-100">
+                                        </div>
+                                    </div>`
+                            else {
+                                var textMessage =
+                                    `<div class="tf__chating">
+                                        <div class="tf__chating_img">
+                                            <img src="${baseURI + msg.sender_info.avatar}" alt="person" class="img-fluid rounded-circle w-100">
+                                        </div>
+                                        <div class="tf__chating_text">
+                                            <p>${msg.message}</p>
+                                            <span>${datetimeFormat(msg.created_at)}</span>
+                                        </div>
+                                    </div>`
+                            }
                             chatboxField.append(textMessage);
                         })
                         scrollBottomMsg()
