@@ -15,17 +15,17 @@ class LiveMessage implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
-    public $senderId;
     public $receiverId;
+    public $listingId;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($message, $senderId, $receiverId)
+    public function __construct($message, $receiverId, $listingId)
     {
         $this->message = $message;
-        $this->senderId = $senderId;
         $this->receiverId = $receiverId;
+        $this->listingId = $listingId;
     }
 
     /**
@@ -44,8 +44,8 @@ class LiveMessage implements ShouldBroadcast
     {
         return [
             'message' => $this->message,
-            'sender_id' => $this->senderId,
             'receiver_id' => $this->receiverId,
+            'listing_id' => $this->listingId,
             'user' => auth()->user()->only(['id', 'name', 'avatar'])
         ];
     }

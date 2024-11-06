@@ -47,8 +47,8 @@
                                 src="" style="object-fit: cover" alt="img">
                             <h4 id="box-title">Title</h4>
                         </div>
-                        <div class="card-body chat-content">
-                            
+                        <div class="card-body chat-content" data-listing-chatbox="" data-user-chatbox="">
+                            {{-- Content of message chatbox in this div --}}
                         </div>
                         <div class="card-footer chat-form">
                             <form id="chat-form" class="form-chatbox">
@@ -110,6 +110,9 @@
             let receiverId = data.data('sender-id');
             $('#listing_id').val(listingId);
             $('#receiver_id').val(receiverId);
+            /*Truyền data cho việc gửi tin nhắn với id của listing với user nhằm tập trung vào chat của 1 đối tượng listing */
+            chatboxField.attr('data-listing-chatbox', listingId);
+            chatboxField.attr('data-user-chatbox', receiverId);
         }
 
 

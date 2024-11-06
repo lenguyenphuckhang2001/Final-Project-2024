@@ -55,7 +55,8 @@
                                                         <h4 id="box-title">Title</h4>
                                                     </div>
                                                 </div>
-                                                <div class="tf__single_chat_body chatbox_field">
+                                                <div class="tf__single_chat_body chatbox_field" data-listing-chatbox=""
+                                                    data-user-chatbox="">
                                                     {{-- All event handle in script code below --}}
                                                 </div>
                                                 <form class="tf__single_chat_bottom form-chatbox">
@@ -127,6 +128,9 @@
             let listingId = data.data('listing-id');
             $('#receiver_id').val(receiverId);
             $('#listing_id').val(listingId);
+
+            chatboxField.attr('data-listing-chatbox', listingId);
+            chatboxField.attr('data-user-chatbox', receiverId);
         }
 
         function datetimeFormat(dateTimeString) {

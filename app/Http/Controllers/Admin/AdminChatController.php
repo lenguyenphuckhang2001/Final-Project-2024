@@ -53,10 +53,10 @@ class AdminChatController extends Controller
         $chat->listing_id = $request->listing_id;
         $chat->sender_id = auth()->user()->id;
         $chat->receiver_id = $request->receiver_id;
-        $chat->message = $request->message  ;
+        $chat->message = $request->message;
         $chat->save();
 
-        broadcast(new LiveMessage($chat->message, $chat->sender_id, $chat->receiver_id));
+        broadcast(new LiveMessage($chat->message, $chat->receiver_id, $chat->listing_id));
 
         return response(['status' => 'success', 'message' => 'Sent Successfully']);
     }
