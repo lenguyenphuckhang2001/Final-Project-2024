@@ -63,7 +63,7 @@
                                                     <input type="hidden" id="receiver_id" name="receiver_id"
                                                         value="">
                                                     <input type="hidden" id="listing_id" name="listing_id" value="">
-                                                    <input type="text" id="message" name="message"
+                                                    <input type="text" id="message" name="message" autocomplete="off"
                                                         placeholder="Message...">
                                                     <button class="tf__massage_btn">
                                                         <i class="fas fa-paper-plane"></i>
@@ -160,7 +160,7 @@
             /* Khởi tạo biến baseURI nhằm để hỗ trợ việc gắn asset cho img */
             const baseURI = "{{ asset('/') }}";
 
-            /* Bắt sự kiện click trên phần tử có class profile-box */
+            /* Lưu tin nhắn */
             $('.profile-box').on('click', function() {
                 /*Hàm khi người dùng click vào thì sẽ hiện chatbox lên*/
                 $('.chatbox_single_form').removeClass('d-none');
@@ -203,7 +203,7 @@
                                             <span>${datetimeFormat(msg.created_at)}</span>
                                         </div>
                                         <div class="tf__chating_img">
-                                            <img src="${baseURI + msg.sender_info.avatar}" alt="person" class="img-fluid w-100">
+                                            <img src="${baseURI + msg.sender_info.avatar}" alt="person" class="img-fluid rounded-circle w-100">
                                         </div>
                                     </div>`
                             else {
@@ -231,6 +231,7 @@
                 })
             })
 
+            /* Gửi tin nhắn */
             $('.form-chatbox').on('submit', function(e) {
                 /*Ngăn chặn hành vi mặc định của sự kiện submit, điều này ngăn chặn biểu mẫu được gửi theo cách truyền thống (reload trang). */
                 e.preventDefault();
@@ -259,7 +260,7 @@
                             <span class="sending-msg">Sending...</span>
                         </div>
                         <div class="tf__chating_img">
-                            <img src="${USER_PROFILE.avatar}" alt="person" class="img-fluid w-100">
+                            <img src="${USER_PROFILE.avatar}" alt="person" class="img-fluid rounded-circle w-100">
                         </div>
                     </div>`
                 chatboxField.append(textMessage);

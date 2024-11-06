@@ -20,9 +20,11 @@
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
     <script>
         var PUSHER_APP_KEY = "{{ config('settings.pusher_key') }}"
-        var PUSHER_CLUSTER = "{{ config('settings.pusher_cluster') }}"
+        var PUSHER_APP_CLUSTER = "{{ config('settings.pusher_cluster') }}"
         var USER_PROFILE = {
             id: "{{ auth()->user()?->id }}",
             name: "{{ auth()->user()?->name }}",
@@ -30,7 +32,7 @@
         }
     </script>
 
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/js/admin-chanel.js'])
 </head>
 
 <body>

@@ -7,6 +7,8 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/admin-chanel.js',
+                'resources/js/frontend-chanel.js'
             ],
             refresh: true,
         }),

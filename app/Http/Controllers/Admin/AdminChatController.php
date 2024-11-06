@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\LiveMessage;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use Illuminate\Http\Request;
@@ -54,6 +55,8 @@ class AdminChatController extends Controller
         $chat->receiver_id = $request->receiver_id;
         $chat->message = $request->message  ;
         $chat->save();
+
+        broadcast(new LiveMessage($chat->message, $chat->sender_id, $chat->receiver_id));
 
         return response(['status' => 'success', 'message' => 'Sent Successfully']);
     }
