@@ -20,7 +20,9 @@ class ChatController extends Controller
             ->select('receiver_id', 'listing_id') //Chỉ lấy receiver_id và listing_id từ bảng Chat để giảm bớt lượng dữ liệu không cần thiết.
             ->where('sender_id', $senderId) //Đảm bảo chỉ có sender_id là ID của người gửi hiện tại. Điều này nhằm lọc ra tất cả các tin nhắn đã gửi của người dùng hiện tại
             ->where('receiver_id', '!=', $senderId) //Điều kiện này sẽ không lấy những cuộc trò chuyện mà gửi cũng là người nhận
+            ->selectRaw('MAX(created_at) as chat_latest_message') //selectRaw cho phép sử dụng SQL thô, bao gồm các phép toán, hàm tổng hợp (như MAX(), COUNT(), v.v.) mà select không làm được. MAX ở đây là lấy thời gian tạo mới nhất và gán giá trị vào để sử dụng
             ->groupBy('receiver_id', 'listing_id') //Nhóm các bản ghi theo receiver_id và listing_id giúp loại bỏ các bản ghi trùng lặp chỉ giữ lại 1 bản nhất cho receiver. Ví dụ, người nhận chỉ xuất hiện một lần trong kết quả chatbox.
+            ->orderByDesc('chat_latest_message')
             ->get()
             ->map(function ($receiver) use ($senderId) {
                 $receiver->unreadMessage = Chat::where([
@@ -29,7 +31,6 @@ class ChatController extends Controller
                     'listing_id' => $receiver->listing_id,
                     'seen' => 0,
                 ])->exists();
-                return $receiver;
                 /** Giải thích hàm map
                  * Sử dụng hàm map để tập hợp mới các phần tử đã được biến đổi mà không thay đổi trực tiếp từ ban đầu. Nghĩa là mình
                  * không muốn chỉ duyệt qua các phần tử receiver mà còn muốn gán thêm thuộc tính unreadMessage vào cho từng phần tử receiver
@@ -40,6 +41,7 @@ class ChatController extends Controller
                  * Hàm exist() là hàm boolean sẽ kiểm tra xem có tin nhắn nào từ người gửi (sender_id) là $receiver->receiver_id gửi đến người dùng hiện tại
                  * (receiver_id là auth()->user()->id) trong cùng một listing mà chưa được đọc (seen là 0) hay không. Nếu đúng đúng là true ngược lại false
                  */
+                return $receiver;
             });
 
         return view('frontend.dashboard.message.index', compact('receivers'));

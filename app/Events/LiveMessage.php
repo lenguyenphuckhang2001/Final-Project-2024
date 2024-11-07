@@ -36,17 +36,23 @@ class LiveMessage implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('message.' . $this->receiverId),
+            new PrivateChannel('chat-messages.' . $this->receiverId),
         ];
     }
 
     function broadcastWith(): array
     {
-        return [
-            'message' => $this->message,
-            'receiver_id' => $this->receiverId,
-            'listing_id' => $this->listingId,
-            'user' => auth()->user()->only(['id', 'name', 'avatar'])
-        ];
+        $user = auth()->user();
+        if ($user) {
+            return [
+                'message' => $this->message,
+                'receiver_id' => $this->receiverId,
+                'listing_id' => $this->listingId,
+                'user' => $user->only(['id', 'name', 'avatar'])
+            ];
+        }
+
+        // Trả về một mảng rỗng nếu không có người dùng hợp lệ
+        return [];
     }
 }

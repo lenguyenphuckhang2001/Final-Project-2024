@@ -5,13 +5,16 @@
         <div class="section-header">
             <h1>Message</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
+                <div class="breadcrumb-item active">
+                    <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
+                </div>
                 <div class="breadcrumb-item">Message</div>
             </div>
         </div>
 
         <div class="section-body">
             <div class="row align-items-center justify-content-center">
+                <!-- Senders List Column -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="card" style="height: 70vh">
                         <div class="card-body">
@@ -35,15 +38,18 @@
                                                 <span
                                                     class="text-primary">({{ cutString($sender->listingInfo->title) }})</span>
                                             </div>
-                                            <div class="text-success text-small font-600-bold"><i class="fas fa-circle"></i>
-                                                Online</div>
+                                            <div class="active-status">
+                                                <div class="text-small font-600-bold text-secondary">
+                                                    <i class="fas fa-circle"></i> Offline
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="btn-group dropleft" data-listing-chatbox="" data-user-chatbox="">
-                                            <button class="btn btn-outline btn-sm" type="button" id="dropdownMenu2"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="btn-group dropleft">
+                                            <button class="btn btn-outline btn-sm" type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-share-square"></i>
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <div class="dropdown-menu">
                                                 <a class="dropdown-item" target="_blank"
                                                     href="{{ route('listing.detail', $sender->listingInfo->slug) }}">
                                                     Open Link Listing
@@ -56,14 +62,16 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Chatbox Column -->
                 <div class="col-12 col-sm-6 col-lg-8">
                     <div class="card chat-box d-none" id="mychatbox" style="height: 70vh">
                         <div class="card-header">
                             <img alt="image" class="mr-3 rounded-circle" width="50" height="50" id="box-image"
-                                src="" style="object-fit: cover" alt="img">
+                                src="" style="object-fit: cover">
                             <h4 id="box-title">Title</h4>
                         </div>
-                        <div class="card-body chat-content" data-listing-chatbox="" data-user-chatbox="">
+                        <div class="card-body chat-content">
                             {{-- Content of message chatbox in this div --}}
                         </div>
                         <div class="card-footer chat-form">

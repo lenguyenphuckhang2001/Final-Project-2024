@@ -2,7 +2,7 @@ function scrollBottomMsg() {
     $(".chat-content").scrollTop($(".chat-content").prop("scrollHeight"));
 }
 
-window.Echo.private("message." + USER_PROFILE.id).listen(
+window.Echo.private("chat-messages." + USER_PROFILE.id).listen(
     "LiveMessage",
     (event) => {
         console.log(event);
@@ -39,3 +39,46 @@ window.Echo.private("message." + USER_PROFILE.id).listen(
         });
     }
 );
+
+window.Echo.join("active-user")
+    .here((users) => {
+        $.each(users, function (i, user) {
+            $(".profile-box").each(function () {
+                let userChatBoxId = $(this).data("sender-id");
+
+                if (userChatBoxId == user.id) {
+                    $(this).find(".active-status").html(` 
+                        <div class="text-small font-600-bold text-success">
+                            <i class="fas fa-circle"></i>
+                                Online
+                        </div>`);
+                }
+            });
+        });
+    })
+    .joining((user) => {
+        $(".profile-box").each(function () {
+            let userChatBoxId = $(this).data("sender-id");
+
+            if (userChatBoxId == user.id) {
+                $(this).find(".active-status").html(` 
+                        <div class="text-small font-600-bold text-success">
+                            <i class="fas fa-circle"></i>
+                                Online
+                        </div>`);
+            }
+        });
+    })
+    .leaving((user) => {
+        $(".profile-box").each(function () {
+            let userChatBoxId = $(this).data("sender-id");
+
+            if (userChatBoxId == user.id) {
+                $(this).find(".active-status").html(` 
+                    <div class="text-small font-600-bold text-secondary">
+                        <i class="fas fa-circle"></i>
+                            Offline
+                    </div>`);
+            }
+        });
+    });

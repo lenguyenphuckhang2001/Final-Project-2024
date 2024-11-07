@@ -19,7 +19,9 @@ class AdminChatController extends Controller
             ->select('sender_id', 'listing_id')
             ->where('receiver_id', $receiverId)
             ->where('sender_id', '!=', $receiverId)
+            ->selectRaw('MAX(created_at) as chat_latest_message')
             ->groupBy('sender_id', 'listing_id')
+            ->orderByDesc('chat_latest_message')
             ->get();
 
         return view('admin.message.index', compact('senders'));

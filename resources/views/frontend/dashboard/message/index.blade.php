@@ -11,32 +11,37 @@
                     <div class="dashboard_content">
                         <div class="dashboard_message_area">
                             <div class="row">
+                                <!-- Message List Column -->
                                 <div class="col-xl-4">
                                     <div class="tf__message_list">
                                         <div class="nav flex-column nav-pills tf__massager_option" id="v-pills-tab"
                                             role="tablist" aria-orientation="vertical">
                                             @foreach ($receivers as $receiver)
-                                                <div class="nav-link profile-box" id="v-pills-home-tab"
-                                                    data-bs-toggle="pill" data-bs-target="#v-pills-home" role="tab"
+                                                <div class="nav-link profile-box" data-bs-toggle="pill"
+                                                    data-bs-target="#v-pills-home" role="tab"
                                                     aria-controls="v-pills-home" aria-selected="true"
                                                     data-listing-id="{{ $receiver->listingInfo->id }}"
                                                     data-receiver-id="{{ $receiver->receiverInfo->id }}">
-                                                    <div class="tf__single_massage d-flex ">
+                                                    <div class="tf__single_massage d-flex">
+                                                        <!-- Profile Image -->
                                                         <div class="tf__single_massage_img">
                                                             <img src="{{ $receiver->listingInfo->image }}" alt="person"
                                                                 class="img-fluid w-100 profile-image {{ $receiver->unreadMessage ? 'img-notify' : '' }}">
                                                         </div>
-                                                        <div class="tf__single_massage_text ">
+                                                        <!-- Profile Text -->
+                                                        <div class="tf__single_massage_text">
                                                             <h4
                                                                 class="profile-title {{ $receiver->unreadMessage ? 'text-notify' : '' }}">
-                                                                {{ cutString($receiver->listingInfo->title, 13) }}</h4>
+                                                                {{ cutString($receiver->listingInfo->title, 13) }}
+                                                            </h4>
                                                             <p
                                                                 class="profile-owner {{ $receiver->unreadMessage ? 'text-notify' : '' }}">
                                                                 <i class="fas fa-house-user"></i>
                                                                 {{ $receiver->receiverInfo->name }}
                                                             </p>
-                                                            <span
-                                                                class="tf__massage_time text-success fw-bold">online</span>
+                                                            <span class="tf__massage_time fw-bold status-offline">
+                                                                Offline
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -44,11 +49,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Chatbox Column -->
                                 <div class="col-xl-8">
                                     <div class="tab-content" id="v-pills-tabContent">
                                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                                             aria-labelledby="v-pills-home-tab" tabindex="0">
                                             <div class="chatbox_single_form d-none">
+                                                <!-- Chatbox Header -->
                                                 <div class="tf__single_chat_top">
                                                     <div class="img">
                                                         <img id="box-image" src="" alt="image"
@@ -58,10 +65,12 @@
                                                         <h4 id="box-title">Title</h4>
                                                     </div>
                                                 </div>
+                                                <!-- Chatbox Messages -->
                                                 <div class="tf__single_chat_body chatbox_field" data-listing-chatbox=""
                                                     data-user-chatbox="">
                                                     {{-- All event handle in script code below --}}
                                                 </div>
+                                                <!-- Chatbox Input Form -->
                                                 <form class="tf__single_chat_bottom form-chatbox">
                                                     @csrf
                                                     <input type="hidden" id="receiver_id" name="receiver_id"
@@ -76,7 +85,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> <!-- End Chatbox Column -->
                             </div>
                         </div>
                     </div>

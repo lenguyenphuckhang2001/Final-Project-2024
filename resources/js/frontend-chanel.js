@@ -2,7 +2,7 @@ function scrollBottomMsg() {
     $(".chatbox_field").scrollTop($(".chatbox_field").prop("scrollHeight"));
 }
 
-window.Echo.private("message." + USER_PROFILE.id).listen(
+window.Echo.private("chat-messages." + USER_PROFILE.id).listen(
     "LiveMessage",
     (event) => {
         console.log(event);
@@ -42,3 +42,46 @@ window.Echo.private("message." + USER_PROFILE.id).listen(
         });
     }
 );
+
+window.Echo.join("active-user")
+    .here((users) => {
+        $.each(users, function (i, user) {
+            $(".profile-box").each(function () {
+                let userChanelBox = $(this).data("receiver-id");
+
+                if (userChanelBox == user.id) {
+                    $(this)
+                        .find(".tf__massage_time")
+                        .removeClass("status-offline")
+                        .addClass("status-online")
+                        .text("Online");
+                }
+            });
+        });
+    })
+    .joining((user) => {
+        $(".profile-box").each(function () {
+            let userChanelBox = $(this).data("receiver-id");
+
+            if (userChanelBox == user.id) {
+                $(this)
+                    .find(".tf__massage_time")
+                    .removeClass("status-offline")
+                    .addClass("status-online")
+                    .text("Online");
+            }
+        });
+    })
+    .leaving((user) => {
+        $(".profile-box").each(function () {
+            let userChanelBox = $(this).data("receiver-id");
+
+            if (userChanelBox == user.id) {
+                $(this)
+                    .find(".tf__massage_time")
+                    .removeClass("status-online")
+                    .addClass("status-offline")
+                    .text("Offline");
+            }
+        });
+    });
