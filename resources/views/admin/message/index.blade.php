@@ -17,22 +17,38 @@
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
                                 @foreach ($senders as $sender)
-                                    <li class="media profile-box" style="cursor: pointer"
-                                        data-sender-id="{{ $sender->senderInfo->id }}"
+                                    @php
+                                        $unreadMessage = \App\Models\Chat::where([
+                                            'sender_id' => $sender->sender_id,
+                                            'receiver_id' => auth()->user()->id,
+                                            'listing_id' => $sender->listing_id,
+                                            'seen' => 0,
+                                        ])->exists();
+                                    @endphp
+                                    <li class="media profile-box" data-sender-id="{{ $sender->senderInfo->id }}"
                                         data-listing-id="{{ $sender->listingInfo->id }}">
-                                        <img alt="image" class="mr-3 rounded-circle profile-image" width="50"
-                                            height="50" src="{{ asset($sender->senderInfo->avatar) }}"
-                                            style="object-fit: cover">
+                                        <img class="rounded-circle profile-image {{ $unreadMessage ? 'img-notify' : '' }}"
+                                            src="{{ asset($sender->senderInfo->avatar) }}" alt="image">
                                         <div class="media-body">
-                                            <div class="mt-0 mb-1 font-weight-bold profile-title">
+                                            <div class="mt-0 mb-1 profile-title {{ $unreadMessage ? 'text-notify' : '' }}">
                                                 {{ $sender->senderInfo->name }}
-                                                <a target="_blank" class="text-info"
-                                                    href="{{ route('listing.detail', $sender->listingInfo->slug) }}">
-                                                    ({{ $sender->listingInfo->title }})
-                                                </a>
+                                                <span
+                                                    class="text-primary">({{ cutString($sender->listingInfo->title) }})</span>
                                             </div>
                                             <div class="text-success text-small font-600-bold"><i class="fas fa-circle"></i>
                                                 Online</div>
+                                        </div>
+                                        <div class="btn-group dropleft" data-listing-chatbox="" data-user-chatbox="">
+                                            <button class="btn btn-outline btn-sm" type="button" id="dropdownMenu2"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-share-square"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <a class="dropdown-item" target="_blank"
+                                                    href="{{ route('listing.detail', $sender->listingInfo->slug) }}">
+                                                    Open Link Listing
+                                                </a>
+                                            </div>
                                         </div>
                                     </li>
                                 @endforeach
@@ -73,9 +89,10 @@
     <script>
         const baseURI = "{{ asset('/') }}";
         const chatboxField = $('.chat-content');
+        const dropdownInfo = $('.dropdown-info');
         const loadingData =
             `<div class="d-flex justify-content-center align-items-center h-100">
-                <div class="spinner-border text-info" style="width: 3.5rem; height: 3.5rem; font-size: 35px" role="status">
+                <div class="spinner-border text-info" style="font-size: 25px" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>`
@@ -146,6 +163,11 @@
         /* Bắt sự kiện click trên phần tử có class profile-box */
         $('.profile-box').on('click', function() {
             $('.chat-box').removeClass('d-none');
+
+            /*Xóa style khi người dùng click */
+            $(this).find(".profile-image").removeClass("img-notify");
+            $(this).find(".profile-title").css("font-weight", "normal");
+
             updateProfileChat($(this));
 
             /* Làm sạch form input trước khi thêm tin nhắn mới */

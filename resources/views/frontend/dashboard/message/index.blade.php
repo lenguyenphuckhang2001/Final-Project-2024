@@ -21,15 +21,18 @@
                                                     aria-controls="v-pills-home" aria-selected="true"
                                                     data-listing-id="{{ $receiver->listingInfo->id }}"
                                                     data-receiver-id="{{ $receiver->receiverInfo->id }}">
-                                                    <div class="tf__single_massage d-flex">
+                                                    <div class="tf__single_massage d-flex ">
                                                         <div class="tf__single_massage_img">
                                                             <img src="{{ $receiver->listingInfo->image }}" alt="person"
-                                                                class="img-fluid w-100 profile-image">
+                                                                class="img-fluid w-100 profile-image {{ $receiver->unreadMessage ? 'img-notify' : '' }}">
                                                         </div>
-                                                        <div class="tf__single_massage_text">
-                                                            <h4 class="profile-title">
-                                                                {{ cutString($receiver->listingInfo->title, 16) }}</h4>
-                                                            <p><i class="fas fa-house-user" style="color: #22d5e2;"></i>
+                                                        <div class="tf__single_massage_text ">
+                                                            <h4
+                                                                class="profile-title {{ $receiver->unreadMessage ? 'text-notify' : '' }}">
+                                                                {{ cutString($receiver->listingInfo->title, 13) }}</h4>
+                                                            <p
+                                                                class="profile-owner {{ $receiver->unreadMessage ? 'text-notify' : '' }}">
+                                                                <i class="fas fa-house-user"></i>
                                                                 {{ $receiver->receiverInfo->name }}
                                                             </p>
                                                             <span
@@ -168,6 +171,12 @@
             $('.profile-box').on('click', function() {
                 /*Hàm khi người dùng click vào thì sẽ hiện chatbox lên*/
                 $('.chatbox_single_form').removeClass('d-none');
+
+                /*Xóa css sau khi người dùng click vào */
+                $(this).find(".profile-image").removeClass("img-notify");
+                $(this).find(".profile-title").css("font-weight", "normal");
+                $(this).find(".profile-owner").css("font-weight", "normal");
+
                 /**
                  * Gọi hàm updateProfileChat và truyền phần tử vừa được nhấp ($(this)) vào và cập nhật hồ sơ người dùng hiện tại vào giao diện
                  * $(this) sẽ là tham số cho data ở trên để gọi các giá trị nằm trong hồ sơ giao diện người dùng yêu cầu
@@ -179,7 +188,7 @@
 
                 /* Sử dụng $(this) để gọi data từ biến này của người dùng nhập sau đó gán vào giá trị khởi tạo */
                 let listingId = $(this).data('listing-id');
-                let receiverId = $(this).data('receiver-id')
+                let receiverId = $(this).data('receiver-id');
 
                 $.ajax({
                     method: 'GET',

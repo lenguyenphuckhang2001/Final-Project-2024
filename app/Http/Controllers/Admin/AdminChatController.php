@@ -38,6 +38,12 @@ class AdminChatController extends Controller
             ->orderBy('created_at', 'asc') //Sắp xếp tin nhắn từ cũ đến mới nhất theo thời gian
             ->get();
 
+        Chat::where([
+            'sender_id' => $senderId,
+            'receiver_id' => $receiverId,
+            'listing_id' => $listingId,
+            'seen' => 0,
+        ])->update(['seen' => 1]);
         return response($messages);
     }
 

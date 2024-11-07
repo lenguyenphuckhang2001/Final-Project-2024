@@ -24,5 +24,18 @@ window.Echo.private("message." + USER_PROFILE.id).listen(
             $(".chat-content").append(textMessage);
             scrollBottomMsg();
         }
+
+        $(".profile-box").each(function () {
+            let userChatBoxId = $(this).data("sender-id");
+            let listingChatBoxId = $(this).data("listing-id");
+
+            if (
+                userChatBoxId == event.user.id &&
+                listingChatBoxId == event.listing_id
+            ) {
+                $(this).find(".profile-image").addClass("img-notify");
+                $(this).find(".profile-title").css("font-weight", "bold");
+            }
+        });
     }
 );

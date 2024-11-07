@@ -5513,7 +5513,7 @@ AGENT PROFILE END
 
 .tf__single_massage_text h4 {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: thin;
     text-align: left;
     margin-bottom: 4px;
     text-transform: capitalize;
@@ -5777,4 +5777,16 @@ AGENT PROFILE END
 
 .tf__massage_btn:hover {
     background: var(--colorBlack);
+}
+
+.img-notify {
+    border: 2px solid var(--colorPrimary) !important;
+}
+
+.text-notify {
+    font-weight: bold;
+}
+
+.profile-owner i {
+    color: var(--colorPrimary);
 }

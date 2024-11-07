@@ -1,9 +1,5 @@
 @charset "UTF-8";
 /**
- * Stisla
- *
- * Stisla is a clean & modern HTML5 admin template based on Bootstrap 4.
- * Stisla will make it easier for you to create your own admin interface.
  *
  * @package	Stisla
  * @version	2.2.0
@@ -3937,4 +3933,32 @@ body:not(.sidebar-mini)
     background-color: #f9f9f9 !important;
     border: 1px solid #ccc !important;
     z-index: 9999 !important;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.profile-box {
+    cursor: pointer;
+}
+
+.profile-box:hover {
+    background: radial-gradient(
+        circle,
+        rgba(198, 231, 255, 0.8),
+        rgba(212, 246, 255, 0.5),
+        rgba(251, 251, 251, 0.5)
+    );
+}
+
+.img-notify {
+    border: 4px solid #6777ef !important;
+}
+
+.text-notify {
+    font-weight: bold;
 }
