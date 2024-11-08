@@ -23,10 +23,10 @@ class EvaluateController extends Controller
     {
         try {
             $evaluate = Evaluate::findOrFail($id);
-            $evaluate->is_approved = !$evaluate->is_approved;
+            $evaluate->is_accepted = !$evaluate->is_accepted;
             $evaluate->save();
 
-            return response(['status' => 'success', 'message' => 'Approved successfully']);
+            return response(['status' => 'success', 'message' => 'Change status successfully']);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
         }
@@ -36,7 +36,7 @@ class EvaluateController extends Controller
     {
         try {
             Evaluate::findOrFail($id)->delete();
-            return response(['status' => 'success', 'message' => 'Deteled evaluate successfully']);
+            return response(['status' => 'success', 'message' => 'Evaluate deteled successfully']);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
         }

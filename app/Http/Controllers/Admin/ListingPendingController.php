@@ -23,10 +23,10 @@ class ListingPendingController extends Controller
 
         try {
             $listing = Listing::findOrFail($request->id);
-            $listing->is_approved = $request->value;
+            $listing->is_accepted = $request->value;
             $listing->save();
 
-            return response(['status' => 'success', 'message' => 'Updated successfull']);
+            return response(['status' => 'success', 'message' => 'Change status successfully']);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
         }

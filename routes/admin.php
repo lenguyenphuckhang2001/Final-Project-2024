@@ -21,32 +21,38 @@ use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
+// Admin Authentication
 Route::get('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login')->middleware('guest');
 Route::get('/admin/password-request', [AdminAuthController::class, 'passwordRequest'])->name('admin.password.request')->middleware('guest');
 
+// Admin Routes Group
 Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
 
+    // Profile
     Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [AdminProfileController::class, 'update'])->name('profile.update'); //Update information admin
     Route::put('/profile-change-password', [AdminProfileController::class, 'changePassword'])->name('profile-change-password.update'); //Update password admin
 
-    Route::get('/hero', [AdminHeroSectionController::class, 'index'])->name('hero.index');
-    Route::put('/hero', [AdminHeroSectionController::class, 'update'])->name('hero.update');
+    //Hero Section
+    Route::get('/hero-section', [AdminHeroSectionController::class, 'index'])->name('hero-section.index');
+    Route::put('/hero-section', [AdminHeroSectionController::class, 'update'])->name('hero-section.update');
 
-    Route::get('/pending', [ListingPendingController::class, 'index'])->name('pending.index');
-    Route::post('/pending', [ListingPendingController::class, 'update'])->name('pending.update');
-    Route::get('/evaluate', [EvaluateController::class, 'index'])->name('evaluate.index');
-    Route::get('/evaluate/{id}', [EvaluateController::class, 'update'])->name('evaluate.update');
-    Route::delete('/evaluate/{id}', [EvaluateController::class, 'destroy'])->name('evaluate.destroy');
-
+    // Listings Sections
     Route::resource('/listing', MainListingController::class);
+    // Category Listings
     Route::resource('/category', ListingCategoryController::class);
+    // Location Listings
     Route::resource('/location', ListingLocationController::class);
+    // Facility Listings
     Route::resource('/facility', ListingFacilityController::class);
+    // Image Gallery Listings
     Route::resource('/image-gallery', ListingImageGalleryController::class);
+    // Video Gallery Listings
     Route::resource('/video-gallery', ListingVideoGalleryController::class);
 
+    //Schedule Listing
     Route::get('/schedule/{listing_id}', [ListingScheduleController::class, 'index'])->name('schedule.index');
     Route::get('/schedule/{listing_id}/create', [ListingScheduleController::class, 'create'])->name('schedule.create');
     Route::post('/schedule/{listing_id}', [ListingScheduleController::class, 'store'])->name('schedule.store');
@@ -54,20 +60,34 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::put('/schedule/{id}', [ListingScheduleController::class, 'update'])->name('schedule.update');
     Route::delete('/schedule/{id}', [ListingScheduleController::class, 'destroy'])->name('schedule.destroy');
 
+    // Pending Listings
+    Route::get('/pending', [ListingPendingController::class, 'index'])->name('pending.index');
+    Route::post('/pending', [ListingPendingController::class, 'update'])->name('pending.update');
+
+    //Evaluate Listings
+    Route::get('/evaluate', [EvaluateController::class, 'index'])->name('evaluate.index');
+    Route::get('/evaluate/{id}', [EvaluateController::class, 'update'])->name('evaluate.update');
+    Route::delete('/evaluate/{id}', [EvaluateController::class, 'destroy'])->name('evaluate.destroy');
+
+    //Support Listings
+    Route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
+    Route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');
+
+    //Packages and Orders
     Route::resource('/packages', PackageController::class);
     Route::resource('/orders', OrderController::class);
 
+    //Settings Management
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
     Route::post('/general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
     Route::post('/pusher-settings', [SettingController::class, 'updatePusherSettings'])->name('pusher-settings.update');
 
+    //Payment Settings
     Route::get('/payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
     Route::post('/paypal-settings', [PaymentSettingController::class, 'updatePaypal'])->name('paypal-settings.update');
     Route::post('/stripe-settings', [PaymentSettingController::class, 'updateStripe'])->name('stripe-settings.update');
 
-    Route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
-    Route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');
-
+    //Chat
     Route::get('/messages', [AdminChatController::class, 'index'])->name('message.index');
     Route::get('/store-messages', [AdminChatController::class, 'storeMessages'])->name('store-messages');
     Route::post('/new-message', [AdminChatController::class, 'newMessage'])->name('new-message');

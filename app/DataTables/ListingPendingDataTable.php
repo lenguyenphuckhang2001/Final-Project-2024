@@ -54,7 +54,7 @@ class ListingPendingDataTable extends DataTable
                 $change =
                     '<select class="form-control select-pending" data-id="' . $query->id . '">
                         <option value="0">Pending</option>
-                        <option value="1">Approve</option>
+                        <option value="1">Accept</option>
                     </select>';
 
                 return $change;
@@ -69,7 +69,7 @@ class ListingPendingDataTable extends DataTable
      */
     public function query(Listing $model): QueryBuilder
     {
-        return $model->where('is_approved', 0)->newQuery();
+        return $model->where('is_accepted', 0)->newQuery();
     }
 
     /**

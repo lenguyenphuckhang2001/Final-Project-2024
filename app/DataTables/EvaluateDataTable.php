@@ -33,17 +33,17 @@ class EvaluateDataTable extends DataTable
                 return $query->user->name;
             })
             ->addColumn('status', function ($query) {
-                if ($query->is_approved === 0) {
+                if ($query->is_accepted === 0) {
                     return
                         '<select class="form-control evalute-status" data-id="' . $query->id . '">
                             <option selected value="0">Pending</option>
-                            <option value="1">Approve</option>
+                            <option value="1">Accept</option>
                         </select>';
                 } else {
                     return
                         '<select class="form-control evalute-status" data-id="' . $query->id . '">
                             <option value="0">Pending</option>
-                            <option selected value="1">Approve</option>
+                            <option selected value="1">Accept</option>
                         </select>';
                 }
             })

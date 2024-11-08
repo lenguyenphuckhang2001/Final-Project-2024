@@ -69,7 +69,7 @@ class ListingFacilityController extends Controller
         $facility->status = $request->status;
         $facility->save();
 
-        toastr()->success('Updated facility successfully');
+        toastr()->success('Facility updated  successfully');
 
         return to_route('admin.facility.index');
     }
@@ -81,7 +81,7 @@ class ListingFacilityController extends Controller
     {
         try {
             Facility::findOrFail($id)->delete();
-            return response(['status' => 'success', 'message' => "Delete facility successfully"]);
+            return response(['status' => 'success', 'message' => "Facility deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

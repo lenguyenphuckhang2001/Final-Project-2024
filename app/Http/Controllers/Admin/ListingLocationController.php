@@ -44,7 +44,7 @@ class ListingLocationController extends Controller
         $location->status = $request->status;
         $location->save();
 
-        toastr()->success('Created location successfully');
+        toastr()->success('Location created successfully');
 
         return to_route('admin.location.index');
     }
@@ -78,7 +78,7 @@ class ListingLocationController extends Controller
         $location->status = $request->status;
         $location->save();
 
-        toastr()->success('Created location successfully');
+        toastr()->success('Location updated successfully');
 
         return to_route('admin.location.index');
     }
@@ -90,7 +90,7 @@ class ListingLocationController extends Controller
     {
         try {
             Location::findOrFail($id)->delete();
-            return response(['status' => 'success', 'message' => "Delete location successfully"]);
+            return response(['status' => 'success', 'message' => "Location deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

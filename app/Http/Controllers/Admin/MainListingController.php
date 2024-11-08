@@ -11,7 +11,7 @@ use App\Models\FacilityListing;
 use App\Models\Category;
 use App\Models\Listing;
 use App\Models\Location;
-use App\Traits\FileUploadTrait;
+use App\Traits\FileHandlingTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ use Auth;
 
 class MainListingController extends Controller
 {
-    use FileUploadTrait;
+    use FileHandlingTrait;
     /**
      * Display a listing of the resource.
      */
@@ -46,9 +46,9 @@ class MainListingController extends Controller
      */
     public function store(ListingStoreRequest $request): RedirectResponse
     {
-        $imagePath = $this->uploadImage($request, 'image');
-        $thumbnailPath = $this->uploadImage($request, 'thumbnail');
-        $attachmentPath = $this->uploadImage($request, 'attachment');
+        $imagePath = $this->imageUpload($request, 'image');
+        $thumbnailPath = $this->imageUpload($request, 'thumbnail');
+        $attachmentPath = $this->imageUpload($request, 'attachment');
 
         $listing = new Listing();
         $listing->user_id = Auth::user()->id;
@@ -75,7 +75,7 @@ class MainListingController extends Controller
         $listing->status = $request->status;
         $listing->is_featured = $request->is_featured;
         $listing->is_verified = $request->is_verified;
-        $listing->is_approved = 1;
+        $listing->is_accepted = 1;
         $listing->expire_date = date('Y-m-d');
         $listing->save();
 
@@ -129,9 +129,9 @@ class MainListingController extends Controller
     public function update(ListingUpdateRequest $request, string $id): RedirectResponse
     {
 
-        $imagePath = $this->uploadImage($request, 'image', $request->old_image);
-        $thumbnailPath = $this->uploadImage($request, 'thumbnail', $request->old_thumbnail);
-        $attachmentPath = $this->uploadImage($request, 'attachment', $request->old_attachment);
+        $imagePath = $this->imageUpload($request, 'image', $request->old_image);
+        $thumbnailPath = $this->imageUpload($request, 'thumbnail', $request->old_thumbnail);
+        $attachmentPath = $this->imageUpload($request, 'attachment', $request->old_attachment);
 
         $listing = Listing::findOrFail($id);
         $listing->user_id = Auth::user()->id;

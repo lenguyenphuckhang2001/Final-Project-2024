@@ -7,7 +7,7 @@ use App\Models\ImageGalerry;
 use App\Models\Listing;
 use App\Models\Membership;
 use App\Rules\LimitImages;
-use App\Traits\FileUploadTrait;
+use App\Traits\FileHandlingTrait;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,7 +15,7 @@ use Illuminate\View\View;
 
 class UserListingImageGalleryController extends Controller
 {
-    use FileUploadTrait;
+    use FileHandlingTrait;
     /**
      * Display a listing of the resource.
      */
@@ -39,7 +39,7 @@ class UserListingImageGalleryController extends Controller
             'listing_id' => ['required', new LimitImages]
         ]);
 
-        $imageMultiPath = $this->uploadMultiImage($request, 'images');
+        $imageMultiPath = $this->multipleUploadImage($request, 'images');
 
         foreach ($imageMultiPath as $imagePath) {
             $image = new ImageGalerry();
@@ -60,7 +60,7 @@ class UserListingImageGalleryController extends Controller
     {
         try {
             $image = ImageGalerry::findOrFail($id);
-            $this->deleteFile($image->image);
+            $this->deleteUploadedFile($image->image);
             $image->delete();
 
             return response(['status' => 'success', 'message' => "Delete image successfully"]);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ImageGalerry;
 use App\Models\Listing;
-use App\Traits\FileUploadTrait;
+use App\Traits\FileHandlingTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -13,7 +13,7 @@ use Illuminate\View\View;
 
 class ListingImageGalleryController extends Controller
 {
-    use FileUploadTrait;
+    use FileHandlingTrait;
     /**
      * Display a listing of the resource.
      */
@@ -37,7 +37,7 @@ class ListingImageGalleryController extends Controller
             'listing_id' => ['required']
         ]);
 
-        $imageMultiPath = $this->uploadMultiImage($request, 'images');
+        $imageMultiPath = $this->multipleUploadImage($request, 'images');
 
         foreach ($imageMultiPath as $imagePath) {
             $image = new ImageGalerry();
@@ -46,7 +46,7 @@ class ListingImageGalleryController extends Controller
             $image->save();
         }
 
-        toastr()->success('Uploaded images successfully');
+        toastr()->success('Images uploaded successfully');
 
         return redirect()->back();
     }
@@ -82,10 +82,10 @@ class ListingImageGalleryController extends Controller
     {
         try {
             $image = ImageGalerry::findOrFail($id);
-            $this->deleteFile($image->image);
+            $this->deleteUploadedFile($image->image);
             $image->delete();
 
-            return response(['status' => 'success', 'message' => "Delete image successfully"]);
+            return response(['status' => 'success', 'message' => "Image deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

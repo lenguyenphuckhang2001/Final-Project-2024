@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryStoreRequest;
 use App\Http\Requests\Admin\CategoryUpdateRequest;
 use App\Models\Category;
-use App\Traits\FileUploadTrait;
+use App\Traits\FileHandlingTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -18,7 +18,7 @@ use function Pest\Laravel\delete;
 
 class ListingCategoryController extends Controller
 {
-    use FileUploadTrait;
+    use FileHandlingTrait;
     /**
      * Display a listing of the resource.
      */
@@ -40,19 +40,19 @@ class ListingCategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request): RedirectResponse
     {
-        $iconPath = $this->uploadImage($request, 'icon');
-        $backgroundPath = $this->uploadImage($request, 'background_image');
+        $newIconPath = $this->imageUpload($request, 'icon');
+        $newbackgroundPath = $this->imageUpload($request, 'background_image');
 
         $category = new Category();
-        $category->icon = $iconPath;
-        $category->background_image = $backgroundPath;
+        $category->icon = $newIconPath;
+        $category->background_image = $newbackgroundPath;
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->display_at_home = $request->display_at_home;
         $category->status = $request->status;
         $category->save();
 
-        toastr()->success("Created category successfully");
+        toastr()->success("Category created successfully");
 
         return to_route('admin.category.index');
     }
@@ -72,19 +72,19 @@ class ListingCategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, string $id): RedirectResponse
     {
-        $iconPath = $this->uploadImage($request, 'icon', $request->old_icon);
-        $backgroundPath = $this->uploadImage($request, 'background_image', $request->old_backgroud_image);
+        $newIconPath = $this->imageUpload($request, 'icon', $request->old_icon);
+        $newbackgroundPath = $this->imageUpload($request, 'background_image', $request->old_backgroud_image);
 
         $category = Category::findOrFail($id);
-        $category->icon = !empty($iconPath) ? $iconPath : $request->old_icon;
-        $category->background_image = !empty($backgroundPath) ? $backgroundPath : $request->old_background_image;
+        $category->icon = !empty($newIconPath) ? $newIconPath : $request->old_icon;
+        $category->background_image = !empty($newbackgroundPath) ? $newbackgroundPath : $request->old_background_image;
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->display_at_home = $request->display_at_home;
         $category->status = $request->status;
         $category->save();
 
-        toastr()->success('Updated successfully');
+        toastr()->success('Category updated successfully');
 
         return to_route('admin.category.index');
     }
@@ -97,12 +97,12 @@ class ListingCategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
 
-            $this->deleteFile($category->icon);
-            $this->deleteFile($category->background_image);
+            $this->deleteUploadedFile($category->icon);
+            $this->deleteUploadedFile($category->background_image);
 
             $category->delete();
 
-            return response(['status' => 'success', 'message' => "Delete category successfully"]);
+            return response(['status' => 'success', 'message' => "Category deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

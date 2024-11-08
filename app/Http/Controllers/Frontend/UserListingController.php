@@ -12,7 +12,7 @@ use App\Models\Category;
 use App\Models\Listing;
 use App\Models\Location;
 use App\Models\Membership;
-use App\Traits\FileUploadTrait;
+use App\Traits\FileHandlingTrait;
 use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -22,7 +22,7 @@ use Str;
 
 class UserListingController extends Controller
 {
-    use FileUploadTrait;
+    use FileHandlingTrait;
     /**
      * Display a listing of the resource.
      */
@@ -48,9 +48,9 @@ class UserListingController extends Controller
      */
     public function store(UserListingStoreRequest $request): RedirectResponse
     {
-        $imagePath = $this->uploadImage($request, 'image');
-        $thumbnailPath = $this->uploadImage($request, 'thumbnail');
-        $attachmentPath = $this->uploadImage($request, 'attachment');
+        $imagePath = $this->imageUpload($request, 'image');
+        $thumbnailPath = $this->imageUpload($request, 'thumbnail');
+        $attachmentPath = $this->imageUpload($request, 'attachment');
 
         $listing = new Listing();
         $listing->user_id = Auth::user()->id;
@@ -136,9 +136,9 @@ class UserListingController extends Controller
      */
     public function update(UserListingUpdateRequest $request, string $id): RedirectResponse
     {
-        $imagePath = $this->uploadImage($request, 'image', $request->old_image);
-        $thumbnailPath = $this->uploadImage($request, 'thumbnail', $request->old_thumbnail);
-        $attachmentPath = $this->uploadImage($request, 'attachment', $request->old_attachment);
+        $imagePath = $this->imageUpload($request, 'image', $request->old_image);
+        $thumbnailPath = $this->imageUpload($request, 'thumbnail', $request->old_thumbnail);
+        $attachmentPath = $this->imageUpload($request, 'attachment', $request->old_attachment);
 
         $listing = Listing::findOrFail($id);
         $listing->image = !empty($imagePath) ? $imagePath : $request->old_image;

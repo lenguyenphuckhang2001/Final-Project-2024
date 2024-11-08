@@ -57,12 +57,12 @@ class UserListingDataTable extends DataTable
                 } else {
                     $verified = "";
                 }
-                if ($query->is_approved === 0) {
-                    $approved = "<span class='badge bg-secondary'>Pending</span>";
+                if ($query->is_accepted === 0) {
+                    $accepted = "<span class='badge bg-secondary'>Pending</span>";
                 } else {
-                    $approved = "<span class='badge bg-info'>Approved</span>";
+                    $accepted = "<span class='badge bg-info'>Accept</span>";
                 }
-                return $status . $featured . $verified . $approved;
+                return $status . $featured . $verified . $accepted;
             })
             ->addColumn('author', function ($query) {
                 return $query->user?->name;

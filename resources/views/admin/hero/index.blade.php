@@ -21,28 +21,29 @@
                             <h4>Update Hero Section</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.hero.update') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.hero-section.update') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                <div class="form-group">
+                                <div class="form-group d-flex flex-column ">
                                     <label for="">Background Image</label>
-                                    <div id="image-preview" class="image-preview" style="width: 70%; height: 350px">
+                                    <div id="image-preview" class="image-preview" style="width: 100%; height: 60vh">
                                         <label for="background-upload" id="image-label">Choose File</label>
                                         <input type="file" name="background" id="image-upload" />
                                         <input type="hidden" name="old_background" value="{{ @$hero->background }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Title</label>
+                                    <label for="">Hero Title</label>
                                     <input type="text" class="form-control" name="title" value="{{ @$hero->title }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Sub Title</label>
+                                    <label for="">Hero Subtitle</label>
                                     <input type="text" class="form-control" name="sub_title"
                                         value="{{ @$hero->sub_title }}">
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>

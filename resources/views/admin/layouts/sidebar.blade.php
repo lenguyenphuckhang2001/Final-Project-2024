@@ -191,8 +191,8 @@
                     <span>Sections</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="{{ setActiveRoute(['admin.hero.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.hero.index') }}">
+                    <li class="{{ setActiveRoute(['admin.hero-section.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.hero-section.index') }}">
                             <i class="fas fa-image"></i>
                             Hero
                         </a>
@@ -216,6 +216,12 @@
                     <span>Listing</span>
                 </a>
                 <ul class="dropdown-menu">
+                    <li class="{{ setActiveRoute(['admin.listing.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.listing.index') }}">
+                            <i class="fas fa-list-alt"></i>
+                            All Listings
+                        </a>
+                    </li>
                     <li class="{{ setActiveRoute(['admin.category.*']) }}">
                         <a class="nav-link" href="{{ route('admin.category.index') }}">
                             <i class="fas fa-tags"></i>
@@ -234,12 +240,7 @@
                             Facility
                         </a>
                     </li>
-                    <li class="{{ setActiveRoute(['admin.listing.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.listing.index') }}">
-                            <i class="fas fa-list-alt"></i>
-                            All Listings
-                        </a>
-                    </li>
+
                     <li class="{{ setActiveRoute(['admin.pending.*']) }}">
                         <a class="nav-link" href="{{ route('admin.pending.index') }}">
                             <i class="fas fa-clock"></i>

@@ -13,7 +13,7 @@
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -44,7 +44,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int|null $listing_id
@@ -74,14 +74,14 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
  * @property int $user_id
  * @property int $rating
  * @property string $review
- * @property int $is_approved
+ * @property int $is_accepted
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Listing $listing
@@ -91,7 +91,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluate query()
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereIsApproved($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereIsAccepted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereListingId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluate whereReview($value)
@@ -103,7 +103,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $icon
@@ -128,7 +128,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -150,7 +150,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string|null $background
@@ -173,7 +173,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -194,7 +194,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -221,7 +221,7 @@ namespace App\Models{
  * @property string|null $insta_url
  * @property int $is_verified
  * @property int $is_featured
- * @property int $is_approved
+ * @property int $is_accepted
  * @property int $status
  * @property string $expire_date
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -256,7 +256,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereInstaUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Listing whereIsApproved($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing whereIsAccepted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereIsFeatured($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereIsVerified($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereLinkedUrl($value)
@@ -283,7 +283,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -310,7 +310,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -337,7 +337,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -367,7 +367,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -408,7 +408,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $type
@@ -452,7 +452,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $key
@@ -473,7 +473,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $key
@@ -494,7 +494,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id
@@ -520,7 +520,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $user_type
@@ -575,7 +575,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $listing_id

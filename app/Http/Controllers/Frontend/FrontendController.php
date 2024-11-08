@@ -29,30 +29,30 @@ class FrontendController extends Controller
         $packages = Package::where('status', 1)->where('display_at_home', 1)->take(3)->get();
 
         $ourCategory = Category::withCount(['listings' => function ($query) {
-            $query->where('is_approved', 1);
+            $query->where('is_accepted', 1);
         }])->where(['display_at_home' => 1, 'status' => 1])
             ->take(6)
             ->get();
 
         $ourLocation = Location::with(['listings' => function ($query) {
             $query->withAvg(['evaluates' => function ($query) {
-                $query->where('is_approved', 1);
+                $query->where('is_accepted', 1);
             }], 'rating')
                 ->withCount(['evaluates' => function ($query) {
-                    $query->where('is_approved', 1);
+                    $query->where('is_accepted', 1);
                 }])
-                ->where(['status' => 1, 'is_approved' => 1])
+                ->where(['status' => 1, 'is_accepted' => 1])
                 ->orderBy('id', 'desc') //Hàm orderBy sắp xếp theo thứ tự giảm dần nếu muốn tăng dần sử dụng asc
                 ->limit(8)
                 ->get();
         }])->where(['display_at_home' => 1, 'status' => 1])->get();
 
         $ourFeaturedListing = Listing::withAvg(['evaluates' => function ($query) {
-            $query->where('is_approved', 1);
+            $query->where('is_accepted', 1);
         }], 'rating')->withCount(['evaluates' => function ($query) {
-            $query->where('is_approved', 1);
+            $query->where('is_accepted', 1);
         }])
-            ->where(['is_approved' => 1, 'status' => 1, 'is_featured' => 1])
+            ->where(['is_accepted' => 1, 'status' => 1, 'is_featured' => 1])
             ->orderBy('id', 'desc')
             ->limit(12)
             ->get();
@@ -74,12 +74,12 @@ class FrontendController extends Controller
     function listings(Request $request): View
     {
         $listings = Listing::withAvg(['evaluates' => function ($query) {
-            $query->where('is_approved', 1);
+            $query->where('is_accepted', 1);
         }], 'rating')->withCount(['evaluates' => function ($query) {
-            $query->where('is_approved', 1);
+            $query->where('is_accepted', 1);
         }])
             ->with(['category', 'location'])
-            ->where(['status' => 1, 'is_approved' => 1]); //Hàm with sẽ load động dữ liệu cùng với bảng khi được gọi
+            ->where(['status' => 1, 'is_accepted' => 1]); //Hàm with sẽ load động dữ liệu cùng với bảng khi được gọi
 
         /*--------------------------------------- SEARCH FEATURES ---------------------------------------*/
         /**
@@ -174,15 +174,15 @@ class FrontendController extends Controller
     {
         // Lấy danh sách theo slug và kiểm tra trạng thái hoạt động và xác minh
         $listing = Listing::withAvg(['evaluates' => function ($query) { //Hàm tính tổng trung bình của các cột được chỉ định ở đây là evaluates với mối quan hệ với listings
-            $query->where('is_approved', 1); //Điều kiện là approved phải bằng 1 nghĩa là cho phép
+            $query->where('is_accepted', 1); //Điều kiện là accepted phải bằng 1 nghĩa là cho phép
         }], 'rating') //Cột cần tính trung bình. Ở đây là cột 'rating' trong bảng đánh giá (evaluations).
-            ->where(['status' => 1, 'is_approved' => 1]) // Điều kiện tìm kiếm: chỉ lấy các danh sách có status = 1 và is_approved = 1
+            ->where(['status' => 1, 'is_accepted' => 1]) // Điều kiện tìm kiếm: chỉ lấy các danh sách có status = 1 và is_accepted = 1
             ->where('slug', $slug) // Điều kiện bổ sung: lấy danh sách có slug khớp với giá trị $slug (thường là tham số từ URL)
             ->first(); // Lấy bản ghi đầu tiên thỏa mãn các điều kiện. Nếu không có bản ghi nào, sẽ trả về null
 
         // Tìm các danh sách tương tự dựa trên danh mục của danh sách hiện tại
         $similarListing = Listing::withCount(['evaluates' => function ($query) {
-            $query->where('is_approved', 1);
+            $query->where('is_accepted', 1);
         }])
             ->where('category_id', $listing->category_id) // Điều kiện: tìm các danh sách có cùng category_id với danh sách hiện tại
             ->where('id', '!=', $listing->id) // Điều kiện: loại trừ danh sách hiện tại bằng cách đảm bảo id khác với $listing->id bằng dấu !=
@@ -221,7 +221,7 @@ class FrontendController extends Controller
         $listing->increment('views');
 
         /*Khởi tạo intance của evaluates với việc thêm các trường để query chúng */
-        $evaluates = Evaluate::with('user')->where(['listing_id' =>  $listing->id, 'is_approved' => 1])->paginate(8);
+        $evaluates = Evaluate::with('user')->where(['listing_id' =>  $listing->id, 'is_accepted' => 1])->paginate(8);
 
         return view('frontend.pages.listing-detail', compact('listing', 'similarListing', 'statusTime', 'evaluates'));
     }
@@ -280,7 +280,7 @@ class FrontendController extends Controller
         $evaluate->review = $request->review;
         $evaluate->save();
 
-        toastr()->success('Your review has been added. Waiting admin approve your comment');
+        toastr()->success('Your review has been added. Waiting admin accept your review');
 
         return redirect()->back();
     }

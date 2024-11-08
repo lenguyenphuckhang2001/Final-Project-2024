@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\HeroSectionUpdateRequest;
 use App\Models\Hero;
-use App\Traits\FileUploadTrait;
+use App\Traits\FileHandlingTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -13,7 +13,7 @@ use Auth;
 
 class AdminHeroSectionController extends Controller
 {
-    use FileUploadTrait;
+    use FileHandlingTrait;
     function index(): View
     {
         $hero = Hero::first();
@@ -22,8 +22,7 @@ class AdminHeroSectionController extends Controller
 
     function update(HeroSectionUpdateRequest $request): RedirectResponse
     {
-
-        $backgroundImagePath = $this->uploadImage($request, "background", $request->old_background);
+        $backgroundImagePath = $this->imageUpload($request, "background", $request->old_background);
 
         Hero::updateOrCreate(
             ['id' => 1],
@@ -34,7 +33,8 @@ class AdminHeroSectionController extends Controller
             ]
         );
 
-        toastr()->success("Update successfully");
+        toastr()->success("Hero section has been updated successfully");
+
         return redirect()->back();
     }
 }
