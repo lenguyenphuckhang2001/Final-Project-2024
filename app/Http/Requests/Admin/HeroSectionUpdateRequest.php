@@ -16,7 +16,7 @@ class HeroSectionUpdateRequest extends FormRequest
         return [
             'background' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
             'title' => ['required', 'max:255'],
-            'sub_title' => ['required', 'max:255']
+            'sub_title' => ['required']
         ];
     }
 }

@@ -87,6 +87,7 @@ class UserListingController extends Controller
             $facility->save();
         }
 
+
         toastr()->success('Listing created successfully');
 
         return to_route('user.listing.index');

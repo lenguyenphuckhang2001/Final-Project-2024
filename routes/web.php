@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Frontend\ChatController;
 use App\Http\Controllers\Frontend\DashboardController;
-use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserListingController;
 use App\Http\Controllers\Frontend\UserListingImageGalleryController;
@@ -26,14 +26,14 @@ use Illuminate\Support\Facades\Route;
 
 /*------------------------------------------ FRONTEND CONTROLLER ------------------------------------------*/
 
-Route::get('/', [FrontendController::class, 'index'])->name('home');
-Route::get('/listings', [FrontendController::class, 'listings'])->name('listings');
-Route::get('/listing-modal/{id}', [FrontendController::class, 'listingModal'])->name('listing-modal');
-Route::get('/listing/{slug}', [FrontendController::class, 'detailListing'])->name('listing.detail');
-Route::get('checkout/{id}', [FrontendController::class, 'checkout'])->name('checkout.index');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/listings', [HomeController::class, 'listings'])->name('listings');
+Route::get('/listing-modal/{id}', [HomeController::class, 'listingModal'])->name('listing-modal');
+Route::get('/listing/{slug}', [HomeController::class, 'detailListing'])->name('listing.detail');
+Route::get('checkout/{id}', [HomeController::class, 'checkout'])->name('checkout.index');
 
-Route::post('/listing-support', [FrontendController::class, 'supportListing'])->name('listing-support');
-Route::post('/listing-evaluate', [FrontendController::class, 'evaluateListing'])->name('listing-evaluate.store')->middleware('auth');
+Route::post('/listing-support', [HomeController::class, 'supportListing'])->name('listing-support');
+Route::post('/listing-evaluate', [HomeController::class, 'evaluateListing'])->name('listing-evaluate.store')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

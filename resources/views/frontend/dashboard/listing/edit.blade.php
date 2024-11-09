@@ -151,7 +151,7 @@
                                             <div id="image-preview"
                                                 class="profile_pic_upload image-preview image-listing-preview">
                                                 <img id="image-label" class="img-fluid w-100" alt="Image Preview"
-                                                    src="{{ $listing->image }}" />
+                                                    src="{{ asset($listing->image) }}" />
                                                 <input type="file" name="image" id="image-upload" />
                                                 <input type="hidden" name="old_image" id="image-upload"
                                                     value="{{ $listing->image }}" />
@@ -164,7 +164,7 @@
                                             <div id="image-preview-2"
                                                 class="profile_pic_upload image-preview thumbnail-preview">
                                                 <img id="image-label-2" class="img-fluid w-100" alt="Image Preview"
-                                                    src="{{ $listing->thumbnail }}" />
+                                                    src="{{ asset($listing->thumbnail) }}" />
                                                 <input type="file" id="image-upload-2" name="thumbnail" />
                                                 <input type="hidden" name="old_thumbnail" id="image-upload"
                                                     value="{{ $listing->thumbnail }}" />

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class FrontendController extends Controller
+class HomeController extends Controller
 {
     function index(): View
     {
@@ -28,13 +28,13 @@ class FrontendController extends Controller
         $locations = Location::where('status', 1)->get();
         $packages = Package::where('status', 1)->where('display_at_home', 1)->take(3)->get();
 
-        $ourCategory = Category::withCount(['listings' => function ($query) {
+        $homeCategory = Category::withCount(['listings' => function ($query) {
             $query->where('is_accepted', 1);
         }])->where(['display_at_home' => 1, 'status' => 1])
             ->take(6)
             ->get();
 
-        $ourLocation = Location::with(['listings' => function ($query) {
+        $homeLocation = Location::with(['listings' => function ($query) {
             $query->withAvg(['evaluates' => function ($query) {
                 $query->where('is_accepted', 1);
             }], 'rating')
@@ -47,7 +47,7 @@ class FrontendController extends Controller
                 ->get();
         }])->where(['display_at_home' => 1, 'status' => 1])->get();
 
-        $ourFeaturedListing = Listing::withAvg(['evaluates' => function ($query) {
+        $homeFeaturedListing = Listing::withAvg(['evaluates' => function ($query) {
             $query->where('is_accepted', 1);
         }], 'rating')->withCount(['evaluates' => function ($query) {
             $query->where('is_accepted', 1);
@@ -64,9 +64,9 @@ class FrontendController extends Controller
                 'categories',
                 'packages',
                 'locations',
-                'ourCategory',
-                'ourLocation',
-                'ourFeaturedListing'
+                'homeCategory',
+                'homeLocation',
+                'homeFeaturedListing'
             )
         );
     }

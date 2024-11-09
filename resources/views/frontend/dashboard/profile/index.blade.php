@@ -15,6 +15,18 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
+                                    <div class="col-xl-4 col-md-5">
+                                        <div class="my_listing_single">
+                                            <label for="" class="d-flex justify-content-center">Avatar</label>
+                                            <div id="image-preview" class="profile_pic_upload avatar-image-preview">
+                                                <img id="image-label" src="{{ asset($user->avatar) }}" alt="img"
+                                                    class="img-fluid w-100" style="display: none;">
+                                                <input type="file" name="avatar" id="image-upload">
+                                                <input type="hidden" name="old_avatar" value="{{ $user->avatar }}">
+                                            </div>
+                                        </div>
+
+                                    </div>
                                     <div class="col-xl-8 col-md-12">
                                         <div class="row">
                                             <div class="col-xl-6 col-md-6">
@@ -54,69 +66,62 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-12">
-                                                <div class="my_listing_single">
-                                                    <label>Website</label>
-                                                    <div class="input_area">
-                                                        <input type="text" name="website" value="{{ $user->website }}"
-                                                            placeholder="Enter URL here">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-12">
-                                                <div class="my_listing_single">
-                                                    <label>About Me</label>
-                                                    <div class="input_area">
-                                                        <textarea name="about" cols="3" rows="3" placeholder="Your Text">{!! $user->about !!}</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-6">
-                                                <div class="my_listing_single">
-                                                    <label>Facebook URL</label>
-                                                    <div class="input_area">
-                                                        <input type="text" name='fb_url' value="{{ $user->fb_url }}"
-                                                            placeholder="Enter URL here">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-6">
-                                                <div class="my_listing_single">
-                                                    <label>X URL</label>
-                                                    <div class="input_area">
-                                                        <input type="text" name='x_url' value="{{ $user->x_url }}"
-                                                            placeholder="Enter URL here">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-6">
-                                                <div class="my_listing_single">
-                                                    <label>LinkedIn URL</label>
-                                                    <div class="input_area">
-                                                        <input type="text" name='linked_url'
-                                                            value="{{ $user->linked_url }}" placeholder="Enter URL here">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-6">
-                                                <div class="my_listing_single">
-                                                    <label>Instagram URL</label>
-                                                    <div class="input_area">
-                                                        <input type="text" name='insta_url'
-                                                            value="{{ $user->insta_url }}" placeholder="Enter URL here">
-                                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="medicine_row3">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="my_listing_single">
+                                                <label>Website</label>
+                                                <div class="input_area">
+                                                    <input type="text" name="website" value="{{ $user->website }}"
+                                                        placeholder="Enter URL here">
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4 col-md-5">
-                                        <div class="my_listing_single">
-                                            <label for="" class="d-flex justify-content-center">Avatar</label>
-                                            <div id="image-preview" class="profile_pic_upload image-preview">
-                                                <img id="image-label" src="{{ asset($user->avatar) }}" alt="img"
-                                                    class="imf-fluid w-100">
-                                                <input type="file" name="avatar" id="image-upload">
-                                                <input type="hidden" name="old_avatar" value="{{ $user->avatar }}">
+                                        <div class="col-xl-12">
+                                            <div class="my_listing_single">
+                                                <label>About Me</label>
+                                                <div class="input_area">
+                                                    <textarea name="about" cols="3" rows="3" placeholder="Your Text">{!! $user->about !!}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6">
+                                            <div class="my_listing_single">
+                                                <label>Facebook URL</label>
+                                                <div class="input_area">
+                                                    <input type="text" name='fb_url' value="{{ $user->fb_url }}"
+                                                        placeholder="Enter URL here">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6">
+                                            <div class="my_listing_single">
+                                                <label>X URL</label>
+                                                <div class="input_area">
+                                                    <input type="text" name='x_url' value="{{ $user->x_url }}"
+                                                        placeholder="Enter URL here">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6">
+                                            <div class="my_listing_single">
+                                                <label>LinkedIn URL</label>
+                                                <div class="input_area">
+                                                    <input type="text" name='linked_url' value="{{ $user->linked_url }}"
+                                                        placeholder="Enter URL here">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6">
+                                            <div class="my_listing_single">
+                                                <label>Instagram URL</label>
+                                                <div class="input_area">
+                                                    <input type="text" name='insta_url'
+                                                        value="{{ $user->insta_url }}" placeholder="Enter URL here">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -134,7 +139,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
-                                    <div class="col-xl-4 col-md-6">
+                                    <div class="col-md-12">
                                         <div class="my_listing_single">
                                             <label>Current Password</label>
                                             <div class="input_area">
@@ -143,7 +148,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-md-6">
+                                    <div class="col-xl-6 col-md-6">
                                         <div class="my_listing_single">
                                             <label>New Password</label>
                                             <div class="input_area">
@@ -151,7 +156,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4">
+                                    <div class="col-xl-6 col-md-6">
                                         <div class="my_listing_single">
                                             <label>Confirm Password</label>
                                             <div class="input_area">
@@ -174,19 +179,17 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-                                    <div class="row">
-                                        <div class="col-xl-6 col-md-8 col-lg-6">
-                                            <div id="banner-preview"
-                                                class="profile_pic_upload banner_pic_upload banner-image-preview">
-                                                <img id="banner-label" src="{{ asset($user->banner) }}" alt="img"
-                                                    class="img-fluid w-100">
-                                                <input type="file" name="banner" id="banner-upload">
-                                                <input type="hidden" name="old_banner" value="{{ $user->banner }}">
-                                            </div>
+                                    <div class="col-12">
+                                        <div id="image-preview-2"
+                                            class="profile_pic_upload banner_pic_upload banner-image-preview">
+                                            <img id="image-label-2" src="{{ asset($user->banner) }}" alt="img"
+                                                class="img-fluid w-100" style="display: none;">
+                                            <input type="file" name="banner" id="image-upload-2">
+                                            <input type="hidden" name="old_banner" value="{{ $user->banner }}">
                                         </div>
-                                        <div class="col-12">
-                                            <button type="submit" class="read_btn">Upload</button>
-                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="read_btn">Upload</button>
                                     </div>
                                 </form>
                             </div>
@@ -213,25 +216,5 @@
                 'background-size': 'cover'
             });
         })
-
-        $.uploadPreview({
-            input_field: "#avatar-upload",
-            preview_box: "#avatar-preview",
-            label_field: "#avatar-label",
-            label_default: "Choose File",
-            label_selected: "Change File",
-            no_label: false,
-            success_callback: null
-        });
-
-        $.uploadPreview({
-            input_field: "#banner-upload",
-            preview_box: "#banner-preview",
-            label_field: "#banner-label",
-            label_default: "Choose File",
-            label_selected: "Change File",
-            no_label: false,
-            success_callback: null
-        });
     </script>
 @endpush

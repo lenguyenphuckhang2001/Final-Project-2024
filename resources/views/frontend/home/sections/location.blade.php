@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-xl-5 m-auto">
                     <div class="wsus__heading_area">
-                        <h2>Our location </h2>
+                        <h2>Location </h2>
                         <p>Our popular locations will be here for you to choose the best and most wonderful places for
                             yourself</p>
                     </div>
@@ -14,14 +14,14 @@
                 <div class="col-12 text-center">
                     <div class="wsus__location_filter">
                         <button class="active" data-filter="*">All City</button>
-                        @foreach ($ourLocation as $location)
+                        @foreach ($homeLocation as $location)
                             <button data-filter=".{{ $location->slug }}">{{ $location->name }}</button>
                         @endforeach
                     </div>
                 </div>
             </div>
             <div class="row grid">
-                @foreach ($ourLocation as $location)
+                @foreach ($homeLocation as $location)
                     @foreach ($location->listings as $listing)
                         <div class="col-xl-3 col-sm-6 col-lg-4 {{ $location->slug }}">
                             {{-- Thêm phần onclick để click vào toàn bộ thẻ mà không làm lỗi CSS.

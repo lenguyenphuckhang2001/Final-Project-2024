@@ -4,14 +4,14 @@
             <div class="row">
                 <div class="col-xl-5 m-auto">
                     <div class="wsus__heading_area">
-                        <h2>Our Categories</h2>
+                        <h2>Categories</h2>
                         <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola
                             estut clita dolorem ei est mazim fuisset scribentur.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                @foreach ($ourCategory as $category)
+                @foreach ($homeCategory as $category)
                     <div class="col-xl-4 col-sm-6">
                         <a href="{{ route('listings', ['category' => $category->slug]) }}" class="wsus__category_single">
                             <div class="wsus__category_img">

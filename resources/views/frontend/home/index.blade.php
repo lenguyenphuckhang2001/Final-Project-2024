@@ -14,28 +14,28 @@
 
 @section('contents')
     <!----------------Banner---------------->
-    @include('frontend.home.sections.banner')
+    @include('frontend.home.sections.hero')
 
     <!---------------Category--------------->
-    @include('frontend.home.sections.category-slider')
+    @include('frontend.home.sections.categories-icon')
 
     <!---------------Features--------------->
-    {{-- @include('frontend.home.sections.features') --}}
+    @include('frontend.home.sections.features')
 
     <!---------------Counter---------------->
     {{-- @include('frontend.home.sections.counter') --}}
 
     <!-------------Out Category------------->
-    @include('frontend.home.sections.our-category')
+    @include('frontend.home.sections.categories')
 
     <!-------------Out Location------------->
-    @include('frontend.home.sections.our-location')
+    @include('frontend.home.sections.location')
 
     <!-----------Featured Listing----------->
     @include('frontend.home.sections.featured-listing')
 
     <!-------------Our Package-------------->
-    @include('frontend.home.sections.our-package')
+    @include('frontend.home.sections.packages')
 
     <!-------------Testimonial-------------->
     {{-- @include('frontend.home.sections.testimonial') --}}

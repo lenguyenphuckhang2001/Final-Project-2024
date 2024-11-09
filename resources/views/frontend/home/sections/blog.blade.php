@@ -34,7 +34,6 @@
                             <img src="images/blog_2.jpg" alt="bloh images" class="img-fluid w-100">
                         </div>
                         <div class="text">
-
                             <span><i class="fal fa-calendar-alt"></i> 05 Julay 2021</span>
                             <span><i class="fas fa-user"></i> by admin</span>
                             <a href="#" class="title">Maecenas tincidunt vehicula</a>

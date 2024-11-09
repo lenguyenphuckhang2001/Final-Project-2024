@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('background')->nullable();
             $table->string('title');
-            $table->string('sub_title');
+            $table->text('sub_title');
             $table->timestamps();
         });
     }

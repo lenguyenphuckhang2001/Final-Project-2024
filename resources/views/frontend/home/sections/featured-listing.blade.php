@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xl-5 m-auto">
                 <div class="wsus__heading_area">
-                    <h2>Our Featured Listing </h2>
+                    <h2>Featured Listing </h2>
                     <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola estut
                         clita dolorem ei est mazim fuisset scribentur.</p>
                 </div>
@@ -12,7 +12,7 @@
     </div>
     <div class="container">
         <div class="row listing_slider">
-            @foreach ($ourFeaturedListing as $listing)
+            @foreach ($homeFeaturedListing as $listing)
                 <div class="col-xl-3">
                     <div class="wsus__featured_single"
                         onclick="window.location.href='{{ route('listing.detail', $listing->slug) }}'">

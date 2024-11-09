@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xl-5 m-auto">
                 <div class="wsus__heading_area">
-                    <h2>Our Features</h2>
+                    <h2>Features</h2>
                     <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola estut
                         clita dolorem ei est mazim fuisset scribentur.</p>
                 </div>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="col-xl-4 col-md-6">
-                <div class="wsus__feature_single active">
+                <div class="wsus__feature_single">
                     <div class="icon">
                         <i class="fal fa-map-marked-alt"></i>
                     </div>
