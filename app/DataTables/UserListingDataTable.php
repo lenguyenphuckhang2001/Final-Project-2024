@@ -38,7 +38,6 @@ class UserListingDataTable extends DataTable
                             <li><a class="dropdown-item text-capitalize" href="' . route('user.schedule.index', $query->id) . '"><i class="far fa-calendar-alt"></i> Schedule</a></li>
                         </ul>
                     </div>';
-
                 return $btnEdit . $btnDelete . $btnDropdown;
             })
             ->addColumn('status', function ($query) {
@@ -60,7 +59,7 @@ class UserListingDataTable extends DataTable
                 if ($query->is_accepted === 0) {
                     $accepted = "<span class='badge bg-secondary'>Pending</span>";
                 } else {
-                    $accepted = "<span class='badge bg-info'>Accept</span>";
+                    $accepted = "<span class='badge bg-info'>Accepted</span>";
                 }
                 return $status . $featured . $verified . $accepted;
             })

@@ -39,7 +39,7 @@ class ListingVideoGalleryController extends Controller
         $video->video_url = $request->video_url;
         $video->save();
 
-        toastr()->success("Upload video successfully");
+        toastr()->success("Video uploaded successfully");
 
         return redirect()->back();
     }
@@ -53,7 +53,7 @@ class ListingVideoGalleryController extends Controller
             $video = VideoGallery::findOrFail($id);
             $video->delete();
 
-            return response(['status' => 'success', 'message' => "Delete video successfully"]);
+            return response(['status' => 'success', 'message' => "Video deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

@@ -48,7 +48,7 @@ class UserListingImageGalleryController extends Controller
             $image->save();
         }
 
-        toastr()->success('Uploaded images successfully');
+        toastr()->success('Images uploaded successfully');
 
         return redirect()->back();
     }
@@ -63,7 +63,7 @@ class UserListingImageGalleryController extends Controller
             $this->deleteUploadedFile($image->image);
             $image->delete();
 
-            return response(['status' => 'success', 'message' => "Delete image successfully"]);
+            return response(['status' => 'success', 'message' => "Image deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

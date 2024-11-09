@@ -62,7 +62,7 @@ class OrderController extends Controller
         $order->payment_status = $request->payment_status;
         $order->save();
 
-        toastr()->success('Updated payment status successfully');
+        toastr()->success('Payment status updated successfully');
 
         return redirect()->back();
     }
@@ -74,7 +74,7 @@ class OrderController extends Controller
     {
         try {
             Order::findOrFail($id)->delete();
-            return response(['status' => 'success', 'message' => 'Deleted order successfully']);
+            return response(['status' => 'success', 'message' => 'Order deleted successfully']);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
         }

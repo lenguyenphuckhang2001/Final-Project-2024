@@ -41,7 +41,7 @@ class ListingScheduleController extends Controller
         $schedule->status = $request->status;
         $schedule->save();
 
-        toastr()->success('Created schedule successfully');
+        toastr()->success('Schedule created successfully');
 
         return to_route('admin.schedule.index', $listingId);
     }
@@ -61,7 +61,7 @@ class ListingScheduleController extends Controller
         $schedule->status = $request->status;
         $schedule->save();
 
-        toastr()->success('Updated schedule successfully');
+        toastr()->success('Schedule updated successfully');
 
         return to_route('admin.schedule.index', $schedule->listing_id);
     }
@@ -72,7 +72,7 @@ class ListingScheduleController extends Controller
             $schedule = ListingSchedule::findOrFail($id);
             $schedule->delete();
 
-            return response(['status' => 'success', 'message' => "Delete schedule successfully"]);
+            return response(['status' => 'success', 'message' => "Schedule deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

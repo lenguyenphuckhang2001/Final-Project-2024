@@ -13,7 +13,7 @@
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $name
@@ -44,7 +44,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int|null $listing_id
@@ -74,7 +74,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -103,7 +103,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $icon
@@ -128,7 +128,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -150,7 +150,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string|null $background
@@ -173,7 +173,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -194,7 +194,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $user_id
@@ -283,7 +283,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -310,7 +310,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $name
@@ -337,7 +337,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $user_id
@@ -367,7 +367,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $user_id
@@ -408,7 +408,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $type
@@ -452,7 +452,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $key
@@ -473,7 +473,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $key
@@ -494,7 +494,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id
@@ -520,7 +520,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $user_type
@@ -575,7 +575,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $listing_id

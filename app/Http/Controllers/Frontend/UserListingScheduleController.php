@@ -70,7 +70,7 @@ class UserListingScheduleController extends Controller
         $schedule->status = $request->status;
         $schedule->save();
 
-        toastr()->success('Created schedule successfully');
+        toastr()->success('New schedule create successfully');
 
         return to_route('user.schedule.index', $listingId);
     }
@@ -109,7 +109,7 @@ class UserListingScheduleController extends Controller
         $schedule->status = $request->status;
         $schedule->save();
 
-        toastr()->success('Updated schedule successfully');
+        toastr()->success('Schedule updated successfully');
 
         return to_route('user.schedule.index', $schedule->listing_id);
     }
@@ -128,7 +128,7 @@ class UserListingScheduleController extends Controller
 
         try {
             $schedule->delete();
-            return response(['status' => 'success', 'message' => "Delete schedule successfully"]);
+            return response(['status' => 'success', 'message' => "Schedule deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

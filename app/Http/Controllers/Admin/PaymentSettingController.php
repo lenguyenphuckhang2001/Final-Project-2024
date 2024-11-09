@@ -39,7 +39,7 @@ class PaymentSettingController extends Controller
         $paymentSettingsService = app(PaymentSettingsService::class);
         $paymentSettingsService->clearCachedSettings();
 
-        toastr()->success('Updated PAYPAL settings successfully');
+        toastr()->success('PAYPAL updated settings successfully');
 
         return redirect()->back();
     }
@@ -65,7 +65,7 @@ class PaymentSettingController extends Controller
         $paymentSettingsService = app(PaymentSettingsService::class);
         $paymentSettingsService->clearCachedSettings();
 
-        toastr()->success('Updated STRIPE settings successfully');
+        toastr()->success('STRIPE updated settings successfully');
 
         return redirect()->back();
     }

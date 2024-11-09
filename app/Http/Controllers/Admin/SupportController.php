@@ -22,7 +22,7 @@ class SupportController extends Controller
     {
         try {
             Support::findOrFail($id)->delete();
-            return response(['status' => 'success', 'message' => 'Deteled support successfully']);
+            return response(['status' => 'success', 'message' => 'Support deleted successfully']);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
         }

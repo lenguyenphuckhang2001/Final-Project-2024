@@ -13,5 +13,5 @@ class FacilityListing extends Model
     function facility(): BelongsTo
     {
         return $this->belongsTo(Facility::class, 'facility_id', 'id');
-    }
+    }   
 }

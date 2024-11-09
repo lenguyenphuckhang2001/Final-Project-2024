@@ -102,7 +102,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="active_left">Maximum Amenities</td>
+                                                        <td class="active_left">Maximum Facilities</td>
                                                         <td class="package_right">
                                                             {{ $membership->package->limit_facilities === -1 ? 'Unlimited' : $membership->package->limit_facilities }}
                                                         </td>

@@ -87,7 +87,7 @@ class UserListingController extends Controller
             $facility->save();
         }
 
-        toastr()->success('Created Listing Successfully');
+        toastr()->success('Listing created successfully');
 
         return to_route('user.listing.index');
     }
@@ -175,7 +175,7 @@ class UserListingController extends Controller
             $facility->save();
         }
 
-        toastr()->success('Updated Listing Successfully');
+        toastr()->success('Listing updated successfully');
 
         return to_route('user.listing.index');
     }
@@ -187,7 +187,7 @@ class UserListingController extends Controller
     {
         try {
             Listing::findOrFail($id)->delete();
-            return response(['status' => 'success', 'message' => "Delete listing successfully"]);
+            return response(['status' => 'success', 'message' => "Listing deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

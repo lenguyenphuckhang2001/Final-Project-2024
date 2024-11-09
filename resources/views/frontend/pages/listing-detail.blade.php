@@ -97,8 +97,8 @@
                                 @foreach ($listing->facilities as $facility)
                                     <div class="col-xl-4 col-sm-6">
                                         <div class="listing_det_feature_single">
-                                            <i class="{{ $facility->icon }}"></i>
-                                            <span>{{ $facility->name }}</span>
+                                            <i class="{{ $facility->facility?->icon }}"></i>
+                                            <span>{{ $facility->facility?->name }}</span>
                                         </div>
                                     </div>
                                 @endforeach

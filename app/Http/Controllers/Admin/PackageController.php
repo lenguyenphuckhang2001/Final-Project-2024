@@ -50,7 +50,7 @@ class PackageController extends Controller
         $package->status = $request->status;
         $package->save();
 
-        toastr()->success('Created new package successfully');
+        toastr()->success('New package created successfully');
 
         return to_route('admin.packages.index');
     }
@@ -84,7 +84,7 @@ class PackageController extends Controller
         $package->status = $request->status;
         $package->save();
 
-        toastr()->success('Updated package successfully');
+        toastr()->success('Package updated successfully');
 
         return to_route('admin.packages.index');
     }
@@ -96,7 +96,7 @@ class PackageController extends Controller
     {
         try {
             Package::findOrFail($id)->delete();
-            return response(['status' => 'success', 'message' => "Delete package successfully"]);
+            return response(['status' => 'success', 'message' => "Package deleted successfully"]);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => $e->getMessage()]);

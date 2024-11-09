@@ -148,7 +148,6 @@ class FrontendController extends Controller
         $locations = Location::where('status', 1)->get();
         $facilities = Facility::where('status', 1)->get();
 
-
         $listings = $listings->paginate(9); //Hiển thị bao nhiêu dữ liệu ra màn hình
 
         return view(
@@ -178,7 +177,8 @@ class FrontendController extends Controller
         }], 'rating') //Cột cần tính trung bình. Ở đây là cột 'rating' trong bảng đánh giá (evaluations).
             ->where(['status' => 1, 'is_accepted' => 1]) // Điều kiện tìm kiếm: chỉ lấy các danh sách có status = 1 và is_accepted = 1
             ->where('slug', $slug) // Điều kiện bổ sung: lấy danh sách có slug khớp với giá trị $slug (thường là tham số từ URL)
-            ->first(); // Lấy bản ghi đầu tiên thỏa mãn các điều kiện. Nếu không có bản ghi nào, sẽ trả về null
+            ->firstOrFail(); // Lấy bản ghi đầu tiên thỏa mãn các điều kiện. Nếu không có bản ghi nào, sẽ trả về null
+
 
         // Tìm các danh sách tương tự dựa trên danh mục của danh sách hiện tại
         $similarListing = Listing::withCount(['evaluates' => function ($query) {
@@ -253,7 +253,9 @@ class FrontendController extends Controller
             ];
 
             CreateOrder::dispatch($paymentInfo);
+
             toastr()->success('Register free package successfully');
+
             return redirect()->route('admin.dashboard.index');
         }
 
