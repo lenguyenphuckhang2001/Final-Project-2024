@@ -1,128 +1,5 @@
 @extends('frontend.layouts.main')
 
-@push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
-    <style>
-        /* Dashboard Section */
-        #dashboard {
-            padding: 40px 0;
-            background-color: #f8f9fa;
-            /* Light background for the entire dashboard */
-        }
-
-        /* Individual Listing Items */
-        .my_listing_single {
-            margin-bottom: 30px;
-            /* Space between each listing item */
-            text-align: center;
-            /* Center align labels and images */
-        }
-
-        /* Form Group Styles */
-        .form-group {
-            margin-bottom: 25px;
-            /* Space between form groups */
-        }
-
-        /* Label Styles */
-        label {
-            font-weight: 600;
-            /* Bold font for labels */
-            color: #343a40;
-            /* Darker color for better contrast */
-        }
-
-        /* Text Input Styles */
-        .form-control {
-            border-radius: 8px;
-            /* Rounded corners */
-            border: 1px solid #ced4da;
-            /* Border color */
-            transition: border-color 0.2s, box-shadow 0.2s;
-            /* Smooth transition for focus */
-        }
-
-        .form-control:focus {
-            border-color: #007bff;
-            /* Change border color on focus */
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
-            /* Add shadow on focus */
-        }
-
-        /* Textarea Styles */
-        textarea.form-control {
-            border-radius: 8px;
-            /* Rounded corners */
-        }
-
-        /* Select Styles */
-        select.form-control {
-            border-radius: 8px;
-            /* Rounded corners */
-            appearance: none;
-            /* Remove default styling */
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>') no-repeat;
-            /* Add custom arrow */
-            background-position: right 10px center;
-            /* Position the arrow */
-            background-size: 12px;
-            /* Size of the arrow */
-            padding-right: 30px;
-            /* Space for the arrow */
-        }
-
-        /* Button Styles */
-        .read_btn {
-            background: linear-gradient(90deg, #007bff, #0056b3);
-            /* Gradient background */
-            color: #ffffff;
-            /* White text color */
-            padding: 12px 20px;
-            /* Padding for the button */
-            border: none;
-            /* Remove border */
-            border-radius: 8px;
-            /* Rounded corners */
-            font-size: 18px;
-            /* Increased font size */
-            font-weight: bold;
-            /* Bold font weight */
-            cursor: pointer;
-            /* Change cursor on hover */
-            transition: background 0.3s, transform 0.2s;
-            /* Smooth transitions */
-            display: block;
-            /* Block display for centering */
-            width: 100%;
-            /* Full width for the button */
-        }
-
-        .read_btn:hover {
-            background: linear-gradient(90deg, #0056b3, #003f7f);
-            /* Darker gradient on hover */
-            transform: translateY(-2px);
-            /* Lift effect on hover */
-        }
-
-        /* Text Danger Styles */
-        .text-danger {
-            font-weight: bold;
-            /* Make required field indicator bold */
-            color: #dc3545;
-            /* Bootstrap danger color */
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .col-md-6 {
-                margin-bottom: 20px;
-                /* Reduce space for smaller screens */
-            }
-        }
-    </style>
-@endpush
-
 @section('contents')
     <section id="dashboard">
         <div class="container">
@@ -173,94 +50,116 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Title <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="title"
-                                                value="{{ $listing->title }}" required>
+                                            <div class="input_area">
+                                                <input type="text" name="title" value="{{ $listing->title }}" required>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Category <span class="text-danger">*</span></label>
-                                            <select name="category" class="form-control" required>
-                                                <option value="" selected disabled>Select</option>
-                                                $@foreach ($categories as $category)
-                                                    <option @selected($category->id === $listing->category_id) value="{{ $category->id }}">
-                                                        {{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="input_area">
+                                                <div class="wsus__search_area">
+                                                    <select name="category" class="select_2" required>
+                                                        $@foreach ($categories as $category)
+                                                            <option @selected($category->id === $listing->category_id)
+                                                                value="{{ $category->id }}">
+                                                                {{ $category->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Location <span class="text-danger">*</span></label>
-                                            <select name="location" class="form-control" required>
-                                                <option value="" selected disabled>Select</option>
-                                                $@foreach ($locations as $location)
-                                                    <option @selected($location->id === $listing->location_id) value="{{ $location->id }}">
-                                                        {{ $location->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="input_area">
+                                                <div class="wsus__search_area">
+                                                    <select name="location" class="select_2" required>
+                                                        $@foreach ($locations as $location)
+                                                            <option @selected($location->id === $listing->location_id)
+                                                                value="{{ $location->id }}">
+                                                                {{ $location->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Email <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" name="email"
-                                                value="{{ $listing->email }}" required>
+                                            <div class="input_area">
+                                                <input type="email" name="email" value="{{ $listing->email }}"
+                                                    required>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Phone Number <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="phonenumber"
-                                                value="{{ $listing->phonenumber }}" required>
+                                            <div class="input_area">
+                                                <input type="text" name="phonenumber"
+                                                    value="{{ $listing->phonenumber }}" required>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Address <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="address"
-                                                value="{{ $listing->address }}" required>
+                                            <div class="input_area">
+                                                <input type="text" name="address" value="{{ $listing->address }}"
+                                                    required>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Website</label>
-                                            <input type="text" class="form-control" name="website"
-                                                value="{{ $listing->website }}">
+                                            <div class="input_area">
+                                                <input type="text" name="website" value="{{ $listing->website }}">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Facebook URL</label>
-                                            <input type="text" class="form-control" name="fb_url"
-                                                value="{{ $listing->fb_url }}">
+                                            <div class="input_area">
+                                                <input type="text" name="fb_url" value="{{ $listing->fb_url }}">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">X URL</label>
-                                            <input type="text" class="form-control" name="x_url"
-                                                value="{{ $listing->x_url }}">
+                                            <div class="input_area">
+                                                <input type="text" name="x_url" value="{{ $listing->x_url }}">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">LinkedIn URL</label>
-                                            <input type="text" class="form-control" name="linked_url"
-                                                value="{{ $listing->linked_url }}">
+                                            <div class="input_area">
+                                                <input type="text" name="linked_url"
+                                                    value="{{ $listing->linked_url }}">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Instagram URL</label>
-                                            <input type="text" class="form-control" name="insta_url"
-                                                value="{{ $listing->insta_url }}">
+                                        <div class="my_listing_single">
+                                            <div class="input_area">
+                                                <label for="">Instagram URL</label>
+                                                <input type="text" name="insta_url"
+                                                    value="{{ $listing->insta_url }}">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">File
                                                 @if (!empty($listing->file))
                                                     <span class="text-danger">
@@ -268,68 +167,102 @@
                                                     </span>
                                                 @endif
                                             </label>
-                                            <input type="file" class="form-control" name="attachment">
-                                            <input type="hidden" name="old_attachment" id="image-upload"
-                                                value="{{ $listing->file }}" />
+                                            <div class="input_area input_area_2">
+                                                <input type="file" name="attachment" id="inputGroupFile04"
+                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                <input type="hidden" name="old_attachment" id="image-upload"
+                                                    value="{{ $listing->file }}" />
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Facilities
-                                                @if (count($facilities) > $membership->package->limit_facilities)
-                                                    <span class="text-danger">(Your maximum facilities is
-                                                        {{ $membership->package->limit_facilities }})
-                                                    </span>
-                                                @endif
-                                            </label>
-                                            <select class="form-control select2" multiple="" name="facilities[]">
-                                                $@foreach ($facilities as $facility)
-                                                    <option value="{{ $facility->id }}">{{ $facility->name }}</option>
-                                                @endforeach
-                                            </select>
+                                        @if ($membership->package->limit_facilities === -1)
+                                            <label>Facilities <span class="text-danger">(Unlimited)</span></label>
+                                        @else
+                                            <label>Facilities <span class="text-danger">(Maximum Facility -
+                                                    {{ $membership->package->limit_facilities }})</span></label>
+                                        @endif
+                                        <div class="row">
+                                            @foreach ($facilities as $facility)
+                                                <div class="col-xl-6 col-xxl-4 col-md-6">
+                                                    <div class="facilities_check_area">
+                                                        <div class="wsus__pro_check">
+                                                            <div class="form-check">
+                                                                <!-- Đánh dấu checkbox nếu facility đã có trong $listingFacilities -->
+                                                                <input class="form-check-input select-facilities"
+                                                                    type="checkbox" value="{{ $facility->id }}"
+                                                                    id="flexCheck{{ $facility->id }}" name="facilities[]"
+                                                                    {{ in_array($facility->id, $listingFacilities) ? 'checked' : '' }}>
+                                                                <label class="form-check-label"
+                                                                    for="flexCheck{{ $facility->id }}">
+                                                                    {{ $facility->name }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <i class="{{ $facility->icon }}"></i>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label>Description <span class="text-danger">*</span></label>
-                                            <textarea name="description" class="summernote" cols="30" rows="10" required>{!! $listing->description !!}</textarea>
+                                            <textarea name="description" class="form-control summer_note" cols="30" rows="10" required>{!! $listing->description !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label>Map Embed Code <span class="text-danger">*</span></label>
-                                            <textarea name="map_embed_code" class="form-control" cols="30" rows="10">{!! $listing->map_embed_code !!}</textarea>
+                                            <div class="input_area input_area_2">
+                                                <textarea name="map_embed_code" cols="30" rows="10">{!! $listing->map_embed_code !!}</textarea>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Seo Title</label>
-                                            <input name="seo_title" type="text" class="form-control"
-                                                value="{{ $listing->seo_title }}">
+                                            <div class="input_area input_area_2">
+                                                <input name="seo_title" type="text"
+                                                    value="{{ $listing->seo_title }}">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Seo Description</label>
-                                            <textarea name="seo_description" class="form-control" cols="30" rows="10"> {!! $listing->seo_description !!}</textarea>
+                                            <div class="input_area input_area_2">
+                                                <textarea name="seo_description" class="form-control" cols="30" rows="10"> {!! $listing->seo_description !!}</textarea>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Status</label>
-                                            <select name="status" id="status" class="form-control">
-                                                <option @selected($listing->status === 1) value="1">Active</option>
-                                                <option @selected($listing->status === 0) value="0">Hide</option>
-                                            </select>
+                                            <div class="input_area">
+                                                <div class="wsus__search_area">
+                                                    <select name="status" id="status" class="select_2">
+                                                        <option @selected($listing->status === 1) value="1">Active
+                                                        </option>
+                                                        <option @selected($listing->status === 0) value="0">Hide
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="my_listing_single">
                                             <label for="">Is Featured</label>
-                                            <select name="is_featured" id="is_featured" class="form-control">
-                                                <option @selected($listing->is_featured === 0) value="0">No</option>
-                                                <option @selected($listing->is_featured === 1) value="1">Yes</option>
-                                            </select>
+                                            <div class="input_area">
+                                                <div class="wsus__search_area">
+                                                    <select name="is_featured" id="is_featured" class="select_2">
+                                                        <option @selected($listing->is_featured === 0) value="0">No</option>
+                                                        <option @selected($listing->is_featured === 1) value="1">Yes
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -346,8 +279,6 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.summernote').summernote();
@@ -359,7 +290,7 @@
         // Khởi tạo Select2 cho các phần tử có class 'select2'
         // Thiết lập giá trị của dropdown bằng các facility_id từ biến listingFacilities
         // Kích hoạt sự kiện 'change' để cập nhật giao diện hoặc thực hiện hành động khác
-        $('.select2').select2().val(listingFacilities).trigger("change");
+        $('.select-facilities').val(listingFacilities).trigger("change");
 
         $(document).ready(function() {
             $('.image-listing-preview').css({
