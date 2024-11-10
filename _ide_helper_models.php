@@ -114,6 +114,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Facility newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Facility newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Facility query()
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereIcon($value)
@@ -122,6 +123,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility withoutTrashed()
  */
 	class Facility extends \Eloquent {}
 }
