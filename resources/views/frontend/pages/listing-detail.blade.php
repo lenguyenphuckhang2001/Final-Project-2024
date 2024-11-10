@@ -285,11 +285,11 @@
                                 </div>
                             </div>
 
-                            @if (count($similarListing) > 0)
+                            @if (count($discoverMoreListing) > 0)
                                 <div class="col-12">
                                     <div class="listing_det_side_list">
-                                        <h5>Popuplar</h5>
-                                        @foreach ($similarListing as $similar)
+                                        <h5>Discover More</h5>
+                                        @foreach ($discoverMoreListing as $similar)
                                             <a href="{{ route('listing.detail', $similar->slug) }}"
                                                 class="sidebar_blog_single">
                                                 <div class="sidebar_blog_img">

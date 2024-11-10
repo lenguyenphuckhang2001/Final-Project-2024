@@ -78,11 +78,11 @@ button {
 }
 
 :root {
-    --colorPrimary: #f66542;
+    --colorPrimary: #6439ff;
     --paraColor: #7c7474;
     --colorBlack: #1c212b;
     --colorWhite: #ffffff;
-    --ratingColor: #ffc107;
+    --ratingColor: #feee91;
     --headingFont: "Jost", sans-serif;
     --paraFont: "Nunito Sans", sans-serif;
 }

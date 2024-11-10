@@ -12,9 +12,7 @@
                         <div class="my_listing">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="mb-0">All My Listings</h4>
-                                <div class="card-header-action">
-                                    <a href="{{ route('user.listing.create') }}" class="read_btn">Create</a>
-                                </div>
+
                             </div>
                             {{ $dataTable->table() }}
                         </div>

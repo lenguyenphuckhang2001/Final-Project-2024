@@ -281,15 +281,21 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('.summernote').summernote();
+            $('.summer_note').summernote({
+                height: 200
+            });
         });
 
-        // Chuyển đổi mảng PHP $listingFacilities thành chuỗi JSON và lưu vào biến JavaScript
+        /**
+         * Chuyển đổi mảng PHP $listingFacilities thành chuỗi JSON và lưu vào biến JavaScript. Sau đó, {!! ... !!} sẽ in kết quả
+         * này trực tiếp vào mã JavaScript để sử dụng biến listingFacilities với giá trị của nó từ phía server.
+         * Ví dụ nếu biến PHP có giá trị là ['wifi', 'park'] thì listingFactilities sẽ là một mảng JSON ["wifi", "park"]
+         *
+         * $('.select-facilities') chọn phần tử HTML có class là .select-facilities
+         * .val(listingFacilities) sẽ gán giá trị của listingFacilities cho dropdown
+         * hàm trigger('change') kích hoạt sự kiện change để cập nhật giao diện cho người dùng
+         */
         var listingFacilities = {!! json_encode($listingFacilities) !!};
-
-        // Khởi tạo Select2 cho các phần tử có class 'select2'
-        // Thiết lập giá trị của dropdown bằng các facility_id từ biến listingFacilities
-        // Kích hoạt sự kiện 'change' để cập nhật giao diện hoặc thực hiện hành động khác
         $('.select-facilities').val(listingFacilities).trigger("change");
 
         $(document).ready(function() {

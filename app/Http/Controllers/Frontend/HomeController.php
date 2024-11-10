@@ -181,7 +181,7 @@ class HomeController extends Controller
 
 
         // Tìm các danh sách tương tự dựa trên danh mục của danh sách hiện tại
-        $similarListing = Listing::withCount(['evaluates' => function ($query) {
+        $discoverMoreListing = Listing::withCount(['evaluates' => function ($query) {
             $query->where('is_accepted', 1);
         }])
             ->where('category_id', $listing->category_id) // Điều kiện: tìm các danh sách có cùng category_id với danh sách hiện tại
@@ -223,7 +223,7 @@ class HomeController extends Controller
         /*Khởi tạo intance của evaluates với việc thêm các trường để query chúng */
         $evaluates = Evaluate::with('user')->where(['listing_id' =>  $listing->id, 'is_accepted' => 1])->paginate(8);
 
-        return view('frontend.pages.listing-detail', compact('listing', 'similarListing', 'statusTime', 'evaluates'));
+        return view('frontend.pages.listing-detail', compact('listing', 'discoverMoreListing', 'statusTime', 'evaluates'));
     }
 
     function showPackages(): View
