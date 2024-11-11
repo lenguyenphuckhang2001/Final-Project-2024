@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminChatController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminFeaturesSectionController;
 use App\Http\Controllers\Admin\AdminHeroSectionController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\EvaluateController;
@@ -91,4 +92,7 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/messages', [AdminChatController::class, 'index'])->name('message.index');
     Route::get('/store-messages', [AdminChatController::class, 'storeMessages'])->name('store-messages');
     Route::post('/new-message', [AdminChatController::class, 'newMessage'])->name('new-message');
+
+    //Feature
+    Route::resource('features', AdminFeaturesSectionController::class);
 });
