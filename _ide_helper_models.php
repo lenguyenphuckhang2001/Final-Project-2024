@@ -110,6 +110,7 @@ namespace App\Models{
  * @property string $name
  * @property string $slug
  * @property int $status
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Facility newModelQuery()
@@ -117,6 +118,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Facility onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Facility query()
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Facility whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereIcon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Facility whereName($value)
@@ -136,6 +138,7 @@ namespace App\Models{
  * @property int $id
  * @property int $listing_id
  * @property int $facility_id
+ * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Facility|null $facility
@@ -143,12 +146,38 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing query()
  * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereFacilityId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereListingId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FacilityListing whereUpdatedAt($value)
  */
 	class FacilityListing extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $icon
+ * @property string $description
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feature whereUpdatedAt($value)
+ */
+	class Feature extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -493,6 +522,41 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
  */
 	class Setting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string|null $background
+ * @property int|null $number_first
+ * @property string|null $title_first
+ * @property int|null $number_second
+ * @property string|null $title_second
+ * @property int|null $number_third
+ * @property string|null $title_third
+ * @property int|null $number_fourth
+ * @property string|null $title_fourth
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereBackground($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereNumberFirst($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereNumberFourth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereNumberSecond($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereNumberThird($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereTitleFirst($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereTitleFourth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereTitleSecond($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereTitleThird($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistical whereUpdatedAt($value)
+ */
+	class Statistical extends \Eloquent {}
 }
 
 namespace App\Models{

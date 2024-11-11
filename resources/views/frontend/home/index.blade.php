@@ -23,7 +23,7 @@
     @include('frontend.home.sections.features')
 
     <!---------------Counter---------------->
-    {{-- @include('frontend.home.sections.counter') --}}
+    @include('frontend.home.sections.counter')
 
     <!-------------Out Category------------->
     @include('frontend.home.sections.categories')
@@ -38,7 +38,7 @@
     @include('frontend.home.sections.packages')
 
     <!-------------Testimonial-------------->
-    {{-- @include('frontend.home.sections.testimonial') --}}
+    @include('frontend.home.sections.testimonial')
 
     <!----------------Blog------------------>
     {{-- @include('frontend.home.sections.blog') --}}

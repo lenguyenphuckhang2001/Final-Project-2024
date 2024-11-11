@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StatisticalSectionController;
 use Illuminate\Support\Facades\Route;
 
 // Admin Authentication
@@ -39,6 +40,11 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     //Hero Section
     Route::get('/hero-section', [AdminHeroSectionController::class, 'index'])->name('hero-section.index');
     Route::put('/hero-section', [AdminHeroSectionController::class, 'update'])->name('hero-section.update');
+    //Feature Section
+    Route::resource('/features', AdminFeaturesSectionController::class);
+    //Statistical Section
+    Route::get('/statistical', [StatisticalSectionController::class, 'index'])->name('statistical.index');
+    Route::put('/statistical', [StatisticalSectionController::class, 'update'])->name('statistical.update');
 
     // Listings Sections
     Route::resource('/listing', MainListingController::class);
@@ -92,7 +98,4 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/messages', [AdminChatController::class, 'index'])->name('message.index');
     Route::get('/store-messages', [AdminChatController::class, 'storeMessages'])->name('store-messages');
     Route::post('/new-message', [AdminChatController::class, 'newMessage'])->name('new-message');
-
-    //Feature
-    Route::resource('features', AdminFeaturesSectionController::class);
 });

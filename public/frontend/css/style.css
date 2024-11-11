@@ -853,15 +853,8 @@ button {
 /*========================
   COUNTER PART START
 ========================*/
-#wsus__counter {
-    background: url(../images/counter_bg.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
 .wsus__counter_overlay {
-    background: #000000d1;
+    background: #292929d1;
     padding: 80px 0px 96px 0px;
 }
 

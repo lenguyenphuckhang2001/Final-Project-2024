@@ -13,6 +13,7 @@ use App\Models\Listing;
 use App\Models\ListingSchedule;
 use App\Models\Location;
 use App\Models\Package;
+use App\Models\Statistical;
 use App\Models\Support;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ class HomeController extends Controller
         $locations = Location::where('status', 1)->get();
         $packages = Package::where('status', 1)->where('display_at_home', 1)->take(3)->get();
         $homeFeatures = Feature::where('status', 1)->take(3)->get();
+        $statistical = Statistical::first();
 
         $homeCategory = Category::withCount(['listings' => function ($query) {
             $query->where('is_accepted', 1);
@@ -66,6 +68,7 @@ class HomeController extends Controller
                 'categories',
                 'packages',
                 'locations',
+                'statistical',
                 'homeFeatures',
                 'homeCategory',
                 'homeLocation',

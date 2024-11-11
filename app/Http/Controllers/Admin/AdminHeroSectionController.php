@@ -14,6 +14,7 @@ use Auth;
 class AdminHeroSectionController extends Controller
 {
     use FileHandlingTrait;
+
     function index(): View
     {
         $hero = Hero::first();
