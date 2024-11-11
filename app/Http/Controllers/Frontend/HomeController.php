@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Facility;
 use App\Models\Category;
 use App\Models\Evaluate;
+use App\Models\Feature;
 use App\Models\Hero;
 use App\Models\Listing;
 use App\Models\ListingSchedule;
@@ -27,6 +28,7 @@ class HomeController extends Controller
         $categories = Category::where('status', 1)->get();
         $locations = Location::where('status', 1)->get();
         $packages = Package::where('status', 1)->where('display_at_home', 1)->take(3)->get();
+        $homeFeatures = Feature::where('status', 1)->take(3)->get();
 
         $homeCategory = Category::withCount(['listings' => function ($query) {
             $query->where('is_accepted', 1);
@@ -64,6 +66,7 @@ class HomeController extends Controller
                 'categories',
                 'packages',
                 'locations',
+                'homeFeatures',
                 'homeCategory',
                 'homeLocation',
                 'homeFeaturedListing'

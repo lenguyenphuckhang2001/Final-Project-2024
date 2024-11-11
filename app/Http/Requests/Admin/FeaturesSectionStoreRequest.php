@@ -22,7 +22,7 @@ class FeaturesSectionStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'icon' => ['nullable'],
+            'icon' => ['nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'max:500'],
             'status' => ['required', 'boolean']

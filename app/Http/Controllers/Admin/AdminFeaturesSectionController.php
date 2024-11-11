@@ -71,7 +71,9 @@ class AdminFeaturesSectionController extends Controller
     public function update(FeaturesSectionUpdateRequest $request, string $id): RedirectResponse
     {
         $feature = Feature::findOrFail($id);
-        $feature->icon = $request->icon;
+        /* Trường field có tồn tại trong request hay không.
+        Trường field không có giá trị rỗng (không phải null, '', hoặc mảng trống [])*/
+        $feature->icon = $request->filled('icon') ? $request->icon : $feature->icon;
         $feature->title = $request->title;
         $feature->description = $request->description;
         $feature->status = $request->status;

@@ -22,7 +22,7 @@ class FeaturesSectionUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'icon' => ['nullable'],
+            'icon' => ['nullable', 'string', 'max:255'],
             'title' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'max:500'],
             'status' => ['required', 'boolean']
