@@ -130,7 +130,7 @@
                             @if (count($evaluates) > 0)
                                 @foreach ($evaluates as $evaluate)
                                     <div class="wsus__single_comment">
-                                        <div class="wsus__single_comment_img">
+                                        <div class="wsus__single_comment_img" style="height: 70px;">
                                             <img src="{{ asset($evaluate->user->avatar) }}" alt="comment"
                                                 class="img-fluid w-100">
                                         </div>
@@ -272,10 +272,10 @@
 
                             <div class="col-12">
                                 <div class="listing_det_side_contact">
-                                    <h5>Message Us</h5>
+                                    <h5>Chating with us</h5>
                                     <button type="submit" class="read_btn" data-bs-toggle="modal"
                                         data-bs-target="#modalPopup">
-                                        Message
+                                        Chating
                                     </button>
                                     <div class="alert alert-info mt-3 text-center d-none continue-send">
                                         <a href="{{ route('user.messages.index') }}">
