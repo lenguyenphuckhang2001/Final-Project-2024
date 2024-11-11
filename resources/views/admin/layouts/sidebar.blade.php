@@ -185,16 +185,22 @@
             </li>
 
             <!-- Sections -->
-            <li class="dropdown {{ setActiveRoute(['admin.hero.*']) }}">
+            <li class="dropdown {{ setActiveRoute(['admin.hero.*', 'admin.features.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-th-large"></i>
-                    <span>Sections</span>
+                    <span>Home Sections</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.hero-section.*']) }}">
                         <a class="nav-link" href="{{ route('admin.hero-section.index') }}">
                             <i class="fas fa-image"></i>
                             Hero
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.features.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.features.index') }}">
+                            <i class="fas fa-layer-group"></i>
+                            Features
                         </a>
                     </li>
                 </ul>

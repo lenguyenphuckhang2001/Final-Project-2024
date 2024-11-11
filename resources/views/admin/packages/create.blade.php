@@ -37,41 +37,43 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Name of Package<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="name" required>
+                                            <input type="text" class="form-control" name="name"
+                                                placeholder="Name packages" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Price (USD)<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="price" required>
+                                            <input type="text" class="form-control" name="price" placeholder="0"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Limit Days<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="limit_days"
-                                                placeholder="For unlimited days use value -1" required>
+                                                placeholder="Unlimited days use (-1)" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Limit of Listing<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="limit_listing"
-                                                placeholder="For unlimited listing use value -1" required>
+                                                placeholder="Unlimited listing use (-1)" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Limit of Photos<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="limit_photos"
-                                                placeholder="For unlimited photos use value -1" required>
+                                                placeholder="Unlimited photos use (-1)" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Limit of Video<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="limit_video"
-                                                placeholder="For unlimited videos use value -1" required>
+                                                placeholder="Unlimited videos use (-1)" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -79,7 +81,7 @@
                                             <label for="">Limit of Facilities<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="limit_facilities"
-                                                placeholder="For unlimited facilities use value -1"required>
+                                                placeholder="Unlimited facilities use (-1)"required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -87,7 +89,7 @@
                                             <label for="">Limit of Featured Listing<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="limit_featured_listing"
-                                                placeholder="For unlimited featured listing use value -1" required>
+                                                placeholder="Unlimited featured listing use (-1)" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

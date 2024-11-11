@@ -14,8 +14,8 @@ class CategoryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'background_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'icon' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048',],
+            'background_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
+            'icon' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:5120',],
             'name' => ['required', 'string', 'max:255', 'unique:categories,name,' . $this->category],
             'display_at_home' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],

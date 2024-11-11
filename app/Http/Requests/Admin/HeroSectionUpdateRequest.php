@@ -14,7 +14,7 @@ class HeroSectionUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'background' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'background' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
             'title' => ['required', 'max:255'],
             'sub_title' => ['required']
         ];

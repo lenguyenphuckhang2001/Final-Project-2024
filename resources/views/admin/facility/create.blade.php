@@ -21,37 +21,39 @@
                         <div class="card-header">
                             <h4>Create</h4>
                         </div>
-
                         <div class="card-body">
                             <form action="{{ route('admin.facility.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="">Icon <span class="text-danger">*</span></label>
-                                    <div name='icon' role="iconpicker" data-align="center"
-                                        data-unselected-class="primary">
-                                    </div>
-                                </div>
-
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-xl-4 col-md-6">
                                         <div class="form-group">
-                                            <label for="">Name <span class="text-danger">*</span></label>
-
-                                            <input type="text" class="form-control" name="name">
+                                            <label for="">Icon <span class="text-danger">*</span></label>
+                                            <div name='icon' role="iconpicker" data-align="center"
+                                                data-unselected-class="primary">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Status</label>
-                                            <select name="status" id="" class="form-control">
-                                                <option value="1">Active</option>
-                                                <option value="0">Hide</option>
-                                            </select>
+                                    <div class="col-xl-8 col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Name <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Status</label>
+                                                    <select name="status" id="" class="form-control">
+                                                        <option value="1">Active</option>
+                                                        <option value="0">Hide</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
+                                <div class="form-group float-right">
                                     <button type="submit" class="btn btn-primary">Create</button>
                                 </div>
                             </form>
@@ -62,7 +64,3 @@
         </div>
     </section>
 @endsection
-
-@push('scripts')
-    <script></script>
-@endpush

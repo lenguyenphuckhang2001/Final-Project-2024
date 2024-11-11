@@ -171,6 +171,7 @@ return [
         App\Providers\SettingsProvider::class,
         App\Providers\PaymentSettingsProvider::class,
         App\Providers\TimeZoneProvider::class,
+        App\Providers\PusherProvider::class
     ])->toArray(),
 
     /*

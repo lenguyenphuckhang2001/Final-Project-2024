@@ -25,8 +25,8 @@ class UserListingStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'thumbnail' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
+            'thumbnail' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
             'category' => ['required', 'integer'],
             'location' => ['required', 'integer'],
             'title' => ['required', 'string', 'max:255', 'unique:listings,title'],

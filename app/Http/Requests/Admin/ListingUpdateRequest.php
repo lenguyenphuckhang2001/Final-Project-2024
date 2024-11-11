@@ -15,8 +15,8 @@ class ListingUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'thumbnail' => ['image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'image' => ['image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
+            'thumbnail' => ['image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
             'category' => ['required', 'integer'],
             'location' => ['required', 'integer'],
             'title' => ['required', 'string', 'max:255', 'unique:listings,title,' . $this->listing],
