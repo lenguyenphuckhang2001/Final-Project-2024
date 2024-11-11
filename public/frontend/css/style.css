@@ -3821,7 +3821,7 @@ PAGINATION PART END
     background: var(--colorWhite);
     margin: 0 auto;
     margin-top: 30px;
-    border: 5px solid var(--colorWhite);
+    border: 5px solid var(--colorPrimary);
 }
 
 .dashboard_sidebar .close_icon {

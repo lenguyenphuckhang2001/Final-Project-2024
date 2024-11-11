@@ -1,7 +1,9 @@
 <div class="dashboard_sidebar">
     <span class="close_icon"><i class="far fa-times"></i></span>
-    <a href="dsahboard.html" class="dash_logo"><img src="{{ asset(auth()->user()->avatar) }}" alt="logo"
-            class="img-fluid"></a>
+    <a href="#" class="dash_logo"><img src="{{ asset(auth()->user()->avatar) }}" alt="logo" class="img-fluid"></a>
+    <a href="#" class="d-flex justify-content-center align-items-center mt-3">
+        <p>{{ auth()->user()->email }}</p>
+    </a>
     <ul class="dashboard_link">
         <li><a href="{{ route('user.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
         <li><a href="{{ route('user.profile.index') }}"><i class="far fa-user"></i> My Profile</a></li>
