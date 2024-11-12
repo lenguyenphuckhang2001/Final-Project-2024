@@ -42,9 +42,9 @@ class SupportDataTable extends DataTable
              * value => ''%' . $keyword . '%''
              *  >> % là ký tự đặc biệt trong SQL, dùng để biểu thị bất kỳ chuỗi nào (bao gồm chuỗi rỗng).
              *  >> '% . $keyword . %' có nghĩa là tìm kiếm mọi bản ghi có chứa $keyword ở bất kỳ vị trí nào trong title:
-             *      -> %keyword%: Tìm từ khóa $keyword ở bất kỳ vị trí nào trong title
-             *      -> keyword%: Tìm từ khóa bắt đầu bằng $keyword
-             *      -> %keyword: Tìm từ khóa kết thúc bằng $keyword
+             *    -> %keyword%: Tìm từ khóa $keyword ở bất kỳ vị trí nào trong title
+             *    -> keyword%: Tìm từ khóa bắt đầu bằng $keyword
+             *    -> %keyword: Tìm từ khóa kết thúc bằng $keyword
              */
             ->filterColumn('listing', function ($query, $keyword) {
                 $query->orWhereHas('listing', function ($subQuery) use ($keyword) {
@@ -90,8 +90,6 @@ class SupportDataTable extends DataTable
             Column::make('email')->width(120),
             Column::make('listing')->width(150),
             Column::make('message'),
-
-
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

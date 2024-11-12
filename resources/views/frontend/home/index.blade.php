@@ -37,8 +37,8 @@
     <!-------------Our Package-------------->
     @include('frontend.home.sections.packages')
 
-    <!-------------Testimonial-------------->
-    @include('frontend.home.sections.testimonial')
+    <!-------------Feedback-------------->
+    @include('frontend.home.sections.feedback')
 
     <!----------------Blog------------------>
     {{-- @include('frontend.home.sections.blog') --}}

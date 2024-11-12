@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminFeaturesSectionController;
 use App\Http\Controllers\Admin\AdminHeroSectionController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\EvaluateController;
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\MainListingController;
 use App\Http\Controllers\Admin\ListingFacilityController;
 use App\Http\Controllers\Admin\ListingCategoryController;
@@ -45,6 +46,8 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     //Statistical Section
     Route::get('/statistical', [StatisticalSectionController::class, 'index'])->name('statistical.index');
     Route::put('/statistical', [StatisticalSectionController::class, 'update'])->name('statistical.update');
+    //Feedback Section
+    Route::resource('/feedback', FeedbackController::class);
 
     // Listings Sections
     Route::resource('/listing', MainListingController::class);

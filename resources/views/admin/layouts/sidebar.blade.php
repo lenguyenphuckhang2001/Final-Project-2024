@@ -185,7 +185,8 @@
             </li>
 
             <!-- Sections -->
-            <li class="dropdown {{ setActiveRoute(['admin.hero.*', 'admin.features.*', 'admin.statistical.*']) }}">
+            <li
+                class="dropdown {{ setActiveRoute(['admin.hero.*', 'admin.features.*', 'admin.statistical.*', 'admin.feedback.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-th-large"></i>
                     <span>Home Sections</span>
@@ -205,8 +206,14 @@
                     </li>
                     <li class="{{ setActiveRoute(['admin.statistical.*']) }}">
                         <a class="nav-link" href="{{ route('admin.statistical.index') }}">
-                            <i class="fas fa-layer-group"></i>
+                            <i class="fas fa-sort-numeric-up"></i>
                             Statistical
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.feedback.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.feedback.index') }}">
+                            <i class="fas fa-comment-dots"></i>
+                            Feedback
                         </a>
                     </li>
                 </ul>

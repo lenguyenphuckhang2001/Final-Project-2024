@@ -74,7 +74,7 @@ class ListingCategoryController extends Controller
     {
         $newIconPath = $this->imageUpload($request, 'icon', $request->previous_icon);
         $newBackgroundPath = $this->imageUpload($request, 'background_image', $request->previous_background_image);
-        
+
         $category = Category::findOrFail($id);
         $category->icon = !empty($newIconPath) ? $newIconPath : $request->previous_icon;
         $category->background_image = !empty($newBackgroundPath) ? $newBackgroundPath : $request->previous_background_image;

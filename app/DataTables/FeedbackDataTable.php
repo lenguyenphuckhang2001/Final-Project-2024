@@ -2,8 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Feature;
-use App\Models\FeaturesSection;
+use App\Models\Feedback;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class FeaturesSectionDataTable extends DataTable
+class FeedbackDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,12 +23,24 @@ class FeaturesSectionDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $btnEdit = '<a href="' . route('admin.features.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $btnDelete = '<a href="' . route('admin.features.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                $btnEdit = '<a href="' . route('admin.feedback.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                $btnDelete = '<a href="' . route('admin.feedback.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
                 return $btnEdit . $btnDelete;
             })
-            ->addColumn('icon', function ($query) {
-                return '<i class="' . $query->icon . '" style="font-size:30px"></i>';
+            ->addColumn('avatar', function ($query) {
+                return '<img src="' . asset($query->avatar) . '" width="80" height="80" style="object-fit: cover;"></img>';
+            })
+            ->addColumn('rating', function ($query) {
+                $stars = '';
+
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $query->rating) {
+                        $stars .= '<i class="fas fa-star"></i>';
+                    } else {
+                        $stars .= '<i class="far fa-star"></i>';
+                    }
+                }
+                return $stars;
             })
             ->addColumn('status', function ($query) {
                 if ($query->status !== 1) {
@@ -38,14 +49,14 @@ class FeaturesSectionDataTable extends DataTable
                     return "<span class='badge badge-success'>Active</span>";
                 }
             })
-            ->rawColumns(['icon', 'status', 'action'])
+            ->rawColumns(['action', 'status', 'avatar', 'rating'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Feature $model): QueryBuilder
+    public function query(Feedback $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -56,13 +67,12 @@ class FeaturesSectionDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('featuressection-table')
+            ->setTableId('feedback-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
             ->orderBy(0)
-            ->selectStyleSingle()
-        ;
+            ->selectStyleSingle();
     }
 
     /**
@@ -72,9 +82,10 @@ class FeaturesSectionDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('title'),
-            Column::make('icon'),
-            Column::make('description'),
+            Column::make('avatar'),
+            Column::make('name'),
+            Column::make('position'),
+            Column::make('rating'),
             Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
@@ -89,6 +100,6 @@ class FeaturesSectionDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'FeaturesSection_' . date('YmdHis');
+        return 'Feedback_' . date('YmdHis');
     }
 }
