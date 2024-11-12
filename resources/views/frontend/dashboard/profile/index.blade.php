@@ -22,7 +22,7 @@
                                                 <img id="image-label" src="{{ asset($user->avatar) }}" alt="img"
                                                     class="img-fluid w-100" style="display: none;">
                                                 <input type="file" name="avatar" id="image-upload">
-                                                <input type="hidden" name="old_avatar" value="{{ $user->avatar }}">
+                                                <input type="hidden" name="previous_avatar" value="{{ $user->avatar }}">
                                             </div>
                                         </div>
 
@@ -185,7 +185,7 @@
                                             <img id="image-label-2" src="{{ asset($user->banner) }}" alt="img"
                                                 class="img-fluid w-100" style="display: none;">
                                             <input type="file" name="banner" id="image-upload-2">
-                                            <input type="hidden" name="old_banner" value="{{ $user->banner }}">
+                                            <input type="hidden" name="previous_banner" value="{{ $user->banner }}">
                                         </div>
                                     </div>
                                     <div class="col-12">

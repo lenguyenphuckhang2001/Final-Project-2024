@@ -23,12 +23,12 @@ class AdminProfileController extends Controller
 
     function update(ProfileEditRequest $request): RedirectResponse
     {
-        $newAvatarPath = $this->imageUpload($request, 'avatar', $request->old_avatar);
-        $newBannerPath = $this->imageUpload($request, 'banner', $request->old_banner);
+        $newAvatarPath = $this->imageUpload($request, 'avatar', $request->previous_avatar);
+        $newBannerPath = $this->imageUpload($request, 'banner', $request->previous_banner);
 
         $user = Auth::user();
-        $user->avatar = !empty($newAvatarPath) ? $newAvatarPath : $request->old_avatar;
-        $user->banner = !empty($newBannerPath) ? $newBannerPath : $request->old_banner;
+        $user->avatar = !empty($newAvatarPath) ? $newAvatarPath : $request->previous_avatar;
+        $user->banner = !empty($newBannerPath) ? $newBannerPath : $request->previous_banner;
         $user->name = $request->name;
         $user->phonenumber = $request->phonenumber;
         $user->email = $request->email;

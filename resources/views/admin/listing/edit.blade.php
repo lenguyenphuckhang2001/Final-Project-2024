@@ -34,7 +34,7 @@
                                             <div id="image-preview" class="image-preview image-listing-preview">
                                                 <label for="image-upload" id="image-label">Choose File</label>
                                                 <input type="file" name="image" id="image-upload" />
-                                                <input type="hidden" name="old_image" id="image-upload"
+                                                <input type="hidden" name="previous_image" id="image-upload"
                                                     value="{{ $listing->image }}" />
                                             </div>
                                         </div>
@@ -45,7 +45,7 @@
                                             <div id="image-preview-2" class="image-preview thumbnail-preview">
                                                 <label for="image-upload-2" id="image-label-2">Choose File</label>
                                                 <input type="file" id="image-upload-2" name="thumbnail" />
-                                                <input type="hidden" name="old_thumbnail" id="image-upload"
+                                                <input type="hidden" name="previous_thumbnail" id="image-upload"
                                                     value="{{ $listing->thumbnail }}" />
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@
                                                 @endif
                                             </label>
                                             <input type="file" class="form-control" name="attachment">
-                                            <input type="hidden" name="old_attachment" id="image-upload"
+                                            <input type="hidden" name="previous_attachment" id="image-upload"
                                                 value="{{ $listing->file }}" />
                                         </div>
                                     </div>

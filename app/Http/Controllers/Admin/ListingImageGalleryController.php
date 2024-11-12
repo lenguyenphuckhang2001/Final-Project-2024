@@ -37,9 +37,9 @@ class ListingImageGalleryController extends Controller
             'listing_id' => ['required']
         ]);
 
-        $imageMultiPath = $this->multipleUploadImage($request, 'images');
+        $newImageMultiplePath = $this->multipleUploadImage($request, 'images');
 
-        foreach ($imageMultiPath as $imagePath) {
+        foreach ($newImageMultiplePath as $imagePath) {
             $image = new ImageGalerry();
             $image->listing_id = $request->listing_id;
             $image->image = $imagePath;

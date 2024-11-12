@@ -22,12 +22,12 @@ class StatisticalSectionController extends Controller
 
     function update(StatisticalSectionUpdateRequest $request): RedirectResponse
     {
-        $imageBackgroundPath = $this->imageUpload($request, 'background', $request->old_background);
+        $imageBackgroundPath = $this->imageUpload($request, 'background', $request->previous_background);
 
         Statistical::updateOrCreate(
             ['id' => 1],
             [
-                'background' => !empty($imageBackgroundPath) ? $imageBackgroundPath : $request->old_background,
+                'background' => !empty($imageBackgroundPath) ? $imageBackgroundPath : $request->previous_background,
 
                 'title_first' => $request->title_first,
                 'number_first' => $request->number_first,

@@ -33,7 +33,7 @@
                                             <div id="image-preview" class="image-preview background-image-edit">
                                                 <label for="image-upload" id="image-label">Choose File</label>
                                                 <input type="file" name="background_image" id="image-upload" />
-                                                <input type="hidden" name="old_background_image"
+                                                <input type="hidden" name="previous_background_image"
                                                     value="{{ $category->background_image }}">
                                             </div>
                                         </div>
@@ -44,7 +44,7 @@
                                             <div id="image-preview-2" class="image-preview icon-image">
                                                 <label for="image-upload-2" id="image-label-2">Choose File</label>
                                                 <input type="file" name="icon" id="image-upload-2" />
-                                                <input type="hidden" name="old_icon" value="{{ $category->icon }}">
+                                                <input type="hidden" name="previous_icon" value="{{ $category->icon }}">
                                             </div>
                                         </div>
                                     </div>

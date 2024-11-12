@@ -23,12 +23,12 @@ class AdminHeroSectionController extends Controller
 
     function update(HeroSectionUpdateRequest $request): RedirectResponse
     {
-        $backgroundImagePath = $this->imageUpload($request, "background", $request->old_background);
+        $backgroundImagePath = $this->imageUpload($request, "background", $request->previous_background);
 
         Hero::updateOrCreate(
             ['id' => 1],
             [
-                "background" => !empty($backgroundImagePath) ? $backgroundImagePath : $request->old_background,
+                "background" => !empty($backgroundImagePath) ? $backgroundImagePath : $request->previous_background,
                 "title" => $request->title,
                 "sub_title" => $request->sub_title
             ]

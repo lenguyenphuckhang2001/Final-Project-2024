@@ -30,7 +30,7 @@
                                                 <img id="image-label" class="img-fluid w-100" alt="Image Preview"
                                                     src="{{ asset($listing->image) }}" />
                                                 <input type="file" name="image" id="image-upload" />
-                                                <input type="hidden" name="old_image" id="image-upload"
+                                                <input type="hidden" name="previous_image" id="image-upload"
                                                     value="{{ $listing->image }}" />
                                             </div>
                                         </div>
@@ -43,7 +43,7 @@
                                                 <img id="image-label-2" class="img-fluid w-100" alt="Image Preview"
                                                     src="{{ asset($listing->thumbnail) }}" />
                                                 <input type="file" id="image-upload-2" name="thumbnail" />
-                                                <input type="hidden" name="old_thumbnail" id="image-upload"
+                                                <input type="hidden" name="previous_thumbnail" id="image-upload"
                                                     value="{{ $listing->thumbnail }}" />
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@
                                             <div class="input_area input_area_2">
                                                 <input type="file" name="attachment" id="inputGroupFile04"
                                                     aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                                <input type="hidden" name="old_attachment" id="image-upload"
+                                                <input type="hidden" name="previous_attachment" id="image-upload"
                                                     value="{{ $listing->file }}" />
                                             </div>
                                         </div>

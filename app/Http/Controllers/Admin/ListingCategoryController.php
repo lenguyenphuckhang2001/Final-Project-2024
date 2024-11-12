@@ -41,11 +41,11 @@ class ListingCategoryController extends Controller
     public function store(CategoryStoreRequest $request): RedirectResponse
     {
         $newIconPath = $this->imageUpload($request, 'icon');
-        $newbackgroundPath = $this->imageUpload($request, 'background_image');
+        $newBackgroundPath = $this->imageUpload($request, 'background_image');
 
         $category = new Category();
         $category->icon = $newIconPath;
-        $category->background_image = $newbackgroundPath;
+        $category->background_image = $newBackgroundPath;
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->display_at_home = $request->display_at_home;
@@ -72,12 +72,12 @@ class ListingCategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, string $id): RedirectResponse
     {
-        $newIconPath = $this->imageUpload($request, 'icon', $request->old_icon);
-        $newbackgroundPath = $this->imageUpload($request, 'background_image', $request->old_backgroud_image);
-
+        $newIconPath = $this->imageUpload($request, 'icon', $request->previous_icon);
+        $newBackgroundPath = $this->imageUpload($request, 'background_image', $request->previous_background_image);
+        
         $category = Category::findOrFail($id);
-        $category->icon = !empty($newIconPath) ? $newIconPath : $request->old_icon;
-        $category->background_image = !empty($newbackgroundPath) ? $newbackgroundPath : $request->old_background_image;
+        $category->icon = !empty($newIconPath) ? $newIconPath : $request->previous_icon;
+        $category->background_image = !empty($newBackgroundPath) ? $newBackgroundPath : $request->previous_background_image;
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->display_at_home = $request->display_at_home;

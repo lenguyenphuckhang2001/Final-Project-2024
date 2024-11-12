@@ -42,18 +42,18 @@ class MainListingController extends Controller
     }
 
     /**
-     * Store a newly created resourc e in storage.
+     * Store a newly created resource in storage.
      */
     public function store(ListingStoreRequest $request): RedirectResponse
     {
-        $imagePath = $this->imageUpload($request, 'image');
-        $thumbnailPath = $this->imageUpload($request, 'thumbnail');
-        $attachmentPath = $this->imageUpload($request, 'attachment');
+        $newImagePath = $this->imageUpload($request, 'image');
+        $newThumbnailPath = $this->imageUpload($request, 'thumbnail');
+        $newAttachmentPath = $this->imageUpload($request, 'attachment');
 
         $listing = new Listing();
         $listing->user_id = Auth::user()->id;
-        $listing->image = $imagePath;
-        $listing->thumbnail = $thumbnailPath;
+        $listing->image = $newImagePath;
+        $listing->thumbnail = $newThumbnailPath;
         $listing->title = $request->title;
         $listing->slug = Str::slug($request->title);
         $listing->category_id = $request->category;
@@ -68,7 +68,7 @@ class MainListingController extends Controller
         $listing->x_url = $request->x_url;
         $listing->linked_url = $request->linked_url;
         $listing->insta_url = $request->insta_url;
-        $listing->file = $attachmentPath;
+        $listing->file = $newAttachmentPath;
         $listing->map_embed_code = $request->map_embed_code;
         $listing->seo_title = $request->seo_title;
         $listing->seo_description = $request->seo_description;
@@ -81,10 +81,10 @@ class MainListingController extends Controller
 
         // Giả sử người dùng chọn các tiện ích với IDs là [1, 2] (Wifi, Điều hòa)
         // foreach ([1, 2] as $facilityId) {
-        //     $facility = new FacilityListing();
-        //     $facility->listing_id = $listing->id;  // Gán listing_id là ID của Căn hộ A
-        //     $facility->facility_id = $facilityId;    // Gán facility_id là ID của tiện ích (Wifi, Điều hòa)
-        //     $facility->save(); // Lưu mỗi dòng vào bảng pivot
+        //   $facility = new FacilityListing();
+        //   $facility->listing_id = $listing->id; // Gán listing_id là ID của Căn hộ A
+        //   $facility->facility_id = $facilityId; // Gán facility_id là ID của tiện ích (Wifi, Điều hòa)
+        //   $facility->save(); // Lưu mỗi dòng vào bảng pivot
         // }
         foreach ($request->facilities as $facilityId) {
             $facility = new FacilityListing();
@@ -129,14 +129,14 @@ class MainListingController extends Controller
     public function update(ListingUpdateRequest $request, string $id): RedirectResponse
     {
 
-        $imagePath = $this->imageUpload($request, 'image', $request->old_image);
-        $thumbnailPath = $this->imageUpload($request, 'thumbnail', $request->old_thumbnail);
-        $attachmentPath = $this->imageUpload($request, 'attachment', $request->old_attachment);
+        $newImagePath = $this->imageUpload($request, 'image', $request->previous_image);
+        $newThumbnailPath = $this->imageUpload($request, 'thumbnail', $request->previous_thumbnail);
+        $newAttachmentPath = $this->imageUpload($request, 'attachment', $request->previous_attachment);
 
         $listing = Listing::findOrFail($id);
         $listing->user_id = Auth::user()->id;
-        $listing->image = !empty($imagePath) ? $imagePath : $request->old_image;
-        $listing->thumbnail = !empty($thumbnailPath) ? $thumbnailPath : $request->old_thumbnail;
+        $listing->image = !empty($newImagePath) ? $newImagePath : $request->previous_image;
+        $listing->thumbnail = !empty($newThumbnailPath) ? $newThumbnailPath : $request->previous_thumbnail;
         $listing->title = $request->title;
         $listing->slug = Str::slug($request->title);
         $listing->category_id = $request->category;
@@ -151,7 +151,7 @@ class MainListingController extends Controller
         $listing->x_url = $request->x_url;
         $listing->linked_url = $request->linked_url;
         $listing->insta_url = $request->insta_url;
-        $listing->file = !empty($attachmentPath) ? $attachmentPath : $request->old_attachment;
+        $listing->file = !empty($newAttachmentPath) ? $newAttachmentPath : $request->previous_attachment;
         $listing->map_embed_code = $request->map_embed_code;
         $listing->seo_title = $request->seo_title;
         $listing->seo_description = $request->seo_description;

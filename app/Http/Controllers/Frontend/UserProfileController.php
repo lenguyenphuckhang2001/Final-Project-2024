@@ -23,10 +23,10 @@ class UserProfileController extends Controller
 
     function updateInfo(UserUpdateProfileRequest $request): RedirectResponse
     {
-        $avatarPath = $this->imageUpload($request, 'avatar', $request->old_avatar);
+        $newAvatarPath = $this->imageUpload($request, 'avatar', $request->previous_avatar);
 
         $user = Auth::user();
-        $user->avatar = !empty($avatarPath) ? $avatarPath : $request->old_avatar;
+        $user->avatar = !empty($newAvatarPath) ? $newAvatarPath : $request->previous_avatar;
         $user->name = $request->name;
         $user->phonenumber = $request->phonenumber;
         $user->email = $request->email;
@@ -65,10 +65,10 @@ class UserProfileController extends Controller
             'banner' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
         ]);
 
-        $bannerPath = $this->imageUpload($request, 'banner', $request->old_banner);
+        $newBannerPath = $this->imageUpload($request, 'banner', $request->previous_banner);
 
         $user = Auth::user();
-        $user->banner = !empty($bannerPath) ? $bannerPath : $request->old_banner;
+        $user->banner = !empty($newBannerPath) ? $newBannerPath : $request->previous_banner;
         $user->save();
 
         toastr()->success('Banner Image updated successfully');

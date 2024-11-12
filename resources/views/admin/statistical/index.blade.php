@@ -33,7 +33,7 @@
                                             <div id="image-preview" class="image-preview" style="width: 100%;">
                                                 <label for="image-upload" id="image-label">Choose File</label>
                                                 <input type="file" name="background" id="image-upload" />
-                                                <input type="hidden" name="old_background"
+                                                <input type="hidden" name="previous_background"
                                                     value="{{ @$statistical->background }}">
                                             </div>
                                         </div>

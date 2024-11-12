@@ -27,7 +27,7 @@
                                             <div id="avatar-preview" class="image-preview avatar-image-preview">
                                                 <label for="avatar-upload" id="avatar-label">Choose File</label>
                                                 <input type="file" name="avatar" id="avatar-upload" />
-                                                <input type="hidden" name="old_avatar" value="{{ $user->avatar }}">
+                                                <input type="hidden" name="previous_avatar" value="{{ $user->avatar }}">
                                             </div>
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@
                                             <div id="banner-preview" class="image-preview banner-image-preview">
                                                 <label for="banner-upload" id="banner-label">Choose File</label>
                                                 <input type="file" name="banner" id="banner-upload" />
-                                                <input type="hidden" name="old_banner" value="{{ $user->banner }}">
+                                                <input type="hidden" name="previous_banner" value="{{ $user->banner }}">
                                             </div>
                                         </div>
                                     </div>

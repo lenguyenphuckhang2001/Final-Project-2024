@@ -48,14 +48,14 @@ class UserListingController extends Controller
      */
     public function store(UserListingStoreRequest $request): RedirectResponse
     {
-        $imagePath = $this->imageUpload($request, 'image');
-        $thumbnailPath = $this->imageUpload($request, 'thumbnail');
-        $attachmentPath = $this->imageUpload($request, 'attachment');
+        $newImagePath = $this->imageUpload($request, 'image');
+        $newThumbnailPath = $this->imageUpload($request, 'thumbnail');
+        $newAttachmentPath = $this->imageUpload($request, 'attachment');
 
         $listing = new Listing();
         $listing->user_id = Auth::user()->id;
-        $listing->image = $imagePath;
-        $listing->thumbnail = $thumbnailPath;
+        $listing->image = $newImagePath;
+        $listing->thumbnail = $newThumbnailPath;
         $listing->title = $request->title;
         $listing->slug = Str::slug($request->title);
         $listing->category_id = $request->category;
@@ -70,7 +70,7 @@ class UserListingController extends Controller
         $listing->x_url = $request->x_url;
         $listing->linked_url = $request->linked_url;
         $listing->insta_url = $request->insta_url;
-        $listing->file = $attachmentPath;
+        $listing->file = $newAttachmentPath;
         $listing->map_embed_code = $request->map_embed_code;
         $listing->seo_title = $request->seo_title;
         $listing->seo_description = $request->seo_description;
@@ -137,13 +137,13 @@ class UserListingController extends Controller
      */
     public function update(UserListingUpdateRequest $request, string $id): RedirectResponse
     {
-        $imagePath = $this->imageUpload($request, 'image', $request->old_image);
-        $thumbnailPath = $this->imageUpload($request, 'thumbnail', $request->old_thumbnail);
-        $attachmentPath = $this->imageUpload($request, 'attachment', $request->old_attachment);
+        $newImagePath = $this->imageUpload($request, 'image', $request->previous_image);
+        $newThumbnailPath = $this->imageUpload($request, 'thumbnail', $request->previous_thumbnail);
+        $newAttachmentPath = $this->imageUpload($request, 'attachment', $request->previous_attachment);
 
         $listing = Listing::findOrFail($id);
-        $listing->image = !empty($imagePath) ? $imagePath : $request->old_image;
-        $listing->thumbnail = !empty($thumbnailPath) ? $thumbnailPath : $request->old_thumbnail;
+        $listing->image = !empty($newImagePath) ? $newImagePath : $request->previous_image;
+        $listing->thumbnail = !empty($newThumbnailPath) ? $newThumbnailPath : $request->previous_thumbnail;
         $listing->title = $request->title;
         $listing->slug = Str::slug($request->title);
         $listing->category_id = $request->category;
@@ -158,7 +158,7 @@ class UserListingController extends Controller
         $listing->x_url = $request->x_url;
         $listing->linked_url = $request->linked_url;
         $listing->insta_url = $request->insta_url;
-        $listing->file = !empty($attachmentPath) ? $attachmentPath : $request->old_attachment;
+        $listing->file = !empty($newAttachmentPath) ? $newAttachmentPath : $request->previous_attachment;
         $listing->map_embed_code = $request->map_embed_code;
         $listing->seo_title = $request->seo_title;
         $listing->seo_description = $request->seo_description;
