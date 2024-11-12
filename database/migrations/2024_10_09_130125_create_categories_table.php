@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('background_image');
+            $table->string('icon_image');
             $table->string('icon');
             $table->boolean('display_at_home')->default(0);
             $table->boolean('status')->default(1);

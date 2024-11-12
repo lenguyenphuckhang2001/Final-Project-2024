@@ -25,7 +25,7 @@
                             <form action="{{ route('admin.facility.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-xl-4 col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Icon <span class="text-danger">*</span></label>
                                             <div name='icon' role="iconpicker" data-align="center"
@@ -33,7 +33,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-8 col-md-6">
+                                    <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">

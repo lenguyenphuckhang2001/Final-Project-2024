@@ -26,32 +26,40 @@
                             <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
                                             <label for="">Background Image </label>
-                                            <div id="image-preview" class="image-preview">
+                                            <div id="image-preview" class="image-preview" style="width: 65%;">
                                                 <label for="image-upload" id="image-label">Choose File</label>
                                                 <input type="file" name="background_image" id="image-upload" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Icon </label>
+                                            <label for="">Icon Image</label>
                                             <div id="image-preview-2" class="image-preview">
                                                 <label for="image-upload-2" id="image-label-2">Choose File</label>
-                                                <input type="file" name="icon" id="image-upload-2" />
+                                                <input type="file" name="icon_image" id="image-upload-2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Icon Filter<span class="text-danger">*</span></label>
+                                            <div name='icon' role="iconpicker" data-align="left"
+                                                data-unselected-class="primary">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="">Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name">
-                                </div>
-
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="name">
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Display in Home Page?</label>
@@ -71,7 +79,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Create</button>
                                 </div>

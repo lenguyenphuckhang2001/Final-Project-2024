@@ -41,5 +41,5 @@
     @include('frontend.home.sections.feedback')
 
     <!----------------Blog------------------>
-    {{-- @include('frontend.home.sections.blog') --}}
+    @include('frontend.home.sections.blog')
 @endsection

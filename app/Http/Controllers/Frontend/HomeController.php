@@ -37,7 +37,7 @@ class HomeController extends Controller
         $homeCategory = Category::withCount(['listings' => function ($query) {
             $query->where('is_accepted', 1);
         }])->where(['display_at_home' => 1, 'status' => 1])
-            ->take(6)
+            ->take(9)
             ->get();
 
         $homeLocation = Location::with(['listings' => function ($query) {

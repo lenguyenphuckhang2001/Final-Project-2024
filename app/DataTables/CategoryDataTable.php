@@ -28,10 +28,13 @@ class CategoryDataTable extends DataTable
                 return $btnEdit . $btnDelete;
             })
             ->addColumn('background', function ($query) {
-                return '<img width="180" height="120" src="' . asset($query->background_image) . '">';
+                return '<img width="150" height="100" src="' . asset($query->background_image) . '">';
             })
             ->addColumn('icon_image', function ($query) {
-                return '<img width="180" height="120" src="' . asset($query->icon) . '">';
+                return '<img width="70" height="70" src="' . asset($query->icon_image) . '">';
+            })
+            ->addColumn('icon', function ($query) {
+                return '<i class="' . $query->icon . '" style="font-size:50px"></i>';
             })
             ->addColumn('display_at_home', function ($query) {
                 if ($query->display_at_home !== 1) {
@@ -47,7 +50,7 @@ class CategoryDataTable extends DataTable
                     return "<span class='badge badge-success'>Active</span>";
                 }
             })
-            ->rawColumns(['background', 'icon_image', 'action', 'display_at_home', 'status'])
+            ->rawColumns(['background', 'icon_image', 'action', 'display_at_home', 'status', 'icon'])
             ->setRowId('id');
     }
 
@@ -83,7 +86,8 @@ class CategoryDataTable extends DataTable
             Column::make('name')->width(300),
             Column::make('background')->width(350),
             Column::make('icon_image')->width(350),
-            Column::make('display_at_home')->width(170),
+            Column::make('icon')->width(150),
+            Column::make('display_at_home')->width(200),
             Column::make('status')->width(100),
 
             Column::computed('action')

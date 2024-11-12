@@ -40,14 +40,15 @@ class ListingCategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request): RedirectResponse
     {
-        $newIconPath = $this->imageUpload($request, 'icon');
+        $newIconPath = $this->imageUpload($request, 'icon_image');
         $newBackgroundPath = $this->imageUpload($request, 'background_image');
 
         $category = new Category();
-        $category->icon = $newIconPath;
-        $category->background_image = $newBackgroundPath;
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
+        $category->background_image = $newBackgroundPath;
+        $category->icon_image = $newIconPath;
+        $category->icon = $request->icon;
         $category->display_at_home = $request->display_at_home;
         $category->status = $request->status;
         $category->save();
@@ -72,14 +73,15 @@ class ListingCategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, string $id): RedirectResponse
     {
-        $newIconPath = $this->imageUpload($request, 'icon', $request->previous_icon);
+        $newIconPath = $this->imageUpload($request, 'icon_image', $request->previous_icon);
         $newBackgroundPath = $this->imageUpload($request, 'background_image', $request->previous_background_image);
 
         $category = Category::findOrFail($id);
-        $category->icon = !empty($newIconPath) ? $newIconPath : $request->previous_icon;
-        $category->background_image = !empty($newBackgroundPath) ? $newBackgroundPath : $request->previous_background_image;
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
+        $category->background_image = !empty($newBackgroundPath) ? $newBackgroundPath : $request->previous_background_image;
+        $category->icon_image = !empty($newIconPath) ? $newIconPath : $request->previous_icon;
+        $category->icon = $request->filled('icon') ? $request->icon : $category->icon;
         $category->display_at_home = $request->display_at_home;
         $category->status = $request->status;
         $category->save();
@@ -97,7 +99,7 @@ class ListingCategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
 
-            $this->deleteUploadedFile($category->icon);
+            $this->deleteUploadedFile($category->icon_image);
             $this->deleteUploadedFile($category->background_image);
 
             $category->delete();

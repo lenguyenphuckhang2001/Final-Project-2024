@@ -27,7 +27,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
                                             <label for="">Background Image </label>
                                             <div id="image-preview" class="image-preview background-image-edit">
@@ -38,24 +38,34 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Icon </label>
+                                            <label for="">Icon Image</label>
                                             <div id="image-preview-2" class="image-preview icon-image">
                                                 <label for="image-upload-2" id="image-label-2">Choose File</label>
-                                                <input type="file" name="icon" id="image-upload-2" />
-                                                <input type="hidden" name="previous_icon" value="{{ $category->icon }}">
+                                                <input type="file" name="icon_image" id="image-upload-2" />
+                                                <input type="hidden" name="previous_icon"
+                                                    value="{{ $category->icon_image }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Icon Filter<span class="text-danger">*</span></label>
+                                            <div name='icon' role="iconpicker" data-align="left"
+                                                data-unselected-class="primary" data-icon="{{ $category->icon }}">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="">Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" value="{{ $category->name }}">
-                                </div>
-
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ $category->name }}">
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Display in Home Page?</label>
@@ -75,9 +85,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -100,7 +109,7 @@
         })
         $(document).ready(function() {
             $('.icon-image').css({
-                'background-image': 'url({{ asset(@$category->icon) }})',
+                'background-image': 'url({{ asset(@$category->icon_image) }})',
                 'background-position': 'center center',
                 'background-repeat': 'no-repeat',
                 'background-size': 'cover'
