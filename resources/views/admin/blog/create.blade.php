@@ -26,7 +26,8 @@
                             <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <!-- Image Upload -->
                                         <div class="form-group">
                                             <label for="">Image</label>
                                             <div id="image-preview" class="image-preview">
@@ -35,39 +36,43 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Topics <span class="text-danger">*</span></label>
-                                                <select name="topic" class="form-control" required>
-                                                    <option value="" selected disabled>Select</option>
-                                                    $@foreach ($topics as $topic)
-                                                        <option value="{{ $topic->id }}">{{ $topic->topic }}</option>
-                                                    @endforeach
-                                                </select>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <!-- Topic Selection -->
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Topics <span class="text-danger">*</span></label>
+                                                    <select name="topic" class="form-control" required>
+                                                        <option value="" selected disabled>Select</option>
+                                                        $@foreach ($topics as $topic)
+                                                            <option value="{{ $topic->id }}">{{ $topic->topic }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- Title Input -->
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Title <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="title">
+                                                    <input type="hidden" name="author">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="">Title <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" name="title">
-                                                <input type="hidden" name="author">
-                                            </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Content <span class="text-danger">*</span></label>
+                                            <textarea name="content" class="summernote" cols="30" rows="10"></textarea>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="">Content <span class="text-danger">*</span></label>
-                                                <textarea name="content" class="summernote" cols="30" rows="10"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="">Status </label>
-                                                <select name="status" id="" class="form-control">
-                                                    <option value="1">Active</option>
-                                                    <option value="0">Hide</option>
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Status </label>
+                                            <select name="status" id="" class="form-control">
+                                                <option value="1">Active</option>
+                                                <option value="0">Hide</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

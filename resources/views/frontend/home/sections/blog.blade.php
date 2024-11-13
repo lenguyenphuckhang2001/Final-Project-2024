@@ -22,9 +22,10 @@
                                         class="fal fa-calendar-alt"></i>{{ date('d M Y', strtotime($blog->created_at)) }}
                                 </span>
                                 <span><i class="fas fa-user"></i> Author: {{ $blog->author->name }}</span>
-                                <a href="#" class="title">{{ cutString($blog->title, 20) }}</a>
-                                <p>{{ cutString(strip_tags($blog->content), 130) }}</p>
-                                <a class="read_btn" href="#">
+                                <a href="{{ route('blog.detail', $blog->slug) }}"
+                                    class="title">{{ cutString($blog->title, 30) }}</a>
+                                <p>{{ cutString(strip_tags($blog->content), 200) }}</p>
+                                <a class="read_btn" href="{{ route('blog.detail', $blog->slug) }}">
                                     Read More
                                     <i class="far fa-chevron-double-right"></i>
                                 </a>

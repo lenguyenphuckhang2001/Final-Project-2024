@@ -46,7 +46,7 @@ class BlogController extends Controller
         $blog->image = $newImagePath;
         $blog->topic_id = $request->topic;
         $blog->title = $request->title;
-        $blog->slug = \Str::slug($request->slug);
+        $blog->slug = \Str::slug($request->title);
         $blog->content = $request->content;
         $blog->status = $request->status;
         $blog->save();
@@ -86,7 +86,7 @@ class BlogController extends Controller
         $blog->image = !empty($newImagePath) ? $newImagePath : $request->previous_image;
         $blog->topic_id = $request->topic;
         $blog->title = $request->title;
-        $blog->slug = \Str::slug($request->slug);
+        $blog->slug = \Str::slug($request->title);
         $blog->content = $request->content;
         $blog->status = $request->status;
         $blog->save();

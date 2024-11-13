@@ -30,7 +30,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/listings', [HomeController::class, 'listings'])->name('listings');
 Route::get('/listing-modal/{id}', [HomeController::class, 'listingModal'])->name('listing-modal');
 Route::get('/listing/{slug}', [HomeController::class, 'detailListing'])->name('listing.detail');
-Route::get('checkout/{id}', [HomeController::class, 'checkout'])->name('checkout.index');
+Route::get('/checkout/{id}', [HomeController::class, 'checkout'])->name('checkout.index');
+Route::get('/blog-detail/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
 
 Route::post('/listing-support', [HomeController::class, 'supportListing'])->name('listing-support');
 Route::post('/listing-evaluate', [HomeController::class, 'evaluateListing'])->name('listing-evaluate.store')->middleware('auth');

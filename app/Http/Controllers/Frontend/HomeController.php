@@ -319,4 +319,10 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    function blogDetail(string $slug): View
+    {
+        $blog = Blog::with('topic')->where(['status' => 1, 'slug' => $slug])->firstOrFail();
+        return view('frontend.pages.blog-detail', compact('blog'));
+    }
 }

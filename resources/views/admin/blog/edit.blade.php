@@ -34,7 +34,7 @@
                                 @method('PUT')
                                 <div class="row">
                                     <!-- Single Column for Image, Topic, and Title -->
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <!-- Image Upload -->
                                         <div class="form-group">
                                             <label for="">Image</label>
@@ -45,8 +45,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-6">
+
+                                    <div class="col-md-8">
                                         <div class="row">
                                             <!-- Topic Selection -->
                                             <div class="col-md-12">
