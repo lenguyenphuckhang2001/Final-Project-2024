@@ -306,19 +306,19 @@
             <!-- Blog -->
             <li class="dropdown {{ setActiveRoute(['admin.blog.*', 'admin.blog-topic.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-box"></i>
+                    <i class="fab fa-blogger-b"></i>
                     <span>Blog</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.blog.*']) }}">
                         <a class="nav-link" href="{{ route('admin.blog.index') }}">
-                            <i class="fas fa-box-open"></i>
+                            <i class="far fa-newspaper"></i>
                             Blogs
                         </a>
                     </li>
                     <li class="{{ setActiveRoute(['admin.blog-topic.*']) }}">
                         <a class="nav-link" href="{{ route('admin.blog-topic.index') }}">
-                            <i class="fas fa-box-open"></i>
+                            <i class="fas fa-tags"></i>
                             Topics
                         </a>
                     </li>

@@ -8,7 +8,7 @@
                         <a href="{{ route('listings', ['category' => $category->slug]) }}"
                             class="wsus__category_single_slider">
                             <span>
-                                <img src="{{ asset($category->icon) }}" alt="{{ $category->name }}"
+                                <img src="{{ asset($category->icon_image) }}" alt="{{ $category->name }}"
                                     class="img-fluid w-100">
                             </span>
                             <p>{!! $category->name !!}</p>

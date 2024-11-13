@@ -139,7 +139,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description <span class="text-danger">*</span></label>
-                                            <textarea name="description" class="summernote" cols="30" rows="10" required></textarea>
+                                            <textarea name="description" class="summernote" cols="30" rows="10"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -147,7 +147,7 @@
                                             <label>Map Embed Code <span class="text-danger">(Default Size Map:
                                                     1000x400)</span></label>
                                             <textarea name="map_embed_code" class="form-control" cols="30" rows="10"
-                                                placeholder="Import code <iframe> here" required></textarea>
+                                                placeholder="Import code <iframe> here"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

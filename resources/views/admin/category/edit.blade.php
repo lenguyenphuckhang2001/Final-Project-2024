@@ -106,8 +106,7 @@
                 'background-repeat': 'no-repeat',
                 'background-size': 'cover'
             })
-        })
-        $(document).ready(function() {
+
             $('.icon-image').css({
                 'background-image': 'url({{ asset(@$category->icon_image) }})',
                 'background-position': 'center center',
