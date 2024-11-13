@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Facility;
 use App\Models\Category;
 use App\Models\Evaluate;
@@ -33,6 +34,7 @@ class HomeController extends Controller
         $homeFeatures = Feature::where('status', 1)->take(3)->get();
         $statistical = Statistical::first();
         $feedbacks = Feedback::where('status', 1)->take(8)->get();
+        $blogs = Blog::with('author')->where('status', 1)->orderBy('id', 'desc')->take(3)->get();
 
         $homeCategory = Category::withCount(['listings' => function ($query) {
             $query->where('is_accepted', 1);
@@ -72,6 +74,7 @@ class HomeController extends Controller
                 'locations',
                 'statistical',
                 'feedbacks',
+                'blogs',
                 'homeFeatures',
                 'homeCategory',
                 'homeLocation',

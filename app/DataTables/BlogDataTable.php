@@ -33,6 +33,9 @@ class BlogDataTable extends DataTable
             ->addColumn('image', function ($query) {
                 return '<img width="130" height="120" src="' . asset($query->image) . '">';
             })
+            ->addColumn('topic', function ($query) {
+                return $query->topic->topic;
+            })
             ->addColumn('status', function ($query) {
                 if ($query->status !== 1) {
                     return "<span class='badge badge-secondary'>Hide</span>";
@@ -74,9 +77,10 @@ class BlogDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('image'),
+            Column::make('image')->width(200),
             Column::make('author'),
             Column::make('title'),
+            Column::make('topic'),
             Column::make('status'),
             Column::computed('action')
                 ->exportable(false)

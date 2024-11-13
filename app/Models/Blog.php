@@ -10,6 +10,11 @@ class Blog extends Model
 {
     use HasFactory;
 
+    function topic(): BelongsTo
+    {
+        return $this->belongsTo(BlogTopic::class, 'topic_id', 'id');
+    }
+
     function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id', 'id');
