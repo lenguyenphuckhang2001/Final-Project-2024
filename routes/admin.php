@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminFeaturesSectionController;
 use App\Http\Controllers\Admin\AdminHeroSectionController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\BlogTopicController;
 use App\Http\Controllers\Admin\EvaluateController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\MainListingController;
@@ -101,4 +103,9 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/messages', [AdminChatController::class, 'index'])->name('message.index');
     Route::get('/store-messages', [AdminChatController::class, 'storeMessages'])->name('store-messages');
     Route::post('/new-message', [AdminChatController::class, 'newMessage'])->name('new-message');
+
+    //Blog Topic
+    Route::resource('/blog-topic', BlogTopicController::class);
+    //Blog
+    Route::resource('/blog', BlogController::class);
 });

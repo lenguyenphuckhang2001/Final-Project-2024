@@ -10,6 +10,7 @@ use App\Models\Facility;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Str;
 
@@ -77,7 +78,7 @@ class ListingFacilityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): Response
     {
         try {
             Facility::findOrFail($id)->delete();
