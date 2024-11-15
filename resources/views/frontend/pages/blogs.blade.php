@@ -34,11 +34,15 @@
                                     <div class="blog_category_header">
                                         <h4>Topics: </h4>
                                         <ul>
-                                            <li><a href="#">Fitness <span>10</span></a></li>
-                                            <li><a href="#">Lifestyle <span>7</span></a></li>
-                                            <li><a href="#">Event <span>21</span></a></li>
-                                            <li><a href="#">Bar & Cafe <span>14</span></a></li>
-                                            <li><a href="#">Food & Drink <span>5</span></a></li>
+                                            @foreach ($topics as $topic)
+                                                <li>
+                                                    <a href="{{ route('blogs', ['topic' => $topic->slug]) }}">
+                                                        {{ $topic->topic }}
+                                                        -
+                                                        <span>{{ $topic->blogs_count }}</span>
+                                                    </a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>

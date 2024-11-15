@@ -16,9 +16,70 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $image
+ * @property int $topic_id
+ * @property int $author_id
+ * @property string $title
+ * @property string $slug
+ * @property int $view
+ * @property string $content
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $author
+ * @property-read \App\Models\BlogTopic $topic
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereAuthorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereTopicId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereView($value)
+ */
+	class Blog extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $topic
+ * @property string $slug
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Blog> $blogs
+ * @property-read int|null $blogs_count
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic whereTopic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogTopic whereUpdatedAt($value)
+ */
+	class BlogTopic extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $name
  * @property string $slug
  * @property string $background_image
+ * @property string $icon_image
  * @property string $icon
  * @property int $display_at_home
  * @property int $status
@@ -33,6 +94,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereDisplayAtHome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereIconImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereSlug($value)
@@ -178,6 +240,35 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Feature whereUpdatedAt($value)
  */
 	class Feature extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $avatar
+ * @property string $name
+ * @property string $position
+ * @property int $rating
+ * @property string $comment
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereAvatar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereUpdatedAt($value)
+ */
+	class Feedback extends \Eloquent {}
 }
 
 namespace App\Models{
