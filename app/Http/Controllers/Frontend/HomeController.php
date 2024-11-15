@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\BlogComment;
 use App\Models\BlogTopic;
 use App\Models\Facility;
 use App\Models\Category;
@@ -372,6 +373,30 @@ class HomeController extends Controller
     function blogDetail(string $slug): View
     {
         $blog = Blog::with('topic')->where(['status' => 1, 'slug' => $slug])->firstOrFail();
-        return view('frontend.pages.blog-detail', compact('blog'));
+
+        $comments = $blog->comments()
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->paginate(8);
+
+        return view('frontend.pages.blog-detail', compact('blog', 'comments'));
+    }
+
+    function blogComment(Request $request)
+    {
+        $request->validate([
+            'blog_id' => ['required', 'integer'],
+            'message' => ['required'],
+        ]);
+
+        $comment = new BlogComment();
+        $comment->user_id = auth()->user()->id;
+        $comment->blog_id = $request->blog_id;
+        $comment->message = $request->message;
+        $comment->save();
+
+        toastr()->success('Comment this post successfully');
+
+        return redirect()->back();
     }
 }

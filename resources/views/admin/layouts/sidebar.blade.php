@@ -322,6 +322,12 @@
                             Topics
                         </a>
                     </li>
+                    <li class="{{ setActiveRoute(['admin.blog-comment.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.blog-comment.index') }}">
+                            <i class="fas fa-tags"></i>
+                            Comment Status
+                        </a>
+                    </li>
                 </ul>
             </li>
 

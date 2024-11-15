@@ -33,6 +33,7 @@ Route::get('/listing/{slug}', [HomeController::class, 'detailListing'])->name('l
 Route::get('/checkout/{id}', [HomeController::class, 'checkout'])->name('checkout.index');
 Route::get('/blogs', [HomeController::class, 'blogSection'])->name('blogs');
 Route::get('/blog-detail/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
+Route::post('/blog-comment', [HomeController::class, 'blogComment'])->name('blog-comment');
 
 Route::post('/listing-support', [HomeController::class, 'supportListing'])->name('listing-support');
 Route::post('/listing-evaluate', [HomeController::class, 'evaluateListing'])->name('listing-evaluate.store')->middleware('auth');

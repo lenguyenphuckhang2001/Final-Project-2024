@@ -38,82 +38,53 @@
                         <h4>{{ $blog->title }}</h4>
                         {!! $blog->content !!}
                         <div class="blog_comment_area">
-                            <h5 class="wsus__single_comment_heading">Total Comment 05</h5>
-                            <div class="wsus__single_comment">
-                                <div class="wsus__single_comment_img">
-                                    <img src="images/user_large_img.jpg" alt="comment" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__single_comment_text">
-                                    <h5>sumon jahan</h5>
-                                    <span>01-Dec-2021</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                        ducimus magni facilis delectus.</p>
-                                </div>
-                            </div>
-                            <div class="wsus__single_comment">
-                                <div class="wsus__single_comment_img">
-                                    <img src="images/card_img.jpg" alt="comment" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__single_comment_text">
-                                    <h5>shimul sign</h5>
-                                    <span>21-Nov-2021</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                        ducimus magni facilis delectus.</p>
-                                </div>
-                            </div>
-                            <div class="wsus__single_comment">
-                                <div class="wsus__single_comment_img">
-                                    <img src="images/user_large_img.jpg" alt="comment" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__single_comment_text">
-                                    <h5>sumon jahan</h5>
-                                    <span>01-Dec-2021</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                        ducimus magni facilis delectus.</p>
-                                </div>
-                            </div>
-                            <div class="wsus__single_comment">
-                                <div class="wsus__single_comment_img">
-                                    <img src="images/card_img.jpg" alt="comment" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__single_comment_text">
-                                    <h5>shimul sign</h5>
-                                    <span>21-Nov-2021</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                        ducimus magni facilis delectus.</p>
-                                </div>
-                            </div>
-                            <form class="input_comment">
-                                <h5>post a Comment </h5>
-                                <div class="row">
-                                    <div class="col-xl-6">
-                                        <div class="blog_single_input">
-                                            <input type="text" placeholder="Name">
+                            <h5 class="wsus__single_comment_heading">Total Comment - {{ count($comments) }}</h5>
+                            @if (count($comments) > 0)
+                                @foreach ($comments as $comment)
+                                    <div class="wsus__single_comment">
+                                        <div class="wsus__single_comment_img" style="height: 70px;object-fit:cover;">
+                                            <img src="{{ asset($comment->user->avatar) }}" alt="avatar"
+                                                class="img-fluid w-100">
+                                        </div>
+                                        <div class="wsus__single_comment_text">
+                                            <h5>{{ $comment->user->name }}</h5>
+                                            <span>{{ date('d M Y', strtotime($comment->created_at)) }}</span>
+                                            <p>{{ $comment->message }}</p>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6">
-                                        <div class="blog_single_input">
-                                            <input type="email" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <div class="blog_single_input">
-                                            <input type="text" placeholder="Phone">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <div class="blog_single_input">
-                                            <input type="text" placeholder="Subject">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <div class="blog_single_input">
-                                            <textarea cols="3" rows="5" placeholder="Message"></textarea>
-                                            <button type="submit" class="read_btn">send</button>
-                                        </div>
-                                    </div>
+                                @endforeach
+                                <div id="pagination" class="d-flex justify-content-center my-5">
+                                    @if ($comments->hasPages())
+                                        {{ $comments->links() }}
+                                    @endif
                                 </div>
-                            </form>
+                            @else
+                                <div class="alert alert-info my-4">
+                                    <p>There are currently no comments on this blog</p>
+                                </div>
+                            @endif
+
+
+                            @auth
+                                <form action="{{ route('blog-comment') }}" method="POST" class="input_comment">
+                                    @csrf
+                                    <h5>Post your comment </h5>
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="blog_single_input">
+                                                <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+                                                <textarea cols="3" rows="5" name="message" placeholder="Message..."></textarea>
+                                                <button type="submit" class="read_btn">Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            @endauth
+                            @guest
+                                <div class="alert alert-info">
+                                    Please <a href="{{ route('login') }}">login</a> to comment this blog
+                                </div>
+                            @endguest
                         </div>
                     </div>
                 </div>

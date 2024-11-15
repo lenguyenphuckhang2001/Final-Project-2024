@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminFeaturesSectionController;
 use App\Http\Controllers\Admin\AdminHeroSectionController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogTopicController;
 use App\Http\Controllers\Admin\EvaluateController;
@@ -104,8 +105,10 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/store-messages', [AdminChatController::class, 'storeMessages'])->name('store-messages');
     Route::post('/new-message', [AdminChatController::class, 'newMessage'])->name('new-message');
 
-    //Blog Topic
-    Route::resource('/blog-topic', BlogTopicController::class);
     //Blog
     Route::resource('/blog', BlogController::class);
+    Route::resource('/blog-topic', BlogTopicController::class);
+    Route::get('/blog-comment', [BlogCommentController::class, 'index'])->name('blog-comment.index');
+    Route::get('/blog-comment-status', [BlogCommentController::class, 'updateStatus'])->name('blog-comment.update');
+    Route::delete('/blog-comment/{id}', [BlogCommentController::class, 'destroy'])->name('blog-comment.destroy');
 });
