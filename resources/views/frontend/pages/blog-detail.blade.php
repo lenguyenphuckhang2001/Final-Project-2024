@@ -119,23 +119,6 @@
                 </div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="blog_sidebar">
-                        <div class="blog_search">
-                            <h4>search</h4>
-                            <form>
-                                <input type="text" placeholder="Search">
-                                <button type="submit"><i class="far fa-search"></i></button>
-                            </form>
-                        </div>
-                        <div class="blog_category">
-                            <h4>search</h4>
-                            <ul>
-                                <li><a href="#">Fitness <span>10</span></a></li>
-                                <li><a href="#">Lifestyle <span>7</span></a></li>
-                                <li><a href="#">Event <span>21</span></a></li>
-                                <li><a href="#">Bar & Cafe <span>14</span></a></li>
-                                <li><a href="#">Food & Drink <span>5</span></a></li>
-                            </ul>
-                        </div>
                         <div class="sidebar_blog">
                             <h4>Popular Post</h4>
                             <a href="#" class="sidebar_blog_single">

@@ -320,6 +320,27 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    function blogSection(Request $request): View
+    {
+
+        $blogs = Blog::with('author')
+            ->where('status', 1)
+            /**
+             * Hàm xử lý search
+             * has('search') kiểm tra xem liệu có trường search trong yêu cầu gửi lên không. Nếu có thì true, ngược lại false
+             * filled('search') kiểm tra xem trường search không chỉ có mặt trong yêu cầu mà còn có giá trị hợp lệ. Nếu có gtr trả về true ngược lại false
+            */
+            ->when($request->has('search') && $request->filled('search'), function ($query) use ($request) {
+                $query->where(function ($subQuery) use ($request) {
+                    $subQuery
+                        ->where('title', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('content', 'LIKE', '%' . $request->search . '%');
+                });
+            })->orderBy('id', 'desc')->paginate(6);
+
+        return view('frontend.pages.blogs', compact('blogs'));
+    }
+
     function blogDetail(string $slug): View
     {
         $blog = Blog::with('topic')->where(['status' => 1, 'slug' => $slug])->firstOrFail();

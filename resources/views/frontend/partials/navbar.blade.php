@@ -46,8 +46,6 @@
                     <a class="nav-link" href="#">pages <i class="far fa-chevron-down"></i></a>
                     <ul class="menu_droapdown">
                         <li><a href="list_category.html">list category</a></li>
-                        <li><a href="blog_details.html">blog details</a></li>
-                        <li><a href="listing_details.html">listing details</a></li>
                         <li><a href="dsahboard.html">dashboard</a></li>
                         <li><a href="agent_public_profile.html">agent profile</a></li>
                         <li><a href="payment_page.html">Payment Page</a></li>
@@ -56,7 +54,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="blog.html">blog</a>
+                    <a class="nav-link" href="{{ route('blogs') }}">blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">contact us</a>

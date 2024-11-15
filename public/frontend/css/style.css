@@ -2819,16 +2819,9 @@ PAGINATION PART END
     padding: 100px 0px;
 }
 
-.blog_sidebar h4 {
-    text-transform: capitalize;
-    font-weight: 600;
-    font-size: 20px;
-    margin-bottom: 30px;
-}
-
 .blog_search {
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 30px;
 }
@@ -2871,50 +2864,63 @@ PAGINATION PART END
     background: var(--colorBlack);
 }
 
-.blog_category ul li a {
+/* Hiển thị tiêu đề và danh sách ngang hàng */
+.blog_category_header {
+    display: flex; /* Hiển thị tiêu đề và ul trên một dòng */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa tiêu đề và danh sách */
+}
+
+/* Tiêu đề 'Search:' */
+.blog_category_header h4 {
+    margin: 0; /* Xóa khoảng cách mặc định */
+    font-size: 17px; /* Tùy chỉnh kích thước font */
+    font-weight: bold;
+    white-space: nowrap; /* Đảm bảo chữ không bị xuống dòng */
+}
+
+/* Danh sách nằm ngang */
+.blog_category ul {
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Mục danh sách */
+.blog_category ul li {
+    display: inline-block;
+}
+
+.blog_category ul li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     color: var(--colorBlack);
     font-size: 16px;
     font-weight: 400;
-    transition: all linear 0.3s;
-    -webkit-transition: all linear 0.3s ease;
-    -moz-transition: all linear 0.3s ease;
-    -ms-transition: all linear 0.3s ease;
-    -o-transition: all linear 0.3s ease;
-}
-
-.blog_category ul li:last-child a {
-    border-bottom: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.blog_category ul li a span {
-    color: var(--colorBlack);
-    transition: all linear 0.3s;
-    -webkit-transition: all linear 0.3s ease;
-    -moz-transition: all linear 0.3s ease;
-    -ms-transition: all linear 0.3s ease;
-    -o-transition: all linear 0.3s ease;
+    transition: color linear 0.3s;
 }
 
 .blog_category ul li a:hover {
     color: var(--colorPrimary);
 }
 
+.blog_category ul li a span {
+    font-weight: bold;
+    color: var(--colorBlack);
+    transition: color linear 0.3s;
+}
+
 .blog_category ul li a:hover span {
     color: var(--colorPrimary);
 }
 
+/* Blog category container */
 .blog_category {
-    margin-bottom: 30px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 20px 0px 0px;
 }
 
 .sidebar_blog_single {
