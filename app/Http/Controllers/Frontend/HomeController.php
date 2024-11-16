@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\Blog;
 use App\Models\BlogComment;
 use App\Models\BlogTopic;
@@ -34,7 +35,6 @@ class HomeController extends Controller
         $locations = Location::where('status', 1)->get();
         $packages = Package::where('status', 1)->where('display_at_home', 1)->take(3)->get();
         $homeFeatures = Feature::where('status', 1)->take(3)->get();
-        $statistical = Statistical::first();
         $feedbacks = Feedback::where('status', 1)->take(8)->get();
         $blogs = Blog::with('author')->where('status', 1)->orderBy('id', 'desc')->take(3)->get();
 
@@ -74,7 +74,6 @@ class HomeController extends Controller
                 'categories',
                 'packages',
                 'locations',
-                'statistical',
                 'feedbacks',
                 'blogs',
                 'homeFeatures',
@@ -412,5 +411,20 @@ class HomeController extends Controller
         toastr()->success('Comment this post successfully');
 
         return redirect()->back();
+    }
+
+    function aboutUsShow()
+    {
+        $aboutUs = AboutUs::first();
+        $statistical = Statistical::first();
+        $homeFeatures = Feature::where('status', 1)->take(3)->get();
+
+        $homeCategory = Category::withCount(['listings' => function ($query) {
+            $query->where('is_accepted', 1);
+        }])->where(['display_at_home' => 1, 'status' => 1])
+            ->take(9)
+            ->get();
+
+        return view('frontend.pages.about-us', compact('aboutUs', 'statistical', 'homeFeatures', 'homeCategory'));
     }
 }

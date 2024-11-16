@@ -16,6 +16,33 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $image_small
+ * @property string $image_video
+ * @property string $title
+ * @property string $content
+ * @property string $video_url
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs whereImageSmall($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs whereImageVideo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AboutUs whereVideoUrl($value)
+ */
+	class AboutUs extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $image
  * @property int $topic_id
  * @property int $author_id

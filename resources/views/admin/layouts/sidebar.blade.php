@@ -324,13 +324,28 @@
                     </li>
                     <li class="{{ setActiveRoute(['admin.blog-comment.*']) }}">
                         <a class="nav-link" href="{{ route('admin.blog-comment.index') }}">
-                            <i class="fas fa-tags"></i>
+                            <i class="fas fa-comment"></i>
                             Comment Status
                         </a>
                     </li>
                 </ul>
             </li>
 
+            <!-- Pages -->
+            <li class="dropdown {{ setActiveRoute(['admin.about-us.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-laptop"></i>
+                    <span>Pages</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActiveRoute(['admin.about-us.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.about-us.index') }}">
+                            <i class="fas fa-info-circle"></i>
+                            About Us
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <!-- Order -->
             <li>

@@ -22,9 +22,6 @@
     <!---------------Features--------------->
     @include('frontend.home.sections.features')
 
-    <!---------------Counter---------------->
-    @include('frontend.home.sections.counter')
-
     <!-------------Out Category------------->
     @include('frontend.home.sections.categories')
 

@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ListingScheduleController;
 use App\Http\Controllers\Admin\ListingVideoGalleryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\PageAboutUsController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
@@ -111,4 +112,8 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/blog-comment', [BlogCommentController::class, 'index'])->name('blog-comment.index');
     Route::get('/blog-comment-status', [BlogCommentController::class, 'updateStatus'])->name('blog-comment.update');
     Route::delete('/blog-comment/{id}', [BlogCommentController::class, 'destroy'])->name('blog-comment.destroy');
+
+    //About Us
+    Route::get('/about-us', [PageAboutUsController::class, 'index'])->name('about-us.index');
+    Route::put('/about-us', [PageAboutUsController::class, 'update'])->name('about-us.update');
 });
