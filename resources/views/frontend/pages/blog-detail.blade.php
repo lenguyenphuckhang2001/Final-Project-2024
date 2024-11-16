@@ -31,7 +31,9 @@
                             <li><a href="javascript:;"><i class="fal fa-calendar-alt"></i>
                                     {{ date('d M Y', strtotime($blog->created_at)) }}</a>
                             </li>
-                            <li><a href="javascript:;"><i class="fal fa-comment-dots"></i> 0 Comment</a></li>
+                            <li><a href="javascript:;"><i class="fal fa-comment-dots"></i> {{ $blog->comments_count }}
+                                    Comment</a>
+                            </li>
                             <li><a href="javascript:;"><i class="fal fa-eye"></i> {{ $blog->view }}</a></li>
                             <li><a href="javascript:;"><i class="fal fa-tags"></i> {{ $blog->topic->topic }} </a></li>
                         </ul>
@@ -63,8 +65,6 @@
                                     <p>There are currently no comments on this blog</p>
                                 </div>
                             @endif
-
-
                             @auth
                                 <form action="{{ route('blog-comment') }}" method="POST" class="input_comment">
                                     @csrf
@@ -91,43 +91,20 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="blog_sidebar">
                         <div class="sidebar_blog">
-                            <h4>Popular Post</h4>
-                            <a href="#" class="sidebar_blog_single">
-                                <div class="sidebar_blog_img">
-                                    <img src="images/location_1.jpg" alt="blog" class="imgofluid w-100">
-                                </div>
-                                <div class="sidebar_blog_text">
-                                    <h5>One Thing Separates Creators From Consumers</h5>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </a>
-                            <a href="#" class="sidebar_blog_single">
-                                <div class="sidebar_blog_img">
-                                    <img src="images/location_2.jpg" alt="blog" class="imgofluid w-100">
-                                </div>
-                                <div class="sidebar_blog_text">
-                                    <h5>Should Startups Care About Profitability?</h5>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </a>
-                            <a href="#" class="sidebar_blog_single">
-                                <div class="sidebar_blog_img">
-                                    <img src="images/location_3.jpg" alt="blog" class="imgofluid w-100">
-                                </div>
-                                <div class="sidebar_blog_text">
-                                    <h5>The Best Delicious Coffee Shop In Bangkok China.</h5>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </a>
-                            <a href="#" class="sidebar_blog_single">
-                                <div class="sidebar_blog_img">
-                                    <img src="images/location_4.jpg" alt="blog" class="imgofluid w-100">
-                                </div>
-                                <div class="sidebar_blog_text">
-                                    <h5>List Of Benifits And Impressive Listeo Services</h5>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </a>
+                            <h4 class="mb-3">Related Post</h4>
+                            @foreach ($relatedBlogs as $relatedBlog)
+                                <a href="{{ route('blog.detail', $relatedBlog->slug) }}" class="sidebar_blog_single">
+                                    <div class="sidebar_blog_img">
+                                        <img src="{{ asset($relatedBlog->image) }}" alt="blog" class="img-fluid w-100">
+                                    </div>
+                                    <div class="sidebar_blog_text">
+                                        <h5>{{ cutString($relatedBlog->title, 20) }}</h5>
+                                        <p> <span>{{ date('d M Y', strtotime($relatedBlog->created_at)) }} </span>
+                                            {{ $relatedBlog->comments_count }} Comment
+                                        </p>
+                                    </div>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

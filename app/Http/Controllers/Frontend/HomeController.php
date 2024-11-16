@@ -372,14 +372,28 @@ class HomeController extends Controller
 
     function blogDetail(string $slug): View
     {
-        $blog = Blog::with('topic')->where(['status' => 1, 'slug' => $slug])->firstOrFail();
+        $blog = Blog::withCount(['comments' => function ($query) {
+            $query->where('status', 1);
+        }])->with('topic')
+            ->where(['status' => 1, 'slug' => $slug])
+            ->firstOrFail();
 
         $comments = $blog->comments()
             ->where('status', 1)
             ->orderBy('id', 'desc')
             ->paginate(8);
 
-        return view('frontend.pages.blog-detail', compact('blog', 'comments'));
+        $relatedBlogs = Blog::withCount(['comments' => function ($query) {
+            $query->where('status', 1);
+        }])->where('topic_id', $blog->topic_id)
+            ->where('id', '!=', $blog->id)
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
+        $blog->increment('view');
+
+        return view('frontend.pages.blog-detail', compact('blog', 'comments', 'relatedBlogs'));
     }
 
     function blogComment(Request $request)
