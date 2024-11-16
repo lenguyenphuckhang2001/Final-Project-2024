@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/venobox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/summernote.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/summernote-bs5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
@@ -24,7 +24,6 @@
     <!--------------CSS Link--------------->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
-
 
     @stack('styles')
 
@@ -82,13 +81,12 @@
     <script src="{{ asset('frontend/js/jquery.countup.min.js') }}"></script>
     <script src="{{ asset('frontend/js/select2.min.js') }}"></script>
     <script src="{{ asset('frontend/js/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/summernote.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/summernote-bs5.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
     <!-----------JavaScript Custom------->
     <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
-
 
     <!-----------JavaScript Link----------->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

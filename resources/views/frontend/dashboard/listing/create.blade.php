@@ -178,18 +178,17 @@
                                             @endforeach
                                         </div>
                                     </div>
-
                                     <div class="col-md-12">
                                         <div class="my_listing_single">
                                             <label>Description <span class="text-danger">*</span></label>
-                                            <textarea name="description" class="form-control summer_note" cols="30" rows="10" required></textarea>
+                                            <textarea name="description" id="summernote" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="my_listing_single">
                                             <label>Map Embed Code <span class="text-danger">*</span></label>
                                             <div class="input_area input_area_2">
-                                                <textarea name="map_embed_code" cols="30" rows="10"></textarea>
+                                                <textarea name="map_embed_code" cols="30" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -251,8 +250,8 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('.summer_note').summernote({
-                height: 200
+            $('#summernote').summernote({
+                height: 300,
             });
         });
     </script>

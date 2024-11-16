@@ -208,7 +208,7 @@
                                     <div class="col-md-12">
                                         <div class="my_listing_single">
                                             <label>Description <span class="text-danger">*</span></label>
-                                            <textarea name="description" class="form-control summer_note" cols="30" rows="10" required>{!! $listing->description !!}</textarea>
+                                            <textarea name="description" id="summernote" required>{!! $listing->description !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -280,14 +280,8 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function() {
-            $('.summer_note').summernote({
-                height: 200
-            });
-        });
-
         /**
-         * Chuyển đổi mảng PHP $listingFacilities thành chuỗi JSON và lưu vào biến JavaScript. Sau đó, {!! ... !!} sẽ in kết quả
+         * Chuyển đổi mảng PHP $listingFacilities thành chuỗi JSON và lưu vào biến JavaScript. Sau đó sẽ in kết quả
          * này trực tiếp vào mã JavaScript để sử dụng biến listingFacilities với giá trị của nó từ phía server.
          * Ví dụ nếu biến PHP có giá trị là ['wifi', 'park'] thì listingFactilities sẽ là một mảng JSON ["wifi", "park"]
          *
@@ -309,6 +303,10 @@
                 'background-image': 'url({{ asset($listing->thumbnail) }})',
                 'background-position': 'center center',
                 'background-size': 'cover'
+            });
+
+            $('#summernote').summernote({
+                height: 300,
             });
         })
     </script>
