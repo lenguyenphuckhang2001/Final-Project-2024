@@ -332,7 +332,7 @@
             </li>
 
             <!-- Pages -->
-            <li class="dropdown {{ setActiveRoute(['admin.about-us.*']) }}">
+            <li class="dropdown {{ setActiveRoute(['admin.about-us.*', 'admin.contact-us.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-laptop"></i>
                     <span>Pages</span>
@@ -342,6 +342,14 @@
                         <a class="nav-link" href="{{ route('admin.about-us.index') }}">
                             <i class="fas fa-info-circle"></i>
                             About Us
+                        </a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActiveRoute(['admin.contact-us.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.contact-us.index') }}">
+                            <i class="fas fa-info-circle"></i>
+                            Contact Us
                         </a>
                     </li>
                 </ul>

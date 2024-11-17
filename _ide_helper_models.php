@@ -195,6 +195,35 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $phonenumber_one
+ * @property string $phonenumber_two
+ * @property string $email_one
+ * @property string $email_two
+ * @property string $address
+ * @property string $map_embed_code
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs whereEmailOne($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs whereEmailTwo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs whereMapEmbedCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs wherePhonenumberOne($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs wherePhonenumberTwo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactUs whereUpdatedAt($value)
+ */
+	class ContactUs extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $listing_id
  * @property int $user_id
  * @property int $rating

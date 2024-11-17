@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\ListingVideoGalleryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PageAboutUsController;
+use App\Http\Controllers\Admin\PageContactUsController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
@@ -116,4 +117,8 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     //About Us
     Route::get('/about-us', [PageAboutUsController::class, 'index'])->name('about-us.index');
     Route::put('/about-us', [PageAboutUsController::class, 'update'])->name('about-us.update');
+
+    //Contact Us
+    Route::get('/contact-us', [PageContactUsController::class, 'index'])->name('contact-us.index');
+    Route::put('/contact-us', [PageContactUsController::class, 'update'])->name('contact-us.update');
 });

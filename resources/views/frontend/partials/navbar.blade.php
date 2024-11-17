@@ -37,7 +37,7 @@
                     <a class="nav-link" href="{{ route('about-us') }}">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="listing_grid_view.html">listing</a>
+                    <a class="nav-link" href="{{ route('listings') }}">listing</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="pricing.html">pricing</a>
@@ -54,10 +54,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('blogs') }}">blog</a>
+                    <a class="nav-link" href="{{ route('blogs') }}">Blogs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">contact us</a>
+                    <a class="nav-link" href="{{ route('contact-us') }}">Contact Us</a>
                 </li>
             </ul>
         </div>

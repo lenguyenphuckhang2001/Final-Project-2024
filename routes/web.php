@@ -35,6 +35,8 @@ Route::get('/blogs', [HomeController::class, 'blogSection'])->name('blogs');
 Route::get('/blog-detail/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
 Route::post('/blog-comment', [HomeController::class, 'blogComment'])->name('blog-comment');
 Route::get('/about-us', [HomeController::class, 'aboutUsShow'])->name('about-us');
+Route::get('/contact-us', [HomeController::class, 'contactUsShow'])->name('contact-us');
+Route::post('/contact-us', [HomeController::class, 'sendContactEmail'])->name('contact-us.send');
 
 Route::post('/listing-support', [HomeController::class, 'supportListing'])->name('listing-support');
 Route::post('/listing-evaluate', [HomeController::class, 'evaluateListing'])->name('listing-evaluate.store')->middleware('auth');

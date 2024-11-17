@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
+use App\Mail\ContactUsEmail;
 use App\Models\AboutUs;
 use App\Models\Blog;
 use App\Models\BlogComment;
 use App\Models\BlogTopic;
 use App\Models\Facility;
 use App\Models\Category;
+use App\Models\ContactUs;
 use App\Models\Evaluate;
 use App\Models\Feature;
 use App\Models\Feedback;
@@ -22,6 +24,7 @@ use App\Models\Statistical;
 use App\Models\Support;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -395,7 +398,7 @@ class HomeController extends Controller
         return view('frontend.pages.blog-detail', compact('blog', 'comments', 'relatedBlogs'));
     }
 
-    function blogComment(Request $request)
+    function blogComment(Request $request): RedirectResponse
     {
         $request->validate([
             'blog_id' => ['required', 'integer'],
@@ -413,7 +416,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    function aboutUsShow()
+    function aboutUsShow(): View
     {
         $aboutUs = AboutUs::first();
         $statistical = Statistical::first();
@@ -426,5 +429,27 @@ class HomeController extends Controller
             ->get();
 
         return view('frontend.pages.about-us', compact('aboutUs', 'statistical', 'homeFeatures', 'homeCategory'));
+    }
+
+    function contactUsShow(): View
+    {
+        $contactUs = ContactUs::first();
+        return view('frontend.pages.contact-us', compact('contactUs'));
+    }
+
+    function sendContactEmail(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'lowercase', 'max:255'],
+            'subject' => ['required', 'string', 'max:255'],
+            'message' => ['required']
+        ]);
+
+        Mail::to(config('settings.site_email'))->send(new ContactUsEmail($request->name, $request->subject, $request->message));
+
+        toastr()->success('Send email message successfully');
+
+        return redirect()->back();
     }
 }
