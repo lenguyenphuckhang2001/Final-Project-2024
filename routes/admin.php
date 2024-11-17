@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PageAboutUsController;
 use App\Http\Controllers\Admin\PageContactUsController;
 use App\Http\Controllers\Admin\PagePrivacyPolicyController;
+use App\Http\Controllers\Admin\PageTermAndConditionsController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
@@ -126,4 +127,8 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     //Privacy Policy
     Route::get('/privacy-policy', [PagePrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
     Route::put('/privacy-policy', [PagePrivacyPolicyController::class, 'update'])->name('privacy-policy.update');
+
+    //Terms And Conditions
+    Route::get('/terms-and-conditions', [PageTermAndConditionsController::class, 'index'])->name('terms-and-conditions.index');
+    Route::put('/terms-and-conditions', [PageTermAndConditionsController::class, 'update'])->name('terms-and-conditions.update');
 });

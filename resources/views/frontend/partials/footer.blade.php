@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-xl-6 col-md-7">
                     <ul class="footer_bottom_link">
-                        <li><a href="#">Terms and Conditions</a></li>
+                        <li><a href="{{ route('terms-and-conditions') }}">Terms and Conditions</a></li>
                         <li><a href="{{ route('privacy-policy') }}">Privacy Policy </a></li>
                         <li><a href="#"> Contact </a></li>
                     </ul>

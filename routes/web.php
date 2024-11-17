@@ -38,6 +38,7 @@ Route::get('/about-us', [HomeController::class, 'aboutUsShow'])->name('about-us'
 Route::get('/contact-us', [HomeController::class, 'contactUsShow'])->name('contact-us');
 Route::post('/contact-us', [HomeController::class, 'sendContactEmail'])->name('contact-us.send');
 Route::get('/privacy-policy', [HomeController::class, 'privacyPolicyShow'])->name('privacy-policy');
+Route::get('/terms-and-conditions', [HomeController::class, 'termAndConditionShow'])->name('terms-and-conditions');
 
 Route::post('/listing-support', [HomeController::class, 'supportListing'])->name('listing-support');
 Route::post('/listing-evaluate', [HomeController::class, 'evaluateListing'])->name('listing-evaluate.store')->middleware('auth');

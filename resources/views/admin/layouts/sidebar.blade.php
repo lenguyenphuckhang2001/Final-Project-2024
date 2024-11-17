@@ -333,7 +333,7 @@
 
             <!-- Pages -->
             <li
-                class="dropdown {{ setActiveRoute(['admin.about-us.*', 'admin.contact-us.*', 'admin.privacy-policy.*']) }}">
+                class="dropdown {{ setActiveRoute(['admin.about-us.*', 'admin.contact-us.*', 'admin.privacy-policy.*', 'admin.terms-and-conditions.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-laptop"></i>
                     <span>Pages</span>
@@ -359,6 +359,14 @@
                         <a class="nav-link" href="{{ route('admin.privacy-policy.index') }}">
                             <i class="fas fa-info-circle"></i>
                             Privacy Policy
+                        </a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActiveRoute(['admin.terms-and-conditions.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.terms-and-conditions.index') }}">
+                            <i class="fas fa-info-circle"></i>
+                            Terms&Conditions
                         </a>
                     </li>
                 </ul>

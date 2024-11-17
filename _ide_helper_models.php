@@ -683,9 +683,17 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property string $content
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy whereUpdatedAt($value)
  */
 	class PrivacyPolicy extends \Eloquent {}
 }
@@ -770,6 +778,17 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Support whereUpdatedAt($value)
  */
 	class Support extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|TermAndConditions newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TermAndConditions newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TermAndConditions query()
+ */
+	class TermAndConditions extends \Eloquent {}
 }
 
 namespace App\Models{

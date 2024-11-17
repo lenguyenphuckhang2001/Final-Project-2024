@@ -23,6 +23,7 @@ use App\Models\Package;
 use App\Models\PrivacyPolicy;
 use App\Models\Statistical;
 use App\Models\Support;
+use App\Models\TermAndConditions;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -458,5 +459,11 @@ class HomeController extends Controller
     {
         $privacyPolicy = PrivacyPolicy::first();
         return view('frontend.pages.privacy-policy', compact('privacyPolicy'));
+    }
+
+    function termAndConditionShow(): View
+    {
+        $termsConditions = TermAndConditions::first();
+        return view('frontend.pages.terms_and_conditions', compact('termsConditions'));
     }
 }
