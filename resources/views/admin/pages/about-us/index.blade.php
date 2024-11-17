@@ -3,10 +3,10 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>Update About Us</h1>
+            <h1>About Us</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Update</div>
+                <div class="breadcrumb-item">About Us</div>
             </div>
         </div>
 

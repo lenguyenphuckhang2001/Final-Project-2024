@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PageAboutUsController;
 use App\Http\Controllers\Admin\PageContactUsController;
+use App\Http\Controllers\Admin\PagePrivacyPolicyController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
@@ -121,4 +122,8 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     //Contact Us
     Route::get('/contact-us', [PageContactUsController::class, 'index'])->name('contact-us.index');
     Route::put('/contact-us', [PageContactUsController::class, 'update'])->name('contact-us.update');
+
+    //Privacy Policy
+    Route::get('/privacy-policy', [PagePrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
+    Route::put('/privacy-policy', [PagePrivacyPolicyController::class, 'update'])->name('privacy-policy.update');
 });

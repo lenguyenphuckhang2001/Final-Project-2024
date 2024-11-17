@@ -683,6 +683,17 @@ namespace App\Models{
 /**
  * 
  *
+ * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PrivacyPolicy query()
+ */
+	class PrivacyPolicy extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property int $id
  * @property string $key
  * @property string|null $value

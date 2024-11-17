@@ -20,6 +20,7 @@ use App\Models\Listing;
 use App\Models\ListingSchedule;
 use App\Models\Location;
 use App\Models\Package;
+use App\Models\PrivacyPolicy;
 use App\Models\Statistical;
 use App\Models\Support;
 use Illuminate\Http\RedirectResponse;
@@ -451,5 +452,11 @@ class HomeController extends Controller
         toastr()->success('Send email message successfully');
 
         return redirect()->back();
+    }
+
+    function privacyPolicyShow(): View
+    {
+        $privacyPolicy = PrivacyPolicy::first();
+        return view('frontend.pages.privacy-policy', compact('privacyPolicy'));
     }
 }
