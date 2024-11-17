@@ -372,6 +372,14 @@
                 </ul>
             </li>
 
+            <!-- Menu Builder -->
+            <li>
+                <a class="nav-link" href="{{ route('admin.menu-builder-section.index') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Menu Builder</span>
+                </a>
+            </li>
+
             <!-- Order -->
             <li>
                 <a class="nav-link" href="{{ route('admin.orders.index') }}">

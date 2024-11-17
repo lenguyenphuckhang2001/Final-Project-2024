@@ -72,7 +72,6 @@
                     <ul class="footer_bottom_link">
                         <li><a href="{{ route('terms-and-conditions') }}">Terms and Conditions</a></li>
                         <li><a href="{{ route('privacy-policy') }}">Privacy Policy </a></li>
-                        <li><a href="#"> Contact </a></li>
                     </ul>
                 </div>
             </div>

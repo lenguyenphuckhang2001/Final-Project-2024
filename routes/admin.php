@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ListingLocationController;
 use App\Http\Controllers\Admin\ListingPendingController;
 use App\Http\Controllers\Admin\ListingScheduleController;
 use App\Http\Controllers\Admin\ListingVideoGalleryController;
+use App\Http\Controllers\Admin\MenuBuilderSectionController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PageAboutUsController;
@@ -131,4 +132,7 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     //Terms And Conditions
     Route::get('/terms-and-conditions', [PageTermAndConditionsController::class, 'index'])->name('terms-and-conditions.index');
     Route::put('/terms-and-conditions', [PageTermAndConditionsController::class, 'update'])->name('terms-and-conditions.update');
+
+    //Menu Builder
+    Route::get('/menu-builder-section', [MenuBuilderSectionController::class, 'index'])->name('menu-builder-section.index');
 });

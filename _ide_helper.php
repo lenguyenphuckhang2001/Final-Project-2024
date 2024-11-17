@@ -17696,6 +17696,61 @@ namespace Barryvdh\Debugbar\Facades {
             }
     }
 
+namespace Efectn\Menu\Facades {
+            /**
+     * 
+     *
+     */        class Menu {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function render()
+        {
+                        /** @var \Efectn\Menu\MenuBuilder $instance */
+                        return $instance->render();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function scripts()
+        {
+                        /** @var \Efectn\Menu\MenuBuilder $instance */
+                        return $instance->scripts();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function select($name = 'menu', $menulist = [])
+        {
+                        /** @var \Efectn\Menu\MenuBuilder $instance */
+                        return $instance->select($name, $menulist);
+        }
+                    /**
+         * Returns empty array if menu not found now.
+         * 
+         * Thanks @sovichet
+         *
+         * @param $name
+         * @return array 
+         * @static 
+         */        public static function getByName($name)
+        {
+                        return \Efectn\Menu\MenuBuilder::getByName($name);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function get($menu_id)
+        {
+                        return \Efectn\Menu\MenuBuilder::get($menu_id);
+        }
+            }
+    }
+
 namespace Livewire {
             /**
      * 
@@ -22556,6 +22611,7 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
+            class Menu extends \Efectn\Menu\Facades\Menu {}
             class Livewire extends \Livewire\Livewire {}
             class Flasher extends \Flasher\Laravel\Facade\Flasher {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
