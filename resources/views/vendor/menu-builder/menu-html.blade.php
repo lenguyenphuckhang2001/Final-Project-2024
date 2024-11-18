@@ -3,6 +3,7 @@ $currentUrl = url()->current();
 ?>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="{{ asset('admin/assets/css/custom-menu-builder.css') }}" rel="stylesheet">
 <link href="{{ asset('vendor/menu-builder/style.css') }}" rel="stylesheet">
 <div id="hwpwrap">
     <div class="custom-wp-admin wp-admin wp-core-ui js   menu-max-depth-0 nav-menus-php auto-fold admin-bar">
@@ -16,10 +17,10 @@ $currentUrl = url()->current();
                                     <label for="menu" class="selected-menu">@lang('menu-builder::messages.select_menu_edit')</label>
                                     {!! Menu::select('menu', $menulist) !!}
                                     <span class="submit-btn">
-                                        <input type="submit" class="button-secondary" value="@lang('menu-builder::messages.choose')">
+                                        <button type="submit" class="btn btn-primary" value="@lang('menu-builder::messages.choose')">Choose</button>
                                     </span>
-                                    <span class="add-new-menu-action"> @lang('menu-builder::messages.or') <a
-                                            href="{{ $currentUrl }}?action=edit&menu=0">@lang('menu-builder::messages.create_new_menu')</a>. </span>
+                                    {{-- <span class="add-new-menu-action"> @lang('menu-builder::messages.or') <a
+                                            href="{{ $currentUrl }}?action=edit&menu=0">@lang('menu-builder::messages.create_new_menu')</a>. </span> --}}
                                 </form>
                             </div>
                             <div id="nav-menus-frame">
@@ -96,7 +97,7 @@ $currentUrl = url()->current();
                                                                     @endif
                                                                     <p class="button-controls">
                                                                         <a href="#" onclick="addcustommenu()"
-                                                                            class="button-secondary submit-add-to-menu right">@lang('menu-builder::messages.add_menu_item')</a>
+                                                                            class="btn btn-primary text-white submit-add-to-menu right">@lang('menu-builder::messages.add_menu_item')</a>
                                                                         <span class="spinner" id="spincustomu"></span>
                                                                     </p>
 
@@ -125,34 +126,32 @@ $currentUrl = url()->current();
                                                                 title="@lang('menu-builder::messages.enter_menu_name')"
                                                                 value="@if (isset($indmenu)) {{ $indmenu->name }} @endif">
                                                             <input type="hidden" id="idmenu"
-                                                                value="@if (isset($indmenu)) {{ $indmenu->id }} @endif" />
+                                                                value="@if (isset($indmenu)) {{ $indmenu->id }} @endif" />       
                                                         </label>
-
                                                         @if (request()->has('action'))
                                                             <div class="publishing-action">
                                                                 <a onclick="createnewmenu()" name="save_menu"
                                                                     id="save_menu_header"
-                                                                    class="button button-primary menu-save">@lang('menu-builder::messages.create_menu')</a>
+                                                                    class="btn btn-primary text-white menu-save">@lang('menu-builder::messages.create_menu')</a>
                                                             </div>
                                                         @elseif(request()->has('menu'))
                                                             <div class="publishing-action">
                                                                 <a onclick="getmenus()" name="save_menu"
                                                                     id="save_menu_header"
-                                                                    class="button button-primary menu-save">@lang('menu-builder::messages.save_menu')</a>
+                                                                    class="btn btn-primary text-white menu-save">@lang('menu-builder::messages.save_menu')</a>
                                                                 <span class="spinner" id="spincustomu2"></span>
                                                             </div>
                                                         @else
                                                             <div class="publishing-action">
                                                                 <a onclick="createnewmenu()" name="save_menu"
                                                                     id="save_menu_header"
-                                                                    class="button button-primary menu-save">@lang('menu-builder::messages.create_menu')</a>
+                                                                    class="btn btn-primary text-white menu-save">@lang('menu-builder::messages.create_menu')</a>
                                                             </div>
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div id="post-body">
                                                     <div id="post-body-content">
-
                                                         @if (request()->has('menu'))
                                                             <h3>@lang('menu-builder::messages.menu_structure')</h3>
                                                             <div class="drag-instructions post-body-plain"
@@ -316,7 +315,7 @@ $currentUrl = url()->current();
                                                                                 <span class="meta-sep hide-if-no-js"> |
                                                                                 </span>
                                                                                 <a onclick="getmenus()"
-                                                                                    class="button button-primary updatemenu"
+                                                                                    class="btn btn-primary text-white updatemenu"
                                                                                     id="update-{{ $m->id }}"
                                                                                     href="javascript:void(0)">@lang('menu-builder::messages.update_item')</a>
                                                                             </div>
@@ -331,14 +330,13 @@ $currentUrl = url()->current();
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="nav-menu-footer">
+                                                {{-- <div id="nav-menu-footer">
                                                     <div class="major-publishing-actions">
-
                                                         @if (request()->has('action'))
                                                             <div class="publishing-action">
                                                                 <a onclick="createnewmenu()" name="save_menu"
                                                                     id="save_menu_header"
-                                                                    class="button button-primary menu-save">@lang('menu-builder::messages.create_menu')</a>
+                                                                    class="btn btn-primary text-white menu-save">@lang('menu-builder::messages.create_menu')</a>
                                                             </div>
                                                         @elseif(request()->has('menu'))
                                                             <span class="delete-action"> <a
@@ -347,21 +345,20 @@ $currentUrl = url()->current();
                                                                     href="javascript:void(9)">@lang('menu-builder::messages.delete_menu')</a>
                                                             </span>
                                                             <div class="publishing-action">
-
                                                                 <a onclick="getmenus()" name="save_menu"
                                                                     id="save_menu_header"
-                                                                    class="button button-primary menu-save">@lang('menu-builder::messages.save_menu')</a>
+                                                                    class="btn btn-primary text-white menu-save">@lang('menu-builder::messages.save_menu')</a>
                                                                 <span class="spinner" id="spincustomu2"></span>
                                                             </div>
                                                         @else
                                                             <div class="publishing-action">
                                                                 <a onclick="createnewmenu()" name="save_menu"
                                                                     id="save_menu_header"
-                                                                    class="button button-primary menu-save">@lang('menu-builder::messages.create_menu')</a>
+                                                                    class="btn btn-primary text-white menu-save">@lang('menu-builder::messages.create_menu')</a>
                                                             </div>
                                                         @endif
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </form>
                                     </div>

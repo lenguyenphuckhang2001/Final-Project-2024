@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+#hwpwrap{
+    font-family: "Nunito", arial;
+    width: 90%;
+}
+
+/* ----------------------------- Nav Top -----------------------------------*/
+#hwpwrap .manage-menus {
+    margin-top: 23px !important;
+    padding: 20px 30px !important;
+    overflow: hidden !important;
+    background: #f6f6f6 !important;
+    border-radius: 8px !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+#hwpwrap select{
+    width: 92%;
+    padding: 6px 13px !important;
+    border: 1px solid #e4e6fc!important; 
+    border-radius: 5px !important;
+    background-color: #fff !important;
+    color: #333 !important;
+    font-size: 15px !important; 
+    outline: none !important; 
+    transition: all 0.3s ease !important;
+}
+
+#hwpwrap select:hover {
+    border-color: #95a0f4 !important; 
+}
+#hwpwrap select:focus {
+    border-color: #95a0f4;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+label.selected-menu {
+    font-size: 20px !important;
+    padding-bottom: 10px !important;
+    font-weight: bold !important;
+    letter-spacing: 0.2px !important; 
+}
+
+/* ----------------------------- Nav End -----------------------------------*/
+
+/* ----------------------------- Custom Link -----------------------------------*/
+h3.accordion-section-title.hndle{
+    font-size: 16px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 0px 0px 5px 5px !important;
+}
+.accordion-section-content {
+    padding: 5px 0px 20px !important;
+}
+
+.inside {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0px 0px !important;
+}
+
+/* Item Select */
+select.regular-text.menu-item-textbox.default-select {
+    width: 109% !important;
+    font-size: 13px !important; 
+    font-style: normal !important;
+}
+
+/* URL Select */
+input#custom-menu-item-url {
+    width: 98% !important;
+    border-radius: 5px !important;
+    padding: 5px 20px !important;
+    border: 1px solid #e4e6fc!important; 
+    border-radius: 5px !important;
+    background-color: #fff !important;
+    color: black !important;
+    font-size: 14px !important; 
+    outline: none !important; 
+    transition: all 0.3s ease !important;
+}
+
+/* Label Menu */
+input#custom-menu-item-name {
+    width: 98% !important;
+    background-color: #fff !important;
+    padding: 5px 20px !important;
+    font-style: normal !important;
+    color: black !important;
+    font-size: 14px !important; 
+    border: 1px solid #e4e6fc!important; 
+    border-radius: 5px !important;
+    outline: none !important; 
+    transition: all 0.3s ease !important;
+    
+}
+
+.title-custom-link{
+    padding-left: 5px !important;
+    padding-bottom: 5px !important;
+    font-weight: 500;
+    color: #34395e;
+    letter-spacing: 0.3px
+}
+
+.box-items{
+    margin-bottom: 0px !important;
+}
+
+.button-controls
+{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* ----------------------------- Custom Link End -----------------------------------*/
+
+/* ----------------------------- Main Structure -----------------------------------*/
+#hwpwrap .nav-menus-php #post-body {
+    padding: 15px 30px 30px !important;
+    background: #fff !important;
+}
+/* ----------------------------- Main Structure End -----------------------------------*/
+
+.menu-item-settings {
+    width: 47.8% !important;
+    padding: 20px 20px !important;
+}
