@@ -10,15 +10,11 @@ $currentUrl = url()->current();
             <div id="wpcontent">
                 <div id="wpbody">
                     <div id="wpbody-content">
-
                         <div class="wrap">
-
                             <div class="manage-menus">
                                 <form method="get" action="{{ $currentUrl }}">
                                     <label for="menu" class="selected-menu">@lang('menu-builder::messages.select_menu_edit')</label>
-
                                     {!! Menu::select('menu', $menulist) !!}
-
                                     <span class="submit-btn">
                                         <input type="submit" class="button-secondary" value="@lang('menu-builder::messages.choose')">
                                     </span>
@@ -27,12 +23,9 @@ $currentUrl = url()->current();
                                 </form>
                             </div>
                             <div id="nav-menus-frame">
-
                                 @if (request()->has('menu') && !empty(request()->input('menu')))
                                     <div id="menu-settings-column" class="metabox-holder">
-
                                         <div class="clear"></div>
-
                                         <form id="nav-menu-meta" action="" class="nav-menu-meta" method="post"
                                             enctype="multipart/form-data">
                                             <div id="side-sortables" class="accordion-container">
@@ -46,28 +39,42 @@ $currentUrl = url()->current();
                                                         <div class="accordion-section-content ">
                                                             <div class="inside">
                                                                 <div class="customlinkdiv" id="customlinkdiv">
+                                                                    <p id="menu-item-name-wrap"
+                                                                        style="margin-bottom: 0px !important">
+                                                                        <label class="howto"
+                                                                            for="custom-menu-item-name">
+                                                                            <span
+                                                                                class="title-custom-link">@lang('menu-builder::messages.item')</span>&nbsp;
+                                                                            <select
+                                                                                class="regular-text menu-item-textbox input-with-default-title default-select">
+                                                                                <option value="" selected
+                                                                                    disabled>Select</option>
+                                                                                @foreach (config('menu-builder') as $key => $value)
+                                                                                    <option value={{ $value }}>{{ $key }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </label>
+                                                                    </p>
                                                                     <p id="menu-item-url-wrap">
                                                                         <label class="howto"
                                                                             for="custom-menu-item-url">
                                                                             <span>URL</span>&nbsp;&nbsp;&nbsp;
                                                                             <input id="custom-menu-item-url"
                                                                                 name="url" type="text"
-                                                                                class="menu-item-textbox "
+                                                                                class="menu-item-textbox custom-url"
                                                                                 placeholder="URL">
                                                                         </label>
                                                                     </p>
-
                                                                     <p id="menu-item-name-wrap">
                                                                         <label class="howto"
                                                                             for="custom-menu-item-name">
                                                                             <span>@lang('menu-builder::messages.label')</span>&nbsp;
                                                                             <input id="custom-menu-item-name"
                                                                                 name="label" type="text"
-                                                                                class="regular-text menu-item-textbox input-with-default-title"
+                                                                                class="regular-text menu-item-textbox input-with-default-title custom-name"
                                                                                 title="@lang('menu-builder::messages.menu_label')">
                                                                         </label>
                                                                     </p>
-
                                                                     @if (!empty($roles))
                                                                         <p id="menu-item-role_id-wrap">
                                                                             <label class="howto"

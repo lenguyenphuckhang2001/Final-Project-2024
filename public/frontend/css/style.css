@@ -2013,7 +2013,7 @@ TESTIMONIAL PART END
 =====================*/
 footer {
     padding-top: 95px;
-    background: url(../images/banner-image.jpg);
+    background-color: var(--colorPrimary) !important;
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
