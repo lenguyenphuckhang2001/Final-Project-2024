@@ -11,16 +11,14 @@
         </div>
 
         <div class="section-body">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Settings</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                {!! Menu::render() !!}
-                            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Settings</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center w-100">
+                            {!! Menu::render() !!}
                         </div>
                     </div>
                 </div>

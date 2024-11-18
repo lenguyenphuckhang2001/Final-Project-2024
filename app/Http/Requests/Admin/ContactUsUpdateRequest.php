@@ -14,12 +14,12 @@ class ContactUsUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phonenumber_one' => ['required', 'string', 'max:20'],
-            'phonenumber_two' => ['nullable', 'string', 'max:20'],
+            'phonenumber_one' => ['required', 'string', 'max:255'],
+            'phonenumber_two' => ['nullable', 'string', 'max:255'],
             'email_one' => ['required', 'email', 'max:255'],
             'email_two' => ['nullable', 'email', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'map_embed_code' => ['nullable']
+            'map_embed_code' => ['required']
         ];
     }
 }

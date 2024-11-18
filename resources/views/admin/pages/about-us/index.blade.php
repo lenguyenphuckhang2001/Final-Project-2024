@@ -35,35 +35,31 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="">Image Cover Video</label>
-                                                    <div id="image-preview-2" class="image-preview video-img">
-                                                        <label for="image-upload-2" id="image-label-2">Choose File</label>
-                                                        <input type="file" name="image_video" id="image-upload-2" />
-                                                        <input type="hidden" name="previous_image_video"
-                                                            value="{{ $aboutUs?->image_video }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="">Youtube Video URL <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="video_url"
-                                                        value="{{ $aboutUs?->video_url }}">
-                                                </div>
+                                        <div class="form-group">
+                                            <label for="">Image Cover Video</label>
+                                            <div id="image-preview-2" class="image-preview video-img">
+                                                <label for="image-upload-2" id="image-label-2">Choose File</label>
+                                                <input type="file" name="image_video" id="image-upload-2" />
+                                                <input type="hidden" name="previous_image_video"
+                                                    value="{{ $aboutUs?->image_video }}">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="title"
                                                 value="{{ $aboutUs?->title }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group h-100">
+                                            <label for="">Youtube Video URL <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="video_url"
+                                                value="{{ $aboutUs?->video_url }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">

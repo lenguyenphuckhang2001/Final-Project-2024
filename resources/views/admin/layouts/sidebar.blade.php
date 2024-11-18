@@ -335,13 +335,13 @@
             <li
                 class="dropdown {{ setActiveRoute(['admin.about-us.*', 'admin.contact-us.*', 'admin.privacy-policy.*', 'admin.terms-and-conditions.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-laptop"></i>
+                    <i class="fas fa-file-alt"></i>
                     <span>Pages</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.about-us.*']) }}">
                         <a class="nav-link" href="{{ route('admin.about-us.index') }}">
-                            <i class="fas fa-info-circle"></i>
+                            <i class="fas fa-users"></i>
                             About Us
                         </a>
                     </li>
@@ -349,7 +349,7 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.contact-us.*']) }}">
                         <a class="nav-link" href="{{ route('admin.contact-us.index') }}">
-                            <i class="fas fa-info-circle"></i>
+                            <i class="fas fa-envelope"></i>
                             Contact Us
                         </a>
                     </li>
@@ -357,7 +357,7 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.privacy-policy.*']) }}">
                         <a class="nav-link" href="{{ route('admin.privacy-policy.index') }}">
-                            <i class="fas fa-info-circle"></i>
+                            <i class="fas fa-user-shield"></i>
                             Privacy Policy
                         </a>
                     </li>
@@ -375,7 +375,7 @@
             <!-- Menu Builder -->
             <li>
                 <a class="nav-link" href="{{ route('admin.menu-builder-section.index') }}">
-                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-list-alt"></i>
                     <span>Menu Builder</span>
                 </a>
             </li>
