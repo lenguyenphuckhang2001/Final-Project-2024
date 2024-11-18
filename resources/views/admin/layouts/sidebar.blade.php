@@ -372,6 +372,23 @@
                 </ul>
             </li>
 
+            <!-- Permission -->
+            <li
+                class="dropdown {{ setActiveRoute(['admin.permission.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Permission</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActiveRoute(['admin.permission.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.permission.index') }}">
+                            <i class="fas fa-users"></i>
+                            User Role
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <!-- Menu Builder -->
             <li>
                 <a class="nav-link" href="{{ route('admin.menu-builder-section.index') }}">

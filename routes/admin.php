@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\PageContactUsController;
 use App\Http\Controllers\Admin\PagePrivacyPolicyController;
 use App\Http\Controllers\Admin\PageTermAndConditionsController;
 use App\Http\Controllers\Admin\PaymentSettingController;
+use App\Http\Controllers\Admin\RoleUserPermissionController;
 use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StatisticalSectionController;
@@ -135,4 +136,8 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
 
     //Menu Builder
     Route::get('/menu-builder-section', [MenuBuilderSectionController::class, 'index'])->name('menu-builder-section.index');
+
+    //Permission
+    Route::get('/permission', [RoleUserPermissionController::class, 'index'])->name('permission.index');
+    Route::get('/permission/create', [RoleUserPermissionController::class, 'create'])->name('permission.create');
 });
