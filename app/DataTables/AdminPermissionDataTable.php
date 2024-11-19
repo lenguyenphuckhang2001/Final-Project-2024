@@ -2,7 +2,9 @@
 
 namespace App\DataTables;
 
+use App\Models\AdminPermission;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +14,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class RoleUserPermissionDataTable extends DataTable
+class AdminPermissionDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,7 +24,19 @@ class RoleUserPermissionDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'roleuserpermission.action')
+            ->addColumn('action', function ($query) {
+                $btnEdit = '<a href="' . route('admin.permission.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                $btnDelete = '<a href="' . route('admin.permission.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+                return $btnEdit . $btnDelete;
+            })
+            ->addColumn('permissions', function ($query) {
+                $data = '';
+                foreach ($query->permissions as $permission) {
+                    $data .= '<span class="badge badge-primary mr-1 mb-1">' . $permission->name . '</span>';
+                }
+                return $data;
+            })
+            ->rawColumns(['action', 'permissions'])
             ->setRowId('id');
     }
 
@@ -54,14 +68,13 @@ class RoleUserPermissionDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('id')->width(50),
+            Column::make('name')->width(250),
+            Column::make('permissions'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(100)
                 ->addClass('text-center'),
         ];
     }
@@ -71,6 +84,6 @@ class RoleUserPermissionDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'RoleUserPermission_' . date('YmdHis');
+        return 'AdminPermission_' . date('YmdHis');
     }
 }

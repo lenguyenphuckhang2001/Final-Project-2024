@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminChatController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminFeaturesSectionController;
 use App\Http\Controllers\Admin\AdminHeroSectionController;
+use App\Http\Controllers\Admin\AdminPermissionController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
@@ -138,6 +139,6 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/menu-builder-section', [MenuBuilderSectionController::class, 'index'])->name('menu-builder-section.index');
 
     //Permission
-    Route::get('/permission', [RoleUserPermissionController::class, 'index'])->name('permission.index');
-    Route::get('/permission/create', [RoleUserPermissionController::class, 'create'])->name('permission.create');
+    Route::resource('/permission', AdminPermissionController::class);
+
 });

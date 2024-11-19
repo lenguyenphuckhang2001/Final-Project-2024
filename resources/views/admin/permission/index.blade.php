@@ -3,10 +3,10 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>User Role</h1>
+            <h1>Users Role</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">User Role</div>
+                <div class="breadcrumb-item">Users Role</div>
             </div>
         </div>
 
