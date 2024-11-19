@@ -62,6 +62,9 @@ class AdminPermissionController extends Controller
     public function edit(string $id)
     {
         $role = Role::findOrFail($id);
+        if ($role->name === "Main Admin") {
+            abort(403);
+        }
         $userPermissions = Permission::all()->groupBy('group_name');
         $roleHasPermission = $role->permissions->pluck('name')->toArray();
         return view('admin.permission.edit', compact('userPermissions', 'role', 'roleHasPermission'));
@@ -93,7 +96,13 @@ class AdminPermissionController extends Controller
     public function destroy(string $id)
     {
         try {
-            Role::findOrFail($id)->delete();
+            $role = Role::findOrFail($id);
+
+            if ($role->name === "Main Admin") {
+                abort(403);
+            }
+
+            $role->delete();
             return response(['status' => 'success', 'message' => 'Role deteled successfully']);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);

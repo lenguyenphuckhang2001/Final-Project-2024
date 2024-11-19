@@ -25,14 +25,24 @@ class AdminPermissionDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $btnEdit = '<a href="' . route('admin.permission.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
-                $btnDelete = '<a href="' . route('admin.permission.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
-                return $btnEdit . $btnDelete;
+                if($query->name === 'Main Admin'){
+                    return;
+                } else{
+                    $btnEdit = '<a href="' . route('admin.permission.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2"><i class="fas fa-edit"></i></a>';
+                    $btnDelete = '<a href="' . route('admin.permission.destroy', $query->id) . '" class="delete-item btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>';
+
+                    return $btnEdit . $btnDelete;
+                }
             })
             ->addColumn('permissions', function ($query) {
                 $data = '';
-                foreach ($query->permissions as $permission) {
-                    $data .= '<span class="badge badge-primary mr-1 mb-1">' . $permission->name . '</span>';
+
+                if ($query->name === 'Main Admin') {
+                    $data .= '<span class="badge badge-dark">Access All Permissions</span>';
+                } else {
+                    foreach ($query->permissions as $permission) {
+                        $data .= '<span class="badge badge-primary text-capitalize mr-1 mb-1">' . $permission->name . '</span>';
+                    }
                 }
                 return $data;
             })
@@ -58,7 +68,7 @@ class AdminPermissionDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(0)
+            ->orderBy(1)
             ->selectStyleSingle();
     }
 

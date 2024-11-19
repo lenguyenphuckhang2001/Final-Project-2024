@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +23,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //Set default boostrap for pagination design
         Paginator::useBootstrap();
+
+        // Implicitly grant "Main Admin" role all permissions
+        // This works in the app by using gate-related functions like auth()->user->can() and @can()
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('Main Admin') ? true : null;
+        });
     }
 }

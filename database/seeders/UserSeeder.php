@@ -28,5 +28,9 @@ class UserSeeder extends Seeder
                 'user_type' => 'user'
             ]
         ]);
+
+        //Asign the Main Admin to the admin role
+        $user = User::where('email', 'admin@gmail.com')->first();
+        $user->assignRole('Main Admin');
     }
 }
