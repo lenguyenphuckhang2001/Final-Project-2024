@@ -15,6 +15,14 @@ use Illuminate\View\View;
 
 class PackageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:package index'])->only(['index']);
+        $this->middleware(['permission:package create'])->only(['store', 'create']);
+        $this->middleware(['permission:package update'])->only(['edit', 'update']);
+        $this->middleware(['permission:package destroy'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */

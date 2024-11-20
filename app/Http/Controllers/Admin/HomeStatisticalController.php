@@ -14,6 +14,11 @@ class HomeStatisticalController extends Controller
 {
     use FileHandlingTrait;
 
+    public function __construct()
+    {
+        $this->middleware(['permission:home index'])->only(['index', 'update']);
+    }
+
     function index(): View
     {
         $statistical = Statistical::first();

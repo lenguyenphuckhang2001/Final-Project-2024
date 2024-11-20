@@ -16,6 +16,14 @@ use Str;
 
 class ListingLocationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:listing items index'])->only(['index']);
+        $this->middleware(['permission:listing items create'])->only(['store', 'create']);
+        $this->middleware(['permission:listing items update'])->only(['edit', 'update']);
+        $this->middleware(['permission:listing items destroy'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -47,14 +55,6 @@ class ListingLocationController extends Controller
         toastr()->success('Location created successfully');
 
         return to_route('admin.location.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

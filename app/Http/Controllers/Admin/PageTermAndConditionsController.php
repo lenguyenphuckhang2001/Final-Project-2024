@@ -10,6 +10,11 @@ use Illuminate\View\View;
 
 class PageTermAndConditionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:term update'])->only(['index', 'update']);
+    }
+
     function index(): View
     {
         $termsConditions = TermAndConditions::first();

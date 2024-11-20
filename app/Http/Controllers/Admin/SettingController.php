@@ -12,6 +12,11 @@ use Illuminate\View\View;
 
 class SettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:general setting update']);
+    }
+
     function index(): View
     {
         return view('admin.settings.index');

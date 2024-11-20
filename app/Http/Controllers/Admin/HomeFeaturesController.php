@@ -19,7 +19,7 @@ class HomeFeaturesController extends Controller
         $this->middleware(['permission:home index'])->only(['index']);
         $this->middleware(['permission:home create'])->only(['store', 'create']);
         $this->middleware(['permission:home update'])->only(['edit', 'update']);
-        $this->middleware(['permission:home delete'])->only(['delte']);
+        $this->middleware(['permission:home destroy'])->only(['destroy']);
     }
 
     /**

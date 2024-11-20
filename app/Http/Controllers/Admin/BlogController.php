@@ -16,6 +16,14 @@ use Illuminate\View\View;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:blog index'])->only(['index']);
+        $this->middleware(['permission:blog create'])->only(['store', 'create']);
+        $this->middleware(['permission:blog update'])->only(['edit', 'update']);
+        $this->middleware(['permission:blog destroy'])->only(['destroy']);
+    }
+
     use FileHandlingTrait;
     /**
      * Display a listing of the resource.
@@ -54,14 +62,6 @@ class BlogController extends Controller
         toastr()->success('New blog created successfully');
 
         return redirect()->route('admin.blog.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

@@ -10,9 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-
 class BlogCommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:comment blog index'])->only(['index', 'updateStatus']);
+        $this->middleware(['permission:comment blog destroy'])->only(['destroy']);
+    }
+
     function index(BlogCommentDataTable $dataTable): View | JsonResponse
     {
         return $dataTable->render('admin.blog.comment-status.index');

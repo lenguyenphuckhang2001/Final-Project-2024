@@ -18,6 +18,14 @@ class HomeFeedbackController extends Controller
 {
     use FileHandlingTrait;
 
+    public function __construct()
+    {
+        $this->middleware(['permission:feedback index'])->only(['index']);
+        $this->middleware(['permission:feedback create'])->only(['store', 'create']);
+        $this->middleware(['permission:feedback update'])->only(['edit', 'update']);
+        $this->middleware(['permission:feedback destroy'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */

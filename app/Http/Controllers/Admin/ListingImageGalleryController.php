@@ -14,6 +14,14 @@ use Illuminate\View\View;
 class ListingImageGalleryController extends Controller
 {
     use FileHandlingTrait;
+
+    public function __construct()
+    {
+        $this->middleware(['permission:listing index'])->only(['index']);
+        $this->middleware(['permission:listing create'])->only(['store']);
+        $this->middleware(['permission:listing destroy'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -49,30 +57,6 @@ class ListingImageGalleryController extends Controller
         toastr()->success('Images uploaded successfully');
 
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**

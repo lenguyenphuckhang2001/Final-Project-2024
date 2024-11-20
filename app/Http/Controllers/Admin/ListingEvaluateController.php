@@ -10,9 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-
 class ListingEvaluateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:evaluate listing update'])->only(['index', 'update']);
+        $this->middleware(['permission:evaluate listing destroy'])->only(['destroy']);
+    }
+
     function index(EvaluateDataTable $dataTable): View | JsonResponse
     {
         return $dataTable->render('admin.listing.evaluate.index');

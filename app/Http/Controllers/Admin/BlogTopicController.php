@@ -13,6 +13,14 @@ use Illuminate\View\View;
 
 class BlogTopicController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:topic index'])->only(['index']);
+        $this->middleware(['permission:topic create'])->only(['store', 'create']);
+        $this->middleware(['permission:topic update'])->only(['edit', 'update']);
+        $this->middleware(['permission:topic destroy'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -48,14 +56,6 @@ class BlogTopicController extends Controller
         toastr()->success('New topic created successfully');
 
         return to_route('admin.blog-topic.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

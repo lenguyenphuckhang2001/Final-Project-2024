@@ -10,6 +10,11 @@ use Illuminate\Http\Response;
 
 class ListingPendingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:pending listing update'])->only(['index', 'update']);
+    }
+
     function index(ListingPendingDataTable $dataTable)
     {
         return $dataTable->render('admin.listing.pending-listings.index');

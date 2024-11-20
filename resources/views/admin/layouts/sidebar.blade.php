@@ -281,28 +281,6 @@
                 </ul>
             </li>
 
-            <!-- Package -->
-            <li class="dropdown {{ setActiveRoute(['admin.packages.*', 'admin.payment-settings.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-box"></i>
-                    <span>Package</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setActiveRoute(['admin.packages.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.packages.index') }}">
-                            <i class="fas fa-box-open"></i>
-                            All Packages
-                        </a>
-                    </li>
-                    <li class="{{ setActiveRoute(['admin.payment-settings.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
-                            <i class="fas fa-credit-card"></i>
-                            Payment
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
             <!-- Blog -->
             <li class="dropdown {{ setActiveRoute(['admin.blog.*', 'admin.blog-topic.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
@@ -373,20 +351,27 @@
             </li>
 
             <!-- Permission -->
-            <li
-                class="dropdown {{ setActiveRoute(['admin.permission.*']) }}">
+            <li class="dropdown {{ setActiveRoute(['admin.permission.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fas fa-key"></i>
                     <span>Permission</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.permission.*']) }}">
                         <a class="nav-link" href="{{ route('admin.permission.index') }}">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-users-cog"></i>
                             User Role
                         </a>
                     </li>
                 </ul>
+            </li>
+
+            <!-- Package -->
+            <li>
+                <a class="nav-link" href="{{ route('admin.packages.index') }}">
+                    <i class="fas fa-box-open"></i>
+                    Manage Packages
+                </a>
             </li>
 
             <!-- Menu Builder -->
@@ -414,11 +399,25 @@
             </li>
 
             <!-- Settings -->
-            <li>
-                <a class="nav-link" href="{{ route('admin.setting.index') }}">
+            <li class="dropdown {{ setActiveRoute(['admin.setting.*', 'admin.payment-settings.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-cogs"></i>
                     <span>Settings</span>
                 </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActiveRoute(['admin.setting.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.setting.index') }}">
+                            <i class="fas fa-cog"></i>
+                            General Settings
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.payment-settings.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
+                            <i class="fas fa-credit-card"></i>
+                            Payment Settings
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </aside>

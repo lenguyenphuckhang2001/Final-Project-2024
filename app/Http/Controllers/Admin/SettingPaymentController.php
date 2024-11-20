@@ -11,6 +11,11 @@ use Illuminate\View\View;
 
 class SettingPaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:payment setting update']);
+    }
+
     function index(): View
     {
         return view('admin.payment-settings.index');

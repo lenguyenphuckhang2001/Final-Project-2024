@@ -12,6 +12,12 @@ use Illuminate\View\View;
 
 class ListingSupportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:support listing index'])->only(['index']);
+        $this->middleware(['permission:support listing destroy'])->only(['destroy']);
+    }
+    
     function index(SupportDataTable $datatable): View | JsonResponse
     {
         return $datatable->render('admin.listing.support.index');

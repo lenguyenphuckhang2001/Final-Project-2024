@@ -11,6 +11,13 @@ use Illuminate\View\View;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:order index'])->only(['index', 'show']);
+        $this->middleware(['permission:order update'])->only(['update']);
+        $this->middleware(['permission:order destroy'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -20,36 +27,12 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id): View
     {
         $order = Order::findOrFail($id);
         return view('admin.order.show', compact('order'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**

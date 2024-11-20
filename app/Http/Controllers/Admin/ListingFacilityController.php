@@ -16,6 +16,14 @@ use Str;
 
 class ListingFacilityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:listing items index'])->only(['index']);
+        $this->middleware(['permission:listing items create'])->only(['store', 'create']);
+        $this->middleware(['permission:listing items update'])->only(['edit', 'update']);
+        $this->middleware(['permission:listing items destroy'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */

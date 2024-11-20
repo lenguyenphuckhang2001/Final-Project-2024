@@ -13,6 +13,12 @@ use Illuminate\View\View;
 class PageAboutUsController extends Controller
 {
     use FileHandlingTrait;
+
+    public function __construct()
+    {
+        $this->middleware(['permission:package update'])->only(['index', 'update']);
+    }
+
     function index(): View
     {
         $aboutUs = AboutUs::first();

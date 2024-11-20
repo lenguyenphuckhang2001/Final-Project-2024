@@ -13,6 +13,14 @@ use Spatie\Permission\Models\Permission;
 
 class AdminPermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:permission index'])->only(['index']);
+        $this->middleware(['permission:permission create'])->only(['store', 'create']);
+        $this->middleware(['permission:permission update'])->only(['edit', 'update']);
+        $this->middleware(['permission:permission destroy'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -46,14 +54,6 @@ class AdminPermissionController extends Controller
         toastr()->success('Role created successfully');
 
         return redirect()->route('admin.permission.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

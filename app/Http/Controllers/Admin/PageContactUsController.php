@@ -11,6 +11,11 @@ use Illuminate\View\View;
 
 class PageContactUsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:contact update'])->only(['index', 'update']);
+    }
+
     function index(): View
     {
         $contactUs = ContactUs::first();
