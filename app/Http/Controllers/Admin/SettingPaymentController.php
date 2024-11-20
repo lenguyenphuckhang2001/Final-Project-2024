@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class PaymentSettingController extends Controller
+class SettingPaymentController extends Controller
 {
     function index(): View
     {

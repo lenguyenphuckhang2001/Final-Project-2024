@@ -88,53 +88,53 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="active_left">Package</td>
-                                                        <td class="package_right">{{ @$membership->package->name }}</td>
+                                                        <td class="package_right">{{ $membership?->package->name }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Price</td>
                                                         <td class="package_right">
-                                                            {{ positionCurrency(@$membership->package->price) }}</td>
+                                                            {{ positionCurrency($membership?->package->price) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Listing</td>
                                                         <td class="package_right">
-                                                            {{ @$membership->package->limit_listing === -1 ? 'Unlimited' : @$membership->package->limit_listing }}
+                                                            {{ $membership?->package->limit_listing === -1 ? 'Unlimited' : $membership?->package->limit_listing }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Facilities</td>
                                                         <td class="package_right">
-                                                            {{ @$membership->package->limit_facilities === -1 ? 'Unlimited' : @$membership->package->limit_facilities }}
+                                                            {{ $membership?->package->limit_facilities === -1 ? 'Unlimited' : $membership?->package->limit_facilities }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Photo</td>
                                                         <td class="package_right">
-                                                            {{ @$membership->package->limit_photos === -1 ? 'Unlimited' : @$membership->package->limit_photos }}
+                                                            {{ $membership?->package->limit_photos === -1 ? 'Unlimited' : $membership?->package->limit_photos }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Maximum Video</td>
                                                         <td class="package_right">
-                                                            {{ @$membership->package->limit_video === -1 ? 'Unlimited' : @$membership->package->limit_video }}
+                                                            {{ $membership?->package->limit_video === -1 ? 'Unlimited' : $membership?->package->limit_video }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Featured Listing Available</td>
                                                         <td class="package_right">
-                                                            {{ @$membership->package->limit_featured_listing === -1 ? 'Unlimited' : @$membership->package->limit_featured_listing }}
+                                                            {{ $membership?->package->limit_featured_listing === -1 ? 'Unlimited' : $membership?->package->limit_featured_listing }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Purchase</td>
                                                         <td class="package_right">
-                                                            {{ date('d F, Y', strtotime(@$membership->purchase_date)) }}
+                                                            {{ date('d F, Y', strtotime($membership?->purchase_date)) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="active_left">Expired</td>
                                                         <td class="package_right">
-                                                            {{ date('d F, Y', strtotime(@$membership->expire_date)) }}</td>
+                                                            {{ date('d F, Y', strtotime($membership?->expire_date)) }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

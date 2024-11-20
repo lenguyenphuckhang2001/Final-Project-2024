@@ -11,7 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 
-class EvaluateController extends Controller
+class ListingEvaluateController extends Controller
 {
     function index(EvaluateDataTable $dataTable): View | JsonResponse
     {

@@ -9,9 +9,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\View\View;
-use Response;
 
-class SupportController extends Controller
+class ListingSupportController extends Controller
 {
     function index(SupportDataTable $datatable): View | JsonResponse
     {

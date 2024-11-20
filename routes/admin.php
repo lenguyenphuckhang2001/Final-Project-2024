@@ -3,15 +3,15 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminChatController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\AdminFeaturesSectionController;
-use App\Http\Controllers\Admin\AdminHeroSectionController;
+use App\Http\Controllers\Admin\HomeFeaturesController;
+use App\Http\Controllers\Admin\HomeHeroController;
 use App\Http\Controllers\Admin\AdminPermissionController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogTopicController;
-use App\Http\Controllers\Admin\EvaluateController;
-use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\ListingEvaluateController;
+use App\Http\Controllers\Admin\HomeFeedbackController;
 use App\Http\Controllers\Admin\MainListingController;
 use App\Http\Controllers\Admin\ListingFacilityController;
 use App\Http\Controllers\Admin\ListingCategoryController;
@@ -27,11 +27,11 @@ use App\Http\Controllers\Admin\PageAboutUsController;
 use App\Http\Controllers\Admin\PageContactUsController;
 use App\Http\Controllers\Admin\PagePrivacyPolicyController;
 use App\Http\Controllers\Admin\PageTermAndConditionsController;
-use App\Http\Controllers\Admin\PaymentSettingController;
+use App\Http\Controllers\Admin\SettingPaymentController;
 use App\Http\Controllers\Admin\RoleUserPermissionController;
-use App\Http\Controllers\Admin\SupportController;
+use App\Http\Controllers\Admin\ListingSupportController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\StatisticalSectionController;
+use App\Http\Controllers\Admin\HomeStatisticalController;
 use Illuminate\Support\Facades\Route;
 
 // Admin Authentication
@@ -49,15 +49,15 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::put('/profile-change-password', [AdminProfileController::class, 'changePassword'])->name('profile-change-password.update'); //Update password admin
 
     //Hero Section
-    Route::get('/hero-section', [AdminHeroSectionController::class, 'index'])->name('hero-section.index');
-    Route::put('/hero-section', [AdminHeroSectionController::class, 'update'])->name('hero-section.update');
+    Route::get('/hero-section', [HomeHeroController::class, 'index'])->name('hero-section.index');
+    Route::put('/hero-section', [HomeHeroController::class, 'update'])->name('hero-section.update');
     //Feature Section
-    Route::resource('/features', AdminFeaturesSectionController::class);
+    Route::resource('/features', HomeFeaturesController::class);
     //Statistical Section
-    Route::get('/statistical', [StatisticalSectionController::class, 'index'])->name('statistical.index');
-    Route::put('/statistical', [StatisticalSectionController::class, 'update'])->name('statistical.update');
+    Route::get('/statistical', [HomeStatisticalController::class, 'index'])->name('statistical.index');
+    Route::put('/statistical', [HomeStatisticalController::class, 'update'])->name('statistical.update');
     //Feedback Section
-    Route::resource('/feedback', FeedbackController::class);
+    Route::resource('/feedback', HomeFeedbackController::class);
 
     // Listings Sections
     Route::resource('/listing', MainListingController::class);
@@ -85,13 +85,13 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::post('/pending', [ListingPendingController::class, 'update'])->name('pending.update');
 
     //Evaluate Listings
-    Route::get('/evaluate', [EvaluateController::class, 'index'])->name('evaluate.index');
-    Route::get('/evaluate/{id}', [EvaluateController::class, 'update'])->name('evaluate.update');
-    Route::delete('/evaluate/{id}', [EvaluateController::class, 'destroy'])->name('evaluate.destroy');
+    Route::get('/evaluate', [ListingEvaluateController::class, 'index'])->name('evaluate.index');
+    Route::get('/evaluate/{id}', [ListingEvaluateController::class, 'update'])->name('evaluate.update');
+    Route::delete('/evaluate/{id}', [ListingEvaluateController::class, 'destroy'])->name('evaluate.destroy');
 
     //Support Listings
-    Route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
-    Route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');
+    Route::get('/supports', [ListingSupportController::class, 'index'])->name('supports.index');
+    Route::delete('/supports/{id}', [ListingSupportController::class, 'destroy'])->name('supports.destroy');
 
     //Packages and Orders
     Route::resource('/packages', PackageController::class);
@@ -103,9 +103,9 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::post('/pusher-settings', [SettingController::class, 'updatePusherSettings'])->name('pusher-settings.update');
 
     //Payment Settings
-    Route::get('/payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
-    Route::post('/paypal-settings', [PaymentSettingController::class, 'updatePaypal'])->name('paypal-settings.update');
-    Route::post('/stripe-settings', [PaymentSettingController::class, 'updateStripe'])->name('stripe-settings.update');
+    Route::get('/payment-settings', [SettingPaymentController::class, 'index'])->name('payment-settings.index');
+    Route::post('/paypal-settings', [SettingPaymentController::class, 'updatePaypal'])->name('paypal-settings.update');
+    Route::post('/stripe-settings', [SettingPaymentController::class, 'updateStripe'])->name('stripe-settings.update');
 
     //Chat
     Route::get('/messages', [AdminChatController::class, 'index'])->name('message.index');

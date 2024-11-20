@@ -37,7 +37,7 @@
                             <i class="fas fa-play"></i>
                         </a>
                         <div class="img_2">
-                            <img src="{{ asset($aboutUs?->image_small) }}" alt="about" class="img-fluid w-100">
+                            <img src="{{ asset($aboutUs?->image_small) }}" alt="image about" class="img-fluid w-100">
                         </div>
                     </div>
                 </div>

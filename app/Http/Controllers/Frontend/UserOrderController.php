@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class OrderListController extends Controller
+class UserOrderController extends Controller
 {
     function index(UserOrderDataTable $dataTable): View | JsonResponse
     {

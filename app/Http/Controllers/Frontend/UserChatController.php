@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Events\LiveMessage;
-use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class ChatController extends Controller
+class UserChatController extends Controller
 {
     function index(): View
     {

@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Membership;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class DashboardController extends Controller
+class UserDashboardController extends Controller
 {
     function index(): View
     {

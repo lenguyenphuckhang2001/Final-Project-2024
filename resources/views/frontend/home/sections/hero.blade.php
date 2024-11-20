@@ -3,13 +3,13 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-xl-12 col-md-12">
+                <div class="col-md-12">
                     <div class="wsus__banner_text">
                         <h1>{!! @$hero->title !!}</h1>
                         <p>{!! @$hero->sub_title !!}</p>
                     </div>
                 </div>
-                <div class="col-xl-12 col-md-12 mt-5">
+                <div class="col-md-12">
                     <form action="{{ route('listings') }}" method="GET">
                         <div class="row">
                             <div class="col-md-4">

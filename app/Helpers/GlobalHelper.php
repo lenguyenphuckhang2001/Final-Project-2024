@@ -27,11 +27,16 @@ if (!function_exists('setActiveRoute')) {
     }
 }
 
-/** Active Routes */
+/** Currency position */
 
 if (!function_exists('positionCurrency')) {
-    function positionCurrency(int $amount): ?string
+    function positionCurrency(?int $amount): ?string
     {
+        // Kiểm tra nếu $amount là null, bạn có thể xử lý như mong muốn
+        if ($amount === null) {
+            return 'Invalid amount'; // Hoặc một giá trị mặc định khác
+        }
+
         if (config('settings.site_currency_position') === 'right') {
             return $amount . config('settings.site_currency_icon');
         } else {

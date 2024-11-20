@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\FeedbackDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\FeedbackStoreRequest;
+use App\Http\Requests\Admin\FeedbackUpdateRequest;
 use App\Models\Feedback;
 use App\Traits\FileHandlingTrait;
 use Illuminate\Http\JsonResponse;
@@ -12,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class FeedbackController extends Controller
+class HomeFeedbackController extends Controller
 {
     use FileHandlingTrait;
 
@@ -35,7 +37,7 @@ class FeedbackController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(FeedbackStoreRequest $request): RedirectResponse
     {
         $newAvatarPath = $this->imageUpload($request, 'avatar');
 
@@ -73,7 +75,7 @@ class FeedbackController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(FeedbackUpdateRequest $request, string $id): RedirectResponse
     {
         $newAvatarPath = $this->imageUpload($request, 'avatar', $request->previous_avatar);
 

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\FeaturesDataTable;
 use App\DataTables\FeaturesSectionDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\FeaturesSectionStoreRequest;
-use App\Http\Requests\Admin\FeaturesSectionUpdateRequest;
+use App\Http\Requests\Admin\FeaturesStoreRequest;
+use App\Http\Requests\Admin\FeaturesUpdateRequest;
 use App\Models\Feature;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class AdminFeaturesSectionController extends Controller
+class HomeFeaturesController extends Controller
 {
     public function __construct()
     {
@@ -42,7 +41,7 @@ class AdminFeaturesSectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FeaturesSectionStoreRequest $request): RedirectResponse
+    public function store(FeaturesStoreRequest $request): RedirectResponse
     {
         $feature = new Feature();
         $feature->icon = $request->icon;
@@ -68,7 +67,7 @@ class AdminFeaturesSectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(FeaturesSectionUpdateRequest $request, string $id): RedirectResponse
+    public function update(FeaturesUpdateRequest $request, string $id): RedirectResponse
     {
         $feature = Feature::findOrFail($id);
         /* Trường field có tồn tại trong request hay không.

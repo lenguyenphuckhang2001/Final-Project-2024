@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StatisticalSectionUpdateRequest;
+use App\Http\Requests\Admin\StatisticalUpdateRequest;
 use App\Models\Statistical;
 use App\Traits\FileHandlingTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class StatisticalSectionController extends Controller
+class HomeStatisticalController extends Controller
 {
     use FileHandlingTrait;
 
@@ -20,7 +20,7 @@ class StatisticalSectionController extends Controller
         return view('admin.statistical.index', compact('statistical'));
     }
 
-    function update(StatisticalSectionUpdateRequest $request): RedirectResponse
+    function update(StatisticalUpdateRequest $request): RedirectResponse
     {
         $imageBackgroundPath = $this->imageUpload($request, 'background', $request->previous_background);
 
