@@ -11,7 +11,7 @@
                     <div class="dashboard_content">
                         <div class="my_listing">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0">All My Listings</h4>
+                                <h4 class="mb-0">Table My Listings</h4>
                             </div>
                             {{ $dataTable->table() }}
                         </div>

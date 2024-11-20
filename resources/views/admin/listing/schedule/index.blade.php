@@ -19,7 +19,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Schedules | Title Listing: <span class="text-danger">{{ $titleListing->title }}</h4>
+                            <h4>Table Schedules | Title Listing: <span class="text-danger">{{ $titleListing->title }}</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.schedule.create', $listingId) }}"
                                     class="btn btn-primary">Create</a>

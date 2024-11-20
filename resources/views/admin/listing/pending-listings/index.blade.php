@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Pending Listings</h4>
+                            <h4>Table Pending Listings</h4>
                         </div>
                         <div class="card-body">
                             {{ $dataTable->table() }}

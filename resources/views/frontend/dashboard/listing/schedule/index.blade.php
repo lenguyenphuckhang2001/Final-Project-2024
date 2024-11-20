@@ -17,7 +17,7 @@
                                 </button>
                             </a>
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0">All Schedule of Title: {{ $titleListing->title }}</h4>
+                                <h4 class="mb-0">Table Schedule of Title: {{ $titleListing->title }}</h4>
                                 <div class="card-header-action">
                                     <a href="{{ route('user.schedule.create', $listingId) }}" class="read_btn">Create</a>
                                 </div>

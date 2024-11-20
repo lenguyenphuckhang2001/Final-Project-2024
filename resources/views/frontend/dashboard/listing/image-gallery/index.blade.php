@@ -141,7 +141,7 @@
                         </div>
 
                         <div class="my_listing">
-                            <h4>All Image Gallery</h4>
+                            <h4>Table Image Gallery</h4>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-md">

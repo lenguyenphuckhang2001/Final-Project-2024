@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Blogs</h4>
+                            <h4>Table Blogs</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.blog.create') }}" class="btn btn-primary">Create</a>
                             </div>

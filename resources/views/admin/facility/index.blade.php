@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Facilities</h4>
+                            <h4>Table Facilities</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.facility.create') }}" class="btn btn-primary">Create</a>
                             </div>

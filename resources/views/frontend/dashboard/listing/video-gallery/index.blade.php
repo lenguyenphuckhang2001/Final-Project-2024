@@ -142,7 +142,7 @@
                         </div>
 
                         <div class="my_listing">
-                            <h4>All Video Gallery</h4>
+                            <h4>Table Video Gallery</h4>
                             <div class="card-body">
                                 <div class="card-body p-0">
                                     <div class="table-responsive">

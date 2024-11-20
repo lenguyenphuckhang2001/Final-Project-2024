@@ -70,7 +70,6 @@
                         <div class="row mt-4">
                             <div class="col-md-12">
                                 <div class="section-title">Order Summary</div>
-                                {{-- <p class="section-lead">All items here cannot be deleted.</p> --}}
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover table-md">
                                         <tr>

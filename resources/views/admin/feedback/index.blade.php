@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Feedbacks</h4>
+                            <h4>Table Feedbacks</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.feedback.create') }}" class="btn btn-primary">Create</a>
                             </div>

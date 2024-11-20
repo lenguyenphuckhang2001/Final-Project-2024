@@ -3,10 +3,10 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>Features</h1>
+            <h1>Users Role</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Features</div>
+                <div class="breadcrumb-item">Users Role</div>
             </div>
         </div>
 
@@ -15,9 +15,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Table Facilities</h4>
+                            <h4>Table User Roles</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.features.create') }}" class="btn btn-primary">Create</a>
+                                <a href="{{ route('admin.permission.create') }}" class="btn btn-primary">Create</a>
                             </div>
                         </div>
                         <div class="card-body">
