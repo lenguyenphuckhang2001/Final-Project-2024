@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Str;
 use Auth;
+use Illuminate\Http\Response;
 
 class MainListingController extends Controller
 {
@@ -108,14 +109,6 @@ class MainListingController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id): View
@@ -186,7 +179,7 @@ class MainListingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): Response
     {
         try {
             Listing::findOrFail($id)->delete();

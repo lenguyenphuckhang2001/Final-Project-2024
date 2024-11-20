@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AdminChatController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\HomeFeaturesController;
 use App\Http\Controllers\Admin\HomeHeroController;
-use App\Http\Controllers\Admin\AdminPermissionController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\SettingPaymentController;
 use App\Http\Controllers\Admin\ListingSupportController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\HomeStatisticalController;
+use App\Http\Controllers\Admin\PermissionUserRoleController;
 use Illuminate\Support\Facades\Route;
 
 // Admin Authentication
@@ -138,6 +139,6 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/menu-builder-section', [MenuBuilderSectionController::class, 'index'])->name('menu-builder-section.index');
 
     //Permission
-    Route::resource('/permission', AdminPermissionController::class);
-
+    Route::resource('/permission', PermissionController::class);
+    Route::resource('/user-role', PermissionUserRoleController::class);
 });

@@ -259,7 +259,6 @@
                             Facility
                         </a>
                     </li>
-
                     <li class="{{ setActiveRoute(['admin.pending.*']) }}">
                         <a class="nav-link" href="{{ route('admin.pending.index') }}">
                             <i class="fas fa-clock"></i>
@@ -351,7 +350,7 @@
             </li>
 
             <!-- Permission -->
-            <li class="dropdown {{ setActiveRoute(['admin.permission.*']) }}">
+            <li class="dropdown {{ setActiveRoute(['admin.user-role.*', 'admin.permission.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-key"></i>
                     <span>Permission</span>
@@ -359,8 +358,14 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setActiveRoute(['admin.permission.*']) }}">
                         <a class="nav-link" href="{{ route('admin.permission.index') }}">
+                            <i class="fas fa-user-shield"></i>
+                            User Permissions
+                        </a>
+                    </li>
+                    <li class="{{ setActiveRoute(['admin.user-role.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.user-role.index') }}">
                             <i class="fas fa-users-cog"></i>
-                            User Role
+                            User Roles
                         </a>
                     </li>
                 </ul>

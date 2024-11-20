@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\AdminPermissionDataTable;
+use App\DataTables\PermissionDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class AdminPermissionController extends Controller
+class PermissionController extends Controller
 {
     public function __construct()
     {
@@ -24,7 +25,7 @@ class AdminPermissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    function index(AdminPermissionDataTable $dataTable): View | JsonResponse
+    function index(PermissionDataTable $dataTable): View | JsonResponse
     {
         return $dataTable->render('admin.permission.index');
     }
@@ -59,7 +60,7 @@ class AdminPermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
         $role = Role::findOrFail($id);
         if ($role->name === "Main Admin") {
@@ -73,7 +74,7 @@ class AdminPermissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'max:255', 'unique:roles,name,' . $id],
@@ -93,7 +94,7 @@ class AdminPermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): Response
     {
         try {
             $role = Role::findOrFail($id);

@@ -9,7 +9,7 @@
             <h1>Edit Permissions</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                <div class="breadcrumb-item active"><a href="{{ route('admin.permission.index') }}">Users Role</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('admin.permission.index') }}">Permissions</a></div>
                 <div class="breadcrumb-item">Edit Permissions</div>
             </div>
         </div>

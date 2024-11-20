@@ -75,7 +75,7 @@ class PackageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PackageUpdateRequest $request, string $id)
+    public function update(PackageUpdateRequest $request, string $id): RedirectResponse
     {
         $package = Package::findOrFail($id);
 

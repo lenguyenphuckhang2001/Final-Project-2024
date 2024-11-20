@@ -17,7 +17,7 @@
                         <div class="card-header">
                             <h4>Table User Roles</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.permission.create') }}" class="btn btn-primary">Create</a>
+                                <a href="{{ route('admin.user-role.create') }}" class="btn btn-primary">Create</a>
                             </div>
                         </div>
                         <div class="card-body">
