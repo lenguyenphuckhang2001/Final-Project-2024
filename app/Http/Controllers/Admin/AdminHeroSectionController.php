@@ -15,6 +15,12 @@ class AdminHeroSectionController extends Controller
 {
     use FileHandlingTrait;
 
+    public function __construct()
+    {
+        $this->middleware(['permission:home index'])->only(['index']);
+        $this->middleware(['permission:home update'])->only(['update']);
+    }
+
     function index(): View
     {
         $hero = Hero::first();

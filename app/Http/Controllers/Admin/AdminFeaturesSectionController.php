@@ -15,6 +15,14 @@ use Illuminate\View\View;
 
 class AdminFeaturesSectionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:home index'])->only(['index']);
+        $this->middleware(['permission:home create'])->only(['store', 'create']);
+        $this->middleware(['permission:home update'])->only(['edit', 'update']);
+        $this->middleware(['permission:home delete'])->only(['delte']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -46,14 +54,6 @@ class AdminFeaturesSectionController extends Controller
         toastr()->success('New feature created successfully');
 
         return to_route('admin.features.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

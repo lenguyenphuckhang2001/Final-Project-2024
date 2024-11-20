@@ -24,8 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*------------------------------------------ FRONTEND CONTROLLER ------------------------------------------*/
+/*------------------------------------------ GUEST ------------------------------------------*/
 
+Route::group(['prefix' => 'guest', 'as' => 'guest.'], function () {});
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/listings', [HomeController::class, 'listings'])->name('listings');
 Route::get('/listing-modal/{id}', [HomeController::class, 'listingModal'])->name('listing-modal');
