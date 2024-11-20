@@ -148,12 +148,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        @if ($membership->package->limit_facilities === -1)
+                                        @if ($membership?->package->limit_facilities === -1)
                                             <label>Facilities <span class="text-danger">(Unlimited)</span></label>
                                         @else
                                             <label>Facilities <span class="text-danger">(Maximum
                                                     Facility -
-                                                    {{ $membership->package->limit_facilities }})</span></label>
+                                                    {{ $membership?->package->limit_facilities }})</span></label>
                                         @endif
                                         <div class="row">
                                             @foreach ($facilities as $facility)
