@@ -12,10 +12,13 @@ use App\Traits\FileHandlingTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class BlogController extends Controller
 {
+    use FileHandlingTrait;
+
     public function __construct()
     {
         $this->middleware(['permission:blog index'])->only(['index']);
@@ -24,7 +27,6 @@ class BlogController extends Controller
         $this->middleware(['permission:blog destroy'])->only(['destroy']);
     }
 
-    use FileHandlingTrait;
     /**
      * Display a listing of the resource.
      */
@@ -77,7 +79,7 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(BlogUpdateRequest $request, string $id)
+    public function update(BlogUpdateRequest $request, string $id): RedirectResponse
     {
         $newImagePath = $this->imageUpload($request, 'image', $request->previous_image);
 
@@ -99,7 +101,7 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): Response
     {
         try {
             $blog = Blog::findOrFail($id);

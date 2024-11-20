@@ -70,7 +70,7 @@ class BlogTopicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
         $request->validate([
             'topic' => ['nullable', 'max:255', 'unique:blog_topics,topic,' . $id],

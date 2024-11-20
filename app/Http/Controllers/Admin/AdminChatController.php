@@ -32,7 +32,7 @@ class AdminChatController extends Controller
         return view('admin.message.index', compact('senders'));
     }
 
-    function storeMessages(Request $request)
+    function storeMessages(Request $request): Response
     {
         $receiverId = auth()->user()->id; // Id của người dùng hiện tại, giả sử là Khang
         $senderId = $request->sender_id; // Id của người nhận, giả sử là Hương
@@ -54,7 +54,7 @@ class AdminChatController extends Controller
         return response($messages);
     }
 
-    function newMessage(Request $request)
+    function newMessage(Request $request): Response
     {
         $request->validate([
             'receiver_id' => ['required', 'integer'],
