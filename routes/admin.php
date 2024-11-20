@@ -28,7 +28,6 @@ use App\Http\Controllers\Admin\PageContactUsController;
 use App\Http\Controllers\Admin\PagePrivacyPolicyController;
 use App\Http\Controllers\Admin\PageTermAndConditionsController;
 use App\Http\Controllers\Admin\SettingPaymentController;
-use App\Http\Controllers\Admin\RoleUserPermissionController;
 use App\Http\Controllers\Admin\ListingSupportController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\HomeStatisticalController;
