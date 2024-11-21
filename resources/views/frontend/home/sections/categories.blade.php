@@ -22,7 +22,7 @@
                                 <div class="wsus__category_text_center">
                                     <i class="{{ $category->icon }}"></i>
                                     <p>{{ $category->name }}</p>
-                                    <span class="green">{{ $category->listings_count }} listing</span>
+                                    <span class="category-listing">{{ $category->listings_count }} listing</span>
                                 </div>
                             </div>
                         </a>

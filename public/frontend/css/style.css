@@ -236,7 +236,7 @@ button {
 }
 
 .wsus__topbar_left li a:hover {
-    color: #07123b;
+    color: var(--paraColor) !important;
 }
 
 .wsus__topbar_right {
@@ -1780,7 +1780,7 @@ FEATURED LISTING  END
 
 .single_blog .text {
     padding: 30px;
-    height: 35vh;
+    height: 24vh;
 }
 
 .single_blog span {
@@ -5813,4 +5813,8 @@ AGENT PROFILE END
     background-color: #ccc;
     color: #666;
     cursor: not-allowed;
+}
+
+.category-listing{
+    background: var(--paraColor) !important;
 }

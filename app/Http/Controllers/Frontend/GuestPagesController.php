@@ -92,4 +92,13 @@ class GuestPagesController extends Controller
 
         return view('frontend.pages.personal-profile', compact('userProfile', 'listingsPersonal'));
     }
+
+    function listingCategoriesIndex(): View
+    {
+        $categoriesListing = Category::withCount(['listings' => function ($query) {
+            $query->where('is_accepted', 1);
+        }])->where(['display_at_home' => 1, 'status' => 1])
+            ->paginate(12);
+        return view('frontend.pages.listing-categories', compact('categoriesListing'));
+    }
 }

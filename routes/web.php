@@ -54,7 +54,7 @@ Route::post('/contact-us', [GuestPagesController::class, 'sendContactEmail'])->n
 Route::get('/privacy-policy', [GuestPagesController::class, 'privacyPolicyIndex'])->name('privacy-policy');
 Route::get('/terms-and-conditions', [GuestPagesController::class, 'termAndConditionIndex'])->name('terms-and-conditions');
 Route::get('/personal-profile/{id}', [GuestPagesController::class, 'personalProfileIndex'])->name('personal-profile');
-
+Route::get('/listing-categories', [GuestPagesController::class, 'listingCategoriesIndex'])->name('listing-categories');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
