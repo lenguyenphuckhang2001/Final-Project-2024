@@ -49,11 +49,13 @@ class BlogController extends Controller
      */
     public function store(BlogStoreRequest $request): RedirectResponse
     {
+        $newThumbnailPath = $this->imageUpload($request, 'thumbnail');
         $newImagePath = $this->imageUpload($request, 'image');
 
         $blog = new Blog();
-        $blog->author_id = auth()->user()->id;
+        $blog->thumbnail = $newThumbnailPath;
         $blog->image = $newImagePath;
+        $blog->author_id = auth()->user()->id;
         $blog->topic_id = $request->topic;
         $blog->title = $request->title;
         $blog->slug = \Str::slug($request->title);
@@ -81,11 +83,13 @@ class BlogController extends Controller
      */
     public function update(BlogUpdateRequest $request, string $id): RedirectResponse
     {
+        $newThumbnailPath = $this->imageUpload($request, 'thumbnail', $request->previous_thumbnail);
         $newImagePath = $this->imageUpload($request, 'image', $request->previous_image);
 
         $blog = Blog::findOrFail($id);
-        $blog->author_id = auth()->user()->id;
+        $blog->thumbnail = !empty($newThumbnailPath) ? $newThumbnailPath : $request->previous_thumbnail;
         $blog->image = !empty($newImagePath) ? $newImagePath : $request->previous_image;
+        $blog->author_id = auth()->user()->id;
         $blog->topic_id = $request->topic;
         $blog->title = $request->title;
         $blog->slug = \Str::slug($request->title);

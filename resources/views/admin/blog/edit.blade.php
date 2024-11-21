@@ -33,8 +33,18 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
-                                    <!-- Single Column for Image, Topic, and Title -->
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Thumbnail</label>
+                                            <div id="image-preview-2" class="image-preview thumbnail-image">
+                                                <label for="image-upload-2" id="image-label-2">Choose File</label>
+                                                <input type="file" name="thumbnail" id="image-upload-2" />
+                                                <input type="hidden" name="previous_thumbnail"
+                                                    value="{{ $blog->thumbnail }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <!-- Image Upload -->
                                         <div class="form-group">
                                             <label for="">Image</label>
@@ -46,31 +56,27 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <!-- Topic Selection -->
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Topics <span class="text-danger">*</span></label>
-                                                    <select name="topic" class="form-control" required>
-                                                        <option value="" selected disabled>Select</option>
-                                                        @foreach ($topics as $topic)
-                                                            <option @selected($blog->topic_id === $topic->id)
-                                                                value="{{ $topic->id }}">
-                                                                {{ $topic->topic }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- Title Input -->
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Title <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="title"
-                                                        value="{{ $blog->title }}">
-                                                </div>
-                                            </div>
+                                    <!-- Topic Selection -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Topics <span class="text-danger">*</span></label>
+                                            <select name="topic" class="form-control" required>
+                                                <option value="" selected disabled>Select</option>
+                                                @foreach ($topics as $topic)
+                                                    <option @selected($blog->topic_id === $topic->id) value="{{ $topic->id }}">
+                                                        {{ $topic->topic }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Title Input -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Title <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="title"
+                                                value="{{ $blog->title }}">
                                         </div>
                                     </div>
 
@@ -111,6 +117,13 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            $('.thumbnail-image').css({
+                'background-image': 'url({{ asset($blog->thumbnail) }})',
+                'background-position': 'center center',
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover'
+            })
+
             $('.blog-image').css({
                 'background-image': 'url({{ asset($blog->image) }})',
                 'background-position': 'center center',

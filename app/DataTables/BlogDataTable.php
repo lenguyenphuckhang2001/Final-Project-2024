@@ -30,6 +30,9 @@ class BlogDataTable extends DataTable
             ->addColumn('author', function ($query) {
                 return $query->author->name;
             })
+            ->addColumn('thumbnail', function ($query) {
+                return '<img width="130" height="120" src="' . asset($query->thumbnail) . '">';
+            })
             ->addColumn('image', function ($query) {
                 return '<img width="130" height="120" src="' . asset($query->image) . '">';
             })
@@ -44,7 +47,7 @@ class BlogDataTable extends DataTable
                 }
             })
 
-            ->rawColumns(['action', 'status', 'image'])
+            ->rawColumns(['action', 'status', 'image', 'thumbnail'])
             ->setRowId('id');
     }
 
@@ -77,6 +80,7 @@ class BlogDataTable extends DataTable
     {
         return [
             Column::make('id'),
+            Column::make('thumbnail')->width(200),
             Column::make('image')->width(200),
             Column::make('author'),
             Column::make('title'),

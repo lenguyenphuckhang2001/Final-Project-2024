@@ -14,6 +14,7 @@ class BlogStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'thumbnail' => ['required', 'image', 'max:10240'],
             'image' => ['required', 'image', 'max:10240'],
             'topic' => ['required', 'integer'],
             'title' => ['required', 'max:255', 'unique:blogs,title'],

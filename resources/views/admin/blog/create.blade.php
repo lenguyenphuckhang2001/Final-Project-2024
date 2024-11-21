@@ -26,8 +26,17 @@
                             <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <!-- Image Upload -->
+                                    <!-- Image Upload -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Thumbnail</label>
+                                            <div id="image-preview-2" class="image-preview">
+                                                <label for="image-upload-2" id="image-label-2">Choose File</label>
+                                                <input type="file" name="thumbnail" id="image-upload-2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Image</label>
                                             <div id="image-preview" class="image-preview">
@@ -36,28 +45,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <!-- Topic Selection -->
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Topics <span class="text-danger">*</span></label>
-                                                    <select name="topic" class="form-control" required>
-                                                        <option value="" selected disabled>Select</option>
-                                                        $@foreach ($topics as $topic)
-                                                            <option value="{{ $topic->id }}">{{ $topic->topic }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- Title Input -->
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="">Title <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="title">
-                                                    <input type="hidden" name="author">
-                                                </div>
-                                            </div>
+
+                                    <!-- Topic Selection -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Topics <span class="text-danger">*</span></label>
+                                            <select name="topic" class="form-control" required>
+                                                <option value="" selected disabled>Select</option>
+                                                $@foreach ($topics as $topic)
+                                                    <option value="{{ $topic->id }}">{{ $topic->topic }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Title Input -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Title <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="title">
+                                            <input type="hidden" name="author">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
