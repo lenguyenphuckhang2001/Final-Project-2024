@@ -6,13 +6,7 @@
 
 @section('contents')
     <!------------------------Breadcrumb---------------------->
-    <div id="breadcrumb_part"
-        style="
-            background: url({{ $listing->thumbnail }});
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-    ">
+    <div id="breadcrumb_part" style="background: url({{ $listing->thumbnail }})">
         <div class="bread_overlay">
             <div class="container">
                 <div class="row justify-content-center">
@@ -38,7 +32,9 @@
                     <div class="listing_details_text">
                         <div class="listing_det_header">
                             <div class="listing_det_header_img">
-                                <img src="{{ asset($listing->user->avatar) }}" alt="logo" class="img-fluid w-100">
+                                <a href="{{ route('personal-profile', $listing->user->id) }}">
+                                    <img src="{{ asset($listing->user->avatar) }}" alt="logo" class="img-fluid w-100">
+                                </a>
                             </div>
                             <div class="listing_det_header_text">
                                 <h6>{{ $listing->title }}</h6>

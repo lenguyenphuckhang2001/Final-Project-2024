@@ -1780,6 +1780,7 @@ FEATURED LISTING  END
 
 .single_blog .text {
     padding: 30px;
+    height: 35vh;
 }
 
 .single_blog span {
@@ -4888,26 +4889,6 @@ AGENT PROFILE START
 
 .wsus__agent_link li:last-child a {
     margin: 0;
-}
-
-.wsus__agent_link li:nth-child(1) a {
-    background: #30559e;
-}
-
-.wsus__agent_link li:nth-child(2) a {
-    background: #25b8f7;
-}
-
-.wsus__agent_link li:nth-child(3) a {
-    background: #0077b0;
-}
-
-.wsus__agent_link li:nth-child(4) a {
-    background: #10b418;
-}
-
-.wsus__agent_link li:nth-child(5) a {
-    background: #c93971;
 }
 
 #medicine_row3 input {

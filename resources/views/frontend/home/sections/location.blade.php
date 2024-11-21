@@ -15,7 +15,7 @@
                     <div class="wsus__location_filter">
                         <button class="active" data-filter="*">All City</button>
                         @foreach ($homeLocation as $location)
-                            <button data-filter=".{{ $location->slug }}">{{ $location->name }}</button>
+                            <button data-filter="{{ $location->slug }}">{{ $location->name }}</button>
                         @endforeach
                     </div>
                 </div>
