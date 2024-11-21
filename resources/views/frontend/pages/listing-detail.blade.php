@@ -64,7 +64,7 @@
                                         <li><a href="#"><i class="far fa-check"></i> Featured</a></li>
                                     @endif
                                     <li><a href="#"><i class="fal fa-heart"></i> Add to Favorite</a></li>
-                                    <li><a href="#"><i class="fal fa-eye"></i> {{ $listing->views }}</a></li>
+                                    <li><a href="javascript:;"><i class="fal fa-eye"></i> {{ $listing->views }}</a></li>
                                     {{-- javascript:; là một cú pháp trong HTML, thường được sử dụng trong thuộc tính href của
                                     thẻ <a>, để ngăn không cho đường dẫn điều hướng đến bất cứ đâu. --}}
                                     @if ($statusTime == 'open')
@@ -209,10 +209,13 @@
                                     <p><i class="fal fa-map-marker-alt"></i>{{ $listing->address }},
                                         {{ $listing->location->name }}</p>
                                     @if ($listing->website)
-                                        <p><i class="fal fa-globe"></i> {{ $listing->website }}</p>
+                                        <p
+                                            style="display: flex;flex-direction: row;flex-wrap: nowrap;margin-left: 7px !important; gap: 7px;">
+                                            <i class="fal fa-globe"></i>{{ $listing->website }}
+                                        </p>
                                     @endif
 
-                                    <ul>
+                                    <ul class="justify-content-center">
                                         @if ($listing->fb_url)
                                             <li>
                                                 <a href="{{ $listing->fb_url }}"><i class="fab fa-facebook-f"></i></a>

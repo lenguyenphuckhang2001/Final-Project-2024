@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\GuestPagesController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserListingController;
+use App\Http\Controllers\Frontend\UserListingEvaluateController;
 use App\Http\Controllers\Frontend\UserListingImageGalleryController;
 use App\Http\Controllers\FrontEnd\UserListingScheduleController;
 use App\Http\Controllers\Frontend\UserListingVideoGalleryController;
@@ -28,9 +29,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*------------------------------------------ GUEST ------------------------------------------*/
-
-Route::group(['prefix' => 'guest', 'as' => 'guest.'], function () {});
 /* HOME */
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/checkout/{id}', [HomeController::class, 'checkout'])->name('checkout.index');
 
@@ -89,11 +89,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     /* ORDER PAYMENT LIST */
     Route::get('/order', [UserOrderController::class, 'index'])->name('order.index');
     Route::get('/order/{id}', [UserOrderController::class, 'show'])->name('order.show');
-    
+
     /* ORDER PAYMENT LIST */
     Route::get('/messages', [UserChatController::class, 'index'])->name('messages.index');
     Route::post('/new-message', [UserChatController::class, 'newMessage'])->name('new-message');
     Route::get('/store-messages', [UserChatController::class, 'storeMessages'])->name('store-messages');
+
+    Route::get('/evaluate', [UserListingEvaluateController::class, 'index'])->name('evaluate.index');
+    Route::delete('/evaluate/{id}', [UserListingEvaluateController::class, 'destroy'])->name('evaluate.destroy');
 });
 
 /*----------------------------------------- PAYMENT ROUTE -----------------------------------------*/

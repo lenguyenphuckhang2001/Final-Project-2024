@@ -2013,7 +2013,7 @@ TESTIMONIAL PART END
 =====================*/
 footer {
     padding-top: 95px;
-    background-color: var(--colorPrimary) !important;
+    background-color: var(--colorBlack) !important;
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
@@ -4379,6 +4379,8 @@ PAGINATION PART END
 }
 
 .visitor_rev_img {
+    height: 100px !important;
+    object-fit: cover !important;
     width: 25%;
     float: left;
     border-radius: 5px;
@@ -5794,4 +5796,38 @@ AGENT PROFILE END
 
 .status-offline {
     color: rgb(195, 192, 192);
+}
+
+.button-delete-evaluate {
+    background-color: #ff4d4d !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    border-radius: 5px !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.button-delete-evaluate:hover {
+    background-color: #ff1a1a;
+    transform: scale(1.05);
+}
+
+.button-delete-evaluate:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+}
+
+/* Biểu tượng trash */
+.button-delete-evaluate i {
+    margin-right: 8px;
+}
+
+.button-delete-evaluate:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
 }
