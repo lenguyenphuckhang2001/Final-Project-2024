@@ -5,10 +5,11 @@
 <footer>
     <div class="container">
         <div class="row text-white">
-            <div class="col-xl-5 col-sm-12 col-md-6 col-lg-6">
+            <div class="col-xl-6">
                 <div class="footer_text">
                     <a class="navbar-brand" href="index.html" style="padding-bottom: 50px ;">
-                        <img src="https://bus2alps.com/wp-content/uploads/2022/06/bus2alpslogo.svg" alt="Icon web">
+                        <img src={{ asset(config('settings.logo_image')) }} style="width: 400px !important;"
+                            alt="logo web">
                     </a>
                     <ul class="footer_icon">
                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -18,29 +19,28 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-2 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-xl-2">
                 <div class="footer_text">
-                    <h3>My Account</h3>
                     <ul class="footer_link">
-                        @foreach (Menu::getByName('Footer Column First')  as $footer)
-                        <li><a href="{{ $footer['link'] }}"><i class="far fa-chevron-double-right"></i> {{ $footer['label'] }}</a></li>
+                        @foreach (Menu::getByName('Footer Column First') as $footer)
+                            <li><a href="{{ $footer['link'] }}"><i class="far fa-chevron-double-right"></i>
+                                    {{ $footer['label'] }}</a></li>
                         @endforeach
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-2 col-sm-6 col-md-3 col-lg-6">
+            <div class="col-xl-2">
                 <div class="footer_text">
-                    <h3>My Account</h3>
                     <ul class="footer_link">
-                        @foreach (Menu::getByName('Footer Column Second')  as $footer)
-                        <li><a href="{{ $footer['link'] }}"><i class="far fa-chevron-double-right"></i> {{ $footer['label'] }}</a></li>
+                        @foreach (Menu::getByName('Footer Column Second') as $footer)
+                            <li><a href="{{ $footer['link'] }}"><i class="far fa-chevron-double-right"></i>
+                                    {{ $footer['label'] }}</a></li>
                         @endforeach
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-xl-2">
                 <div class="footer_text footer_contact">
-                    <h3>Contact with Us</h3>
                     <ul class="footer_link">
                         <li>
                             <p>
@@ -65,7 +65,7 @@
                                     </a>
                                 </a>
                             </li>
-                        @endif  
+                        @endif
                         <li>
                             <a href="#">
                                 <a href="callto:{{ $contact?->phonenumber_one }}">

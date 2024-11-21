@@ -24,16 +24,18 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" id="home-tab4" data-toggle="tab" href="#home4"
                                                 role="tab" aria-controls="home" aria-selected="true">General
-                                                Settings</a>
+                                            </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#profile4"
-                                                role="tab" aria-controls="profile" aria-selected="false">Pusher
-                                                Settings</a>
+                                                role="tab" aria-controls="profile" aria-selected="false">Pusher Message
+                                            </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#contact4"
-                                                role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                                                role="tab" aria-controls="contact" aria-selected="false">Favicon and
+                                                Logo
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -41,15 +43,7 @@
                                     <div class="tab-content no-padding" id="myTab2Content">
                                         @include('admin.settings.sections.general-settings')
                                         @include('admin.settings.sections.pusher-settings')
-                                        <div class="tab-pane fade" id="contact4" role="tabpanel"
-                                            aria-labelledby="contact-tab4">
-                                            Vestibulum imperdiet odio sed neque ultricies, ut dapibus mi maximus. Proin
-                                            ligula massa, gravida in lacinia efficitur, hendrerit eget mauris. Pellentesque
-                                            fermentum, sem interdum molestie finibus, nulla diam varius leo, nec varius
-                                            lectus elit id dolor. Nam malesuada orci non ornare vulputate. Ut ut
-                                            sollicitudin magna. Vestibulum eget ligula ut ipsum venenatis ultrices. Proin
-                                            bibendum bibendum augue ut luctus.
-                                        </div>
+                                        @include('admin.settings.sections.favicon-and-logo-settings')
                                     </div>
                                 </div>
                             </div>
@@ -62,5 +56,21 @@
 @endsection
 
 @push('scripts')
-    <script></script>
+    <script>
+        $(document).ready(function() {
+            $('.favicon-setting').css({
+                'background-image': 'url({{ asset(config('settings.favicon_image')) }})',
+                'background-position': 'center center',
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover'
+            })
+
+            $('.logo-setting').css({
+                'background-image': 'url({{ asset(config('settings.logo_image')) }})',
+                'background-position': 'center center',
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover'
+            })
+        })
+    </script>
 @endpush

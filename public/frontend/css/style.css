@@ -78,12 +78,12 @@ button {
 }
 
 :root {
-    --colorPrimary: #6439ff;
-    --paraColor: #7c7474;
-    --colorBlack: #1c212b;
+    --colorPrimary: #31511e;
+    --paraColor: #859f3d;
+    --colorBlack: #1a1a19;
     --colorWhite: #ffffff;
     --ratingColor: #feee91;
-    --backgroundColor: #8e8c8b1c;
+    --backgroundColor: #f6fcdf;
     --headingFont: "Quicksand", sans-serif;
     --paraFont: "DM Sans", sans-serif;
 }
@@ -166,7 +166,7 @@ button {
     font-size: 16px;
     font-weight: 500;
     color: #05152f;
-    border: 1px solid #284cd3;
+    border: 1px solid var(--colorPrimary);
     border-radius: 3px;
     padding: 7px 15px;
     transition: all linear 0.3s;
@@ -178,7 +178,7 @@ button {
 }
 
 .hire_btn:hover {
-    color: #284cd3;
+    color: var(--paraColor);
 }
 
 .small_heading {
@@ -2227,6 +2227,7 @@ footer h3 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    object-fit: cover;
 }
 
 .bread_overlay {
@@ -3254,7 +3255,7 @@ PAGINATION PART END
 }
 
 .listing_det_header_text ul li a {
-    background: #f6654224;
+    background: var(--backgroundColor);
     padding: 3px 10px;
     margin-right: 10px;
     font-size: 14px;

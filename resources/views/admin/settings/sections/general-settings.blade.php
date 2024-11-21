@@ -4,6 +4,13 @@
             <form action="{{ route('admin.general-settings.update') }}" method="POST">
                 @csrf
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Website Name</label>
+                            <input type="text" class="form-control" name="website_name"
+                                value={{ config('settings.website_name') }}>
+                        </div>
+                    </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Site Name</label>

@@ -17,12 +17,12 @@ class UserListingEvaluateController extends Controller
                 $query->where('user_id', auth()->user()->id);
             })
             ->orderBy('created_at', 'asc')
-            ->where('is_accepted', 1)->get();
+            ->where('is_accepted', 1)->paginate(3);
 
         $evaluatesPersonal = Evaluate::with('listing')
         ->where(['user_id' => auth()->user()->id, 'is_accepted' => 1])
         ->orderBy('created_at', 'asc')
-        ->get();
+        ->paginate(3);
 
         return view('frontend.dashboard.evaluate.index', compact('evaluatesDashboard', 'evaluatesPersonal'));
     }

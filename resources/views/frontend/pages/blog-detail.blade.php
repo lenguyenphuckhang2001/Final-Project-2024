@@ -1,8 +1,8 @@
 @extends('frontend.layouts.main')
 
 @section('contents')
-    <div id="breadcrumb_part">
-        <div class="bread_overlay">
+    <div id="breadcrumb_part" style="background: url({{ asset(@$blog->thumbnail) }})">
+        <div class="bread_overlay ">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 text-center text-white">

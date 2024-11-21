@@ -50,6 +50,13 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    <div class="col-12">
+                                        <div id="pagination" class="d-flex justify-content-center">
+                                            @if ($evaluatesPersonal->hasPages())
+                                                {{ $evaluatesPersonal->links() }}
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-xxl-6 col-xl-6">
                                     <div class="visitor_rev_area">
@@ -79,6 +86,13 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                    </div>
+                                    <div class="col-12">
+                                        <div id="pagination" class="d-flex justify-content-center">
+                                            @if ($evaluatesDashboard->hasPages())
+                                                {{ $evaluatesDashboard->links() }}
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>

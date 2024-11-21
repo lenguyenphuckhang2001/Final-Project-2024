@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth', 'user.type:admin'], 'prefix' => 'admin', 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
     Route::post('/general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
     Route::post('/pusher-settings', [SettingController::class, 'updatePusherSettings'])->name('pusher-settings.update');
+    Route::post('/favicon-and-logo-settings', [SettingController::class, 'updateFaviconLogoSettings'])->name('favicon-and-logo-settings.update');
 
     //Payment Settings
     Route::get('/payment-settings', [SettingPaymentController::class, 'index'])->name('payment-settings.index');
