@@ -83,6 +83,7 @@ button {
     --colorBlack: #1c212b;
     --colorWhite: #ffffff;
     --ratingColor: #feee91;
+    --backgroundColor: #8e8c8b1c;
     --headingFont: "Quicksand", sans-serif;
     --paraFont: "DM Sans", sans-serif;
 }
@@ -3075,7 +3076,7 @@ PAGINATION PART END
 }
 
 #blog_details .input_comment {
-    background: #f6654212;
+    background: var(--backgroundColor);
     padding: 30px;
     border-radius: 10px;
 }
@@ -3360,7 +3361,7 @@ PAGINATION PART END
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    background: #f6654212;
+    background: var(--backgroundColor);
 }
 
 .listing_det_feature_single i {
@@ -3595,7 +3596,7 @@ PAGINATION PART END
 }
 
 #listing_details .input_comment {
-    background: #f6654212;
+    background: var(--backgroundColor);
     padding: 30px;
     border-radius: 10px;
     margin-top: 70px;
@@ -3807,7 +3808,7 @@ PAGINATION PART END
 }
 
 .dashboard_sidebar {
-    background: #8e8c8b1c;
+    background: var(--backgroundColor);
     height: 100%;
     overflow-y: auto;
     scrollbar-width: thin;
@@ -4503,7 +4504,7 @@ PAGINATION PART END
 }
 
 .my_listing .table thead {
-    background: #f665421c;
+    background: var(--backgroundColor);
     color: #0f1221;
     font-size: 14px;
     text-transform: capitalize;
@@ -5231,7 +5232,7 @@ AGENT PROFILE END
 }
 
 .wsus__login_area {
-    background: #f6654212;
+    background: var(--backgroundColor);
     padding: 50px;
     overflow: hidden;
     border-radius: 5px;
@@ -5481,7 +5482,7 @@ AGENT PROFILE END
 
 .tf__massager_option .nav-link:hover,
 .tf__massager_option .nav-link.active {
-    background: #f665421c;
+    background: var(--backgroundColor);
     color: var(--colorBlack);
 }
 
@@ -5676,7 +5677,7 @@ AGENT PROFILE END
 }
 
 .tf__chating_text p {
-    background: #f665421c;
+    background: var(--backgroundColor);
     color: var(--colorBlack);
     padding: 15px;
     border-radius: 10px;

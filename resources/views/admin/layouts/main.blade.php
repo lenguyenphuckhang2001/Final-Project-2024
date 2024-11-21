@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/codemirror/lib/codemirror.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/codemirror/theme/duotone-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/dropzonejs/dropzone.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
 
@@ -69,8 +70,11 @@
     <script src="{{ asset('admin/assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('admin/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/dropzonejs/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/page/components-multiple-upload.js') }}"></script>
     <!---------- Template JS File ---------->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
+
     <!---------- JS Custom Link ---------->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
