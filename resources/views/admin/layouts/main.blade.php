@@ -6,36 +6,32 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>Admin Dashboard</title>
 
-    <!---------- CSS Libraries File ----------->
+    <!---------- CSS Libraries ---------->
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap-iconpicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/codemirror/lib/codemirror.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/codemirror/theme/duotone-dark.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/dropzonejs/dropzone.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('admin/assets/modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
-
-    <!---------- Template File CSS ------------->
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap-iconpicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
 
-    <!---------- CSS Custom Link ---------------->
+    <!---------- CSS Custom Link ---------->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
-    @stack('styles')
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     <script>
-        var PUSHER_APP_KEY = "{{ config('settings.pusher_key') }}";
-        var PUSHER_APP_CLUSTER = "{{ config('settings.pusher_cluster') }}";
+        var PUSHER_APP_KEY = "{{ config('settings.pusher_key') }}"
+        var PUSHER_APP_CLUSTER = "{{ config('settings.pusher_cluster') }}"
         var USER_PROFILE = {
             id: "{{ auth()->user()?->id }}",
             name: "{{ auth()->user()?->name }}",
-            avatar: "{{ asset(auth()->user()?->avatar) }}"
+            avatar: "{{ auth()->user()?->avatar }}"
         }
     </script>
 
@@ -62,25 +58,24 @@
             </footer>
         </div>
     </div>
-    <!---------- Main JavaScript File ---------->
-    <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/page/components-multiple-upload.js') }}"></script>
 
-    <!---------- JavaScript Libraies ---------->
+    <!---------- JS Libraies ---------->
     <script src="{{ asset('admin/assets/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/popper.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/codemirror/lib/codemirror.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/dropzonejs/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/page/components-multiple-upload.js') }}"></script>
+    <!---------- Template JS File ---------->
+    <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
 
-    <!---------- JavaScript Custom Link ---------->
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <!---------- JS Custom Link ---------->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -119,6 +114,7 @@
         $('body').on('click', '.delete-item', function(e) {
             e.preventDefault();
             let url = $(this).attr('href');
+            console.log(url);
             Swal.fire({
                 title: "Delete this item",
                 text: "Are you sure to delete it?",
@@ -129,6 +125,7 @@
                 confirmButtonText: "Yes"
             }).then((result) => {
                 if (result.isConfirmed) {
+
                     $.ajax({
                         method: 'DELETE',
                         url: url,

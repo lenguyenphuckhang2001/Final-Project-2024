@@ -17,6 +17,3 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-
-/resources/views/admin-template
-/resources/views/frontend-template
