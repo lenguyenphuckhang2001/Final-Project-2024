@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
 
 @section('contents')
-    <div id="breadcrumb_part">
+    <div id="breadcrumb_part" style="background: url({{ config('settings.bkg_term_condition') }})">
         <div class="bread_overlay">
             <div class="container">
                 <div class="row justify-content-center">

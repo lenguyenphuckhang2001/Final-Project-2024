@@ -45,8 +45,8 @@ class SettingController extends Controller
             );
         }
 
-        $settingsforService = app(SettingsService::class);
-        $settingsforService->clearCachedSettings();
+        $settingsForService = app(SettingsService::class);
+        $settingsForService->clearCachedSettings();
 
         toastr()->success('Updated General Settings Successfully');
         //Sử dụng phương thức để gọi tới artisan để run command
@@ -71,8 +71,8 @@ class SettingController extends Controller
             );
         }
 
-        $settingsforService = app(SettingsService::class);
-        $settingsforService->clearCachedSettings();
+        $settingsForService = app(SettingsService::class);
+        $settingsForService->clearCachedSettings();
 
         toastr()->success('Updated Pusher Settings Successfully');
         //Sử dụng phương thức để gọi tới artisan để run command
@@ -102,11 +102,75 @@ class SettingController extends Controller
             ['value' => !empty($newLogoImage) ? $newLogoImage : $request->previous_icon]
         );
 
-        $settingsforService = app(SettingsService::class);
-        $settingsforService->clearCachedSettings();
+        $settingsForService = app(SettingsService::class);
+        $settingsForService->clearCachedSettings();
 
         toastr()->success('Updated Logo and Favicon Settings Successfully');
         //Sử dụng phương thức để gọi tới artisan để run command
+        Artisan::call('config:cache');
+
+        return redirect()->back();
+    }
+
+    function breadcrumbBackgroundSettings(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'bkg_listing_page' => ['required', 'image', 'max:10240'],
+            'bkg_listing_categories' => ['required', 'image', 'max:10240'],
+            'bkg_about_us' => ['required', 'image', 'max:10240'],
+            'bkg_blog' => ['required', 'image', 'max:10240'],
+            'bkg_contact_us' => ['required', 'image', 'max:10240'],
+            'bkg_term_condition' => ['required', 'image', 'max:10240'],
+            'bkg_privacy_policy' => ['required', 'image', 'max:10240'],
+        ]);
+
+        $newListingPath = $this->imageUpload($request, 'bkg_listing_page', $request->previous_listing_page);
+        $newListingCategoriesPath = $this->imageUpload($request, 'bkg_listing_categories', $request->previous_listing_categories);
+        $newAboutUsPath = $this->imageUpload($request, 'bkg_about_us', $request->previous_about_us);
+        $newBlogPath = $this->imageUpload($request, 'bkg_blog', $request->previous_bkg_blog);
+        $newContactPath = $this->imageUpload($request, 'bkg_contact_us', $request->previous_contact_us);
+        $newTermConditionPath = $this->imageUpload($request, 'bkg_term_condition', $request->previous_term_condition);
+        $newPrivacyPolicyPath = $this->imageUpload($request, 'bkg_privacy_policy', $request->previous_privacy_policy);
+
+        Setting::updateOrCreate(
+            ['key' => 'bkg_listing_page'],
+            ['value' => !empty($newListingPath) ? $newListingPath : $request->previous_listing_page]
+        );
+
+        Setting::updateOrCreate(
+            ['key' => 'bkg_listing_categories'],
+            ['value' => !empty($newListingCategoriesPath) ? $newListingCategoriesPath : $request->previous_listing_categories]
+        );
+
+        Setting::updateOrCreate(
+            ['key' => 'bkg_about_us'],
+            ['value' => !empty($newAboutUsPath) ? $newAboutUsPath : $request->previous_about_us]
+        );
+
+        Setting::updateOrCreate(
+            ['key' => 'bkg_blog'],
+            ['value' => !empty($newBlogPath) ? $newBlogPath : $request->previous_bkg_blog]
+        );
+
+        Setting::updateOrCreate(
+            ['key' => 'bkg_contact_us'],
+            ['value' => !empty($newContactPath) ? $newContactPath : $request->previous_contact_us]
+        );
+
+        Setting::updateOrCreate(
+            ['key' => 'bkg_term_condition'],
+            ['value' => !empty($newTermConditionPath) ? $newTermConditionPath : $request->previous_term_condition]
+        );
+
+        Setting::updateOrCreate(
+            ['key' => 'bkg_privacy_policy'],
+            ['value' => !empty($newPrivacyPolicyPath) ? $newPrivacyPolicyPath : $request->previous_privacy_policy]
+        );
+
+        $settingsForService = app(SettingsService::class);
+        $settingsForService->clearCachedSettings();
+
+        toastr()->success('Update color for website successfully');
         Artisan::call('config:cache');
 
         return redirect()->back();
