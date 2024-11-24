@@ -13,9 +13,12 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="wsus__location_filter">
-                        <button class="active" data-filter="*">All City</button>
                         @foreach ($homeLocation as $location)
-                            <button data-filter="{{ $location->slug }}">{{ $location->name }}</button>
+                            {{-- Dấu chấm trước data-filter dùng để định nghĩa các class CSS nhằm mục đihcs để sử dụng thư viện
+                            lọc để tìm các phần tử HTML có cùng class với slug và áp dụng. Ví dụ nếu location->slug có giá trị là
+                            da-nang thì nó sẽ áp dụng các vào sẽ thành là .da-nang và sẽ áp dụng bộ lọc cho css xuống các phần tử bên dưới --}}
+                            <button class="{{ $loop->index === 0 ? 'location-index' : '' }}"
+                                data-filter=".{{ $location->slug }}">{{ $location->name }}</button>
                         @endforeach
                     </div>
                 </div>
@@ -67,3 +70,13 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.location-index').trigger('click');
+            }, 100);
+        })
+    </script>
+@endpush

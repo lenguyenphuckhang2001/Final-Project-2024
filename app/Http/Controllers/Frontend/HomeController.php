@@ -45,10 +45,24 @@ class HomeController extends Controller
                     $query->where('is_accepted', 1);
                 }])
                 ->where(['status' => 1, 'is_accepted' => 1])
-                ->orderBy('id', 'desc') //Hàm orderBy sắp xếp theo thứ tự giảm dần nếu muốn tăng dần sử dụng asc
-                ->limit(8)
-                ->get();
+                ->orderBy('id', 'desc'); //Hàm orderBy sắp xếp theo thứ tự giảm dần nếu muốn tăng dần sử dụng asc
         }])->where(['display_at_home' => 1, 'status' => 1])->get();
+
+        $homeLocation = Location::where(['display_at_home' => 1, 'status' => 1])->get();
+
+        $homeLocation->each(function ($query) {
+            $query->listings = $query->listings()
+                ->withAvg(['evaluates' => function ($query) {
+                    $query->where('is_accepted', 1);
+                }], 'rating')
+                ->withCount(['evaluates' => function ($query) {
+                    $query->where('is_accepted', 1);
+                }])
+                ->where(['status' => 1, 'is_accepted' => 1])
+                ->orderBy('id', 'desc')
+                ->take(8)
+                ->get();
+        });
 
         $homeFeaturedListing = Listing::withAvg(['evaluates' => function ($query) {
             $query->where('is_accepted', 1);

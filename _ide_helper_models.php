@@ -43,6 +43,7 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $thumbnail
  * @property string $image
  * @property int $topic_id
  * @property int $author_id
@@ -67,6 +68,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Blog whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Blog whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Blog whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Blog whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Blog whereTopicId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Blog whereUpdatedAt($value)

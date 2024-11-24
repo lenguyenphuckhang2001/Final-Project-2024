@@ -63,17 +63,6 @@
             </div>
             <div class="row">
                 @if(count($listingsPersonal) > 0)
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="wsus__location_filter">
-                            <button class="active" data-filter="*">All City</button>
-                            @foreach ($listingsPersonal as $listing)
-                                <button
-                                    data-filter="{{ $listing->location->slug }}">{{ $listing->location->name }}</button>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
                 <div class="row grid">
                     @foreach ($listingsPersonal as $listing)
                         <div class="col-xl-3 col-sm-6 col-lg-4 {{ $listing->location->slug }}">
