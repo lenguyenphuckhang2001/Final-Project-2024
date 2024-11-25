@@ -4,8 +4,7 @@
             <div class="col-xl-5 m-auto">
                 <div class="wsus__heading_area">
                     <h2>Features</h2>
-                    <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola estut
-                        clita dolorem ei est mazim fuisset scribentur.</p>
+                    <p>We are helps you to explore destinations, plan trips, and book services like flights, accommodations, and activities</p>
                 </div>
             </div>
         </div>

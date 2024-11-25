@@ -93,7 +93,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-md-6">
-                    <p>&#64; 2021 <a href="#">DB.Card</a> All Rights Reserved.</p>
+                    <p>&#64; 2024 <a href="#">Phuc Khang</a> All Rights Reserved.</p>
                 </div>
             </div>
         </div>

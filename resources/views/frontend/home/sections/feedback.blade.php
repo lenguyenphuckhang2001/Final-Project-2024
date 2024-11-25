@@ -5,8 +5,7 @@
                 <div class="col-xl-5 m-auto">
                     <div class="wsus__heading_area">
                         <h2>Feedbacks</h2>
-                        <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola
-                            estut clita dolorem ei est mazim fuisset scribentur.</p>
+                        <p>We have customer testimonials about our products, your experiences are valuable to us</p>
                     </div>
                 </div>
             </div>

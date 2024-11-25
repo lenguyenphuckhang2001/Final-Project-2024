@@ -5,8 +5,7 @@
                 <div class="col-xl-5 m-auto">
                     <div class="wsus__heading_area">
                         <h2>Categories</h2>
-                        <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola
-                            estut clita dolorem ei est mazim fuisset scribentur.</p>
+                        <p>We organize content into sections like destinations, accommodations, activities, travel guides, and tips, making it easier for you to find relevant information</p>
                     </div>
                 </div>
             </div>

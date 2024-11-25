@@ -4,8 +4,7 @@
             <div class="col-xl-5 m-auto">
                 <div class="wsus__heading_area">
                     <h2>Featured Listing </h2>
-                    <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola estut
-                        clita dolorem ei est mazim fuisset scribentur.</p>
+                    <p>We categorize content on our travel website into sections like destinations, accommodations, activities, travel guides, and tips, helping you easily find the information you need</p>
                 </div>
             </div>
         </div>
