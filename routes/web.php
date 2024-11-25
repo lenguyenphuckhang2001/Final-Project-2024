@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\LoginOAuthController;
 use App\Http\Controllers\Frontend\UserChatController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\GuestBlogController;
@@ -29,8 +30,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*------------------------------------------ GUEST ------------------------------------------*/
-/* HOME */
 
+Route::get('/auth/google', [LoginOAuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [LoginOAuthController::class, 'handleGoogleCallback']);
+
+Route::get('/auth/facebook', [LoginOAuthController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('/auth/facebook/callback', [LoginOAuthController::class, 'handleFacebookCallback']);
+
+/* HOME */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/checkout/{id}', [HomeController::class, 'checkout'])->name('checkout.index');
 

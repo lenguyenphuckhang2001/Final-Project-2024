@@ -1,5 +1,10 @@
 @extends('frontend.layouts.main')
 
+@push('styles')
+    <style>
+    </style>
+@endpush
+
 @section('contents')
     <section class="wsus__login_page">
         <div class="container">
@@ -17,7 +22,6 @@
                                             required autofocus autocomplete="username">
                                     </div>
                                 </div>
-
                                 <div class="col-xl-12">
                                     <div class="wsus__login_imput">
                                         <label>Password</label>
@@ -25,7 +29,6 @@
                                             autocomplete="current-password">
                                     </div>
                                 </div>
-
                                 <div class="col-xl-12">
                                     <div class="wsus__login_imput wsus__login_check_area">
                                         <div class="form-check">
@@ -38,21 +41,25 @@
                                         <a href="{{ route('password.request') }}">Forgoten password?</a>
                                     </div>
                                 </div>
-
                                 <div class="col-xl-12">
                                     <div class="wsus__login_imput">
-                                        <button type="submit">login</button>
+                                        <button type="submit">LOGIN</button>
                                     </div>
                                 </div>
-
                             </div>
                         </form>
                         <p class="or"><span>or</span></p>
                         <ul class="d-flex">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                            <li>
+                                <a href="{{ route('auth.google') }}" class="login-with-google-btn">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('auth.facebook') }}">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
                         </ul>
                         <p class="create_account">Don't have an account? <a href="{{ route('register') }}">Create
                                 New Account</a></p>
