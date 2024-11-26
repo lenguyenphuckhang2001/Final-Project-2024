@@ -821,8 +821,9 @@ namespace App\Models{
  * @property string|null $x_url
  * @property string|null $linked_url
  * @property string|null $insta_url
- * @property string|null $google_id
- * @property string|null $facebook_id
+ * @property string|null $provider
+ * @property string|null $provider_id
+ * @property string|null $provider_token
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -848,15 +849,16 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereFacebookId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereFbUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereInstaUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLinkedUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhonenumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProvider($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProviderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProviderToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserType($value)

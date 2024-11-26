@@ -28,7 +28,9 @@ return new class extends Migration
             $table->text('x_url')->nullable();
             $table->text('linked_url')->nullable();
             $table->text('insta_url')->nullable();
-            $table->string('facebook_id')->nullable();
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->string('provider_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\Frontend\LoginOAuthController;
 use App\Http\Controllers\Frontend\UserChatController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -31,11 +32,8 @@ use Illuminate\Support\Facades\Route;
 
 /*------------------------------------------ GUEST ------------------------------------------*/
 
-Route::get('/auth/google', [LoginOAuthController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/auth/google/callback', [LoginOAuthController::class, 'handleGoogleCallback']);
-
-Route::get('/auth/facebook', [LoginOAuthController::class, 'redirectToFacebook'])->name('auth.facebook');
-Route::get('/auth/facebook/callback', [LoginOAuthController::class, 'handleFacebookCallback']);
+Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect'])->name('auth.redirect');
+Route::get('/auth/{provider}/callback', [ProviderController::class, 'handleCallback']);
 
 /* HOME */
 Route::get('/', [HomeController::class, 'index'])->name('home');

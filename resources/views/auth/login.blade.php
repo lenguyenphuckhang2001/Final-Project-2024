@@ -51,12 +51,12 @@
                         <p class="or"><span>or</span></p>
                         <ul class="d-flex">
                             <li>
-                                <a href="{{ route('auth.google') }}" class="login-with-google-btn">
+                                <a href="{{ route('auth.redirect', 'google') }}" class="login-with-google-btn">
                                     <i class="fab fa-google"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('auth.facebook') }}">
+                                <a href="{{ route('auth.redirect', 'facebook') }}">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                             </li>
