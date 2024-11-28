@@ -100,16 +100,13 @@ $currentUrl = url()->current();
                                                                             class="btn btn-primary text-white submit-add-to-menu right">@lang('menu-builder::messages.add_menu_item')</a>
                                                                         <span class="spinner" id="spincustomu"></span>
                                                                     </p>
-
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </li>
-
                                                 </ul>
                                             </div>
                                         </form>
-
                                     </div>
                                 @endif
                                 <div id="menu-management-liquid">
@@ -126,7 +123,7 @@ $currentUrl = url()->current();
                                                                 title="@lang('menu-builder::messages.enter_menu_name')"
                                                                 value="@if (isset($indmenu)) {{ $indmenu->name }} @endif">
                                                             <input type="hidden" id="idmenu"
-                                                                value="@if (isset($indmenu)) {{ $indmenu->id }} @endif" />       
+                                                                value="@if (isset($indmenu)) {{ $indmenu->id }} @endif" />
                                                         </label>
                                                         @if (request()->has('action'))
                                                             <div class="publishing-action">

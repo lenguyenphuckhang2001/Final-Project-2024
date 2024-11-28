@@ -24,7 +24,7 @@
                                 @method('PUT')
                                 <div class="form-group d-flex flex-column ">
                                     <label for="">Background Image</label>
-                                    <div id="image-preview" class="image-preview" style="width: 100%; height: 60vh">
+                                    <div id="image-preview" class="image-preview" style="width: 100%; ">
                                         <label for="background-upload" id="image-label">Choose File</label>
                                         <input type="file" name="background" id="image-upload" />
                                         <input type="hidden" name="previous_background" value="{{ @$hero->background }}">

@@ -7,7 +7,7 @@
         <div class="row text-white">
             <div class="col-xl-6">
                 <div class="footer_text">
-                    <a class="navbar-brand" href="index.html" style="padding-bottom: 50px ;">
+                    <a class="navbar-brand" href="{{ url('/') }}" style="padding-bottom: 50px ;">
                         <img src={{ asset(config('settings.logo_image')) }} style="width: 400px !important;"
                             alt="logo web">
                     </a>
