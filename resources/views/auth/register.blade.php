@@ -44,13 +44,6 @@
                                 </div>
                             </div>
                         </form>
-                        <p class="or"><span>or</span></p>
-                        <ul class="d-flex">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                        </ul>
                         <p class="create_account">Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
                     </div>
                 </div>
