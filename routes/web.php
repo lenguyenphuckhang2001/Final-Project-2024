@@ -61,12 +61,6 @@ Route::get('/terms-and-conditions', [GuestPagesController::class, 'termAndCondit
 Route::get('/personal-profile/{id}', [GuestPagesController::class, 'personalProfileIndex'])->name('personal-profile');
 Route::get('/listing-categories', [GuestPagesController::class, 'listingCategoriesIndex'])->name('listing-categories');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 /*------------------------------------------ DASHBOARD ------------------------------------------*/
 Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function () {
     /* DASHBOARD */

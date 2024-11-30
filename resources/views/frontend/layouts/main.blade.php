@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 
+    <style>
+        .select2-dropdown {
+            color: white !important;
+            background-color: #b1cda0 !important;
+        }
+    </style>
     @stack('styles')
 
     <script script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>

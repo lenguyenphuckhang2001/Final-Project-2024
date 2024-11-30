@@ -1,17 +1,5 @@
 @extends('frontend.layouts.main')
 
-@push('styles')
-    <style>
-        .wsus__featured_single {
-            cursor: pointer;
-        }
-
-        .wsus__featured_single:hover {
-            background-color: #f5f4f4;
-        }
-    </style>
-@endpush
-
 @section('contents')
     <!----------------Banner---------------->
     @include('frontend.home.sections.hero')

@@ -19246,6 +19246,17 @@ namespace Yajra\DataTables {
             }
     }
 
+namespace Illuminate\Database\Eloquent {
+            /**
+     * 
+     *
+     * @template TKey of array-key
+     * @template TModel of \Illuminate\Database\Eloquent\Model
+     * @extends \Illuminate\Support\Collection<TKey, TModel>
+     */        class Collection {
+            }
+    }
+
 
 namespace  {
             class App extends \Illuminate\Support\Facades\App {}

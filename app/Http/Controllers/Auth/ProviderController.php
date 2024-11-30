@@ -52,7 +52,7 @@ class ProviderController extends Controller
             }
 
             Auth::login($user);
-            
+
             return redirect()->route('user.dashboard');
         } catch (\Exception $e) {
             \Log::error('OAuth Error: ' . $e->getMessage());

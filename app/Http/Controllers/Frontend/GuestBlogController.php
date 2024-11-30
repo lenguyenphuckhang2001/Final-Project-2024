@@ -98,7 +98,7 @@ class GuestBlogController extends Controller
         $comment->message = $request->message;
         $comment->save();
 
-        toastr()->success('Comment this post successfully');
+        toastr()->success('Comment this blog successfully');
 
         return redirect()->back();
     }
